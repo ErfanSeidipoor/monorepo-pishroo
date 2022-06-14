@@ -1,0 +1,12 @@
+{
+  "$schema": "./node_modules/nx/schemas/workspace-schema.json",
+  "version": 2,
+  "projects": {
+    "admin": "apps/admin",
+    "back": "apps/back",
+    "entities": "libs/entities",
+    "enums": "libs/enums",
+    "migrations": "libs/migrations",
+    "website": "apps/website"
+  }
+}
