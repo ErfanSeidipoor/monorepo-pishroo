@@ -8,7 +8,7 @@
     "test": "nx test",
     "typeorm:cli": "env-cmd ts-node --transpile-only ./node_modules/typeorm/cli.js -d ./ormconfig.ts",
     "db:drop": "npm run typeorm:cli schema:drop",
-    "migration:create": "typeorm  migration:create libs/migrations/src/<migration-name>",
+    "migration:create": "typeorm  migration:create libs/migrations/src/<migration_file_name>",
     "migration:run": "npm run typeorm:cli migration:run",
     "migration:revert": "npm run typeorm:cli migration:revert",
     "migration:show": "npm run typeorm:cli -- migration:show",
