@@ -36,7 +36,7 @@ export class base1655066320180 implements MigrationInterface {
             type: 'varchar',
             length: '50',
             isUnique: true,
-            isNullable: true,
+            isNullable: false,
           },
           {
             name: 'first_name',
