@@ -35,21 +35,9 @@ export class message1655231208247 implements MigrationInterface {
             default: null,
           },
           {
-            name: 'first_name',
-            type: 'varchar',
-            length: '50',
-            isNullable: true,
-          },
-          {
-            name: 'last_name',
-            type: 'varchar',
-            length: '50',
-            isNullable: true,
-          },
-          {
             name: 'message',
             type: 'varchar',
-            length: '250',
+            length: '500',
             isUnique: false,
             isNullable: false,
           },

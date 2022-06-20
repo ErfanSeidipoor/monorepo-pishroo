@@ -1,7 +1,11 @@
-import { Column, Entity, Index } from 'typeorm';
+import { Column, Entity, Index, OneToMany } from 'typeorm';
 import { Exclude } from 'class-transformer';
 import BaseModel from './baseModel.entity';
 import { UserRoleEnum } from '@pishroo/enums';
+import { ProvinceUser } from './provinceUser.entity';
+import { TransporterAction } from './transporterAction.entity';
+import { ProducerAction } from './producerAction.entity';
+import { CustomerAction } from './customerAction.entity';
 
 @Index('user_pkey', ['id'], { unique: true })
 @Entity('user', { schema: 'public' })
@@ -36,4 +40,28 @@ export class User extends BaseModel {
 
   @Column('boolean', { name: 'is_active', nullable: true })
   isActive: boolean | null;
+
+  @OneToMany(() => ProvinceUser, (provinceUsers) => provinceUsers.user, {
+    cascade: true,
+  })
+  provinceUsers: ProvinceUser[];
+
+  @OneToMany(
+    () => TransporterAction,
+    (transporterAction) => transporterAction.user,
+    {
+      cascade: true,
+    }
+  )
+  transporterActions: TransporterAction[];
+
+  @OneToMany(() => ProducerAction, (producerAction) => producerAction.user, {
+    cascade: true,
+  })
+  producerActions: ProducerAction[];
+
+  @OneToMany(() => CustomerAction, (producerAction) => producerAction.user, {
+    cascade: true,
+  })
+  customerActions: CustomerAction[];
 }

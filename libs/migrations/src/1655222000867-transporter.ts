@@ -78,7 +78,7 @@ export class transporter1655222000867 implements MigrationInterface {
             name: 'city_id',
             type: 'uuid',
             isUnique: false,
-            isNullable: false,
+            isNullable: true,
           },
         ],
       }),
