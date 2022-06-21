@@ -60,12 +60,12 @@ export class product1655219100808 implements MigrationInterface {
             isUnique: false,
             isNullable: false,
           },
-          {
-            name: 'size',
-            type: 'integer',
-            isUnique: false,
-            isNullable: false,
-          },
+          // {
+          //   name: 'size',
+          //   type: 'integer',
+          //   isUnique: false,
+          //   isNullable: false,
+          // },
         ],
       }),
       true
@@ -106,14 +106,14 @@ export class product1655219100808 implements MigrationInterface {
             name: 'reviewer',
             type: 'varchar',
             length: '100',
-            isUnique: true,
+            isUnique: false,
             isNullable: false,
           },
           {
             name: 'text',
             type: 'text',
             isUnique: false,
-            isNullable: true,
+            isNullable: false,
           },
           {
             name: 'is_active',
@@ -297,7 +297,7 @@ export class product1655219100808 implements MigrationInterface {
           {
             name: 'unit',
             type: 'enum',
-            enum: ['weight_kilogram', 'height_meter'],
+            enum: ['weight_kilogram', 'height_meter', 'unknow'],
             isNullable: true,
           },
           {

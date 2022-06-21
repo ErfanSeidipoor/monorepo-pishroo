@@ -38,7 +38,7 @@ export class call1655233048247 implements MigrationInterface {
             name: 'description',
             type: 'text',
             isUnique: false,
-            isNullable: false,
+            isNullable: true,
           },
           {
             name: 'new_phone',

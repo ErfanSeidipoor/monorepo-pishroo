@@ -57,7 +57,7 @@ export class customer1655230801859 implements MigrationInterface {
             name: 'job_title',
             type: 'varchar',
             length: '50',
-            isUnique: true,
+            isUnique: false,
             isNullable: true,
           },
           {

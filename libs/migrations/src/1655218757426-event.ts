@@ -171,7 +171,7 @@ export class event1655218757426 implements MigrationInterface {
             name: 'status',
             type: 'enum',
             enum: ['done', 'inprogress', 'todo'],
-            isNullable: false,
+            isNullable: true,
           },
           {
             name: 'comment',
