@@ -1,6 +1,14 @@
-import { Column, Entity, Index, JoinColumn, ManyToOne } from 'typeorm';
+import {
+  Column,
+  Entity,
+  Index,
+  JoinColumn,
+  ManyToOne,
+  OneToMany,
+} from 'typeorm';
 import BaseModel from './baseModel.entity';
 import { Customer } from './customer.entity';
+import { FileUse } from './fileUse.entity';
 import { User } from './user.entity';
 
 @Index('customer_action_pkey', ['id'], { unique: true })
@@ -29,4 +37,9 @@ export class CustomerAction extends BaseModel {
     referencedColumnName: 'id',
   })
   user: User;
+
+  @OneToMany(() => FileUse, (fileUse) => fileUse.customerAction, {
+    cascade: true,
+  })
+  fileUses: FileUse[];
 }

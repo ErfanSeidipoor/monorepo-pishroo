@@ -8,6 +8,7 @@ import {
 } from 'typeorm';
 import BaseModel from './baseModel.entity';
 import { City } from './city.entity';
+import { FileUse } from './fileUse.entity';
 import { ProducerAction } from './producerAction.entity';
 import { ProducerAgent } from './producerAgent.entity';
 
@@ -69,4 +70,9 @@ export class Producer extends BaseModel {
     }
   )
   producerActions: ProducerAction[];
+
+  @OneToMany(() => FileUse, (fileUse) => fileUse.producer, {
+    cascade: true,
+  })
+  fileUses: FileUse[];
 }

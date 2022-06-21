@@ -1,8 +1,16 @@
-import { Column, Entity, Index, JoinColumn, ManyToOne } from 'typeorm';
+import {
+  Column,
+  Entity,
+  Index,
+  JoinColumn,
+  ManyToOne,
+  OneToMany,
+} from 'typeorm';
 import BaseModel from './baseModel.entity';
 import { User } from './user.entity';
 import { Event } from './event.entity';
 import { EventActionStatusEnum, EventActionTypeEnum } from '@pishroo/enums';
+import { FileUse } from './fileUse.entity';
 
 @Index('event_action_pkey', ['id'], { unique: true })
 @Entity('event_action', { schema: 'public' })
@@ -41,4 +49,9 @@ export class EventAction extends BaseModel {
     referencedColumnName: 'id',
   })
   event: Event;
+
+  @OneToMany(() => FileUse, (fileUse) => fileUse.eventAction, {
+    cascade: true,
+  })
+  fileUses: FileUse[];
 }

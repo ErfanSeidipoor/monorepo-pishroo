@@ -1,9 +1,12 @@
 import { Column, Entity, Index, OneToMany } from 'typeorm';
 import BaseModel from './baseModel.entity';
+import { FileUse } from './fileUse.entity';
 import { ProductCategory } from './productCategory.entity';
 import { ProductColor } from './productColor.entity';
+import { ProductProject } from './productProject.entity';
 import { ProductProperty } from './productProperty.entity';
 import { ProductReview } from './productReview.entity';
+import { TagUse } from './tagUse.entity';
 
 @Index('product_pkey', ['id'], { unique: true })
 @Entity('product', { schema: 'public' })
@@ -40,6 +43,15 @@ export class Product extends BaseModel {
   productCategories: ProductCategory[];
 
   @OneToMany(
+    () => ProductProject,
+    (productProjects) => productProjects.product,
+    {
+      cascade: true,
+    }
+  )
+  productProjects: ProductProject[];
+
+  @OneToMany(
     () => ProductProperty,
     (productProperties) => productProperties.product,
     {
@@ -52,4 +64,14 @@ export class Product extends BaseModel {
     cascade: true,
   })
   productColors: ProductColor[];
+
+  @OneToMany(() => TagUse, (tagUse) => tagUse.product, {
+    cascade: true,
+  })
+  tagUses: TagUse[];
+
+  @OneToMany(() => FileUse, (fileUse) => fileUse.product, {
+    cascade: true,
+  })
+  fileUses: FileUse[];
 }

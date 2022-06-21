@@ -45,7 +45,7 @@ export class tag1655231718845 implements MigrationInterface {
             name: 'name',
             type: 'varchar',
             length: '100',
-            isNullable: true,
+            isNullable: false,
           },
         ],
       }),
@@ -97,9 +97,24 @@ export class tag1655231718845 implements MigrationInterface {
             isUnique: false,
             isNullable: true,
           },
+          {
+            name: 'tag_id',
+            type: 'uuid',
+            isUnique: false,
+            isNullable: true,
+          },
         ],
       }),
       true
+    );
+    await queryRunner.createForeignKey(
+      'tag_use',
+      new TableForeignKey({
+        columnNames: ['tag_id'],
+        referencedTableName: 'tag',
+        referencedColumnNames: ['id'],
+        onDelete: 'CASCADE',
+      })
     );
     await queryRunner.createForeignKey(
       'tag_use',

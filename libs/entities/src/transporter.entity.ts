@@ -8,6 +8,7 @@ import {
 } from 'typeorm';
 import BaseModel from './baseModel.entity';
 import { City } from './city.entity';
+import { FileUse } from './fileUse.entity';
 import { TransporterAction } from './transporterAction.entity';
 import { TransporterAgent } from './transporterAgent.entity';
 
@@ -73,4 +74,9 @@ export class Transporter extends BaseModel {
     }
   )
   transporterActions: TransporterAction[];
+
+  @OneToMany(() => FileUse, (fileUse) => fileUse.transporter, {
+    cascade: true,
+  })
+  fileUses: FileUse[];
 }

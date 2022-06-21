@@ -1,5 +1,13 @@
-import { Column, Entity, Index, JoinColumn, ManyToOne } from 'typeorm';
+import {
+  Column,
+  Entity,
+  Index,
+  JoinColumn,
+  ManyToOne,
+  OneToMany,
+} from 'typeorm';
 import BaseModel from './baseModel.entity';
+import { FileUse } from './fileUse.entity';
 import { Transporter } from './transporter.entity';
 import { TransporterAgent } from './transporterAgent.entity';
 import { User } from './user.entity';
@@ -47,4 +55,9 @@ export class TransporterAction extends BaseModel {
     referencedColumnName: 'id',
   })
   user: User;
+
+  @OneToMany(() => FileUse, (fileUse) => fileUse.transporterAction, {
+    cascade: true,
+  })
+  fileUses: FileUse[];
 }

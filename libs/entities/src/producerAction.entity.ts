@@ -1,5 +1,13 @@
-import { Column, Entity, Index, JoinColumn, ManyToOne } from 'typeorm';
+import {
+  Column,
+  Entity,
+  Index,
+  JoinColumn,
+  ManyToOne,
+  OneToMany,
+} from 'typeorm';
 import BaseModel from './baseModel.entity';
+import { FileUse } from './fileUse.entity';
 import { Producer } from './producer.entity';
 import { ProducerAgent } from './producerAgent.entity';
 import { User } from './user.entity';
@@ -43,4 +51,9 @@ export class ProducerAction extends BaseModel {
     referencedColumnName: 'id',
   })
   user: User;
+
+  @OneToMany(() => FileUse, (fileUse) => fileUse.producerAction, {
+    cascade: true,
+  })
+  fileUses: FileUse[];
 }

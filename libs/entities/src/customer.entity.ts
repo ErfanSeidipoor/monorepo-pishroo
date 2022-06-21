@@ -9,6 +9,7 @@ import {
 import BaseModel from './baseModel.entity';
 import { City } from './city.entity';
 import { CustomerAction } from './customerAction.entity';
+import { CustomerMessage } from './customerMessage.entity';
 
 @Index('customer_agent_pkey', ['id'], { unique: true })
 @Entity('customer_agent', { schema: 'public' })
@@ -51,4 +52,13 @@ export class Customer extends BaseModel {
     }
   )
   customerActions: CustomerAction[];
+
+  @OneToMany(
+    () => CustomerMessage,
+    (customerMessage) => customerMessage.customer,
+    {
+      cascade: true,
+    }
+  )
+  customerMessages: CustomerMessage[];
 }

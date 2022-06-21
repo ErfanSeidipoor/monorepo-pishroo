@@ -1,5 +1,13 @@
-import { Column, Entity, Index, JoinColumn, ManyToOne } from 'typeorm';
+import {
+  Column,
+  Entity,
+  Index,
+  JoinColumn,
+  ManyToOne,
+  OneToMany,
+} from 'typeorm';
 import BaseModel from './baseModel.entity';
+import { CustomerMessage } from './customerMessage.entity';
 import { User } from './user.entity';
 
 @Index('message_pkey', ['id'], { unique: true })
@@ -25,4 +33,13 @@ export class Message extends BaseModel {
     referencedColumnName: 'id',
   })
   user: User;
+
+  @OneToMany(
+    () => CustomerMessage,
+    (customerMessage) => customerMessage.message,
+    {
+      cascade: true,
+    }
+  )
+  customerMessages: CustomerMessage[];
 }

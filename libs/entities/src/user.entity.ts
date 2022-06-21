@@ -6,6 +6,7 @@ import { ProvinceUser } from './provinceUser.entity';
 import { TransporterAction } from './transporterAction.entity';
 import { ProducerAction } from './producerAction.entity';
 import { CustomerAction } from './customerAction.entity';
+import { FileUse } from './fileUse.entity';
 
 @Index('user_pkey', ['id'], { unique: true })
 @Entity('user', { schema: 'public' })
