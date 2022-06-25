@@ -4,6 +4,7 @@
   "projects": {
     "admin": "apps/admin",
     "back": "apps/back",
+    "dto": "libs/dto",
     "entities": "libs/entities",
     "enums": "libs/enums",
     "migrations": "libs/migrations",
