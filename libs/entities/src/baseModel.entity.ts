@@ -1,3 +1,5 @@
+import { ObjectType, Field } from '@nestjs/graphql';
+
 import {
   BaseEntity,
   CreateDateColumn,
@@ -6,10 +8,13 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
+@ObjectType()
 export default abstract class BaseModel extends BaseEntity {
+  @Field({ nullable: false })
   @PrimaryGeneratedColumn('uuid', { name: 'id' })
   id: string;
 
+  @Field()
   @CreateDateColumn({
     type: 'timestamptz',
     default: () => 'CURRENT_TIMESTAMP(6)',
@@ -17,6 +22,7 @@ export default abstract class BaseModel extends BaseEntity {
   })
   public createdAt: Date;
 
+  @Field({ nullable: true })
   @UpdateDateColumn({
     type: 'timestamptz',
     default: () => 'CURRENT_TIMESTAMP(6)',
@@ -25,6 +31,7 @@ export default abstract class BaseModel extends BaseEntity {
   })
   public updatedAt: Date;
 
+  @Field({ nullable: true })
   @DeleteDateColumn({
     type: 'timestamptz',
     default: () => `null`,

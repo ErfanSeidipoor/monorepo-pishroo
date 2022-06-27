@@ -7,6 +7,7 @@ import {
   OneToOne,
 } from 'typeorm';
 import BaseModel from './baseModel.entity';
+import { FileUse } from './fileUse.entity';
 import { User } from './user.entity';
 
 @Index('file_pkey', ['id'], { unique: true })

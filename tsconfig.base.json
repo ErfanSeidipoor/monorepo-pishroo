@@ -18,7 +18,8 @@
       "@pishroo/dto": ["libs/dto/src/index.ts"],
       "@pishroo/entities": ["libs/entities/src/index.ts"],
       "@pishroo/enums": ["libs/enums/src/index.ts"],
-      "@pishroo/migrations": ["libs/migrations/src/index.ts"]
+      "@pishroo/migrations": ["libs/migrations/src/index.ts"],
+      "@pishroo/utils": ["libs/utils/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

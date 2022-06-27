@@ -1,3 +1,5 @@
+import { ObjectType, Field } from '@nestjs/graphql';
+
 import { Column, Entity, Index, OneToMany } from 'typeorm';
 import BaseModel from './baseModel.entity';
 import { FileUse } from './fileUse.entity';
@@ -8,12 +10,15 @@ import { ProductProperty } from './productProperty.entity';
 import { ProductReview } from './productReview.entity';
 import { TagUse } from './tagUse.entity';
 
+@ObjectType()
 @Index('product_pkey', ['id'], { unique: true })
 @Entity('product', { schema: 'public' })
 export class Product extends BaseModel {
+  @Field({ nullable: false })
   @Column('varchar', { name: 'name', nullable: false, length: 50 })
   name: string;
 
+  @Field({ nullable: false })
   @Column('varchar', {
     name: 'slug',
     unique: true,
@@ -22,9 +27,11 @@ export class Product extends BaseModel {
   })
   slug: string;
 
+  @Field({ nullable: true })
   @Column('boolean', { name: 'is_active', nullable: true })
   isActive: boolean | null;
 
+  @Field({ nullable: false })
   @Column('text', { name: 'text', nullable: false })
   text: string;
 

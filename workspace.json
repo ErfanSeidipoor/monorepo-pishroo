@@ -8,6 +8,7 @@
     "entities": "libs/entities",
     "enums": "libs/enums",
     "migrations": "libs/migrations",
+    "utils": "libs/utils",
     "website": "apps/website"
   }
 }

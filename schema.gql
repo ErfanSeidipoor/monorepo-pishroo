@@ -1,0 +1,46 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Product {
+  id: String!
+  createdAt: DateTime!
+  updatedAt: DateTime
+  deletedAt: DateTime
+  name: String!
+  slug: String!
+  isActive: Boolean
+  text: String!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Query {
+  product(productId: String!): Product
+  products(productIds: [String!]!): [Product]!
+}
+
+type Mutation {
+  createProduct(createProduct: CreateProductInput!): Product!
+  updateProduct(updateProduct: UpdateProductInput!): Product!
+  deleteProduct(deleteProduct: DeleteProductInput!): Product!
+}
+
+input CreateProductInput {
+  name: String!
+  slug: String!
+}
+
+input UpdateProductInput {
+  productId: String!
+  name: String
+  slug: String
+  isActive: Boolean
+}
+
+input DeleteProductInput {
+  productId: String!
+}
