@@ -1,5 +1,4 @@
-import { Query, Resolver, Args, Mutation, Context } from '@nestjs/graphql';
-import { Request } from 'express';
+import { Query, Resolver, Args, Mutation } from '@nestjs/graphql';
 import { Product } from '@pishroo/entities';
 import { ProductService } from './products.service';
 
@@ -11,9 +10,6 @@ import {
   GetProductsArgs,
   UpdateProductInput,
 } from '@pishroo/dto';
-import { Ctx } from '../types/context.type';
-import { Session } from '@nestjs/common';
-import { SessionData } from 'express-session';
 
 @Resolver(() => Product)
 export class ProductResolver {
@@ -26,12 +22,10 @@ export class ProductResolver {
     return await this.productService.getProductById(getProductArgs);
   }
 
-  @Query(() => [Product], { name: 'products', nullable: 'items' })
+  @Query(() => [Product], { name: 'getProducts_app', nullable: 'items' })
   async getProducts(
     @Args() getProductsArgs: GetProductsArgs
-    // @Context() context: Ctx
   ): Promise<Product[]> {
-    // context.req.session.userId = 'a5558c09-9652-4ea0-bcfb-a97d8489d696';
     return await this.productService.getProducts(getProductsArgs);
   }
 

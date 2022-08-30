@@ -7,6 +7,7 @@
     "dto": "libs/dto",
     "entities": "libs/entities",
     "enums": "libs/enums",
+    "http-exceptions": "libs/http-exceptions",
     "migrations": "libs/migrations",
     "utils": "libs/utils",
     "website": "apps/website"
