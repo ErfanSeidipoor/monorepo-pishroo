@@ -3,12 +3,12 @@ import { GraphQLModule } from "@nestjs/graphql";
 import { ApolloDriver, ApolloDriverConfig } from "@nestjs/apollo";
 import { ConfigModule, ConfigService } from "@nestjs/config";
 
-/* -------------------------------------------------------------------------- */
-/*                                   Modules                                  */
-/* -------------------------------------------------------------------------- */
+/* --------------------------------- Modules -------------------------------- */
 
 // admin
 import { AuthModuleAdmin } from "./modules/admin/auth/auth.module";
+
+import { FileModule } from "./modules/file/file.module";
 
 import { ProductsModule } from "./products/products.module";
 import { ProducersModule } from "./producers/producers.module";
@@ -42,6 +42,7 @@ import { CurrentUserMiddleware } from "./middlewares";
     AuthModuleAdmin,
     ProductsModule,
     ProducersModule,
+    FileModule,
   ],
   controllers: [],
   providers: [],

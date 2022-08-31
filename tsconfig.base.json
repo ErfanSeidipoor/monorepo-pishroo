@@ -21,6 +21,7 @@
       "@pishroo/enums": ["libs/enums/src/index.ts"],
       "@pishroo/http-exceptions": ["libs/http-exceptions/src/index.ts"],
       "@pishroo/migrations": ["libs/migrations/src/index.ts"],
+      "@pishroo/models": ["libs/models/src/index.ts"],
       "@pishroo/utils": ["libs/utils/src/index.ts"]
     }
   },

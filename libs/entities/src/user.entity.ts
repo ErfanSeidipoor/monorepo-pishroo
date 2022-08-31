@@ -1,5 +1,6 @@
 import { Column, Entity, Index, OneToMany } from "typeorm";
 import { Field, ObjectType } from "@nestjs/graphql";
+import { Paginated } from "@pishroo/models";
 import { Exclude } from "class-transformer";
 import BaseModel from "./baseModel.entity";
 import { UserRoleEnum } from "@pishroo/enums";
@@ -74,3 +75,6 @@ export class User extends BaseModel {
   })
   customerActions: CustomerAction[];
 }
+
+@ObjectType()
+export class PaginatedUser extends Paginated(User) {}

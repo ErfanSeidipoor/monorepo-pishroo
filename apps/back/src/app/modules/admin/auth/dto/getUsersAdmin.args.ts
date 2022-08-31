@@ -1,11 +1,21 @@
 import { ArgsType, Field } from "@nestjs/graphql";
 import { GetUsersAdminArgs } from "@pishroo/dto";
+import { UserRoleEnum } from "@pishroo/enums";
 
 @ArgsType()
 export class GetUsersAdminArgsGQL extends GetUsersAdminArgs {
-  @Field()
-  page?: number;
+  @Field(() => String, { nullable: true })
+  name?: string = "";
 
-  @Field()
-  limit?: number;
+  @Field(() => String, { nullable: true })
+  email?: string = "";
+
+  @Field(() => String, { nullable: true })
+  phone?: string = "";
+
+  @Field(() => [UserRoleEnum], { nullable: true })
+  roles?: UserRoleEnum[] = [];
+
+  @Field(() => Boolean, { nullable: true })
+  isActive?: boolean;
 }

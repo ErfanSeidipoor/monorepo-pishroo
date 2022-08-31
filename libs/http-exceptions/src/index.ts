@@ -29,3 +29,8 @@ export const USER_WITH_THIS_EMAIL_ALREADY_EXIST: ICustomError = {
   status: HttpStatus.BAD_REQUEST,
   description: "User with this email already exist",
 };
+
+export const USER_NOT_FOUND: ICustomError = {
+  status: HttpStatus.NOT_FOUND,
+  description: "User Not Found",
+};

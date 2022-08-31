@@ -1,14 +1,32 @@
-import { IsOptional, IsPositive } from "class-validator";
-import { Type } from "class-transformer";
+import { UserRoleEnum } from "@pishroo/enums";
+// import { Transform } from "class-transformer";
+import {
+  IsArray,
+  IsBoolean,
+  IsEnum,
+  IsOptional,
+  IsString,
+} from "class-validator";
 
 export class GetUsersAdminArgs {
   @IsOptional()
-  @IsPositive()
-  @Type(() => Number)
-  page?: number;
+  @IsString()
+  name?: string;
 
   @IsOptional()
-  @IsPositive()
-  @Type(() => Number)
-  limit?: number;
+  @IsString()
+  email?: string;
+
+  @IsOptional()
+  @IsString()
+  phone?: string;
+
+  @IsOptional()
+  @IsEnum(UserRoleEnum, { each: true })
+  @IsArray()
+  roles?: UserRoleEnum[];
+
+  @IsOptional()
+  @IsBoolean()
+  isActive?: boolean;
 }

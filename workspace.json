@@ -9,6 +9,7 @@
     "enums": "libs/enums",
     "http-exceptions": "libs/http-exceptions",
     "migrations": "libs/migrations",
+    "models": "libs/models",
     "utils": "libs/utils",
     "website": "apps/website"
   }

@@ -2,6 +2,33 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type PageInfo {
+  totalEdges: Float!
+  edgeCount: Float
+  edgesPerPage: Float!
+  totalPages: Float!
+  currentPage: Float!
+}
+
+type File {
+  id: String!
+  createdAt: DateTime!
+  updatedAt: DateTime
+  deletedAt: DateTime
+  encoding: String!
+  mimetype: String!
+  destination: String!
+  filename: String!
+  path: String!
+  size: Float!
+  isUsed: Boolean!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
 type Product {
   id: String!
   createdAt: DateTime!
@@ -12,11 +39,6 @@ type Product {
   isActive: Boolean
   text: String!
 }
-
-"""
-A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
-"""
-scalar DateTime
 
 type User {
   id: String!
@@ -42,10 +64,16 @@ enum UserRoleEnum {
   admin_event
 }
 
+type PaginatedUser {
+  edges: [User!]
+  pageInfo: PageInfo
+}
+
 type Query {
   loginAdmin(loginAdminInputs: LoginAdminInputsGQL!): User!
   meAdmin: User
-  getUsersAdmin: [User!]
+  getUsersAdmin(limit: Int = 10, page: Int = 1, name: String = "", email: String = "", phone: String = "", roles: [UserRoleEnum!] = [], isActive: Boolean): PaginatedUser
+  getUserByIdAdmin(userId: String!): User
   logoutAdmin: User
   product(productId: String!): Product
   products(productIds: [String!]!): [Product]!
@@ -59,9 +87,12 @@ input LoginAdminInputsGQL {
 
 type Mutation {
   createUserAdmin(createUserAdmin: CreateUserAdminInputsGQL!): User!
+  updateUserActivationAdmin(updateUserActivationAdmin: UpdateUserActivationAdminInputsGQL!): User!
+  updateUserAdmin(updateUserAdmin: UpdateUserAdminInputsGQL!): User!
   createProduct(createProduct: CreateProductInput!): Product!
   updateProduct(updateProduct: UpdateProductInput!): Product!
   deleteProduct(deleteProduct: DeleteProductInput!): Product!
+  uploadFile(uploadFileInputs: UploadFileInputsGQL!): File!
 }
 
 input CreateUserAdminInputsGQL {
@@ -72,6 +103,21 @@ input CreateUserAdminInputsGQL {
   phone: String!
   isActive: Boolean!
   password: String!
+  roles: [UserRoleEnum!]!
+}
+
+input UpdateUserActivationAdminInputsGQL {
+  userId: String!
+  isActive: Boolean!
+}
+
+input UpdateUserAdminInputsGQL {
+  userId: String!
+  username: String!
+  firstName: String!
+  lastName: String!
+  email: String!
+  phone: String!
   roles: [UserRoleEnum!]!
 }
 
@@ -90,3 +136,12 @@ input UpdateProductInput {
 input DeleteProductInput {
   productId: String!
 }
+
+input UploadFileInputsGQL {
+  name: String!
+  breed: String!
+  image: Upload!
+}
+
+"""The `Upload` scalar type represents a file upload."""
+scalar Upload
