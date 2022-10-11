@@ -7,11 +7,9 @@ import { ConfigModule, ConfigService } from "@nestjs/config";
 
 // admin
 import { AuthModuleAdmin } from "./modules/admin/auth/auth.module";
+import { ProductModuleAdmin } from "./modules/admin/product/product.module";
 
 import { FileModule } from "./modules/file/file.module";
-
-import { ProductsModule } from "./products/products.module";
-import { ProducersModule } from "./producers/producers.module";
 import { entities } from "@pishroo/entities";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { CurrentUserMiddleware } from "./middlewares";
@@ -22,6 +20,7 @@ import { CurrentUserMiddleware } from "./middlewares";
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       autoSchemaFile: "schema.gql",
+      allowBatchedHttpRequests: true,
     }),
     TypeOrmModule.forFeature(entities),
     TypeOrmModule.forRootAsync({
@@ -40,8 +39,7 @@ import { CurrentUserMiddleware } from "./middlewares";
       },
     }),
     AuthModuleAdmin,
-    ProductsModule,
-    ProducersModule,
+    ProductModuleAdmin,
     FileModule,
   ],
   controllers: [],

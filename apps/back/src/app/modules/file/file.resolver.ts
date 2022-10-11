@@ -1,34 +1,47 @@
+import { UserId } from "@back/decorators";
+import { AdminGuard } from "@back/guards";
+import { UseGuards } from "@nestjs/common";
 import { Args, Mutation, Resolver } from "@nestjs/graphql";
-import { FileService } from "./file.service";
-import * as GraphQLUpload from "graphql-upload/GraphQLUpload.js";
-import { createWriteStream } from "fs";
 import { File } from "@pishroo/entities";
-import { UploadFileInputsGQL } from "./dto/uploadFile.inputs";
+import { createWriteStream } from "fs";
+import * as GraphQLUpload from "graphql-upload/GraphQLUpload.js";
+import { v4 as uuid } from "uuid";
+import { FileService } from "./file.service";
 
 @Resolver()
 export class FileResolver {
   constructor(private fileService: FileService) {}
 
-  // @Query(() => User)
-  // async loginAdmin(
-  //   @Args("loginAdminInputs") loginAdminInputs: LoginAdminInputsGQL,
-  //   @Context() context: Ctx
-  // ): Promise<User> {
-  //   return await this.authService.login(context, loginAdminInputs);
-  // }
-
   @Mutation(() => File)
+  @UseGuards(AdminGuard)
   async uploadFile(
-    @Args("uploadFileInputs") uploadFileInputs: UploadFileInputsGQL
-  ) {
-    console.log({ uploadFileInputs });
-    return new File();
+    @Args({ name: "file", type: () => GraphQLUpload })
+    fileUpload: GraphQLUpload.FileUpload,
+    @UserId() userId: string
+  ): Promise<File> {
+    const path = `uploads/${uuid()}_${fileUpload.filename}`;
 
-    // return new Promise((resolve, reject) =>
-    //   createWriteStream()
-    //     .pipe(createWriteStream(`./uploads/${filename}`))
-    //     .on("finish", () => resolve(true))
-    //     .on("error", () => reject(false))
-    // );
+    return new Promise((resolve, reject) =>
+      fileUpload
+        .createReadStream()
+        .pipe(createWriteStream(path))
+        .on("finish", () => {
+          resolve(this.fileService.uploadFile(userId, fileUpload, path));
+        })
+        .on("error", () => {
+          reject(false);
+        })
+    );
   }
+
+  // @Query(() => String)
+  // @UseGuards(AdminGuard)
+  // async downloadFile(@Res() response: Response): Promise<string> {
+  //   console.log({ response });
+
+  //   const readStream = await this.fileService.downloadFile();
+
+  //   readStream.pipe(response);
+  //   return "Hi, there";
+  // }
 }

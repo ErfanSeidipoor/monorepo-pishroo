@@ -40,6 +40,11 @@ type Product {
   text: String!
 }
 
+type PaginatedProduct {
+  edges: [Product!]
+  pageInfo: PageInfo
+}
+
 type User {
   id: String!
   createdAt: DateTime!
@@ -75,9 +80,7 @@ type Query {
   getUsersAdmin(limit: Int = 10, page: Int = 1, name: String = "", email: String = "", phone: String = "", roles: [UserRoleEnum!] = [], isActive: Boolean): PaginatedUser
   getUserByIdAdmin(userId: String!): User
   logoutAdmin: User
-  product(productId: String!): Product
-  products(productIds: [String!]!): [Product]!
-  getProducts_app(productIds: [String!]!): [Product]!
+  getProductsAdmin(limit: Int = 10, page: Int = 1, name: String = "", slug: String = "", isActive: Boolean): PaginatedProduct
 }
 
 input LoginAdminInputsGQL {
@@ -89,10 +92,11 @@ type Mutation {
   createUserAdmin(createUserAdmin: CreateUserAdminInputsGQL!): User!
   updateUserActivationAdmin(updateUserActivationAdmin: UpdateUserActivationAdminInputsGQL!): User!
   updateUserAdmin(updateUserAdmin: UpdateUserAdminInputsGQL!): User!
-  createProduct(createProduct: CreateProductInput!): Product!
-  updateProduct(updateProduct: UpdateProductInput!): Product!
-  deleteProduct(deleteProduct: DeleteProductInput!): Product!
-  uploadFile(uploadFileInputs: UploadFileInputsGQL!): File!
+  createProductAdmin(createProductAdmin: CreateProductAdminInputsGQL!): Product!
+  updateProductAdmin(updateProductAdmin: UpdateProductAdminInputsGQL!): Product!
+  updateProductActivationAdmin(updateProductActivationAdmin: UpdateProductActivationAdminInputsGQL!): Product!
+  deleteProductAdmin(deleteProductAdmin: DeleteProductAdminInputsGQL!): Product!
+  uploadFile(file: Upload!): File!
 }
 
 input CreateUserAdminInputsGQL {
@@ -121,26 +125,28 @@ input UpdateUserAdminInputsGQL {
   roles: [UserRoleEnum!]!
 }
 
-input CreateProductInput {
+input CreateProductAdminInputsGQL {
   name: String!
   slug: String!
+  isActive: Boolean!
+  text: String!
 }
 
-input UpdateProductInput {
-  productId: String!
-  name: String
-  slug: String
-  isActive: Boolean
-}
-
-input DeleteProductInput {
-  productId: String!
-}
-
-input UploadFileInputsGQL {
+input UpdateProductAdminInputsGQL {
   name: String!
-  breed: String!
-  image: Upload!
+  slug: String!
+  isActive: Boolean!
+  text: String!
+  productId: String!
+}
+
+input UpdateProductActivationAdminInputsGQL {
+  productId: String!
+  isActive: Boolean!
+}
+
+input DeleteProductAdminInputsGQL {
+  productId: String!
 }
 
 """The `Upload` scalar type represents a file upload."""

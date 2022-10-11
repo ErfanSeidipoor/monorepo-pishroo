@@ -42,6 +42,20 @@ export class AdminGuard implements CanActivate {
   }
 }
 
+export class ProductAdminGuard implements CanActivate {
+  canActivate(context: ExecutionContext) {
+    const ctx = GqlExecutionContext.create(context);
+    const request = ctx.getContext().req as Request;
+
+    return (
+      request.user &&
+      request.user.roles.includes(UserRoleEnum.admin_product) &&
+      true
+    );
+  }
+}
+
+
 // export enum UserRoleEnum {
 //   supper_admin = "supper_admin",
 //   employee = "employee",

@@ -1,9 +1,9 @@
 /* --------------------------------- inputs --------------------------------- */
-export * from "./loginAdmin.inputs";
-export * from "./createUserAdmin.inputs";
-export * from "./updateUserActivationAdmin.inputs";
-export * from "./updateUserAdmin.inputs";
+export * from "./login.inputs";
+export * from "./create-user.inputs";
+export * from "./update-user-activation.inputs";
+export * from "./update-user.inputs";
 
 /* ---------------------------------- args ---------------------------------- */
-export * from "./getUsersAdmin.args";
-export * from "./getUserByIdAdmin.args";
+export * from "./get-users.args";
+export * from "./get-user-by-id.args";

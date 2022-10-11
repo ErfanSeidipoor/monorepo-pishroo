@@ -1,26 +1,27 @@
-import { ObjectType, Field } from '@nestjs/graphql';
+import { ObjectType, Field } from "@nestjs/graphql";
+import { Paginated } from "@pishroo/models";
 
-import { Column, Entity, Index, OneToMany } from 'typeorm';
-import BaseModel from './baseModel.entity';
-import { FileUse } from './fileUse.entity';
-import { ProductCategory } from './productCategory.entity';
-import { ProductColor } from './productColor.entity';
-import { ProductProject } from './productProject.entity';
-import { ProductProperty } from './productProperty.entity';
-import { ProductReview } from './productReview.entity';
-import { TagUse } from './tagUse.entity';
+import { Column, Entity, Index, OneToMany } from "typeorm";
+import BaseModel from "./baseModel.entity";
+import { FileUse } from "./fileUse.entity";
+import { ProductCategory } from "./productCategory.entity";
+import { ProductColor } from "./productColor.entity";
+import { ProductProject } from "./productProject.entity";
+import { ProductProperty } from "./productProperty.entity";
+import { ProductReview } from "./productReview.entity";
+import { TagUse } from "./tagUse.entity";
 
 @ObjectType()
-@Index('product_pkey', ['id'], { unique: true })
-@Entity('product', { schema: 'public' })
+@Index("product_pkey", ["id"], { unique: true })
+@Entity("product", { schema: "public" })
 export class Product extends BaseModel {
   @Field({ nullable: false })
-  @Column('varchar', { name: 'name', nullable: false, length: 50 })
+  @Column("varchar", { name: "name", nullable: false, length: 50 })
   name: string;
 
   @Field({ nullable: false })
-  @Column('varchar', {
-    name: 'slug',
+  @Column("varchar", {
+    name: "slug",
     unique: true,
     nullable: false,
     length: 50,
@@ -28,11 +29,11 @@ export class Product extends BaseModel {
   slug: string;
 
   @Field({ nullable: true })
-  @Column('boolean', { name: 'is_active', nullable: true })
+  @Column("boolean", { name: "is_active", nullable: true })
   isActive: boolean | null;
 
   @Field({ nullable: false })
-  @Column('text', { name: 'text', nullable: false })
+  @Column("text", { name: "text", nullable: false })
   text: string;
 
   @OneToMany(() => ProductReview, (productReview) => productReview.product, {
@@ -82,3 +83,6 @@ export class Product extends BaseModel {
   })
   fileUses: FileUse[];
 }
+
+@ObjectType()
+export class PaginatedProduct extends Paginated(Product) {}

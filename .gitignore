@@ -6,6 +6,8 @@
 /out-tsc
 .env
 
+/uploads
+
 # dependencies
 node_modules
 

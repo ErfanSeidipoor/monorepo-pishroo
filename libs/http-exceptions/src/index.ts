@@ -34,3 +34,23 @@ export const USER_NOT_FOUND: ICustomError = {
   status: HttpStatus.NOT_FOUND,
   description: "User Not Found",
 };
+
+export const FILE_NOT_FOUND: ICustomError = {
+  status: HttpStatus.NOT_FOUND,
+  description: "File Not Found",
+};
+
+export const PRODUCT_WITH_THIS_NAME_ALREADY_EXIST: ICustomError = {
+  status: HttpStatus.BAD_REQUEST,
+  description: "Product With This name already exist",
+};
+
+export const PRODUCT_WITH_THIS_SLUG_ALREADY_EXIST: ICustomError = {
+  status: HttpStatus.BAD_REQUEST,
+  description: "Product With This slug already exist",
+};
+
+export const PRODUCT_NOT_FOUND: ICustomError = {
+  status: HttpStatus.NOT_FOUND,
+  description: "product Not Found",
+};

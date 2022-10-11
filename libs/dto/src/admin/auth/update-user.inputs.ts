@@ -10,8 +10,9 @@ import {
   MinLength,
   IsUUID,
 } from "class-validator";
+import { CreateUserAdminInputs } from "./create-user.inputs";
 
-export class UpdateUserAdminInputs {
+export class UpdateUserAdminInputs extends CreateUserAdminInputs {
   @IsUUID()
   userId: string;
 
