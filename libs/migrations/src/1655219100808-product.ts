@@ -60,12 +60,6 @@ export class product1655219100808 implements MigrationInterface {
             isUnique: false,
             isNullable: false,
           },
-          // {
-          //   name: 'size',
-          //   type: 'integer',
-          //   isUnique: false,
-          //   isNullable: false,
-          // },
         ],
       }),
       true

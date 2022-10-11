@@ -5,58 +5,68 @@ import {
   JoinColumn,
   ManyToOne,
   OneToOne,
-} from 'typeorm';
-import BaseModel from './baseModel.entity';
-import { User } from './user.entity';
+} from "typeorm";
+import { Field, ObjectType } from "@nestjs/graphql";
+import BaseModel from "./baseModel.entity";
+import { FileUse } from "./fileUse.entity";
+import { User } from "./user.entity";
 
-@Index('file_pkey', ['id'], { unique: true })
-@Entity('file', { schema: 'public' })
+@ObjectType()
+@Index("file_pkey", ["id"], { unique: true })
+@Entity("file", { schema: "public" })
 export class File extends BaseModel {
-  @Column('varchar', {
-    name: 'encoding',
+  @Field({ nullable: false })
+  @Column("varchar", {
+    name: "encoding",
     nullable: false,
     unique: false,
     length: 15,
   })
   encoding: string;
 
-  @Column('varchar', {
-    name: 'mimetype',
+  @Field({ nullable: false })
+  @Column("varchar", {
+    name: "mimetype",
     nullable: false,
     unique: false,
     length: 100,
   })
   mimetype: string;
 
-  @Column('varchar', {
-    name: 'destination',
+  @Field({ nullable: false })
+  @Column("varchar", {
+    name: "destination",
     nullable: false,
     unique: false,
     length: 30,
   })
   destination: string;
 
-  @Column('varchar', {
-    name: 'filename',
+  @Field({ nullable: false })
+  @Column("varchar", {
+    name: "filename",
     nullable: false,
     unique: true,
     length: 50,
   })
   filename: string;
 
-  @Column('varchar', {
-    name: 'path',
+  @Field({ nullable: false })
+  @Column("varchar", {
+    name: "path",
     nullable: false,
     unique: true,
     length: 70,
   })
   path: string;
 
-  @Column('integer', { name: 'size', nullable: false, unique: false })
+  @Field({ nullable: false })
+  @Column("integer", { name: "size", nullable: false, unique: false })
   size: number;
 
-  @Column('boolean', {
-    name: 'is_used',
+  @Field({ nullable: false })
+  @Column("boolean", {
+    name: "is_used",
     nullable: true,
     unique: false,
     default: false,
@@ -65,8 +75,8 @@ export class File extends BaseModel {
 
   @ManyToOne(() => User)
   @JoinColumn({
-    name: 'user_id',
-    referencedColumnName: 'id',
+    name: "user_id",
+    referencedColumnName: "id",
   })
   user?: User;
 

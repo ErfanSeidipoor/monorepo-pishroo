@@ -1,0 +1,153 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type PageInfo {
+  totalEdges: Float!
+  edgeCount: Float
+  edgesPerPage: Float!
+  totalPages: Float!
+  currentPage: Float!
+}
+
+type File {
+  id: String!
+  createdAt: DateTime!
+  updatedAt: DateTime
+  deletedAt: DateTime
+  encoding: String!
+  mimetype: String!
+  destination: String!
+  filename: String!
+  path: String!
+  size: Float!
+  isUsed: Boolean!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Product {
+  id: String!
+  createdAt: DateTime!
+  updatedAt: DateTime
+  deletedAt: DateTime
+  name: String!
+  slug: String!
+  isActive: Boolean
+  text: String!
+}
+
+type PaginatedProduct {
+  edges: [Product!]
+  pageInfo: PageInfo
+}
+
+type User {
+  id: String!
+  createdAt: DateTime!
+  updatedAt: DateTime
+  deletedAt: DateTime
+  username: String!
+  firstName: String
+  lastName: String
+  email: String
+  phone: String
+  roles: [UserRoleEnum!]!
+  isActive: Boolean
+}
+
+enum UserRoleEnum {
+  supper_admin
+  employee
+  admin_content
+  admin_product
+  admin_transporter
+  admin_producer
+  admin_event
+}
+
+type PaginatedUser {
+  edges: [User!]
+  pageInfo: PageInfo
+}
+
+type Query {
+  loginAdmin(loginAdminInputs: LoginAdminInputsGQL!): User!
+  meAdmin: User
+  getUsersAdmin(limit: Int = 10, page: Int = 1, name: String = "", email: String = "", phone: String = "", roles: [UserRoleEnum!] = [], isActive: Boolean): PaginatedUser
+  getUserByIdAdmin(userId: String!): User
+  logoutAdmin: User
+  getProductsAdmin(limit: Int = 10, page: Int = 1, name: String = "", slug: String = "", isActive: Boolean): PaginatedProduct
+}
+
+input LoginAdminInputsGQL {
+  username: String!
+  password: String!
+}
+
+type Mutation {
+  createUserAdmin(createUserAdmin: CreateUserAdminInputsGQL!): User!
+  updateUserActivationAdmin(updateUserActivationAdmin: UpdateUserActivationAdminInputsGQL!): User!
+  updateUserAdmin(updateUserAdmin: UpdateUserAdminInputsGQL!): User!
+  createProductAdmin(createProductAdmin: CreateProductAdminInputsGQL!): Product!
+  updateProductAdmin(updateProductAdmin: UpdateProductAdminInputsGQL!): Product!
+  updateProductActivationAdmin(updateProductActivationAdmin: UpdateProductActivationAdminInputsGQL!): Product!
+  deleteProductAdmin(deleteProductAdmin: DeleteProductAdminInputsGQL!): Product!
+  uploadFile(file: Upload!): File!
+}
+
+input CreateUserAdminInputsGQL {
+  username: String!
+  firstName: String!
+  lastName: String!
+  email: String!
+  phone: String!
+  isActive: Boolean!
+  password: String!
+  roles: [UserRoleEnum!]!
+}
+
+input UpdateUserActivationAdminInputsGQL {
+  userId: String!
+  isActive: Boolean!
+}
+
+input UpdateUserAdminInputsGQL {
+  userId: String!
+  username: String!
+  firstName: String!
+  lastName: String!
+  email: String!
+  phone: String!
+  roles: [UserRoleEnum!]!
+}
+
+input CreateProductAdminInputsGQL {
+  name: String!
+  slug: String!
+  isActive: Boolean!
+  text: String!
+}
+
+input UpdateProductAdminInputsGQL {
+  name: String!
+  slug: String!
+  isActive: Boolean!
+  text: String!
+  productId: String!
+}
+
+input UpdateProductActivationAdminInputsGQL {
+  productId: String!
+  isActive: Boolean!
+}
+
+input DeleteProductAdminInputsGQL {
+  productId: String!
+}
+
+"""The `Upload` scalar type represents a file upload."""
+scalar Upload

@@ -1,45 +1,54 @@
-import { Column, Entity, Index, OneToMany } from 'typeorm';
-import { Exclude } from 'class-transformer';
-import BaseModel from './baseModel.entity';
-import { UserRoleEnum } from '@pishroo/enums';
-import { ProvinceUser } from './provinceUser.entity';
-import { TransporterAction } from './transporterAction.entity';
-import { ProducerAction } from './producerAction.entity';
-import { CustomerAction } from './customerAction.entity';
-import { FileUse } from './fileUse.entity';
+import { Column, Entity, Index, OneToMany } from "typeorm";
+import { Field, ObjectType } from "@nestjs/graphql";
+import { Paginated } from "@pishroo/models";
+import { Exclude } from "class-transformer";
+import BaseModel from "./baseModel.entity";
+import { UserRoleEnum } from "@pishroo/enums";
+import { ProvinceUser } from "./provinceUser.entity";
+import { TransporterAction } from "./transporterAction.entity";
+import { ProducerAction } from "./producerAction.entity";
+import { CustomerAction } from "./customerAction.entity";
 
-@Index('user_pkey', ['id'], { unique: true })
-@Entity('user', { schema: 'public' })
+@ObjectType()
+@Index("user_pkey", ["id"], { unique: true })
+@Entity("user", { schema: "public" })
 export class User extends BaseModel {
-  @Column('varchar', { name: 'username', nullable: false, length: 50 })
+  @Field({ nullable: false })
+  @Column("varchar", { name: "username", nullable: false, length: 50 })
   username: string | null;
 
-  @Column('varchar', { name: 'first_name', nullable: true, length: 50 })
+  @Field({ nullable: true })
+  @Column("varchar", { name: "first_name", nullable: true, length: 50 })
   firstName: string | null;
 
-  @Column('varchar', { name: 'last_name', nullable: true, length: 50 })
+  @Field({ nullable: true })
+  @Column("varchar", { name: "last_name", nullable: true, length: 50 })
   lastName: string | null;
 
-  @Column('varchar', { name: 'email', nullable: true, length: 50 })
+  @Field({ nullable: true })
+  @Column("varchar", { name: "email", nullable: true, length: 50 })
   email: string | null;
 
-  @Column('varchar', { name: 'phone', nullable: true, length: 20 })
+  @Field({ nullable: true })
+  @Column("varchar", { name: "phone", nullable: true, length: 20 })
   phone: string | null;
 
+  @Field(() => [UserRoleEnum], { nullable: false })
   @Column({
-    type: 'enum',
-    name: 'role',
+    type: "enum",
+    name: "roles",
     enum: UserRoleEnum,
     nullable: true,
     array: true,
   })
-  role: UserRoleEnum[];
+  roles: UserRoleEnum[];
 
-  @Column('varchar', { name: 'password', nullable: true, length: 250 })
+  @Column("varchar", { name: "password", nullable: true, length: 250 })
   @Exclude()
   password: string | null;
 
-  @Column('boolean', { name: 'is_active', nullable: true })
+  @Field({ nullable: true })
+  @Column("boolean", { name: "is_active", nullable: true })
   isActive: boolean | null;
 
   @OneToMany(() => ProvinceUser, (provinceUsers) => provinceUsers.user, {
@@ -66,3 +75,6 @@ export class User extends BaseModel {
   })
   customerActions: CustomerAction[];
 }
+
+@ObjectType()
+export class PaginatedUser extends Paginated(User) {}

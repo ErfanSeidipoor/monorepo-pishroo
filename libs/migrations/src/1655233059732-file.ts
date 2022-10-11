@@ -239,6 +239,18 @@ export class file1655233059732 implements MigrationInterface {
             isUnique: false,
             isNullable: true,
           },
+          {
+            name: 'product_reviewer_id',
+            type: 'uuid',
+            isUnique: false,
+            isNullable: true,
+          },
+          {
+            name: 'project_reviewer_id',
+            type: 'uuid',
+            isUnique: false,
+            isNullable: true,
+          },
         ],
       }),
       true
