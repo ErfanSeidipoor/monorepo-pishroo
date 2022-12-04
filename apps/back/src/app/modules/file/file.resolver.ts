@@ -5,6 +5,7 @@ import { Args, Mutation, Resolver } from "@nestjs/graphql";
 import { File } from "@pishroo/entities";
 import { createWriteStream } from "fs";
 import * as GraphQLUpload from "graphql-upload/GraphQLUpload.js";
+import path = require("path");
 import { v4 as uuid } from "uuid";
 import { FileService } from "./file.service";
 
@@ -19,14 +20,14 @@ export class FileResolver {
     fileUpload: GraphQLUpload.FileUpload,
     @UserId() userId: string
   ): Promise<File> {
-    const path = `uploads/${uuid()}_${fileUpload.filename}`;
+    const pathWithFilename = `uploads/${uuid()}${path.extname(fileUpload.filename)}`;
 
     return new Promise((resolve, reject) =>
       fileUpload
         .createReadStream()
-        .pipe(createWriteStream(path))
+        .pipe(createWriteStream(pathWithFilename))
         .on("finish", () => {
-          resolve(this.fileService.uploadFile(userId, fileUpload, path));
+          resolve(this.fileService.uploadFile(userId, fileUpload, pathWithFilename));
         })
         .on("error", () => {
           reject(false);

@@ -78,6 +78,7 @@ export class Product extends BaseModel {
   })
   tagUses: TagUse[];
 
+  @Field(() => [FileUse], { nullable: true })
   @OneToMany(() => FileUse, (fileUse) => fileUse.product, {
     cascade: true,
   })

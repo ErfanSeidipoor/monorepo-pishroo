@@ -29,6 +29,86 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
+type Category {
+  id: String!
+  createdAt: DateTime!
+  updatedAt: DateTime
+  deletedAt: DateTime
+  name: String!
+  isActive: Boolean
+}
+
+type PaginatedCategory {
+  edges: [Category!]
+  pageInfo: PageInfo
+}
+
+type ProductCategory {
+  id: String!
+  createdAt: DateTime!
+  updatedAt: DateTime
+  deletedAt: DateTime
+  categoryId: String!
+  category: Category!
+  productId: String!
+}
+
+type Color {
+  id: String!
+  createdAt: DateTime!
+  updatedAt: DateTime
+  deletedAt: DateTime
+  name: String!
+  value: String!
+}
+
+type PaginatedColor {
+  edges: [Color!]
+  pageInfo: PageInfo
+}
+
+type ProductColor {
+  id: String!
+  createdAt: DateTime!
+  updatedAt: DateTime
+  deletedAt: DateTime
+  colorId: String!
+  color: Color!
+  productId: String!
+}
+
+type Property {
+  id: String!
+  createdAt: DateTime!
+  updatedAt: DateTime
+  deletedAt: DateTime
+  name: String!
+  unit: PropertyUnitEnum!
+  isActive: Boolean
+}
+
+enum PropertyUnitEnum {
+  weight_kilogram
+  height_meter
+  unknow
+}
+
+type PaginatedProperty {
+  edges: [Property!]
+  pageInfo: PageInfo
+}
+
+type ProductProperty {
+  id: String!
+  createdAt: DateTime!
+  updatedAt: DateTime
+  deletedAt: DateTime
+  value: String!
+  propertyId: String!
+  property: Property!
+  productId: String!
+}
+
 type Product {
   id: String!
   createdAt: DateTime!
@@ -38,11 +118,56 @@ type Product {
   slug: String!
   isActive: Boolean
   text: String!
+  fileUses: [FileUse!]
+  productCategories: [ProductCategory!]!
+  productProperties: [ProductProperty!]!
+  productColors: [ProductColor!]!
 }
 
 type PaginatedProduct {
   edges: [Product!]
   pageInfo: PageInfo
+}
+
+type FileUse {
+  id: String!
+  createdAt: DateTime!
+  updatedAt: DateTime
+  deletedAt: DateTime
+  status: FileUseStatusEnum!
+  type: FileUseTypeEnum!
+  isPublic: Boolean
+  isActive: Boolean
+  file: File!
+  productId: String
+  productReviewId: String
+  transporterId: String
+  transporterActionId: String
+  producerId: String
+  producerActionId: String
+  eventActionId: String
+  customerActionId: String
+  callId: String
+}
+
+enum FileUseStatusEnum {
+  rejected
+  accepted
+  pending
+}
+
+enum FileUseTypeEnum {
+  product
+  product_reviewer
+  project
+  project_reviewer
+  transporter
+  transporter_action
+  producer
+  producer_action
+  event_action
+  customer_action
+  call
 }
 
 type User {
@@ -81,6 +206,13 @@ type Query {
   getUserByIdAdmin(userId: String!): User
   logoutAdmin: User
   getProductsAdmin(limit: Int = 10, page: Int = 1, name: String = "", slug: String = "", isActive: Boolean): PaginatedProduct
+  getProductByIdAdmin(productId: String!): Product
+  getCategoriesAdmin(limit: Int = 10, page: Int = 1, name: String = "", isActive: Boolean): PaginatedCategory
+  getCategoryByIdAdmin(categoryId: String!): Category
+  getPropertiesAdmin(limit: Int = 10, page: Int = 1, name: String = "", isActive: Boolean, units: [PropertyUnitEnum!] = []): PaginatedProperty
+  getPropertyByIdAdmin(propertyId: String!): Property
+  getColorsAdmin(limit: Int = 10, page: Int = 1, name: String = "", value: String = ""): PaginatedColor
+  getColorByIdAdmin(colorId: String!): Color
 }
 
 input LoginAdminInputsGQL {
@@ -96,6 +228,24 @@ type Mutation {
   updateProductAdmin(updateProductAdmin: UpdateProductAdminInputsGQL!): Product!
   updateProductActivationAdmin(updateProductActivationAdmin: UpdateProductActivationAdminInputsGQL!): Product!
   deleteProductAdmin(deleteProductAdmin: DeleteProductAdminInputsGQL!): Product!
+  addCategoriesToProductAdmin(addCategoriesToProductAdmin: AddCategoriesToProductAdminInputsGQL!): Product!
+  addColorsToProductAdmin(addColorsToProductAdmin: AddColorsToProductAdminInputsGQL!): Color!
+  addPropertyToProductAdmin(addPropertyToProductAdmin: AddPropertyToProductAdminInputsGQL!): Product!
+  removePropertyFromProductAdmin(removePropertyFromProductAdmin: RemovePropertyFromProductAdminInputsGQL!): Product!
+  updatePropertyOfProductAdmin(updatePropertyOfProductAdmin: UpdatePropertyOfProductAdminInputsGQL!): Product!
+  addImageToProductAdmin(addImageToProductAdmin: AddImageToProductAdminInputsGQL!): Product!
+  removeImageFromProductAdmin(removeImageFromProductAdmin: RemoveImageFromProductAdminInputsGQL!): Product!
+  createCategoryAdmin(createCategoryAdmin: CreateCategoryAdminInputsGQL!): Category!
+  updateCategoryAdmin(updateCategoryAdmin: UpdateCategoryAdminInputsGQL!): Category!
+  updateCategoryActivationAdmin(updateCategoryActivationAdmin: UpdateCategoryActivationAdminInputsGQL!): Category!
+  deleteCategoryAdmin(deleteCategoryAdmin: DeleteCategoryAdminInputsGQL!): Category!
+  createPropertyAdmin(createPropertyAdmin: CreatePropertyAdminInputsGQL!): Property!
+  updatePropertyAdmin(updatePropertyAdmin: UpdatePropertyAdminInputsGQL!): Property!
+  updatePropertyActivationAdmin(updatePropertyActivationAdmin: UpdatePropertyActivationAdminInputsGQL!): Property!
+  deletePropertyAdmin(deletePropertyAdmin: DeletePropertyAdminInputsGQL!): Property!
+  createColorAdmin(createColorAdmin: CreateColorAdminInputsGQL!): Color!
+  updateColorAdmin(updateColorAdmin: UpdateColorAdminInputsGQL!): Color!
+  deleteColorAdmin(deleteColorAdmin: DeleteColorAdminInputsGQL!): Color!
   uploadFile(file: Upload!): File!
 }
 
@@ -147,6 +297,97 @@ input UpdateProductActivationAdminInputsGQL {
 
 input DeleteProductAdminInputsGQL {
   productId: String!
+}
+
+input AddCategoriesToProductAdminInputsGQL {
+  productId: String!
+  categories: [String!]!
+}
+
+input AddColorsToProductAdminInputsGQL {
+  productId: String!
+  colorIds: [String!]!
+}
+
+input AddPropertyToProductAdminInputsGQL {
+  propertyId: String!
+  productId: String!
+  value: String!
+}
+
+input RemovePropertyFromProductAdminInputsGQL {
+  productPropertyId: String!
+}
+
+input UpdatePropertyOfProductAdminInputsGQL {
+  productPropertyId: String!
+  value: String!
+}
+
+input AddImageToProductAdminInputsGQL {
+  fileId: String!
+  productId: String!
+}
+
+input RemoveImageFromProductAdminInputsGQL {
+  fileUseId: String!
+}
+
+input CreateCategoryAdminInputsGQL {
+  name: String!
+  isActive: Boolean!
+}
+
+input UpdateCategoryAdminInputsGQL {
+  categoryId: String!
+  name: String!
+  isActive: Boolean!
+}
+
+input UpdateCategoryActivationAdminInputsGQL {
+  categoryId: String!
+  isActive: Boolean!
+}
+
+input DeleteCategoryAdminInputsGQL {
+  categoryId: String!
+}
+
+input CreatePropertyAdminInputsGQL {
+  name: String!
+  unit: PropertyUnitEnum!
+  isActive: Boolean!
+}
+
+input UpdatePropertyAdminInputsGQL {
+  name: String!
+  unit: PropertyUnitEnum!
+  isActive: Boolean!
+  propertyId: String!
+}
+
+input UpdatePropertyActivationAdminInputsGQL {
+  propertyId: String!
+  isActive: Boolean!
+}
+
+input DeletePropertyAdminInputsGQL {
+  propertyId: String!
+}
+
+input CreateColorAdminInputsGQL {
+  name: String!
+  value: String!
+}
+
+input UpdateColorAdminInputsGQL {
+  name: String!
+  value: String!
+  colorId: String!
+}
+
+input DeleteColorAdminInputsGQL {
+  colorId: String!
 }
 
 """The `Upload` scalar type represents a file upload."""

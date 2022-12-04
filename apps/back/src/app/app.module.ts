@@ -8,6 +8,9 @@ import { ConfigModule, ConfigService } from "@nestjs/config";
 // admin
 import { AuthModuleAdmin } from "./modules/admin/auth/auth.module";
 import { ProductModuleAdmin } from "./modules/admin/product/product.module";
+import { CategoryModuleAdmin } from "./modules/admin/category/category.module";
+import { ColorModuleAdmin } from "./modules/admin/color/color.module";
+import { PropertyModuleAdmin } from "./modules/admin/property/property.module";
 
 import { FileModule } from "./modules/file/file.module";
 import { entities } from "@pishroo/entities";
@@ -21,6 +24,11 @@ import { CurrentUserMiddleware } from "./middlewares";
       driver: ApolloDriver,
       autoSchemaFile: "schema.gql",
       allowBatchedHttpRequests: true,
+      playground: {
+        settings: {
+          "request.credentials": "include",
+        },
+      },
     }),
     TypeOrmModule.forFeature(entities),
     TypeOrmModule.forRootAsync({
@@ -40,6 +48,9 @@ import { CurrentUserMiddleware } from "./middlewares";
     }),
     AuthModuleAdmin,
     ProductModuleAdmin,
+    CategoryModuleAdmin,
+    PropertyModuleAdmin,
+    ColorModuleAdmin,
     FileModule,
   ],
   controllers: [],

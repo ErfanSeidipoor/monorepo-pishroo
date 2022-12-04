@@ -58,14 +58,14 @@ export class file1655233059732 implements MigrationInterface {
           {
             name: 'filename',
             type: 'varchar',
-            length: '50',
+            length: '200',
             isUnique: true,
             isNullable: false,
           },
           {
             name: 'path',
             type: 'varchar',
-            length: '70',
+            length: '200',
             isUnique: true,
             isNullable: false,
           },

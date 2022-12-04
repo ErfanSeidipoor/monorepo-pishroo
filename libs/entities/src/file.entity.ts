@@ -47,7 +47,7 @@ export class File extends BaseModel {
     name: "filename",
     nullable: false,
     unique: true,
-    length: 50,
+    length: 200,
   })
   filename: string;
 
@@ -56,7 +56,7 @@ export class File extends BaseModel {
     name: "path",
     nullable: false,
     unique: true,
-    length: 70,
+    length: 200,
   })
   path: string;
 
