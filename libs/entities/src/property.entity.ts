@@ -4,6 +4,7 @@ import { Paginated } from "@pishroo/models";
 import { Column, Entity, Index, OneToMany } from "typeorm";
 import BaseModel from "./baseModel.entity";
 import { ProductProperty } from "./productProperty.entity";
+
 @ObjectType()
 @Index("property_pkey", ["id"], { unique: true })
 @Entity("property", { schema: "public" })

@@ -76,8 +76,6 @@ export class ColorService {
       throw new CustomError(COLOR_NOT_FOUND);
     }
 
-    console.log({ inputs, color, value, name, colorId });
-
     /* ------------------------ checking name duplication ----------------------- */
     if (name !== color.name) {
       const nameDuplication = await this.colorRepo.findOne({

@@ -52,6 +52,11 @@ export class FileUse extends BaseModel {
   isActive: boolean | null;
 
   // relations
+
+  @Field({ nullable: false })
+  @Column({ type: "uuid", name: "file_id", nullable: false })
+  fileId: string;
+
   @Field(() => File, { nullable: false })
   @OneToOne(() => File, (file) => file.fileUse, { nullable: false })
   @JoinColumn({
@@ -87,7 +92,7 @@ export class FileUse extends BaseModel {
 
   @Field({ nullable: true })
   @Column({ type: "uuid", name: "product_review_id", nullable: true })
-  productReviewId: string;
+  productReviewId?: string;
 
   @ManyToOne(() => ProjectReview, (projectReview) => projectReview.fileUses)
   @JoinColumn({

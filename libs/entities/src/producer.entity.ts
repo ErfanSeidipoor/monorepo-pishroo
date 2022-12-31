@@ -1,3 +1,5 @@
+import { Field, ObjectType } from "@nestjs/graphql";
+import { Paginated } from "@pishroo/models";
 import {
   Column,
   Entity,
@@ -5,55 +7,67 @@ import {
   JoinColumn,
   ManyToOne,
   OneToMany,
-} from 'typeorm';
-import BaseModel from './baseModel.entity';
-import { City } from './city.entity';
-import { FileUse } from './fileUse.entity';
-import { ProducerAction } from './producerAction.entity';
-import { ProducerAgent } from './producerAgent.entity';
+} from "typeorm";
+import BaseModel from "./baseModel.entity";
+import { City } from "./city.entity";
+import { FileUse } from "./fileUse.entity";
+import { ProducerAction } from "./producerAction.entity";
+import { ProducerAgent } from "./producerAgent.entity";
 
-@Index('producer_pkey', ['id'], { unique: true })
-@Entity('producer', { schema: 'public' })
+@ObjectType()
+@Index("producer_pkey", ["id"], { unique: true })
+@Entity("producer", { schema: "public" })
 export class Producer extends BaseModel {
-  @Column('varchar', {
-    name: 'name',
-    unique: true,
+  @Field({ nullable: true })
+  @Column("varchar", {
+    name: "name",
+    unique: false,
     nullable: false,
     length: 50,
   })
   name: string | null;
 
-  @Column('varchar', {
-    name: 'phone',
-    unique: true,
+  @Field({ nullable: true })
+  @Column("varchar", {
+    name: "phone",
+    unique: false,
     nullable: true,
     length: 20,
   })
   phone: string | null;
 
-  @Column('varchar', {
-    name: 'email',
-    unique: true,
+  @Field({ nullable: true })
+  @Column("varchar", {
+    name: "email",
+    unique: false,
     nullable: true,
     length: 50,
   })
   email: string | null;
 
-  @Column('text', { name: 'description', nullable: false })
+  @Field({ nullable: true })
+  @Column("text", { name: "description", nullable: false })
   description: string | null;
 
-  @Column('varchar', { name: 'address', nullable: true, length: 256 })
+  @Field({ nullable: true })
+  @Column("varchar", { name: "address", nullable: true, length: 256 })
   address: string | null;
 
-  @Column('boolean', { name: 'is_active', nullable: true })
+  @Field({ nullable: true })
+  @Column("boolean", { name: "is_active", nullable: true })
   isActive: boolean | null;
 
+  @Field({ nullable: true })
+  @Column({ type: "uuid", name: "city_id", nullable: true })
+  cityId: string;
+
+  @Field(() => City, { nullable: false })
   @ManyToOne(() => City, () => undefined, {
     nullable: true,
   })
   @JoinColumn({
-    name: 'city_id',
-    referencedColumnName: 'id',
+    name: "city_id",
+    referencedColumnName: "id",
   })
   city: City;
 
@@ -76,3 +90,6 @@ export class Producer extends BaseModel {
   })
   fileUses: FileUse[];
 }
+
+@ObjectType()
+export class PaginatedProducer extends Paginated(Producer) {}

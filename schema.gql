@@ -10,6 +10,52 @@ type PageInfo {
   currentPage: Float!
 }
 
+type City {
+  id: String!
+  createdAt: DateTime!
+  updatedAt: DateTime
+  deletedAt: DateTime
+  name: String!
+  provinceId: String!
+  province: Province!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type PaginatedCity {
+  edges: [City!]
+  pageInfo: PageInfo
+}
+
+type Province {
+  id: String!
+  createdAt: DateTime!
+  updatedAt: DateTime
+  deletedAt: DateTime
+  name: String!
+  cities: [City!]!
+  provinceUsers: [ProvinceUser!]
+}
+
+type PaginatedProvince {
+  edges: [Province!]
+  pageInfo: PageInfo
+}
+
+type ProvinceUser {
+  id: String!
+  createdAt: DateTime!
+  updatedAt: DateTime
+  deletedAt: DateTime
+  userId: String!
+  user: User!
+  provinceId: String!
+  province: Province!
+}
+
 type File {
   id: String!
   createdAt: DateTime!
@@ -24,10 +70,45 @@ type File {
   isUsed: Boolean!
 }
 
-"""
-A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
-"""
-scalar DateTime
+type ProducerAgent {
+  id: String!
+  createdAt: DateTime!
+  updatedAt: DateTime
+  deletedAt: DateTime
+  firstName: String
+  lastName: String
+  email: String
+  phone: String
+  description: String
+  isActive: Boolean
+  producer: Producer!
+}
+
+type PaginatedProducerAgent {
+  edges: [ProducerAgent!]
+  pageInfo: PageInfo
+}
+
+type Producer {
+  id: String!
+  createdAt: DateTime!
+  updatedAt: DateTime
+  deletedAt: DateTime
+  name: String
+  phone: String
+  email: String
+  description: String
+  address: String
+  isActive: Boolean
+  cityId: String
+  city: City!
+  fileUses: [FileUse!]!
+}
+
+type PaginatedProducer {
+  edges: [Producer!]
+  pageInfo: PageInfo
+}
 
 type Category {
   id: String!
@@ -109,6 +190,24 @@ type ProductProperty {
   productId: String!
 }
 
+type ProductReview {
+  id: String!
+  createdAt: DateTime!
+  updatedAt: DateTime
+  deletedAt: DateTime
+  reviewer: String!
+  text: String!
+  isActive: Boolean
+  productId: String!
+  fileUses: [FileUse!]!
+  product: Product!
+}
+
+type PaginatedProductReview {
+  edges: [ProductReview!]
+  pageInfo: PageInfo
+}
+
 type Product {
   id: String!
   createdAt: DateTime!
@@ -122,10 +221,52 @@ type Product {
   productCategories: [ProductCategory!]!
   productProperties: [ProductProperty!]!
   productColors: [ProductColor!]!
+  productReviews: [ProductReview!]!
 }
 
 type PaginatedProduct {
   edges: [Product!]
+  pageInfo: PageInfo
+}
+
+type TransporterAgent {
+  id: String!
+  createdAt: DateTime!
+  updatedAt: DateTime
+  deletedAt: DateTime
+  firstName: String
+  lastName: String
+  email: String
+  phone: String
+  description: String
+  isActive: Boolean
+  transporterId: String
+  transporter: Transporter!
+}
+
+type PaginatedTransporterAgent {
+  edges: [TransporterAgent!]
+  pageInfo: PageInfo
+}
+
+type Transporter {
+  id: String!
+  createdAt: DateTime!
+  updatedAt: DateTime
+  deletedAt: DateTime
+  name: String!
+  phone: String
+  email: String
+  description: String!
+  address: String
+  isActive: Boolean
+  cityId: String
+  city: City!
+  fileUses: [FileUse!]!
+}
+
+type PaginatedTransporter {
+  edges: [Transporter!]
   pageInfo: PageInfo
 }
 
@@ -138,6 +279,7 @@ type FileUse {
   type: FileUseTypeEnum!
   isPublic: Boolean
   isActive: Boolean
+  fileId: String!
   file: File!
   productId: String
   productReviewId: String
@@ -182,6 +324,7 @@ type User {
   phone: String
   roles: [UserRoleEnum!]!
   isActive: Boolean
+  provinceUsers: [ProvinceUser!]!
 }
 
 enum UserRoleEnum {
@@ -213,6 +356,20 @@ type Query {
   getPropertyByIdAdmin(propertyId: String!): Property
   getColorsAdmin(limit: Int = 10, page: Int = 1, name: String = "", value: String = ""): PaginatedColor
   getColorByIdAdmin(colorId: String!): Color
+  getProductReviewsAdmin(limit: Int = 10, page: Int = 1, reviewer: String = "", text: String = "", productId: String): PaginatedProductReview
+  getProductReviewByIdAdmin(productReviewId: String!): ProductReview
+  getProvincesAdmin(limit: Int = 10, page: Int = 1, name: String = ""): PaginatedProvince
+  getProvinceByIdAdmin(provinceId: String!): Province
+  getTransportersAdmin(limit: Int = 10, page: Int = 1, search: String = "", isActive: String, cityIds: [String!], provinceIds: [String!]): PaginatedTransporter
+  getTransporterByIdAdmin(transporterId: String!): Transporter
+  getTransporterAgentsAdmin(limit: Int = 10, page: Int = 1, search: String = "", isActive: String, transporterId: String): PaginatedTransporterAgent
+  getTransporterAgentByIdAdmin(transporterAgentId: String!): TransporterAgent
+  getProducersAdmin(limit: Int = 10, page: Int = 1, search: String = "", isActive: String, cityIds: [String!], provinceIds: [String!]): PaginatedProducer
+  getProducerByIdAdmin(producerId: String!): Producer
+  getProducerAgentsAdmin(limit: Int = 10, page: Int = 1, search: String = "", isActive: String, producerId: String): PaginatedProducerAgent
+  getProducerAgentByIdAdmin(producerAgentId: String!): ProducerAgent
+  getCitiesAdmin(limit: Int = 10, page: Int = 1, name: String = "", provinceId: String): PaginatedCity
+  getCityByIdAdmin(cityId: String!): City
 }
 
 input LoginAdminInputsGQL {
@@ -224,6 +381,7 @@ type Mutation {
   createUserAdmin(createUserAdmin: CreateUserAdminInputsGQL!): User!
   updateUserActivationAdmin(updateUserActivationAdmin: UpdateUserActivationAdminInputsGQL!): User!
   updateUserAdmin(updateUserAdmin: UpdateUserAdminInputsGQL!): User!
+  updateUserProvincesAdmin(updateUserProvincesAdmin: UpdateUserProvincesAdminInputsGQL!): User!
   createProductAdmin(createProductAdmin: CreateProductAdminInputsGQL!): Product!
   updateProductAdmin(updateProductAdmin: UpdateProductAdminInputsGQL!): Product!
   updateProductActivationAdmin(updateProductActivationAdmin: UpdateProductActivationAdminInputsGQL!): Product!
@@ -246,6 +404,35 @@ type Mutation {
   createColorAdmin(createColorAdmin: CreateColorAdminInputsGQL!): Color!
   updateColorAdmin(updateColorAdmin: UpdateColorAdminInputsGQL!): Color!
   deleteColorAdmin(deleteColorAdmin: DeleteColorAdminInputsGQL!): Color!
+  createProductReviewAdmin(createProductReviewAdmin: CreateProductReviewAdminInputsGQL!): ProductReview!
+  updateProductReviewAdmin(updateProductReviewAdmin: UpdateProductReviewAdminInputsGQL!): ProductReview!
+  deleteProductReviewAdmin(deleteProductReviewAdmin: DeleteProductReviewAdminInputsGQL!): ProductReview!
+  createProvinceAdmin(createProvinceAdmin: CreateProvinceAdminInputsGQL!): Province!
+  updateProvinceAdmin(updateProvinceAdmin: UpdateProvinceAdminInputsGQL!): Province!
+  deleteProvinceAdmin(deleteProvinceAdmin: DeleteProvinceAdminInputsGQL!): Province!
+  createTransporterAdmin(createTransporterAdmin: CreateTransporterAdminInputsGQL!): Transporter!
+  updateTransporterAdmin(updateTransporterAdmin: UpdateTransporterAdminInputsGQL!): Transporter!
+  updateTransporterActivationAdmin(updateTransporterActivationAdmin: UpdateTransporterActivationAdminInputsGQL!): Transporter!
+  deleteTransporterAdmin(deleteTransporterAdmin: DeleteTransporterAdminInputsGQL!): Transporter!
+  addImageToTransporterAdmin(addImageToTransporterAdmin: AddImageToTransporterAdminInputsGQL!): Transporter!
+  removeImageFromTransporterAdmin(removeImageFromTransporterAdmin: RemoveImageFromTransporterAdminInputsGQL!): Transporter!
+  createTransporterAgentAdmin(createTransporterAgentAdmin: CreateTransporterAgentAdminInputsGQL!): TransporterAgent!
+  updateTransporterAgentAdmin(updateTransporterAgentAdmin: UpdateTransporterAgentAdminInputsGQL!): TransporterAgent!
+  updateTransporterAgentActivationAdmin(updateTransporterAgentActivationAdmin: UpdateTransporterAgentActivationAdminInputsGQL!): TransporterAgent!
+  deleteTransporterAgentAdmin(deleteTransporterAgentAdmin: DeleteTransporterAgentAdminInputsGQL!): TransporterAgent!
+  createProducerAdmin(createProducerAdmin: CreateProducerAdminInputsGQL!): Producer!
+  updateProducerAdmin(updateProducerAdmin: UpdateProducerAdminInputsGQL!): Producer!
+  updateProducerActivationAdmin(updateProducerActivationAdmin: UpdateProducerActivationAdminInputsGQL!): Producer!
+  deleteProducerAdmin(deleteProducerAdmin: DeleteProducerAdminInputsGQL!): Producer!
+  addImageToProducerAdmin(addImageToProducerAdmin: AddImageToProducerAdminInputsGQL!): Producer!
+  removeImageFromProducerAdmin(removeImageFromProducerAdmin: RemoveImageFromProducerAdminInputsGQL!): Producer!
+  createProducerAgentAdmin(createProducerAgentAdmin: CreateProducerAgentAdminInputsGQL!): ProducerAgent!
+  updateProducerAgentAdmin(updateProducerAgentAdmin: UpdateProducerAgentAdminInputsGQL!): ProducerAgent!
+  updateProducerAgentActivationAdmin(updateProducerAgentActivationAdmin: UpdateProducerAgentActivationAdminInputsGQL!): ProducerAgent!
+  deleteProducerAgentAdmin(deleteProducerAgentAdmin: DeleteProducerAgentAdminInputsGQL!): ProducerAgent!
+  createCityAdmin(createCityAdmin: CreateCityAdminInputsGQL!): City!
+  updateCityAdmin(updateCityAdmin: UpdateCityAdminInputsGQL!): City!
+  deleteCityAdmin(deleteCityAdmin: DeleteCityAdminInputsGQL!): City!
   uploadFile(file: Upload!): File!
 }
 
@@ -273,6 +460,11 @@ input UpdateUserAdminInputsGQL {
   email: String!
   phone: String!
   roles: [UserRoleEnum!]!
+}
+
+input UpdateUserProvincesAdminInputsGQL {
+  userId: String!
+  provinceIds: [String!]!
 }
 
 input CreateProductAdminInputsGQL {
@@ -388,6 +580,191 @@ input UpdateColorAdminInputsGQL {
 
 input DeleteColorAdminInputsGQL {
   colorId: String!
+}
+
+input CreateProductReviewAdminInputsGQL {
+  reviewer: String!
+  fileId: String!
+  text: String!
+  productId: String!
+  isActive: Boolean!
+}
+
+input UpdateProductReviewAdminInputsGQL {
+  reviewer: String
+  fileId: String
+  text: String
+  productId: String
+  isActive: Boolean!
+  productReviewId: String
+}
+
+input DeleteProductReviewAdminInputsGQL {
+  productReviewId: String!
+}
+
+input CreateProvinceAdminInputsGQL {
+  name: String!
+}
+
+input UpdateProvinceAdminInputsGQL {
+  name: String!
+  provinceId: String!
+}
+
+input DeleteProvinceAdminInputsGQL {
+  provinceId: String!
+}
+
+input CreateTransporterAdminInputsGQL {
+  name: String!
+  phone: String!
+  email: String!
+  description: String!
+  address: String!
+  isActive: Boolean!
+  cityId: String!
+}
+
+input UpdateTransporterAdminInputsGQL {
+  name: String!
+  phone: String!
+  email: String!
+  description: String!
+  address: String!
+  isActive: Boolean!
+  cityId: String!
+  transporterId: String!
+}
+
+input UpdateTransporterActivationAdminInputsGQL {
+  transporterId: String!
+  isActive: Boolean!
+}
+
+input DeleteTransporterAdminInputsGQL {
+  transporterId: String!
+}
+
+input AddImageToTransporterAdminInputsGQL {
+  fileId: String!
+  transporterId: String!
+}
+
+input RemoveImageFromTransporterAdminInputsGQL {
+  fileUseId: String!
+}
+
+input CreateTransporterAgentAdminInputsGQL {
+  transporterId: String!
+  firstName: String!
+  lastName: String!
+  email: String!
+  phone: String!
+  description: String!
+  isActive: Boolean!
+}
+
+input UpdateTransporterAgentAdminInputsGQL {
+  firstName: String!
+  lastName: String!
+  email: String!
+  phone: String!
+  description: String!
+  isActive: Boolean!
+  transporterAgentId: String!
+}
+
+input UpdateTransporterAgentActivationAdminInputsGQL {
+  transporterAgentId: String!
+  isActive: Boolean!
+}
+
+input DeleteTransporterAgentAdminInputsGQL {
+  transporterAgentId: String!
+}
+
+input CreateProducerAdminInputsGQL {
+  name: String!
+  phone: String!
+  email: String!
+  description: String!
+  address: String!
+  isActive: Boolean!
+  cityId: String!
+}
+
+input UpdateProducerAdminInputsGQL {
+  producerId: String!
+  name: String!
+  phone: String!
+  email: String!
+  description: String!
+  address: String!
+  isActive: Boolean!
+  cityId: String!
+}
+
+input UpdateProducerActivationAdminInputsGQL {
+  producerId: String!
+  isActive: Boolean!
+}
+
+input DeleteProducerAdminInputsGQL {
+  producerId: String!
+}
+
+input AddImageToProducerAdminInputsGQL {
+  fileId: String!
+  producerId: String!
+}
+
+input RemoveImageFromProducerAdminInputsGQL {
+  fileUseId: String!
+}
+
+input CreateProducerAgentAdminInputsGQL {
+  producerId: String!
+  firstName: String!
+  lastName: String!
+  email: String!
+  phone: String!
+  description: String!
+  isActive: Boolean!
+}
+
+input UpdateProducerAgentAdminInputsGQL {
+  firstName: String!
+  lastName: String!
+  email: String!
+  phone: String!
+  description: String!
+  isActive: Boolean!
+  producerAgentId: String!
+}
+
+input UpdateProducerAgentActivationAdminInputsGQL {
+  producerAgentId: String!
+  isActive: Boolean!
+}
+
+input DeleteProducerAgentAdminInputsGQL {
+  producerAgentId: String!
+}
+
+input CreateCityAdminInputsGQL {
+  name: String!
+  provinceId: String!
+}
+
+input UpdateCityAdminInputsGQL {
+  name: String!
+  provinceId: String!
+  cityId: String!
+}
+
+input DeleteCityAdminInputsGQL {
+  cityId: String!
 }
 
 """The `Upload` scalar type represents a file upload."""

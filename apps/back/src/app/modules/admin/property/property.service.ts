@@ -2,7 +2,6 @@ import { paginate } from "@back/helpers/paginate";
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import {
-  AddPropertyToProductAdminInputs,
   CreatePropertyAdminInputs,
   DeletePropertyAdminInputs,
   GetPropertiesAdminArgs,
@@ -13,9 +12,9 @@ import {
 } from "@pishroo/dto";
 import { ProductProperty, Property } from "@pishroo/entities";
 import {
+  CustomError,
   PROPERTY_NOT_FOUND,
   PROPERTY_WITH_THIS_NAME_ALREADY_EXIST,
-  CustomError,
 } from "@pishroo/http-exceptions";
 import * as utils from "@pishroo/utils";
 import { DataSource, Repository } from "typeorm";

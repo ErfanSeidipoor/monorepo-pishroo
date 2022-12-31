@@ -17,6 +17,7 @@ import {
   ProductCategory,
   ProductColor,
   ProductProperty,
+  ProductReview,
 } from "@pishroo/entities";
 import {
   AddCategoriesToProductAdminInputsGQL,
@@ -193,5 +194,11 @@ export class ProductResolver {
   @UseGuards(AdminGuard)
   async productColors(@Parent() product: Product) {
     return this.productService.productColors(product.id);
+  }
+
+  @ResolveField(() => [ProductReview], { nullable: false })
+  @UseGuards(AdminGuard)
+  async productReviews(@Parent() product: Product) {
+    return this.productService.productReviews(product.id);
   }
 }

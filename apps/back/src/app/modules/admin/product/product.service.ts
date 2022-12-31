@@ -24,6 +24,7 @@ import {
   ProductProperty,
   ProductColor,
   Color,
+  ProductReview,
 } from "@pishroo/entities";
 import { FileUseStatusEnum, FileUseTypeEnum } from "@pishroo/enums";
 import {
@@ -56,6 +57,8 @@ export class ProductService {
     private productPropertyRepo: Repository<ProductProperty>,
     @InjectRepository(ProductColor)
     private productColorRepo: Repository<ProductColor>,
+    @InjectRepository(ProductReview)
+    private productReviewRepo: Repository<ProductReview>,
     @InjectRepository(ProductCategory)
     private productCategoryRepo: Repository<ProductCategory>,
     @InjectRepository(Category)
@@ -583,6 +586,15 @@ export class ProductService {
         productId,
       })
       .leftJoinAndSelect("productColor.color", "color")
+      .getMany();
+  }
+
+  async productReviews(productId: string): Promise<ProductReview[]> {
+    return await this.productReviewRepo
+      .createQueryBuilder("productReview")
+      .andWhere("productReview.productId = :productId", {
+        productId,
+      })
       .getMany();
   }
 }

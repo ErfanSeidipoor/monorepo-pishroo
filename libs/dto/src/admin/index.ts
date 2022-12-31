@@ -6,6 +6,7 @@ export * from "./auth/login.inputs";
 export * from "./auth/update-user.inputs";
 export * from "./auth/get-User-by-id.args";
 export * from "./auth/get-users.args";
+export * from "./auth/update-user-provinces.inputs";
 
 /* -------------------------------- products -------------------------------- */
 
@@ -48,3 +49,67 @@ export * from "./color/delete-color.inputs";
 export * from "./color/get-color-by-id.args";
 export * from "./color/get-colors.args";
 export * from "./color/update-color.inputs";
+
+/* ----------------------------- Project Preview ---------------------------- */
+
+export * from "./productReview/create-product-review.inputs";
+export * from "./productReview/delete-product-review.inputs";
+export * from "./productReview/update-product-review.inputs";
+export * from "./productReview/get-product-review-by-id.args";
+export * from "./productReview/get-product-reviews.args";
+
+/* -------------------------------- province -------------------------------- */
+
+export * from "./province/create-province.inputs";
+export * from "./province/delete-province.inputs";
+export * from "./province/get-province-by-id.args";
+export * from "./province/get-provinces.args";
+export * from "./province/update-province.inputs";
+
+/* ---------------------------------- city ---------------------------------- */
+
+export * from "./city/create-city.inputs";
+export * from "./city/delete-city.inputs";
+export * from "./city/get-city-by-id.args";
+export * from "./city/get-cities.args";
+export * from "./city/update-city.inputs";
+
+/* ------------------------------- transporter ------------------------------ */
+
+export * from "./transporter/create-transporter.inputs";
+export * from "./transporter/delete-transporter.inputs";
+export * from "./transporter/get-transporters.args";
+export * from "./transporter/get-transporter-by-id.args";
+export * from "./transporter/update-transporter.inputs";
+export * from "./transporter/update-transporter-acivation.inputs";
+export * from "./transporter/add-image-to-transporter.inputs";
+export * from "./transporter/remove-image-from-transporter.inputs";
+
+/* ---------------------------- transporter agent -------------------------- */
+
+export * from "./transporterAgent/create-transporter-agent.inputs";
+export * from "./transporterAgent/delete-transporter-agent.inputs";
+export * from "./transporterAgent/update-transporter-agent.inputs";
+export * from "./transporterAgent/get-transporter-agents.args";
+export * from "./transporterAgent/get-transporter-agent-by-id.args";
+export * from "./transporterAgent/update-transporter-agent-acivation.inputs";
+
+/* --------------------------------- producer ------------------------------ */
+
+export * from "./producer/create-producer.inputs";
+export * from "./producer/delete-producer.inputs";
+export * from "./producer/get-producers.args";
+export * from "./producer/get-producer-by-id.args";
+export * from "./producer/update-producer.inputs";
+export * from "./producer/update-producer-acivation.inputs";
+export * from "./producer/add-image-to-producer.inputs";
+export * from "./producer/remove-image-from-producer.inputs";
+
+/* ------------------------------ producer agent --------------------------- */
+
+export * from "./producerAgent/create-producer-agent.inputs";
+export * from "./producerAgent/delete-producer-agent.inputs";
+export * from "./producerAgent/update-producer-agent.inputs";
+export * from "./producerAgent/get-producer-agents.args";
+export * from "./producerAgent/get-producer-agent-by-id.args";
+export * from "./producerAgent/update-producer-agent-acivation.inputs";

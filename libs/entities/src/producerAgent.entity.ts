@@ -1,3 +1,5 @@
+import { Field, ObjectType } from "@nestjs/graphql";
+import { Paginated } from "@pishroo/models";
 import {
   Column,
   Entity,
@@ -5,38 +7,45 @@ import {
   JoinColumn,
   ManyToOne,
   OneToMany,
-} from 'typeorm';
-import BaseModel from './baseModel.entity';
-import { Producer } from './producer.entity';
-import { ProducerAction } from './producerAction.entity';
+} from "typeorm";
+import BaseModel from "./baseModel.entity";
+import { Producer } from "./producer.entity";
+import { ProducerAction } from "./producerAction.entity";
 
-@Index('producer_agent_pkey', ['id'], { unique: true })
-@Entity('producer_agent', { schema: 'public' })
+@ObjectType()
+@Index("producer_agent_pkey", ["id"], { unique: true })
+@Entity("producer_agent", { schema: "public" })
 export class ProducerAgent extends BaseModel {
-  @Column('varchar', { name: 'first_name', nullable: true, length: 50 })
+  @Field({ nullable: true })
+  @Column("varchar", { name: "first_name", nullable: true, length: 50 })
   firstName: string | null;
 
-  @Column('varchar', { name: 'last_name', nullable: true, length: 50 })
+  @Field({ nullable: true })
+  @Column("varchar", { name: "last_name", nullable: true, length: 50 })
   lastName: string | null;
 
-  @Column('varchar', { name: 'email', nullable: true, length: 50 })
+  @Field({ nullable: true })
+  @Column("varchar", { name: "email", nullable: true, length: 50 })
   email: string | null;
 
-  @Column('varchar', { name: 'phone', nullable: true, length: 20 })
+  @Field({ nullable: true })
+  @Column("varchar", { name: "phone", nullable: true, length: 20 })
   phone: string | null;
 
-  @Column('text', { name: 'description', nullable: false })
+  @Field({ nullable: true })
+  @Column("text", { name: "description", nullable: false })
   description: string | null;
 
-  @Column('boolean', { name: 'is_active', nullable: true })
+  @Field({ nullable: true })
+  @Column("boolean", { name: "is_active", nullable: true })
   isActive: boolean | null;
 
   @ManyToOne(() => Producer, (producer) => producer.producerAgents, {
     nullable: true,
   })
   @JoinColumn({
-    name: 'producer_id',
-    referencedColumnName: 'id',
+    name: "producer_id",
+    referencedColumnName: "id",
   })
   producer: Producer;
 
@@ -49,3 +58,6 @@ export class ProducerAgent extends BaseModel {
   )
   producerActions: ProducerAction[];
 }
+
+@ObjectType()
+export class PaginatedProducerAgent extends Paginated(ProducerAgent) {}

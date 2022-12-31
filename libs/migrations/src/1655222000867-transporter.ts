@@ -3,80 +3,80 @@ import {
   QueryRunner,
   Table,
   TableForeignKey,
-} from 'typeorm';
+} from "typeorm";
 
 export class transporter1655222000867 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'transporter',
+        name: "transporter",
         columns: [
           {
-            name: 'id',
-            type: 'uuid',
+            name: "id",
+            type: "uuid",
             isPrimary: true,
-            generationStrategy: 'uuid',
-            default: 'uuid_generate_v4()',
+            generationStrategy: "uuid",
+            default: "uuid_generate_v4()",
           },
           {
-            name: 'created_at',
-            type: 'timestamptz',
-            default: 'now()',
+            name: "created_at",
+            type: "timestamptz",
+            default: "now()",
           },
           {
-            name: 'updated_at',
-            type: 'timestamptz',
-            default: 'now()',
+            name: "updated_at",
+            type: "timestamptz",
+            default: "now()",
           },
           {
-            name: 'deleted_at',
-            type: 'timestamptz',
+            name: "deleted_at",
+            type: "timestamptz",
             isNullable: true,
             default: null,
           },
           {
-            name: 'name',
-            type: 'varchar',
-            length: '50',
+            name: "name",
+            type: "varchar",
+            length: "50",
             isUnique: true,
             isNullable: false,
           },
           {
-            name: 'phone',
-            type: 'varchar',
-            length: '20',
+            name: "phone",
+            type: "varchar",
+            length: "20",
             isUnique: true,
             isNullable: true,
           },
           {
-            name: 'email',
-            type: 'varchar',
-            length: '50',
-            isUnique: true,
-            isNullable: true,
-          },
-          {
-            name: 'description',
-            type: 'text',
+            name: "email",
+            type: "varchar",
+            length: "50",
             isUnique: false,
             isNullable: true,
           },
           {
-            name: 'address',
-            type: 'varchar',
-            length: '256',
+            name: "description",
+            type: "text",
             isUnique: false,
             isNullable: true,
           },
           {
-            name: 'is_active',
-            type: 'boolean',
+            name: "address",
+            type: "varchar",
+            length: "256",
+            isUnique: false,
+            isNullable: true,
+          },
+          {
+            name: "is_active",
+            type: "boolean",
             isNullable: true,
             default: true,
           },
           {
-            name: 'city_id',
-            type: 'uuid',
+            name: "city_id",
+            type: "uuid",
             isUnique: false,
             isNullable: true,
           },
@@ -86,83 +86,83 @@ export class transporter1655222000867 implements MigrationInterface {
     );
 
     await queryRunner.createForeignKey(
-      'transporter',
+      "transporter",
       new TableForeignKey({
-        columnNames: ['city_id'],
-        referencedTableName: 'city',
-        referencedColumnNames: ['id'],
-        onDelete: 'CASCADE',
+        columnNames: ["city_id"],
+        referencedTableName: "city",
+        referencedColumnNames: ["id"],
+        onDelete: "CASCADE",
       })
     );
 
     await queryRunner.createTable(
       new Table({
-        name: 'transporter_agent',
+        name: "transporter_agent",
         columns: [
           {
-            name: 'id',
-            type: 'uuid',
+            name: "id",
+            type: "uuid",
             isPrimary: true,
-            generationStrategy: 'uuid',
-            default: 'uuid_generate_v4()',
+            generationStrategy: "uuid",
+            default: "uuid_generate_v4()",
           },
           {
-            name: 'created_at',
-            type: 'timestamptz',
-            default: 'now()',
+            name: "created_at",
+            type: "timestamptz",
+            default: "now()",
           },
           {
-            name: 'updated_at',
-            type: 'timestamptz',
-            default: 'now()',
+            name: "updated_at",
+            type: "timestamptz",
+            default: "now()",
           },
           {
-            name: 'deleted_at',
-            type: 'timestamptz',
+            name: "deleted_at",
+            type: "timestamptz",
             isNullable: true,
             default: null,
           },
           {
-            name: 'first_name',
-            type: 'varchar',
-            length: '50',
+            name: "first_name",
+            type: "varchar",
+            length: "50",
             isNullable: true,
           },
           {
-            name: 'last_name',
-            type: 'varchar',
-            length: '50',
+            name: "last_name",
+            type: "varchar",
+            length: "50",
             isNullable: true,
           },
           {
-            name: 'email',
-            type: 'varchar',
-            length: '50',
+            name: "email",
+            type: "varchar",
+            length: "50",
             isUnique: true,
             isNullable: true,
           },
           {
-            name: 'phone',
-            type: 'varchar',
-            length: '20',
+            name: "phone",
+            type: "varchar",
+            length: "20",
             isUnique: true,
             isNullable: true,
           },
           {
-            name: 'description',
-            type: 'text',
+            name: "description",
+            type: "text",
             isUnique: false,
             isNullable: true,
           },
           {
-            name: 'is_active',
-            type: 'boolean',
+            name: "is_active",
+            type: "boolean",
             isNullable: true,
             default: true,
           },
           {
-            name: 'transporter_id',
-            type: 'uuid',
+            name: "transporter_id",
+            type: "uuid",
             isUnique: false,
             isNullable: false,
           },
@@ -172,69 +172,69 @@ export class transporter1655222000867 implements MigrationInterface {
     );
 
     await queryRunner.createForeignKey(
-      'transporter_agent',
+      "transporter_agent",
       new TableForeignKey({
-        columnNames: ['transporter_id'],
-        referencedTableName: 'transporter',
-        referencedColumnNames: ['id'],
-        onDelete: 'CASCADE',
+        columnNames: ["transporter_id"],
+        referencedTableName: "transporter",
+        referencedColumnNames: ["id"],
+        onDelete: "CASCADE",
       })
     );
 
     await queryRunner.createTable(
       new Table({
-        name: 'transporter_action',
+        name: "transporter_action",
         columns: [
           {
-            name: 'id',
-            type: 'uuid',
+            name: "id",
+            type: "uuid",
             isPrimary: true,
-            generationStrategy: 'uuid',
-            default: 'uuid_generate_v4()',
+            generationStrategy: "uuid",
+            default: "uuid_generate_v4()",
           },
           {
-            name: 'created_at',
-            type: 'timestamptz',
-            default: 'now()',
+            name: "created_at",
+            type: "timestamptz",
+            default: "now()",
           },
           {
-            name: 'updated_at',
-            type: 'timestamptz',
-            default: 'now()',
+            name: "updated_at",
+            type: "timestamptz",
+            default: "now()",
           },
           {
-            name: 'deleted_at',
-            type: 'timestamptz',
+            name: "deleted_at",
+            type: "timestamptz",
             isNullable: true,
             default: null,
           },
           {
-            name: 'text',
-            type: 'text',
+            name: "text",
+            type: "text",
             isUnique: false,
             isNullable: true,
           },
           {
-            name: 'is_active',
-            type: 'boolean',
+            name: "is_active",
+            type: "boolean",
             isNullable: true,
             default: true,
           },
           {
-            name: 'transporter_id',
-            type: 'uuid',
+            name: "transporter_id",
+            type: "uuid",
             isUnique: false,
             isNullable: false,
           },
           {
-            name: 'transporter_agent_id',
-            type: 'uuid',
+            name: "transporter_agent_id",
+            type: "uuid",
             isUnique: false,
             isNullable: true,
           },
           {
-            name: 'user_id',
-            type: 'uuid',
+            name: "user_id",
+            type: "uuid",
             isUnique: false,
             isNullable: false,
           },
@@ -244,37 +244,37 @@ export class transporter1655222000867 implements MigrationInterface {
     );
 
     await queryRunner.createForeignKey(
-      'transporter_action',
+      "transporter_action",
       new TableForeignKey({
-        columnNames: ['user_id'],
-        referencedTableName: 'user',
-        referencedColumnNames: ['id'],
-        onDelete: 'CASCADE',
+        columnNames: ["user_id"],
+        referencedTableName: "user",
+        referencedColumnNames: ["id"],
+        onDelete: "CASCADE",
       })
     );
     await queryRunner.createForeignKey(
-      'transporter_action',
+      "transporter_action",
       new TableForeignKey({
-        columnNames: ['transporter_id'],
-        referencedTableName: 'transporter',
-        referencedColumnNames: ['id'],
-        onDelete: 'CASCADE',
+        columnNames: ["transporter_id"],
+        referencedTableName: "transporter",
+        referencedColumnNames: ["id"],
+        onDelete: "CASCADE",
       })
     );
     await queryRunner.createForeignKey(
-      'transporter_action',
+      "transporter_action",
       new TableForeignKey({
-        columnNames: ['transporter_agent_id'],
-        referencedTableName: 'transporter_agent',
-        referencedColumnNames: ['id'],
-        onDelete: 'CASCADE',
+        columnNames: ["transporter_agent_id"],
+        referencedTableName: "transporter_agent",
+        referencedColumnNames: ["id"],
+        onDelete: "CASCADE",
       })
     );
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('transporter_action');
-    await queryRunner.dropTable('transporter_agent');
-    await queryRunner.dropTable('transporter');
+    await queryRunner.dropTable("transporter_action");
+    await queryRunner.dropTable("transporter_agent");
+    await queryRunner.dropTable("transporter");
   }
 }

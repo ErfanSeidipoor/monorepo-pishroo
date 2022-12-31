@@ -11,6 +11,13 @@ import { ProductModuleAdmin } from "./modules/admin/product/product.module";
 import { CategoryModuleAdmin } from "./modules/admin/category/category.module";
 import { ColorModuleAdmin } from "./modules/admin/color/color.module";
 import { PropertyModuleAdmin } from "./modules/admin/property/property.module";
+import { TransporterModuleAdmin } from "./modules/admin/transporter/transporter.module";
+import { TransporterAgentModuleAdmin } from "./modules/admin/transporterAgent/transporterAgent.module";
+import { ProducerModuleAdmin } from "./modules/admin/producer/producer.module";
+import { ProducerAgentModuleAdmin } from "./modules/admin/producerAgent/producerAgent.module";
+import { ProductReviewModuleAdmin } from "./modules/admin/productReview/productReview.module";
+import { ProvinceModuleAdmin } from "./modules/admin/province/province.module";
+import { CityModuleAdmin } from "./modules/admin/city/city.module";
 
 import { FileModule } from "./modules/file/file.module";
 import { entities } from "@pishroo/entities";
@@ -51,6 +58,13 @@ import { CurrentUserMiddleware } from "./middlewares";
     CategoryModuleAdmin,
     PropertyModuleAdmin,
     ColorModuleAdmin,
+    ProductReviewModuleAdmin,
+    ProvinceModuleAdmin,
+    TransporterModuleAdmin,
+    TransporterAgentModuleAdmin,
+    ProducerModuleAdmin,
+    ProducerAgentModuleAdmin,
+    CityModuleAdmin,
     FileModule,
   ],
   controllers: [],

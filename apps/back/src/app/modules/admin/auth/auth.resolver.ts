@@ -3,8 +3,16 @@ import { PaginationArgsGQL } from "@back/dto";
 import { AdminGuard, SuperAdminGuard } from "@back/guards";
 import { Ctx } from "@back/types/context.type";
 import { UseGuards } from "@nestjs/common";
-import { Args, Context, Mutation, Query, Resolver } from "@nestjs/graphql";
-import { PaginatedUser, User } from "@pishroo/entities";
+import {
+  Args,
+  Context,
+  Mutation,
+  Parent,
+  Query,
+  ResolveField,
+  Resolver,
+} from "@nestjs/graphql";
+import { PaginatedUser, ProvinceUser, User } from "@pishroo/entities";
 import { AuthService } from "./auth.service";
 // dto
 import {
@@ -14,9 +22,10 @@ import {
   LoginAdminInputsGQL,
   UpdateUserActivationAdminInputsGQL,
   UpdateUserAdminInputsGQL,
+  UpdateUserProvincesAdminInputsGQL,
 } from "./dto";
 
-@Resolver()
+@Resolver(() => User)
 export class AuthResolver {
   constructor(private authService: AuthService) {}
 
@@ -82,5 +91,24 @@ export class AuthResolver {
     updateUserAdminInputs: UpdateUserAdminInputsGQL
   ): Promise<User> {
     return await this.authService.updateUser(updateUserAdminInputs);
+  }
+
+  @Mutation(() => User)
+  @UseGuards(SuperAdminGuard)
+  async updateUserProvincesAdmin(
+    @Args("updateUserProvincesAdmin")
+    inputs: UpdateUserProvincesAdminInputsGQL
+  ): Promise<User> {
+    return await this.authService.UpdateUserProvinces(inputs);
+  }
+
+  /* -------------------------------------------------------------------------- */
+  /*                                ResolveField                                */
+  /* -------------------------------------------------------------------------- */
+
+  @ResolveField(() => [ProvinceUser], { nullable: false })
+  @UseGuards(SuperAdminGuard)
+  async provinceUsers(@Parent() user: User) {
+    return this.authService.provinceUsers(user.id);
   }
 }
