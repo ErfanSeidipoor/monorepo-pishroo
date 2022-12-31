@@ -8,13 +8,11 @@ import {
 } from "class-validator";
 
 export class CreateProductAdminInputs {
-  @Field()
   @IsString()
   @MinLength(10)
   @MaxLength(50)
   name: string;
 
-  @Field()
   @IsString()
   @MinLength(10)
   @MaxLength(50)

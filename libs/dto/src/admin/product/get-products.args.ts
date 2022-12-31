@@ -1,7 +1,5 @@
-import { ArgsType } from "@nestjs/graphql";
 import { IsBoolean, IsOptional, IsString } from "class-validator";
 
-@ArgsType()
 export class GetProductsAdminArgs {
   @IsOptional()
   @IsString()

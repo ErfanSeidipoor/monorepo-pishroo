@@ -1,8 +1,8 @@
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import { Not, Repository } from "typeorm";
+import { DataSource, Not, Repository } from "typeorm";
 import * as utils from "@pishroo/utils";
-import { Product, User } from "@pishroo/entities";
+import { Product, User, ProvinceUser, Province } from "@pishroo/entities";
 import {
   CreateUserAdminInputs,
   GetUserByIdAdminArgs,
@@ -11,11 +11,13 @@ import {
   PaginationArgs,
   UpdateUserActivationAdminInputs,
   UpdateUserAdminInputs,
+  UpdateUserProvincesAdminInputs,
 } from "@pishroo/dto";
 import { generateHashPassword, verifyPassword } from "@back/helpers/password";
 import {
   CustomError,
   INVALID_USERNAME_OR_PASSWORD,
+  PROVINCE_NOT_FOUND,
   USER_NOT_FOUND,
   USER_WITH_THIS_EMAIL_ALREADY_EXIST,
   USER_WITH_THIS_PHONE_ALREADY_EXIST,
@@ -28,8 +30,11 @@ import { paginate } from "@back/helpers/paginate";
 @Injectable()
 export class AuthService {
   constructor(
-    @InjectRepository(Product) private productRepo: Repository<Product>,
-    @InjectRepository(User) private userRepo: Repository<User>
+    private dataSource: DataSource,
+    @InjectRepository(User) private userRepo: Repository<User>,
+    @InjectRepository(Province) private provinceRepo: Repository<Province>,
+    @InjectRepository(ProvinceUser)
+    private provinceUserRepo: Repository<ProvinceUser>
   ) {}
 
   async login(context: Ctx, loginAdminInputs: LoginAdminInputs): Promise<User> {
@@ -148,7 +153,7 @@ export class AuthService {
     const emailDuplication = await this.userRepo.findOne({
       where: {
         id: Not(userId),
-        email,
+        email: email.toLowerCase(),
       },
     });
 
@@ -157,7 +162,7 @@ export class AuthService {
     }
 
     utils.object.assignDefinedProps(user, {
-      email,
+      email: email.toLowerCase(),
       firstName,
       lastName,
       phone,
@@ -207,7 +212,7 @@ export class AuthService {
     /* ---------------------- checking email duplication --------------------- */
     const emailDuplication = await this.userRepo.findOne({
       where: {
-        email,
+        email: email.toLowerCase(),
       },
     });
 
@@ -219,7 +224,7 @@ export class AuthService {
     const user = this.userRepo.create({
       username,
       password: await generateHashPassword(password),
-      email,
+      email: email.toLowerCase(),
       firstName,
       isActive,
       lastName,
@@ -300,5 +305,67 @@ export class AuthService {
     }
 
     return user;
+  }
+
+  async UpdateUserProvinces(args: UpdateUserProvincesAdminInputs) {
+    const { userId, provinceIds } = args;
+
+    /* --------------------------------- product -------------------------------- */
+    const user = await this.userRepo.findOne({
+      where: {
+        id: userId,
+      },
+    });
+
+    if (!user) {
+      throw new CustomError(USER_NOT_FOUND);
+    }
+
+    /* ------------------------------- categories ------------------------------- */
+
+    const provinceUsers: ProvinceUser[] = [];
+
+    for (const provinceId of provinceIds) {
+      const province = await this.provinceRepo.findOne({
+        where: { id: provinceId },
+      });
+
+      if (!province) {
+        throw new CustomError(PROVINCE_NOT_FOUND);
+      }
+
+      const provinceUser = this.provinceUserRepo.create({
+        province,
+        user,
+      });
+      provinceUsers.push(provinceUser);
+    }
+
+    const currentProvinceUsers = await this.provinceUserRepo.find({
+      where: { userId },
+    });
+
+    /* --------------------------------- saving --------------------------------- */
+
+    await this.dataSource.transaction(async (manager) => {
+      await manager.remove(currentProvinceUsers);
+      await manager.save(provinceUsers);
+    });
+
+    return user;
+  }
+
+  /* -------------------------------------------------------------------------- */
+  /*                                ResolveField                                */
+  /* -------------------------------------------------------------------------- */
+
+  async provinceUsers(userId: string): Promise<ProvinceUser[]> {
+    return await this.provinceUserRepo
+      .createQueryBuilder("provinceUser")
+      .andWhere("provinceUser.userId = :userId", {
+        userId,
+      })
+      .leftJoinAndSelect("provinceUser.province", "province")
+      .getMany();
   }
 }

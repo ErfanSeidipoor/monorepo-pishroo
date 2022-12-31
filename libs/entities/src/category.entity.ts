@@ -1,19 +1,24 @@
-import { Column, Entity, Index, OneToMany } from 'typeorm';
-import BaseModel from './baseModel.entity';
-import { ProductCategory } from './productCategory.entity';
+import { Field, ObjectType } from "@nestjs/graphql";
+import { Paginated } from "@pishroo/models";
+import { Column, Entity, Index, OneToMany } from "typeorm";
+import BaseModel from "./baseModel.entity";
+import { ProductCategory } from "./productCategory.entity";
 
-@Index('category_pkey', ['id'], { unique: true })
-@Entity('category', { schema: 'public' })
+@ObjectType()
+@Index("category_pkey", ["id"], { unique: true })
+@Entity("category", { schema: "public" })
 export class Category extends BaseModel {
-  @Column('varchar', {
-    name: 'name',
+  @Field({ nullable: false })
+  @Column("varchar", {
+    name: "name",
     nullable: false,
     length: 50,
     unique: true,
   })
   name: string;
 
-  @Column('boolean', { name: 'is_active', nullable: true })
+  @Field({ nullable: true })
+  @Column("boolean", { name: "is_active", nullable: true })
   isActive: boolean | null;
 
   @OneToMany(
@@ -25,3 +30,6 @@ export class Category extends BaseModel {
   )
   productCategories: ProductCategory[];
 }
+
+@ObjectType()
+export class PaginatedCategory extends Paginated(Category) {}

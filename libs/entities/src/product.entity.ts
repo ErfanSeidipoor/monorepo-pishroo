@@ -11,7 +11,7 @@ import { ProductProperty } from "./productProperty.entity";
 import { ProductReview } from "./productReview.entity";
 import { TagUse } from "./tagUse.entity";
 
-@ObjectType()
+@ObjectType("Product")
 @Index("product_pkey", ["id"], { unique: true })
 @Entity("product", { schema: "public" })
 export class Product extends BaseModel {
@@ -78,6 +78,7 @@ export class Product extends BaseModel {
   })
   tagUses: TagUse[];
 
+  @Field(() => [FileUse], { nullable: true })
   @OneToMany(() => FileUse, (fileUse) => fileUse.product, {
     cascade: true,
   })

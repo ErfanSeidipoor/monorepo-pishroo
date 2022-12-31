@@ -1,20 +1,25 @@
-import { Column, Entity, Index, OneToMany } from 'typeorm';
-import BaseModel from './baseModel.entity';
-import { ProductColor } from './productColor.entity';
+import { Field, ObjectType } from "@nestjs/graphql";
+import { Paginated } from "@pishroo/models";
+import { Column, Entity, Index, OneToMany } from "typeorm";
+import BaseModel from "./baseModel.entity";
+import { ProductColor } from "./productColor.entity";
 
-@Index('color_pkey', ['id'], { unique: true })
-@Entity('color', { schema: 'public' })
+@ObjectType()
+@Index("color_pkey", ["id"], { unique: true })
+@Entity("color", { schema: "public" })
 export class Color extends BaseModel {
-  @Column('varchar', {
-    name: 'name',
+  @Field({ nullable: false })
+  @Column("varchar", {
+    name: "name",
     nullable: false,
     length: 50,
     unique: true,
   })
   name: string;
 
-  @Column('char', {
-    name: 'value',
+  @Field({ nullable: false })
+  @Column("char", {
+    name: "value",
     nullable: false,
     length: 6,
     unique: true,
@@ -26,3 +31,6 @@ export class Color extends BaseModel {
   })
   productColors: ProductColor[];
 }
+
+@ObjectType()
+export class PaginatedColor extends Paginated(Color) {}
