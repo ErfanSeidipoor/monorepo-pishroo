@@ -81,6 +81,19 @@ export class ProducerAdminGuard implements CanActivate {
   }
 }
 
+export class ContentAdminGuard implements CanActivate {
+  canActivate(context: ExecutionContext) {
+    const ctx = GqlExecutionContext.create(context);
+    const request = ctx.getContext().req as Request;
+
+    return (
+      request.user &&
+      request.user.roles.includes(UserRoleEnum.admin_content) &&
+      true
+    );
+  }
+}
+
 // export enum UserRoleEnum {
 //   supper_admin = "supper_admin",
 //   employee = "employee",

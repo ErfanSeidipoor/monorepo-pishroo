@@ -1,3 +1,5 @@
+import { Field, ObjectType } from "@nestjs/graphql";
+import { Paginated } from "@pishroo/models";
 import {
   Column,
   Entity,
@@ -5,42 +7,54 @@ import {
   JoinColumn,
   ManyToOne,
   OneToMany,
-} from 'typeorm';
-import BaseModel from './baseModel.entity';
-import { City } from './city.entity';
-import { CustomerAction } from './customerAction.entity';
-import { CustomerMessage } from './customerMessage.entity';
+} from "typeorm";
+import BaseModel from "./baseModel.entity";
+import { City } from "./city.entity";
+import { CustomerAction } from "./customerAction.entity";
+import { CustomerMessage } from "./customerMessage.entity";
 
-@Index('customer_agent_pkey', ['id'], { unique: true })
-@Entity('customer_agent', { schema: 'public' })
+@ObjectType()
+@Index("customer_agent_pkey", ["id"], { unique: true })
+@Entity("customer_agent", { schema: "public" })
 export class Customer extends BaseModel {
-  @Column('varchar', { name: 'first_name', nullable: true, length: 50 })
+  @Field({ nullable: false })
+  @Column("varchar", { name: "first_name", nullable: true, length: 50 })
   firstName: string | null;
 
-  @Column('varchar', { name: 'last_name', nullable: true, length: 50 })
+  @Field({ nullable: true })
+  @Column("varchar", { name: "last_name", nullable: true, length: 50 })
   lastName: string | null;
 
-  @Column('varchar', { name: 'email', nullable: true, length: 50 })
+  @Field({ nullable: true })
+  @Column("varchar", { name: "email", nullable: true, length: 50 })
   email: string | null;
 
-  @Column('varchar', { name: 'job_title', nullable: true, length: 50 })
+  @Field({ nullable: true })
+  @Column("varchar", { name: "job_title", nullable: true, length: 50 })
   jobTitle: string | null;
 
-  @Column('varchar', { name: 'phone', nullable: true, length: 20 })
+  @Field({ nullable: true })
+  @Column("varchar", { name: "phone", nullable: true, length: 20 })
   phone: string | null;
 
-  @Column('varchar', { name: 'office_phone', nullable: true, length: 20 })
+  @Field({ nullable: true })
+  @Column("varchar", { name: "office_phone", nullable: true, length: 20 })
   officePhone: string | null;
 
-  @Column('boolean', { name: 'is_active', nullable: true })
+  @Field({ nullable: true })
+  @Column("boolean", { name: "is_active", nullable: true })
   isActive: boolean | null;
+
+  @Field({ nullable: true })
+  @Column({ type: "uuid", name: "city_id", nullable: true })
+  cityId: string;
 
   @ManyToOne(() => City, () => undefined, {
     nullable: true,
   })
   @JoinColumn({
-    name: 'city_id',
-    referencedColumnName: 'id',
+    name: "city_id",
+    referencedColumnName: "id",
   })
   city: City;
 
@@ -62,3 +76,6 @@ export class Customer extends BaseModel {
   )
   customerMessages: CustomerMessage[];
 }
+
+@ObjectType()
+export class PaginatedCustomer extends Paginated(Customer) {}

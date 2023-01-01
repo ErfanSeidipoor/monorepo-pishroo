@@ -113,3 +113,22 @@ export * from "./producerAgent/update-producer-agent.inputs";
 export * from "./producerAgent/get-producer-agents.args";
 export * from "./producerAgent/get-producer-agent-by-id.args";
 export * from "./producerAgent/update-producer-agent-acivation.inputs";
+
+/* ---------------------------------- project ------------------------------ */
+
+export * from "./project/create-project.inputs";
+export * from "./project/delete-project.inputs";
+export * from "./project/get-projects.args";
+export * from "./project/get-project-by-id.args";
+export * from "./project/update-project.inputs";
+export * from "./project/update-project-acivation.inputs";
+export * from "./project/add-image-to-project.inputs";
+export * from "./project/remove-image-from-project.inputs";
+
+/* ---------------------------------- project ------------------------------ */
+
+export * from "./projectReview/create-project-review.inputs";
+export * from "./projectReview/update-project-review.inputs";
+export * from "./projectReview/delete-project-review.inputs";
+export * from "./projectReview/get-project-reviews.args";
+export * from "./projectReview/get-project-review-by-id.args";

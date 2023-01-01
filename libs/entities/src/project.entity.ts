@@ -1,34 +1,51 @@
-import { Column, Entity, Index, OneToMany } from 'typeorm';
-import BaseModel from './baseModel.entity';
-import { FileUse } from './fileUse.entity';
-import { ProductProject } from './productProject.entity';
-import { ProjectReview } from './projectReview.entity';
-import { TagUse } from './tagUse.entity';
+import { Field, ObjectType } from "@nestjs/graphql";
+import { Paginated } from "@pishroo/models";
+import {
+  Column,
+  Entity,
+  Index,
+  JoinColumn,
+  ManyToOne,
+  OneToMany,
+} from "typeorm";
+import BaseModel from "./baseModel.entity";
+import { City } from "./city.entity";
+import { FileUse } from "./fileUse.entity";
+import { ProductProject } from "./productProject.entity";
+import { ProjectReview } from "./projectReview.entity";
+import { TagUse } from "./tagUse.entity";
 
-@Index('project_pkey', ['id'], { unique: true })
-@Entity('project', { schema: 'public' })
+@ObjectType()
+@Index("project_pkey", ["id"], { unique: true })
+@Entity("project", { schema: "public" })
 export class Project extends BaseModel {
-  @Column('varchar', { name: 'name', nullable: false, length: 50 })
+  @Field({ nullable: false })
+  @Column("varchar", { name: "name", nullable: false, length: 200 })
   name: string;
 
-  @Column('varchar', {
-    name: 'slug',
+  @Field({ nullable: false })
+  @Column("varchar", {
+    name: "slug",
     unique: true,
     nullable: false,
-    length: 50,
+    length: 200,
   })
   slug: string;
 
-  @Column('boolean', { name: 'is_active', nullable: true })
+  @Field({ nullable: true })
+  @Column("boolean", { name: "is_active", nullable: true })
   isActive: boolean | null;
 
-  @Column('text', { name: 'text', nullable: false })
+  @Field({ nullable: true })
+  @Column("text", { name: "description", nullable: true })
   description: string;
 
-  @Column('float', { name: 'lat', nullable: true })
+  @Field({ nullable: true })
+  @Column("float", { name: "lat", nullable: true })
   lat: number | null;
 
-  @Column('float', { name: 'long', nullable: true })
+  @Field({ nullable: true })
+  @Column("float", { name: "long", nullable: true })
   long: number | null;
 
   @OneToMany(() => ProjectReview, (projectReview) => projectReview.project, {
@@ -54,4 +71,21 @@ export class Project extends BaseModel {
     cascade: true,
   })
   fileUses: FileUse[];
+
+  @Field({ nullable: true })
+  @Column({ type: "uuid", name: "city_id", nullable: true })
+  cityId: string;
+
+  @Field(() => City, { nullable: false })
+  @ManyToOne(() => City, () => undefined, {
+    nullable: true,
+  })
+  @JoinColumn({
+    name: "city_id",
+    referencedColumnName: "id",
+  })
+  city: City;
 }
+
+@ObjectType()
+export class PaginatedProject extends Paginated(Project) {}

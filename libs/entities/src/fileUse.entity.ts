@@ -76,12 +76,20 @@ export class FileUse extends BaseModel {
   })
   product?: Product;
 
+  @Field({ nullable: true })
+  @Column({ type: "uuid", name: "product_review_id", nullable: true })
+  productReviewId?: string;
+
   @ManyToOne(() => ProductReview, (productReview) => productReview.fileUses)
   @JoinColumn({
     name: "product_review_id",
     referencedColumnName: "id",
   })
   productReview?: ProductReview;
+
+  @Field({ nullable: true })
+  @Column({ type: "uuid", name: "project_id", nullable: true })
+  projectId: string;
 
   @ManyToOne(() => Project, (project) => project.fileUses)
   @JoinColumn({
@@ -91,8 +99,8 @@ export class FileUse extends BaseModel {
   project?: Project;
 
   @Field({ nullable: true })
-  @Column({ type: "uuid", name: "product_review_id", nullable: true })
-  productReviewId?: string;
+  @Column({ type: "uuid", name: "project_review_id", nullable: true })
+  projectReviewId?: string;
 
   @ManyToOne(() => ProjectReview, (projectReview) => projectReview.fileUses)
   @JoinColumn({
