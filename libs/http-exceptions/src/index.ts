@@ -214,3 +214,23 @@ export const PROJECT_WITH_THIS_SLUG_ALREADY_EXIST: ICustomError = {
   status: HttpStatus.BAD_REQUEST,
   description: "Project With This Slug already exist",
 };
+
+export const CUSTOMER_WITH_THIS_PHONE_ALREADY_EXIST: ICustomError = {
+  status: HttpStatus.BAD_REQUEST,
+  description: "Customer With This phone already exist",
+};
+
+export const CUSTOMER_WITH_THIS_OFFICE_PHONE_ALREADY_EXIST: ICustomError = {
+  status: HttpStatus.BAD_REQUEST,
+  description: "Customer With This Office Phone already exist",
+};
+
+export const CUSTOMER_WITH_THIS_EMAIL_ALREADY_EXIST: ICustomError = {
+  status: HttpStatus.BAD_REQUEST,
+  description: "Customer With This Email already exist",
+};
+
+export const CUSTOMER_NOT_FOUND: ICustomError = {
+  status: HttpStatus.NOT_FOUND,
+  description: "Customer Not Found",
+};

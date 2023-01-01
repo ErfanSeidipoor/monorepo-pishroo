@@ -11,6 +11,9 @@ import {
 import { CreateCustomerAdminInputs } from "./create-customer.inputs";
 
 export class UpdateCustomerAdminInputs extends CreateCustomerAdminInputs {
+  @IsUUID()
+  customerId: string;
+
   @IsString()
   @MinLength(3)
   @MaxLength(50)
@@ -44,7 +47,4 @@ export class UpdateCustomerAdminInputs extends CreateCustomerAdminInputs {
   @IsOptional()
   @IsUUID()
   cityId?: string;
-
-  @IsUUID()
-  customerId: string;
 }

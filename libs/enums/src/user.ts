@@ -7,6 +7,7 @@ export enum UserRoleEnum {
   admin_product = "admin_product",
   admin_transporter = "admin_transporter",
   admin_producer = "admin_producer",
+  admin_customer = "admin_customer",
   admin_event = "admin_event",
 }
 

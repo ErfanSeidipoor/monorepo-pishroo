@@ -113,7 +113,7 @@ export class ProducerResolver {
     return this.producerService.fileUses(producer.id);
   }
 
-  @ResolveField(() => [City], { nullable: false })
+  @ResolveField(() => City, { nullable: false })
   @UseGuards(ProducerAdminGuard)
   async city(@Parent() producer: Producer) {
     return this.producerService.city(producer.id);
