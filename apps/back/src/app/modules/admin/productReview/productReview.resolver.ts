@@ -1,5 +1,5 @@
 import { PaginationArgsGQL } from "@back/dto";
-import { AdminGuard, ProductAdminGuard } from "@back/guards";
+import { AdminGuard, ContentAdminGuard } from "@back/guards";
 import { UseGuards } from "@nestjs/common";
 import {
   Args,
@@ -13,6 +13,7 @@ import {
   ProductReview,
   PaginatedProductReview,
   Product,
+  FileUse,
 } from "@pishroo/entities";
 import { ProductReviewService } from "./productReview.service";
 import {
@@ -28,7 +29,7 @@ export class ProductReviewResolver {
   constructor(private productReviewService: ProductReviewService) {}
 
   @Mutation(() => ProductReview)
-  @UseGuards(ProductAdminGuard)
+  @UseGuards(ContentAdminGuard)
   async createProductReviewAdmin(
     @Args("createProductReviewAdmin")
     inputs: CreateProductReviewAdminInputsGQL
@@ -37,7 +38,7 @@ export class ProductReviewResolver {
   }
 
   @Mutation(() => ProductReview)
-  @UseGuards(ProductAdminGuard)
+  @UseGuards(ContentAdminGuard)
   async updateProductReviewAdmin(
     @Args("updateProductReviewAdmin")
     inputs: UpdateProductReviewAdminInputsGQL
@@ -46,7 +47,7 @@ export class ProductReviewResolver {
   }
 
   @Mutation(() => ProductReview)
-  @UseGuards(ProductAdminGuard)
+  @UseGuards(ContentAdminGuard)
   async deleteProductReviewAdmin(
     @Args("deleteProductReviewAdmin")
     inputs: DeleteProductReviewAdminInputsGQL
@@ -78,8 +79,14 @@ export class ProductReviewResolver {
   /* -------------------------------------------------------------------------- */
 
   @ResolveField(() => Product, { nullable: false })
-  @UseGuards(AdminGuard)
+  @UseGuards(ContentAdminGuard)
   async product(@Parent() productReview: ProductReview) {
     return this.productReviewService.product(productReview.id);
+  }
+
+  @ResolveField(() => [FileUse], { nullable: false })
+  @UseGuards(ContentAdminGuard)
+  async fileUses(@Parent() productReview: ProductReview) {
+    return this.productReviewService.fileUses(productReview.id);
   }
 }

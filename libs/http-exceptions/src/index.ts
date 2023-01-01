@@ -194,3 +194,23 @@ export const PRODUCER_AGENT_WITH_THIS_EAMIL_ALREADY_EXIST: ICustomError = {
   status: HttpStatus.BAD_REQUEST,
   description: "Producer Agent With This Email already exist",
 };
+
+export const PROJECT_NOT_FOUND: ICustomError = {
+  status: HttpStatus.NOT_FOUND,
+  description: "Project Not Found",
+};
+
+export const PROJECT_AGENT_NOT_FOUND: ICustomError = {
+  status: HttpStatus.NOT_FOUND,
+  description: "Project Agent Not Found",
+};
+
+export const PROJECT_WITH_THIS_NAME_ALREADY_EXIST: ICustomError = {
+  status: HttpStatus.BAD_REQUEST,
+  description: "Project With This name already exist",
+};
+
+export const PROJECT_WITH_THIS_SLUG_ALREADY_EXIST: ICustomError = {
+  status: HttpStatus.BAD_REQUEST,
+  description: "Project With This Slug already exist",
+};

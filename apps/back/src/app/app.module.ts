@@ -18,6 +18,8 @@ import { ProducerAgentModuleAdmin } from "./modules/admin/producerAgent/producer
 import { ProductReviewModuleAdmin } from "./modules/admin/productReview/productReview.module";
 import { ProvinceModuleAdmin } from "./modules/admin/province/province.module";
 import { CityModuleAdmin } from "./modules/admin/city/city.module";
+import { ProjectModuleAdmin } from "./modules/admin/project/project.module";
+import { ProjectReviewModuleAdmin } from "./modules/admin/projectReview/projectReview.module";
 
 import { FileModule } from "./modules/file/file.module";
 import { entities } from "@pishroo/entities";
@@ -65,6 +67,8 @@ import { CurrentUserMiddleware } from "./middlewares";
     ProducerModuleAdmin,
     ProducerAgentModuleAdmin,
     CityModuleAdmin,
+    ProjectModuleAdmin,
+    ProjectReviewModuleAdmin,
     FileModule,
   ],
   controllers: [],

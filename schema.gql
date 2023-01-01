@@ -56,6 +56,21 @@ type ProvinceUser {
   province: Province!
 }
 
+type Customer {
+  id: String!
+  createdAt: DateTime!
+  updatedAt: DateTime
+  deletedAt: DateTime
+  firstName: String!
+  lastName: String
+  email: String
+  jobTitle: String
+  phone: String
+  officePhone: String
+  isActive: Boolean
+  cityId: String
+}
+
 type File {
   id: String!
   createdAt: DateTime!
@@ -156,6 +171,46 @@ type ProductColor {
   colorId: String!
   color: Color!
   productId: String!
+}
+
+type ProjectReview {
+  id: String!
+  createdAt: DateTime!
+  updatedAt: DateTime
+  deletedAt: DateTime
+  reviewer: String
+  text: String
+  isActive: Boolean
+  projectId: String
+  project: Project!
+  fileUses: [FileUse!]!
+}
+
+type PaginatedProjectReview {
+  edges: [ProjectReview!]
+  pageInfo: PageInfo
+}
+
+type Project {
+  id: String!
+  createdAt: DateTime!
+  updatedAt: DateTime
+  deletedAt: DateTime
+  name: String!
+  slug: String!
+  isActive: Boolean
+  description: String
+  lat: Float
+  long: Float
+  cityId: String
+  city: City!
+  fileUses: [FileUse!]!
+  projectReviews: [ProjectReview!]!
+}
+
+type PaginatedProject {
+  edges: [Project!]
+  pageInfo: PageInfo
 }
 
 type Property {
@@ -283,6 +338,8 @@ type FileUse {
   file: File!
   productId: String
   productReviewId: String
+  projectId: String
+  projectReviewId: String
   transporterId: String
   transporterActionId: String
   producerId: String
@@ -370,6 +427,10 @@ type Query {
   getProducerAgentByIdAdmin(producerAgentId: String!): ProducerAgent
   getCitiesAdmin(limit: Int = 10, page: Int = 1, name: String = "", provinceId: String): PaginatedCity
   getCityByIdAdmin(cityId: String!): City
+  getProjectsAdmin(limit: Int = 10, page: Int = 1, search: String = "", isActive: String, cityIds: [String!], provinceIds: [String!]): PaginatedProject
+  getProjectByIdAdmin(projectId: String!): Project
+  getProjectReviewsAdmin(limit: Int = 10, page: Int = 1, reviewer: String = "", text: String = "", projectId: String): PaginatedProjectReview
+  getProjectReviewByIdAdmin(projectReviewId: String!): ProjectReview
 }
 
 input LoginAdminInputsGQL {
@@ -433,6 +494,15 @@ type Mutation {
   createCityAdmin(createCityAdmin: CreateCityAdminInputsGQL!): City!
   updateCityAdmin(updateCityAdmin: UpdateCityAdminInputsGQL!): City!
   deleteCityAdmin(deleteCityAdmin: DeleteCityAdminInputsGQL!): City!
+  createProjectAdmin(createProjectAdmin: CreateProjectAdminInputsGQL!): Project!
+  updateProjectAdmin(updateProjectAdmin: UpdateProjectAdminInputsGQL!): Project!
+  updateProjectActivationAdmin(updateProjectActivationAdmin: UpdateProjectActivationAdminInputsGQL!): Project!
+  deleteProjectAdmin(deleteProjectAdmin: DeleteProjectAdminInputsGQL!): Project!
+  addImageToProjectAdmin(addImageToProjectAdmin: AddImageToProjectAdminInputsGQL!): Project!
+  removeImageFromProjectAdmin(removeImageFromProjectAdmin: RemoveImageFromProjectAdminInputsGQL!): Project!
+  createProjectReviewAdmin(createProjectReviewAdmin: CreateProjectReviewAdminInputsGQL!): ProjectReview!
+  updateProjectReviewAdmin(updateProjectReviewAdmin: UpdateProjectReviewAdminInputsGQL!): ProjectReview!
+  deleteProjectReviewAdmin(deleteProjectReviewAdmin: DeleteProjectReviewAdminInputsGQL!): ProjectReview!
   uploadFile(file: Upload!): File!
 }
 
@@ -765,6 +835,66 @@ input UpdateCityAdminInputsGQL {
 
 input DeleteCityAdminInputsGQL {
   cityId: String!
+}
+
+input CreateProjectAdminInputsGQL {
+  name: String!
+  slug: String!
+  isActive: Boolean!
+  description: String!
+  lat: Float!
+  long: Float!
+  cityId: String!
+}
+
+input UpdateProjectAdminInputsGQL {
+  projectId: String!
+  name: String!
+  slug: String!
+  isActive: Boolean!
+  description: String!
+  lat: Float!
+  long: Float!
+  cityId: String!
+}
+
+input UpdateProjectActivationAdminInputsGQL {
+  projectId: String!
+  isActive: Boolean!
+}
+
+input DeleteProjectAdminInputsGQL {
+  projectId: String!
+}
+
+input AddImageToProjectAdminInputsGQL {
+  fileId: String!
+  projectId: String!
+}
+
+input RemoveImageFromProjectAdminInputsGQL {
+  fileUseId: String!
+}
+
+input CreateProjectReviewAdminInputsGQL {
+  reviewer: String!
+  fileId: String!
+  text: String!
+  projectId: String!
+  isActive: Boolean!
+}
+
+input UpdateProjectReviewAdminInputsGQL {
+  reviewer: String
+  fileId: String
+  text: String
+  projectId: String
+  isActive: Boolean!
+  projectReviewId: String
+}
+
+input DeleteProjectReviewAdminInputsGQL {
+  projectReviewId: String!
 }
 
 """The `Upload` scalar type represents a file upload."""
