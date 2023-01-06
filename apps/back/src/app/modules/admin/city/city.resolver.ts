@@ -1,5 +1,5 @@
 import { PaginationArgsGQL } from "@back/dto";
-import { AdminGuard, ProductAdminGuard } from "@back/guards";
+import { ProductAdminGuard } from "@back/guards";
 import { UseGuards } from "@nestjs/common";
 import {
   Args,
@@ -9,7 +9,7 @@ import {
   ResolveField,
   Resolver,
 } from "@nestjs/graphql";
-import { Province, PaginatedCity, City } from "@pishroo/entities";
+import { City, PaginatedCity, Province } from "@pishroo/entities";
 import { CityService } from "./city.service";
 
 import {
@@ -52,7 +52,7 @@ export class CityResolver {
   }
 
   @Query(() => PaginatedCity, { nullable: true })
-  @UseGuards(AdminGuard)
+  @UseGuards(ProductAdminGuard)
   async getCitiesAdmin(
     @Args() paginationArgs: PaginationArgsGQL,
     @Args() args: GetCitiesAdminArgsGQL
@@ -61,7 +61,7 @@ export class CityResolver {
   }
 
   @Query(() => City, { nullable: true })
-  @UseGuards(AdminGuard)
+  @UseGuards(ProductAdminGuard)
   async getCityByIdAdmin(
     @Args() getCityByIdAdminArgs: GetCityByIdAdminArgsGQL
   ) {
@@ -73,7 +73,7 @@ export class CityResolver {
   /* -------------------------------------------------------------------------- */
 
   @ResolveField(() => Province, { nullable: false })
-  @UseGuards(AdminGuard)
+  @UseGuards(ProductAdminGuard)
   async province(@Parent() city: City) {
     return this.cityService.province(city.id);
   }

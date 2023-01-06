@@ -1,5 +1,5 @@
 import { PaginationArgsGQL } from "@back/dto";
-import { AdminGuard, ContentAdminGuard } from "@back/guards";
+import { ContentAdminGuard } from "@back/guards";
 import { UseGuards } from "@nestjs/common";
 import {
   Args,
@@ -10,19 +10,19 @@ import {
   Resolver,
 } from "@nestjs/graphql";
 import {
-  ProjectReview,
+  FileUse,
   PaginatedProjectReview,
   Project,
-  FileUse,
+  ProjectReview,
 } from "@pishroo/entities";
-import { ProjectReviewService } from "./projectReview.service";
 import {
   CreateProjectReviewAdminInputsGQL,
   DeleteProjectReviewAdminInputsGQL,
-  GetProjectReviewsAdminArgsGQL,
   GetProjectReviewByIdAdminArgsGQL,
+  GetProjectReviewsAdminArgsGQL,
   UpdateProjectReviewAdminInputsGQL,
 } from "./dto";
+import { ProjectReviewService } from "./projectReview.service";
 
 @Resolver(() => ProjectReview)
 export class ProjectReviewResolver {
@@ -56,7 +56,7 @@ export class ProjectReviewResolver {
   }
 
   @Query(() => PaginatedProjectReview, { nullable: true })
-  @UseGuards(AdminGuard)
+  @UseGuards(ContentAdminGuard)
   async getProjectReviewsAdmin(
     @Args() paginationArgs: PaginationArgsGQL,
     @Args() args: GetProjectReviewsAdminArgsGQL
@@ -65,7 +65,7 @@ export class ProjectReviewResolver {
   }
 
   @Query(() => ProjectReview, { nullable: true })
-  @UseGuards(AdminGuard)
+  @UseGuards(ContentAdminGuard)
   async getProjectReviewByIdAdmin(
     @Args() getProjectReviewByIdAdminArgs: GetProjectReviewByIdAdminArgsGQL
   ) {
@@ -79,7 +79,7 @@ export class ProjectReviewResolver {
   /* -------------------------------------------------------------------------- */
 
   @ResolveField(() => Project, { nullable: false })
-  @UseGuards(AdminGuard)
+  @UseGuards(ContentAdminGuard)
   async project(@Parent() projectReview: ProjectReview) {
     return this.projectReviewService.project(projectReview.id);
   }

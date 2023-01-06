@@ -9,6 +9,7 @@ export enum UserRoleEnum {
   admin_producer = "admin_producer",
   admin_customer = "admin_customer",
   admin_event = "admin_event",
+  admin_message = "admin_message",
 }
 
 registerEnumType(UserRoleEnum, {

@@ -1,5 +1,5 @@
 import { PaginationArgsGQL } from "@back/dto";
-import { AdminGuard, ProductAdminGuard } from "@back/guards";
+import { ProductAdminGuard } from "@back/guards";
 import { UseGuards } from "@nestjs/common";
 import {
   Args,
@@ -86,7 +86,7 @@ export class ProductResolver {
   }
 
   @Query(() => PaginatedProduct, { nullable: true })
-  @UseGuards(AdminGuard)
+  @UseGuards(ProductAdminGuard)
   async getProductsAdmin(
     @Args() paginationArgs: PaginationArgsGQL,
     @Args() args: GetProductsAdminArgsGQL
@@ -95,7 +95,7 @@ export class ProductResolver {
   }
 
   @Query(() => Product, { nullable: true })
-  @UseGuards(AdminGuard)
+  @UseGuards(ProductAdminGuard)
   async getProductByIdAdmin(
     @Args() getProductByIdAdminArgs: GetProductByIdAdminArgsGQL
   ) {
@@ -173,31 +173,31 @@ export class ProductResolver {
   /* -------------------------------------------------------------------------- */
 
   @ResolveField(() => [FileUse], { nullable: false })
-  @UseGuards(AdminGuard)
+  @UseGuards(ProductAdminGuard)
   async fileUses(@Parent() product: Product) {
     return this.productService.fileUses(product.id);
   }
 
   @ResolveField(() => [ProductCategory], { nullable: false })
-  @UseGuards(AdminGuard)
+  @UseGuards(ProductAdminGuard)
   async productCategories(@Parent() product: Product) {
     return this.productService.productCategories(product.id);
   }
 
   @ResolveField(() => [ProductProperty], { nullable: false })
-  @UseGuards(AdminGuard)
+  @UseGuards(ProductAdminGuard)
   async productProperties(@Parent() product: Product) {
     return this.productService.productProperties(product.id);
   }
 
   @ResolveField(() => [ProductColor], { nullable: false })
-  @UseGuards(AdminGuard)
+  @UseGuards(ProductAdminGuard)
   async productColors(@Parent() product: Product) {
     return this.productService.productColors(product.id);
   }
 
   @ResolveField(() => [ProductReview], { nullable: false })
-  @UseGuards(AdminGuard)
+  @UseGuards(ProductAdminGuard)
   async productReviews(@Parent() product: Product) {
     return this.productService.productReviews(product.id);
   }

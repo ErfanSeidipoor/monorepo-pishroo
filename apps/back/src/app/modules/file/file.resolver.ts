@@ -20,14 +20,18 @@ export class FileResolver {
     fileUpload: GraphQLUpload.FileUpload,
     @UserId() userId: string
   ): Promise<File> {
-    const pathWithFilename = `uploads/${uuid()}${path.extname(fileUpload.filename)}`;
+    const pathWithFilename = `uploads/${uuid()}${path.extname(
+      fileUpload.filename
+    )}`;
 
     return new Promise((resolve, reject) =>
       fileUpload
         .createReadStream()
         .pipe(createWriteStream(pathWithFilename))
         .on("finish", () => {
-          resolve(this.fileService.uploadFile(userId, fileUpload, pathWithFilename));
+          resolve(
+            this.fileService.uploadFile(userId, fileUpload, pathWithFilename)
+          );
         })
         .on("error", () => {
           reject(false);

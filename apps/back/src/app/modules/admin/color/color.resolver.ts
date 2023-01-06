@@ -1,5 +1,5 @@
 import { PaginationArgsGQL } from "@back/dto";
-import { AdminGuard, ProductAdminGuard } from "@back/guards";
+import { ProductAdminGuard } from "@back/guards";
 import { UseGuards } from "@nestjs/common";
 import { Args, Mutation, Query, Resolver } from "@nestjs/graphql";
 import { Color, PaginatedColor } from "@pishroo/entities";
@@ -7,8 +7,8 @@ import { ColorService } from "./color.service";
 import {
   CreateColorAdminInputsGQL,
   DeleteColorAdminInputsGQL,
-  GetColorsAdminArgsGQL,
   GetColorByIdAdminArgsGQL,
+  GetColorsAdminArgsGQL,
   UpdateColorAdminInputsGQL,
 } from "./dto";
 
@@ -44,7 +44,7 @@ export class ColorResolver {
   }
 
   @Query(() => PaginatedColor, { nullable: true })
-  @UseGuards(AdminGuard)
+  @UseGuards(ProductAdminGuard)
   async getColorsAdmin(
     @Args() paginationArgs: PaginationArgsGQL,
     @Args() args: GetColorsAdminArgsGQL
@@ -53,7 +53,7 @@ export class ColorResolver {
   }
 
   @Query(() => Color, { nullable: true })
-  @UseGuards(AdminGuard)
+  @UseGuards(ProductAdminGuard)
   async getColorByIdAdmin(
     @Args() getColorByIdAdminArgs: GetColorByIdAdminArgsGQL
   ) {

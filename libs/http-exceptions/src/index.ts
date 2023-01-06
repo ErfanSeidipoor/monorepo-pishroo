@@ -234,3 +234,23 @@ export const CUSTOMER_NOT_FOUND: ICustomError = {
   status: HttpStatus.NOT_FOUND,
   description: "Customer Not Found",
 };
+
+export const MESSAGE_NOT_FOUND: ICustomError = {
+  status: HttpStatus.NOT_FOUND,
+  description: "Message Not Found",
+};
+
+export const MESSAGE_IS_SUBMITTED_YOU_CANT_CHANGE_IT: ICustomError = {
+  status: HttpStatus.NOT_FOUND,
+  description: "Message Is Submitted, You Can't Change It",
+};
+
+export const CUSTOMER_MESSAGE_ALREADY_EXIST: ICustomError = {
+  status: HttpStatus.BAD_REQUEST,
+  description: "customer message already exist",
+};
+
+export const CUSTOMER_MESSAGE_NOT_FOUND: ICustomError = {
+  status: HttpStatus.NOT_FOUND,
+  description: "Customer Message Not Found",
+};

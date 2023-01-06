@@ -1,5 +1,5 @@
 import { PaginationArgsGQL } from "@back/dto";
-import { AdminGuard, ContentAdminGuard } from "@back/guards";
+import { ContentAdminGuard } from "@back/guards";
 import { UseGuards } from "@nestjs/common";
 import {
   Args,
@@ -10,19 +10,19 @@ import {
   Resolver,
 } from "@nestjs/graphql";
 import {
-  ProductReview,
+  FileUse,
   PaginatedProductReview,
   Product,
-  FileUse,
+  ProductReview,
 } from "@pishroo/entities";
-import { ProductReviewService } from "./productReview.service";
 import {
   CreateProductReviewAdminInputsGQL,
   DeleteProductReviewAdminInputsGQL,
-  GetProductReviewsAdminArgsGQL,
   GetProductReviewByIdAdminArgsGQL,
+  GetProductReviewsAdminArgsGQL,
   UpdateProductReviewAdminInputsGQL,
 } from "./dto";
+import { ProductReviewService } from "./productReview.service";
 
 @Resolver(() => ProductReview)
 export class ProductReviewResolver {
@@ -56,7 +56,7 @@ export class ProductReviewResolver {
   }
 
   @Query(() => PaginatedProductReview, { nullable: true })
-  @UseGuards(AdminGuard)
+  @UseGuards(ContentAdminGuard)
   async getProductReviewsAdmin(
     @Args() paginationArgs: PaginationArgsGQL,
     @Args() args: GetProductReviewsAdminArgsGQL
@@ -65,7 +65,7 @@ export class ProductReviewResolver {
   }
 
   @Query(() => ProductReview, { nullable: true })
-  @UseGuards(AdminGuard)
+  @UseGuards(ContentAdminGuard)
   async getProductReviewByIdAdmin(
     @Args() getProductReviewByIdAdminArgs: GetProductReviewByIdAdminArgsGQL
   ) {

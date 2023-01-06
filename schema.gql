@@ -56,6 +56,36 @@ type ProvinceUser {
   province: Province!
 }
 
+type Message {
+  id: String!
+  createdAt: DateTime!
+  updatedAt: DateTime
+  deletedAt: DateTime
+  text: String!
+  count: Float!
+  isActive: Boolean
+  isSubmited: Boolean
+  userId: String!
+  customerMessages: [CustomerMessage!]!
+}
+
+type PaginatedMessage {
+  edges: [Message!]
+  pageInfo: PageInfo
+}
+
+type CustomerMessage {
+  id: String!
+  createdAt: DateTime!
+  updatedAt: DateTime
+  deletedAt: DateTime
+  messageId: String!
+  message: Message!
+  customerId: String!
+  customer: Customer!
+  customerMessages: Message!
+}
+
 type Customer {
   id: String!
   createdAt: DateTime!
@@ -399,6 +429,7 @@ enum UserRoleEnum {
   admin_producer
   admin_customer
   admin_event
+  admin_message
 }
 
 type PaginatedUser {
@@ -440,6 +471,8 @@ type Query {
   getProjectReviewByIdAdmin(projectReviewId: String!): ProjectReview
   getCustomersAdmin(limit: Int = 10, page: Int = 1, search: String = "", isActive: String, cityIds: [String!], provinceIds: [String!]): PaginatedCustomer
   getCustomerByIdAdmin(customerId: String!): Customer
+  getMessagesAdmin(limit: Int = 10, page: Int = 1, search: String = "", isActive: String, userId: String, customerId: [String!]): PaginatedMessage
+  getMessageByIdAdmin(messageId: String!): Message
 }
 
 input LoginAdminInputsGQL {
@@ -516,6 +549,12 @@ type Mutation {
   updateCustomerAdmin(updateCustomerAdmin: UpdateCustomerAdminInputsGQL!): Customer!
   updateCustomerActivationAdmin(updateCustomerActivationAdmin: UpdateCustomerActivationAdminInputsGQL!): Customer!
   deleteCustomerAdmin(deleteCustomerAdmin: DeleteCustomerAdminInputsGQL!): Customer!
+  createMessageAdmin(createMessageAdmin: CreateMessageAdminInputsGQL!): Message!
+  updateMessageAdmin(updateMessageAdmin: UpdateMessageAdminInputsGQL!): Message!
+  updateMessageActivationAdmin(updateMessageActivationAdmin: UpdateMessageActivationAdminInputsGQL!): Message!
+  deleteMessageAdmin(deleteMessageAdmin: DeleteMessageAdminInputsGQL!): Message!
+  createCustomerMessageAdmin(createCustomerMessageAdmin: CreateCustomerMessageAdminInputsGQL!): CustomerMessage!
+  deleteCustomerMessageAdmin(deleteCustomerMessageAdmin: DeleteCustomerMessageAdminInputsGQL!): CustomerMessage!
   uploadFile(file: Upload!): File!
 }
 
@@ -940,6 +979,38 @@ input UpdateCustomerActivationAdminInputsGQL {
 
 input DeleteCustomerAdminInputsGQL {
   customerId: String!
+}
+
+input CreateMessageAdminInputsGQL {
+  text: String!
+  userId: String!
+  isActive: Boolean!
+  customerIds: [String!]!
+}
+
+input UpdateMessageAdminInputsGQL {
+  text: String!
+  userId: String!
+  isActive: Boolean!
+  customerMessagesIds: [String!]!
+}
+
+input UpdateMessageActivationAdminInputsGQL {
+  messageId: String!
+  isActive: Boolean!
+}
+
+input DeleteMessageAdminInputsGQL {
+  messageId: String!
+}
+
+input CreateCustomerMessageAdminInputsGQL {
+  customerId: String!
+  messageId: String!
+}
+
+input DeleteCustomerMessageAdminInputsGQL {
+  customerMessageId: String!
 }
 
 """The `Upload` scalar type represents a file upload."""

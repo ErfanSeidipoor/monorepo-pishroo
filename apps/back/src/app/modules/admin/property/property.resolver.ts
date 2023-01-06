@@ -1,9 +1,8 @@
 import { PaginationArgsGQL } from "@back/dto";
-import { AdminGuard, ProductAdminGuard } from "@back/guards";
+import { ProductAdminGuard } from "@back/guards";
 import { UseGuards } from "@nestjs/common";
 import { Args, Mutation, Query, Resolver } from "@nestjs/graphql";
-import { Property, PaginatedProperty } from "@pishroo/entities";
-import { PropertyService } from "./property.service";
+import { PaginatedProperty, Property } from "@pishroo/entities";
 import {
   CreatePropertyAdminInputsGQL,
   DeletePropertyAdminInputsGQL,
@@ -12,6 +11,7 @@ import {
   UpdatePropertyActivationAdminInputsGQL,
   UpdatePropertyAdminInputsGQL,
 } from "./dto";
+import { PropertyService } from "./property.service";
 
 @Resolver(() => Property)
 export class PropertyResolver {
@@ -54,7 +54,7 @@ export class PropertyResolver {
   }
 
   @Query(() => PaginatedProperty, { nullable: true })
-  @UseGuards(AdminGuard)
+  @UseGuards(ProductAdminGuard)
   async getPropertiesAdmin(
     @Args() paginationArgs: PaginationArgsGQL,
     @Args() args: GetPropertiesAdminArgsGQL
@@ -63,7 +63,7 @@ export class PropertyResolver {
   }
 
   @Query(() => Property, { nullable: true })
-  @UseGuards(AdminGuard)
+  @UseGuards(ProductAdminGuard)
   async getPropertyByIdAdmin(
     @Args() getPropertyByIdAdminArgs: GetPropertyByIdAdminArgsGQL
   ) {

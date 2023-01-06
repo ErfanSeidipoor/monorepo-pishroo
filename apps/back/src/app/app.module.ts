@@ -21,6 +21,8 @@ import { CityModuleAdmin } from "./modules/admin/city/city.module";
 import { ProjectModuleAdmin } from "./modules/admin/project/project.module";
 import { ProjectReviewModuleAdmin } from "./modules/admin/projectReview/projectReview.module";
 import { CustomerModuleAdmin } from "./modules/admin/customer/customer.module";
+import { MessageModuleAdmin } from "./modules/admin/message/message.module";
+import { CustomerMessageModuleAdmin } from "./modules/admin/customerMessage/customerMessage.module";
 
 import { FileModule } from "./modules/file/file.module";
 import { entities } from "@pishroo/entities";
@@ -71,6 +73,8 @@ import { CurrentUserMiddleware } from "./middlewares";
     ProjectModuleAdmin,
     ProjectReviewModuleAdmin,
     CustomerModuleAdmin,
+    MessageModuleAdmin,
+    CustomerMessageModuleAdmin,
     FileModule,
   ],
   controllers: [],

@@ -141,3 +141,17 @@ export * from "./customer/delete-customer.inputs";
 export * from "./customer/get-customers.args";
 export * from "./customer/get-customer-by-id.args";
 export * from "./customer/update-customer-acivation.inputs";
+
+/* --------------------------------- message -------------------------------- */
+
+export * from "./message/create-message.inputs";
+export * from "./message/delete-message.inputs";
+export * from "./message/get-messages.args";
+export * from "./message/get-message-by-id.args";
+export * from "./message/update-message.inputs";
+export * from "./message/update-message-acivation.inputs";
+
+/* ---------------------------- customer message ---------------------------- */
+
+export * from "./customerMessage/create-customer-message.inputs";
+export * from "./customerMessage/delete-customer-message.inputs";
