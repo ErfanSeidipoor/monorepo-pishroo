@@ -1,5 +1,5 @@
 import { PaginationArgsGQL } from "@back/dto";
-import { AdminGuard, ProductAdminGuard } from "@back/guards";
+import { ProductAdminGuard } from "@back/guards";
 import { UseGuards } from "@nestjs/common";
 import { Args, Mutation, Query, Resolver } from "@nestjs/graphql";
 import { Category, PaginatedCategory } from "@pishroo/entities";
@@ -54,7 +54,7 @@ export class CategoryResolver {
   }
 
   @Query(() => PaginatedCategory, { nullable: true })
-  @UseGuards(AdminGuard)
+  @UseGuards(ProductAdminGuard)
   async getCategoriesAdmin(
     @Args() paginationArgs: PaginationArgsGQL,
     @Args() args: GetCategoriesAdminArgsGQL
@@ -63,7 +63,7 @@ export class CategoryResolver {
   }
 
   @Query(() => Category, { nullable: true })
-  @UseGuards(AdminGuard)
+  @UseGuards(ProductAdminGuard)
   async getCategoryByIdAdmin(
     @Args() getCategoryByIdAdminArgs: GetCategoryByIdAdminArgsGQL
   ) {

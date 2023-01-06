@@ -1,5 +1,5 @@
 import { PaginationArgsGQL } from "@back/dto";
-import { AdminGuard, TransporterAdminGuard } from "@back/guards";
+import { TransporterAdminGuard } from "@back/guards";
 import { UseGuards } from "@nestjs/common";
 import {
   Args,
@@ -67,7 +67,7 @@ export class TransporterAgentResolver {
   }
 
   @Query(() => PaginatedTransporterAgent, { nullable: true })
-  @UseGuards(AdminGuard)
+  @UseGuards(TransporterAdminGuard)
   async getTransporterAgentsAdmin(
     @Args() paginationArgs: PaginationArgsGQL,
     @Args() args: GetTransporterAgentsAdminArgsGQL
@@ -79,7 +79,7 @@ export class TransporterAgentResolver {
   }
 
   @Query(() => TransporterAgent, { nullable: true })
-  @UseGuards(AdminGuard)
+  @UseGuards(TransporterAdminGuard)
   async getTransporterAgentByIdAdmin(
     @Args()
     getTransporterAgentByIdAdminArgs: GetTransporterAgentByIdAdminArgsGQL

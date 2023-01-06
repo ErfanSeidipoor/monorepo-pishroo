@@ -1,5 +1,5 @@
 import { PaginationArgsGQL } from "@back/dto";
-import { AdminGuard, ProductAdminGuard } from "@back/guards";
+import { ProductAdminGuard } from "@back/guards";
 import { UseGuards } from "@nestjs/common";
 import {
   Args,
@@ -9,14 +9,14 @@ import {
   ResolveField,
   Resolver,
 } from "@nestjs/graphql";
-import { Province, PaginatedProvince, City } from "@pishroo/entities";
+import { City, PaginatedProvince, Province } from "@pishroo/entities";
 import { ProvinceService } from "./province.service";
 
 import {
   CreateProvinceAdminInputsGQL,
   DeleteProvinceAdminInputsGQL,
-  GetProvincesAdminArgsGQL,
   GetProvinceByIdAdminArgsGQL,
+  GetProvincesAdminArgsGQL,
   UpdateProvinceAdminInputsGQL,
 } from "./dto";
 
@@ -52,7 +52,7 @@ export class ProvinceResolver {
   }
 
   @Query(() => PaginatedProvince, { nullable: true })
-  @UseGuards(AdminGuard)
+  @UseGuards(ProductAdminGuard)
   async getProvincesAdmin(
     @Args() paginationArgs: PaginationArgsGQL,
     @Args() args: GetProvincesAdminArgsGQL
@@ -61,7 +61,7 @@ export class ProvinceResolver {
   }
 
   @Query(() => Province, { nullable: true })
-  @UseGuards(AdminGuard)
+  @UseGuards(ProductAdminGuard)
   async getProvinceByIdAdmin(
     @Args() getProvinceByIdAdminArgs: GetProvinceByIdAdminArgsGQL
   ) {
@@ -73,7 +73,7 @@ export class ProvinceResolver {
   /* -------------------------------------------------------------------------- */
 
   @ResolveField(() => [City], { nullable: false })
-  @UseGuards(AdminGuard)
+  @UseGuards(ProductAdminGuard)
   async cities(@Parent() province: Province) {
     return this.provinceService.cities(province.id);
   }

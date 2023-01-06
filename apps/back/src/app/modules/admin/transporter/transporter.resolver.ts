@@ -1,5 +1,5 @@
 import { PaginationArgsGQL } from "@back/dto";
-import { AdminGuard, TransporterAdminGuard } from "@back/guards";
+import { TransporterAdminGuard } from "@back/guards";
 import { UseGuards } from "@nestjs/common";
 import {
   Args,
@@ -17,13 +17,11 @@ import {
 } from "@pishroo/entities";
 import {
   AddImageToTransporterAdminInputsGQL,
-  RemoveImageFromTransporterAdminInputsGQL,
-} from "./dto";
-import {
   CreateTransporterAdminInputsGQL,
   DeleteTransporterAdminInputsGQL,
   GetTransporterByIdAdminArgsGQL,
   GetTransportersAdminArgsGQL,
+  RemoveImageFromTransporterAdminInputsGQL,
   UpdateTransporterActivationAdminInputsGQL,
   UpdateTransporterAdminInputsGQL,
 } from "./dto";
@@ -70,7 +68,7 @@ export class TransporterResolver {
   }
 
   @Query(() => PaginatedTransporter, { nullable: true })
-  @UseGuards(AdminGuard)
+  @UseGuards(TransporterAdminGuard)
   async getTransportersAdmin(
     @Args() paginationArgs: PaginationArgsGQL,
     @Args() args: GetTransportersAdminArgsGQL
@@ -79,7 +77,7 @@ export class TransporterResolver {
   }
 
   @Query(() => Transporter, { nullable: true })
-  @UseGuards(AdminGuard)
+  @UseGuards(TransporterAdminGuard)
   async getTransporterByIdAdmin(
     @Args() getTransporterByIdAdminArgs: GetTransporterByIdAdminArgsGQL
   ) {

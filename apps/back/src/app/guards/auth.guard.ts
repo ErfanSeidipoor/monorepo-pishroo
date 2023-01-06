@@ -106,6 +106,18 @@ export class CustomerAdminGuard implements CanActivate {
     );
   }
 }
+export class MessageAdminGuard implements CanActivate {
+  canActivate(context: ExecutionContext) {
+    const ctx = GqlExecutionContext.create(context);
+    const request = ctx.getContext().req as Request;
+
+    return (
+      request.user &&
+      // request.user.roles.includes(UserRoleEnum.admin_message) &&
+      true
+    );
+  }
+}
 
 // export enum UserRoleEnum {
 //   supper_admin = "supper_admin",
@@ -115,4 +127,5 @@ export class CustomerAdminGuard implements CanActivate {
 //   admin_transporter = "admin_transporter",
 //   admin_producer = "admin_producer",
 //   admin_event = "admin_event",
+//   admin_message = "admin_message",
 // }

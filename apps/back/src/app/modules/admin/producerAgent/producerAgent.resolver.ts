@@ -1,5 +1,5 @@
 import { PaginationArgsGQL } from "@back/dto";
-import { AdminGuard, ProducerAdminGuard } from "@back/guards";
+import { ProducerAdminGuard } from "@back/guards";
 import { UseGuards } from "@nestjs/common";
 import {
   Args,
@@ -67,7 +67,7 @@ export class ProducerAgentResolver {
   }
 
   @Query(() => PaginatedProducerAgent, { nullable: true })
-  @UseGuards(AdminGuard)
+  @UseGuards(ProducerAdminGuard)
   async getProducerAgentsAdmin(
     @Args() paginationArgs: PaginationArgsGQL,
     @Args() args: GetProducerAgentsAdminArgsGQL
@@ -76,7 +76,7 @@ export class ProducerAgentResolver {
   }
 
   @Query(() => ProducerAgent, { nullable: true })
-  @UseGuards(AdminGuard)
+  @UseGuards(ProducerAdminGuard)
   async getProducerAgentByIdAdmin(
     @Args()
     getProducerAgentByIdAdminArgs: GetProducerAgentByIdAdminArgsGQL

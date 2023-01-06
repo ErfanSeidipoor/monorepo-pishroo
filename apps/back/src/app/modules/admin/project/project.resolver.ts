@@ -18,13 +18,11 @@ import {
 } from "@pishroo/entities";
 import {
   AddImageToProjectAdminInputsGQL,
-  RemoveImageFromProjectAdminInputsGQL,
-} from "./dto";
-import {
   CreateProjectAdminInputsGQL,
   DeleteProjectAdminInputsGQL,
   GetProjectByIdAdminArgsGQL,
   GetProjectsAdminArgsGQL,
+  RemoveImageFromProjectAdminInputsGQL,
   UpdateProjectActivationAdminInputsGQL,
   UpdateProjectAdminInputsGQL,
 } from "./dto";
@@ -71,7 +69,7 @@ export class ProjectResolver {
   }
 
   @Query(() => PaginatedProject, { nullable: true })
-  @UseGuards(AdminGuard)
+  @UseGuards(ContentAdminGuard)
   async getProjectsAdmin(
     @Args() paginationArgs: PaginationArgsGQL,
     @Args() args: GetProjectsAdminArgsGQL
@@ -80,7 +78,7 @@ export class ProjectResolver {
   }
 
   @Query(() => Project, { nullable: true })
-  @UseGuards(AdminGuard)
+  @UseGuards(ContentAdminGuard)
   async getProjectByIdAdmin(
     @Args() getProjectByIdAdminArgs: GetProjectByIdAdminArgsGQL
   ) {

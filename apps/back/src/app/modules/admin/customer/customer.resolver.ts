@@ -1,5 +1,5 @@
 import { PaginationArgsGQL } from "@back/dto";
-import { AdminGuard, CustomerAdminGuard } from "@back/guards";
+import { CustomerAdminGuard } from "@back/guards";
 import { UseGuards } from "@nestjs/common";
 import {
   Args,
@@ -62,7 +62,7 @@ export class CustomerResolver {
   }
 
   @Query(() => PaginatedCustomer, { nullable: true })
-  @UseGuards(AdminGuard)
+  @UseGuards(CustomerAdminGuard)
   async getCustomersAdmin(
     @Args() paginationArgs: PaginationArgsGQL,
     @Args() args: GetCustomersAdminArgsGQL
@@ -71,7 +71,7 @@ export class CustomerResolver {
   }
 
   @Query(() => Customer, { nullable: true })
-  @UseGuards(AdminGuard)
+  @UseGuards(CustomerAdminGuard)
   async getCustomerByIdAdmin(
     @Args() getCustomerByIdAdminArgs: GetCustomerByIdAdminArgsGQL
   ) {

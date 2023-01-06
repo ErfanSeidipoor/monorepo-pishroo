@@ -3,65 +3,65 @@ import {
   QueryRunner,
   Table,
   TableForeignKey,
-} from 'typeorm';
+} from "typeorm";
 
 export class message1655231208247 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'message',
+        name: "message",
         columns: [
           {
-            name: 'id',
-            type: 'uuid',
+            name: "id",
+            type: "uuid",
             isPrimary: true,
-            generationStrategy: 'uuid',
-            default: 'uuid_generate_v4()',
+            generationStrategy: "uuid",
+            default: "uuid_generate_v4()",
           },
           {
-            name: 'created_at',
-            type: 'timestamptz',
-            default: 'now()',
+            name: "created_at",
+            type: "timestamptz",
+            default: "now()",
           },
           {
-            name: 'updated_at',
-            type: 'timestamptz',
-            default: 'now()',
+            name: "updated_at",
+            type: "timestamptz",
+            default: "now()",
           },
           {
-            name: 'deleted_at',
-            type: 'timestamptz',
+            name: "deleted_at",
+            type: "timestamptz",
             isNullable: true,
             default: null,
           },
           {
-            name: 'message',
-            type: 'varchar',
-            length: '500',
+            name: "text",
+            type: "varchar",
+            length: "500",
             isUnique: false,
             isNullable: false,
           },
           {
-            name: 'count',
-            type: 'integer',
+            name: "count",
+            type: "integer",
             isUnique: false,
             isNullable: false,
           },
           {
-            name: 'is_active',
-            type: 'boolean',
+            name: "is_active",
+            type: "boolean",
             isNullable: true,
             default: true,
           },
           {
-            name: 'is_submited',
-            type: 'boolean',
+            name: "is_submited",
+            type: "boolean",
             isNullable: true,
             default: false,
           },
           {
-            name: 'user_id',
-            type: 'uuid',
+            name: "user_id",
+            type: "uuid",
             isUnique: false,
             isNullable: false,
           },
@@ -71,51 +71,51 @@ export class message1655231208247 implements MigrationInterface {
     );
 
     await queryRunner.createForeignKey(
-      'message',
+      "message",
       new TableForeignKey({
-        columnNames: ['user_id'],
-        referencedTableName: 'user',
-        referencedColumnNames: ['id'],
-        onDelete: 'CASCADE',
+        columnNames: ["user_id"],
+        referencedTableName: "user",
+        referencedColumnNames: ["id"],
+        onDelete: "CASCADE",
       })
     );
 
     await queryRunner.createTable(
       new Table({
-        name: 'customer_message',
+        name: "customer_message",
         columns: [
           {
-            name: 'id',
-            type: 'uuid',
+            name: "id",
+            type: "uuid",
             isPrimary: true,
-            generationStrategy: 'uuid',
-            default: 'uuid_generate_v4()',
+            generationStrategy: "uuid",
+            default: "uuid_generate_v4()",
           },
           {
-            name: 'created_at',
-            type: 'timestamptz',
-            default: 'now()',
+            name: "created_at",
+            type: "timestamptz",
+            default: "now()",
           },
           {
-            name: 'updated_at',
-            type: 'timestamptz',
-            default: 'now()',
+            name: "updated_at",
+            type: "timestamptz",
+            default: "now()",
           },
           {
-            name: 'deleted_at',
-            type: 'timestamptz',
+            name: "deleted_at",
+            type: "timestamptz",
             isNullable: true,
             default: null,
           },
           {
-            name: 'customer_id',
-            type: 'uuid',
+            name: "customer_id",
+            type: "uuid",
             isUnique: false,
             isNullable: false,
           },
           {
-            name: 'message_id',
-            type: 'uuid',
+            name: "message_id",
+            type: "uuid",
             isUnique: false,
             isNullable: false,
           },
@@ -125,28 +125,28 @@ export class message1655231208247 implements MigrationInterface {
     );
 
     await queryRunner.createForeignKey(
-      'customer_message',
+      "customer_message",
       new TableForeignKey({
-        columnNames: ['customer_id'],
-        referencedTableName: 'customer',
-        referencedColumnNames: ['id'],
-        onDelete: 'CASCADE',
+        columnNames: ["customer_id"],
+        referencedTableName: "customer",
+        referencedColumnNames: ["id"],
+        onDelete: "CASCADE",
       })
     );
 
     await queryRunner.createForeignKey(
-      'customer_message',
+      "customer_message",
       new TableForeignKey({
-        columnNames: ['message_id'],
-        referencedTableName: 'message',
-        referencedColumnNames: ['id'],
-        onDelete: 'CASCADE',
+        columnNames: ["message_id"],
+        referencedTableName: "message",
+        referencedColumnNames: ["id"],
+        onDelete: "CASCADE",
       })
     );
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('customer_message');
-    await queryRunner.dropTable('message');
+    await queryRunner.dropTable("customer_message");
+    await queryRunner.dropTable("message");
   }
 }

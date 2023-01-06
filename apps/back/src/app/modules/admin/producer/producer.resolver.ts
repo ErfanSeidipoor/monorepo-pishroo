@@ -1,5 +1,5 @@
 import { PaginationArgsGQL } from "@back/dto";
-import { AdminGuard, ProducerAdminGuard } from "@back/guards";
+import { ProducerAdminGuard } from "@back/guards";
 import { UseGuards } from "@nestjs/common";
 import {
   Args,
@@ -12,13 +12,11 @@ import {
 import { City, FileUse, PaginatedProducer, Producer } from "@pishroo/entities";
 import {
   AddImageToProducerAdminInputsGQL,
-  RemoveImageFromProducerAdminInputsGQL,
-} from "./dto";
-import {
   CreateProducerAdminInputsGQL,
   DeleteProducerAdminInputsGQL,
   GetProducerByIdAdminArgsGQL,
   GetProducersAdminArgsGQL,
+  RemoveImageFromProducerAdminInputsGQL,
   UpdateProducerActivationAdminInputsGQL,
   UpdateProducerAdminInputsGQL,
 } from "./dto";
@@ -65,7 +63,7 @@ export class ProducerResolver {
   }
 
   @Query(() => PaginatedProducer, { nullable: true })
-  @UseGuards(AdminGuard)
+  @UseGuards(ProducerAdminGuard)
   async getProducersAdmin(
     @Args() paginationArgs: PaginationArgsGQL,
     @Args() args: GetProducersAdminArgsGQL
@@ -74,7 +72,7 @@ export class ProducerResolver {
   }
 
   @Query(() => Producer, { nullable: true })
-  @UseGuards(AdminGuard)
+  @UseGuards(ProducerAdminGuard)
   async getProducerByIdAdmin(
     @Args() getProducerByIdAdminArgs: GetProducerByIdAdminArgsGQL
   ) {
