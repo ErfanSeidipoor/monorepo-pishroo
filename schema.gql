@@ -69,6 +69,12 @@ type Customer {
   officePhone: String
   isActive: Boolean
   cityId: String
+  city: City!
+}
+
+type PaginatedCustomer {
+  edges: [Customer!]
+  pageInfo: PageInfo
 }
 
 type File {
@@ -391,6 +397,7 @@ enum UserRoleEnum {
   admin_product
   admin_transporter
   admin_producer
+  admin_customer
   admin_event
 }
 
@@ -431,6 +438,8 @@ type Query {
   getProjectByIdAdmin(projectId: String!): Project
   getProjectReviewsAdmin(limit: Int = 10, page: Int = 1, reviewer: String = "", text: String = "", projectId: String): PaginatedProjectReview
   getProjectReviewByIdAdmin(projectReviewId: String!): ProjectReview
+  getCustomersAdmin(limit: Int = 10, page: Int = 1, search: String = "", isActive: String, cityIds: [String!], provinceIds: [String!]): PaginatedCustomer
+  getCustomerByIdAdmin(customerId: String!): Customer
 }
 
 input LoginAdminInputsGQL {
@@ -503,6 +512,10 @@ type Mutation {
   createProjectReviewAdmin(createProjectReviewAdmin: CreateProjectReviewAdminInputsGQL!): ProjectReview!
   updateProjectReviewAdmin(updateProjectReviewAdmin: UpdateProjectReviewAdminInputsGQL!): ProjectReview!
   deleteProjectReviewAdmin(deleteProjectReviewAdmin: DeleteProjectReviewAdminInputsGQL!): ProjectReview!
+  createCustomerAdmin(createCustomerAdmin: CreateCustomerAdminInputsGQL!): Customer!
+  updateCustomerAdmin(updateCustomerAdmin: UpdateCustomerAdminInputsGQL!): Customer!
+  updateCustomerActivationAdmin(updateCustomerActivationAdmin: UpdateCustomerActivationAdminInputsGQL!): Customer!
+  deleteCustomerAdmin(deleteCustomerAdmin: DeleteCustomerAdminInputsGQL!): Customer!
   uploadFile(file: Upload!): File!
 }
 
@@ -895,6 +908,38 @@ input UpdateProjectReviewAdminInputsGQL {
 
 input DeleteProjectReviewAdminInputsGQL {
   projectReviewId: String!
+}
+
+input CreateCustomerAdminInputsGQL {
+  firstName: String!
+  lastName: String!
+  email: String!
+  jobTitle: String!
+  phone: String!
+  officePhone: String!
+  isActive: Boolean!
+  cityId: String!
+}
+
+input UpdateCustomerAdminInputsGQL {
+  customerId: String!
+  firstName: String!
+  lastName: String!
+  email: String!
+  jobTitle: String!
+  phone: String!
+  officePhone: String!
+  isActive: Boolean!
+  cityId: String!
+}
+
+input UpdateCustomerActivationAdminInputsGQL {
+  producerId: String!
+  isActive: Boolean!
+}
+
+input DeleteCustomerAdminInputsGQL {
+  customerId: String!
 }
 
 """The `Upload` scalar type represents a file upload."""

@@ -125,10 +125,19 @@ export * from "./project/update-project-acivation.inputs";
 export * from "./project/add-image-to-project.inputs";
 export * from "./project/remove-image-from-project.inputs";
 
-/* ---------------------------------- project ------------------------------ */
+/* ------------------------------ project review --------------------------- */
 
 export * from "./projectReview/create-project-review.inputs";
 export * from "./projectReview/update-project-review.inputs";
 export * from "./projectReview/delete-project-review.inputs";
 export * from "./projectReview/get-project-reviews.args";
 export * from "./projectReview/get-project-review-by-id.args";
+
+/* ---------------------------------- customer ----------------------------- */
+
+export * from "./customer/create-customer.inputs";
+export * from "./customer/update-customer.inputs";
+export * from "./customer/delete-customer.inputs";
+export * from "./customer/get-customers.args";
+export * from "./customer/get-customer-by-id.args";
+export * from "./customer/update-customer-acivation.inputs";

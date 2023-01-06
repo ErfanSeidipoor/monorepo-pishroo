@@ -77,6 +77,7 @@ export class base1655066320180 implements MigrationInterface {
               "admin_transporter",
               "admin_producer",
               "admin_event",
+              "admin_customer",
             ],
             isArray: true,
             isNullable: false,
@@ -114,7 +115,7 @@ export class base1655066320180 implements MigrationInterface {
         'admin',
         'admin@pishroo.com',
         '+889366996969',
-        '{supper_admin,employee,admin_content,admin_product,admin_transporter,admin_producer,admin_event}',
+        '{supper_admin,employee,admin_content,admin_product,admin_transporter,admin_producer,admin_event,admin_customer}',
         '${await generateHashPassword("1234")}' ,
         true);
       `);

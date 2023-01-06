@@ -14,8 +14,8 @@ import { CustomerAction } from "./customerAction.entity";
 import { CustomerMessage } from "./customerMessage.entity";
 
 @ObjectType()
-@Index("customer_agent_pkey", ["id"], { unique: true })
-@Entity("customer_agent", { schema: "public" })
+@Index("customer_pkey", ["id"], { unique: true })
+@Entity("customer", { schema: "public" })
 export class Customer extends BaseModel {
   @Field({ nullable: false })
   @Column("varchar", { name: "first_name", nullable: true, length: 50 })
