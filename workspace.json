@@ -3,6 +3,7 @@
   "version": 2,
   "projects": {
     "admin": "apps/admin",
+    "admin-components": "libs/admin-components",
     "back": "apps/back",
     "dto": "libs/dto",
     "entities": "libs/entities",
