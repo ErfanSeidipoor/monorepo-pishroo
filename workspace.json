@@ -4,6 +4,7 @@
   "projects": {
     "admin": "apps/admin",
     "admin-components": "libs/admin-components",
+    "admin-components-e2e": "apps/admin-components-e2e",
     "back": "apps/back",
     "dto": "libs/dto",
     "entities": "libs/entities",
