@@ -18,6 +18,8 @@
   "devDependencies": {
     "@babel/core": "7.12.13",
     "@babel/preset-typescript": "7.12.13",
+    "@iconify/icons-eva": "^1.2.6",
+    "@iconify/react": "^4.0.1",
     "@nestjs/schematics": "^8.0.0",
     "@nestjs/testing": "^8.0.0",
     "@nrwl/cli": "14.2.1",
@@ -69,6 +71,13 @@
     "url-loader": "^3.0.0"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@fontsource/roboto": "^4.5.8",
+    "@mui/icons-material": "^5.11.0",
+    "@mui/material": "^5.11.3",
+    "@mui/styled-engine-sc": "^5.11.0",
+    "@mui/styles": "^5.11.2",
     "@nestjs/apollo": "^10.0.16",
     "@nestjs/common": "^9.0.4",
     "@nestjs/config": "^2.1.0",
@@ -98,7 +107,7 @@
     "reflect-metadata": "^0.1.13",
     "regenerator-runtime": "0.13.7",
     "rxjs": "^7.0.0",
-    "styled-components": "5.3.5",
+    "styled-components": "^5.3.5",
     "tslib": "^2.3.0",
     "typeorm": "^0.3.6",
     "uuid": "^9.0.0"

@@ -1,4 +1,4 @@
-import { registerEnumType } from "@nestjs/graphql";
+// import { registerEnumType } from "@nestjs/graphql";
 
 export enum PropertyUnitEnum {
   weight_kilogram = "weight_kilogram",
@@ -6,6 +6,6 @@ export enum PropertyUnitEnum {
   unknow = "unknow",
 }
 
-registerEnumType(PropertyUnitEnum, {
-  name: "PropertyUnitEnum",
-});
+// registerEnumType(PropertyUnitEnum, {
+//   name: "PropertyUnitEnum",
+// });
