@@ -10,10 +10,12 @@ import {
   TableRow,
   TableSortLabel,
   LinearProgress,
+  Card,
 } from "@mui/material";
 
 // locals
 import { useStyles } from "./style";
+import { SortEnum } from "@pishroo/enums";
 
 export interface ITableColumn<C> {
   name: string;
@@ -26,7 +28,7 @@ export interface IColumnSortTable {
   columnName: string;
   direction: SortEnum;
 }
-interface ITable<T extends {}> {
+export interface ITable<T extends {}> {
   rows: T[];
   columns: ITableColumn<T>[];
   loading?: boolean;
@@ -45,12 +47,14 @@ export const Table = <T extends {}>({
 
   const renderHeader = () => {
     return (
-      <TableHead classes={{ root: classes.tableHeader }}>
+      <TableHead>
         <TableRow>
           {columns.map((column, index) =>
             column.sort ? (
               <TableCell
-                align="right"
+                classes={{
+                  root: index ? classes.rightAlign : classes.leftAlign,
+                }}
                 key={"table+column" + column.label + index}
               >
                 <TableSortLabel
@@ -90,7 +94,9 @@ export const Table = <T extends {}>({
               </TableCell>
             ) : (
               <TableCell
-                align="right"
+                classes={{
+                  root: index ? classes.rightAlign : classes.leftAlign,
+                }}
                 key={"table+column" + column.label + index}
               >
                 {column.label}
@@ -106,15 +112,11 @@ export const Table = <T extends {}>({
     return (
       <TableBody>
         {rows.map((row, rowIndex) => (
-          <TableRow
-            key={"table+row" + rowIndex}
-            classes={{ root: classes.tableRow }}
-            selected={true}
-          >
+          <TableRow key={"table+row" + rowIndex} selected={true}>
             {columns.map((column, columnIndex) => (
               <TableCell
                 key={"table+row" + rowIndex + "-column-" + columnIndex}
-                align="right"
+                align={columnIndex ? "right" : "left"}
               >
                 {column.cell(row, rowIndex)}
               </TableCell>
@@ -137,27 +139,22 @@ export const Table = <T extends {}>({
   };
 
   return (
-    <TableContainer classes={{ root: classes.tableContainer }}>
-      <MuiTable classes={{ root: classes.table }}>
-        {renderHeader()}
-        {!loading && renderBody()}
-      </MuiTable>
-      {loading && renderLoading()}
-    </TableContainer>
+    <Card>
+      <TableContainer>
+        <MuiTable>
+          {renderHeader()}
+          {!loading && renderBody()}
+        </MuiTable>
+        {loading && renderLoading()}
+      </TableContainer>
+    </Card>
   );
 };
 
 export default Table;
-
-export enum SortEnum {
-  ASC = "ASC",
-  DESC = "DESC",
-}
 
 export const convertSortEnumToLowerCase = (
   sortEnum: SortEnum
 ): "asc" | "desc" => {
   return sortEnum.toLowerCase() as "asc" | "desc";
 };
-
-// https://storybook.js.org/blog/material-ui-in-storybook/

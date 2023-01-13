@@ -21,7 +21,7 @@ function responsiveFontSizes(props: any) {
   };
 }
 
-export const FONT_PRIMARY = "SFPro"; // Google Font
+export const FONT_PRIMARY = "Roboto"; // Google Font
 // const FONT_SECONDARY = 'CircularStd, sans-serif'; // Local Font
 
 const typography: TypographyOptions = {
@@ -36,25 +36,25 @@ const typography: TypographyOptions = {
     // ...responsiveFontSizes({ sm: 30, md: 32, lg: 34 }),
   },
   h2: {
-    fontWeight: 600,
+    fontWeight: 700,
     lineHeight: 2,
     fontSize: pxToRem(28),
     ...responsiveFontSizes({ sm: 12, md: 22, lg: 28 }),
   },
   h3: {
-    fontWeight: 600,
+    fontWeight: 700,
     lineHeight: 1.5,
     fontSize: pxToRem(22),
     ...responsiveFontSizes({ sm: 15, md: 18, lg: 22 }),
   },
   h4: {
-    fontWeight: 600,
+    fontWeight: 700,
     lineHeight: 1.5,
     fontSize: pxToRem(20),
     // ...responsiveFontSizes({ sm: 16, md: 18, lg: 20 }),
   },
   h5: {
-    fontWeight: 600,
+    fontWeight: 700,
     lineHeight: 1.5,
     fontSize: pxToRem(17),
   },

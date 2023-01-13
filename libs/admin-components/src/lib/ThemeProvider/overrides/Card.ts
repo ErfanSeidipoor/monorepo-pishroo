@@ -1,11 +1,13 @@
 // ----------------------------------------------------------------------
 
-export default function Card(theme: any) {
+import { Theme } from "@mui/material";
+
+export default function Card(theme: Theme) {
   return {
     MuiCard: {
       styleOverrides: {
         root: {
-          boxShadow: theme.customShadows.card,
+          boxShadow: theme.customShadows.z16,
           borderRadius: theme.shape.borderRadiusMd,
           position: "relative",
           zIndex: 0, // Fix Safari overflow: hidden with border radius

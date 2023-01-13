@@ -36,14 +36,14 @@ export default function Button(theme: any) {
           color: theme.palette.primary.light,
           backgroundColor: theme.palette.primary.dark,
           fontSize: "15px",
-          fontWeight: 600,
+          fontWeight: 700,
         },
         containedSecondary: {
           // boxShadow: theme.customShadows.secondary,
           color: theme.palette.common.white,
           backgroundColor: theme.palette.primary.dark,
           fontSize: "15px",
-          fontWeight: 600,
+          fontWeight: 700,
         },
 
         containedInfo: {
@@ -63,7 +63,7 @@ export default function Button(theme: any) {
           color: theme.palette.error.main,
           backgroundColor: theme.palette.common.white,
           fontSize: "10px",
-          fontWeight: 600,
+          fontWeight: 700,
           border: "3px solid" + theme.palette.error.main,
           borderRadius: "13px",
         },
@@ -71,7 +71,7 @@ export default function Button(theme: any) {
           color: theme.palette.common.white,
           backgroundColor: theme.palette.error.main,
           fontSize: "10px",
-          fontWeight: 600,
+          fontWeight: 700,
           borderRadius: "5px",
         },
         // outlined
@@ -79,7 +79,7 @@ export default function Button(theme: any) {
           color: theme.palette.primary.dark,
           backgroundColor: theme.palette.common.white,
           fontSize: "15px",
-          fontWeight: 600,
+          fontWeight: 700,
           border: "2px solid" + theme.palette.primary.dark,
         },
         outlinedError: {

@@ -1,6 +1,6 @@
-// ----------------------------------------------------------------------
+import { Theme } from "@mui/material";
 
-export default function Paper(theme: any) {
+export default function Paper(theme: Theme) {
   return {
     MuiPaper: {
       defaultProps: {
@@ -9,7 +9,6 @@ export default function Paper(theme: any) {
 
       styleOverrides: {
         root: {
-          backgroundColor: theme.palette.common.white,
           backgroundImage: "none",
         },
       },

@@ -10,6 +10,7 @@ const GlobalStyles = withStyles(() => {
         margin: 0,
         padding: 0,
         boxSizing: "border-box",
+        "font-family": "Roboto",
       },
       html: {
         width: "100%",

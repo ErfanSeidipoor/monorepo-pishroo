@@ -32,7 +32,7 @@ const components: Components = {
         font-family: ${FONT_PRIMARY};
         font-style: normal;
         font-display: swap;
-        font-weight: 600;
+        font-weight: 500;
         src: url("/fonts/eot/SFProText-SemiBold.eot");
         src: local(${FONT_PRIMARY}Web_Bold), url("/assets/fonts/SFProText-SemiBold.ttf") format("truetype"),
             url("/fonts/eot/SFProText-SemiBold.eot?#iefix") format("embedded-opentype"),
