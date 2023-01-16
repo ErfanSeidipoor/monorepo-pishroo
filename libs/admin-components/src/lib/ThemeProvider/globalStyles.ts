@@ -19,7 +19,7 @@ const GlobalStyles = withStyles(() => {
         "-webkit-overflow-scrolling": "touch",
       },
       "::-webkit-scrollbar": {
-        width: "10px",
+        width: "8px",
         backgroundColor: "transparent",
       },
       "::-webkit-scrollbar-track": {
@@ -27,8 +27,8 @@ const GlobalStyles = withStyles(() => {
         maxHeight: "124px",
       },
       "::-webkit-scrollbar-thumb": {
-        background: theme.palette.secondary.dark,
-        borderRadius: "10px",
+        background: theme.palette.secondary.light,
+        borderRadius: "5px",
       },
       body: {
         width: "100%",
