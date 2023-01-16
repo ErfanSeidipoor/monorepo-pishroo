@@ -30,7 +30,7 @@ export const Select = <T extends {}>({
   return (
     <FormControl fullWidth={fullWidth}>
       {label && <InputLabel id={labelId}>{label}</InputLabel>}
-      <MuiSelect {...props}>
+      <MuiSelect {...props} label={label}>
         {withNone && (
           <MenuItem value="">
             <em>None</em>
