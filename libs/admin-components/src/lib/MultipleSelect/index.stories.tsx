@@ -1,14 +1,11 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { Select } from ".";
+import { useState } from "react";
+import { MultipleSelect } from ".";
 
 export default {
-  component: Select,
-  title: "Select",
-} as ComponentMeta<typeof Select>;
-
-const Template: ComponentStory<typeof Select<Item>> = (args) => (
-  <Select {...args} />
-);
+  component: MultipleSelect,
+  title: "MultipleSelect",
+} as ComponentMeta<typeof MultipleSelect>;
 
 type Item = { value: number; label: string };
 const getLabel = (item: Item) => item.label;
@@ -22,6 +19,20 @@ const items: Item[] = [
   { value: 5, label: "five" },
 ];
 
+const Template: ComponentStory<typeof MultipleSelect<Item>> = (args) => {
+  const [selectedItems, setSelectedItems] = useState<Item[]>([]);
+
+  return (
+    <MultipleSelect
+      selectedItems={selectedItems}
+      {...args}
+      onSelectItems={(items) => {
+        setSelectedItems(items);
+      }}
+    />
+  );
+};
+
 export const Primary = Template.bind({});
 Primary.args = {
   label: "primary",
@@ -29,18 +40,16 @@ Primary.args = {
   items,
   getLabel,
   getValue,
-  withNone: true,
 };
 
 export const Secondary = Template.bind({});
 Secondary.args = {
   color: "secondary",
   label: "secondary",
-  labelId: "secondary-simple-select-readonly-label",
+  labelId: "demo-simple-select-readonly-label",
   items,
   getLabel,
   getValue,
-  withNone: true,
 };
 
 export const FullWidth = Template.bind({});
@@ -50,7 +59,6 @@ FullWidth.args = {
   items,
   getLabel,
   getValue,
-  withNone: true,
   fullWidth: true,
 };
 
@@ -61,16 +69,9 @@ Disabled.args = {
   items,
   getLabel,
   getValue,
-  withNone: true,
   disabled: true,
-};
-
-export const Selected = Template.bind({});
-Selected.args = {
-  label: "selected",
-  labelId: "disabled-simple-select-readonly-label",
-  items,
-  getLabel,
-  getValue,
-  value: 3,
+  selectedItems: [
+    { value: 1, label: "one" },
+    { value: 2, label: "two" },
+  ],
 };
