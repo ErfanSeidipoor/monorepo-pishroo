@@ -22,6 +22,19 @@ export interface IThemeProvider {
   themeMode: "light" | "dark";
 }
 
+const themeSample = {
+  palette: palette["light"],
+  shape,
+  typography,
+  shadows,
+  breakpoints,
+  // components,
+  spacing: 10,
+  customShadows,
+};
+
+export type CustomTheme = typeof themeSample;
+
 export const ThemeProvider: React.FC<IThemeProvider> = ({
   children,
   themeMode,
@@ -34,7 +47,6 @@ export const ThemeProvider: React.FC<IThemeProvider> = ({
     breakpoints,
     // components,
     spacing: 10,
-    // @ts-ignore
     customShadows,
   };
 
@@ -42,7 +54,6 @@ export const ThemeProvider: React.FC<IThemeProvider> = ({
   theme.components = Object.assign(componentsOverride(theme), components);
   return (
     <StyledEngineProvider injectFirst>
-      {/* // @ts-ignore */}
       <MuiThemeProvider theme={theme}>
         <CssBaseline />
         <GlobalStyles />
