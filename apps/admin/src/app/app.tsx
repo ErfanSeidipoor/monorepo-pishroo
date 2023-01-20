@@ -1,16 +1,13 @@
-import styled from "styled-components";
 import { AdminComponents } from "@pishroo/admin-components";
-
-const StyledApp = styled.div`
-  // Your style here
-`;
+import Test from "@pishroo/admin/test";
+import { ThemeProvider } from "@pishroo/admin/providers/theme";
 
 export function App() {
   return (
-    <StyledApp>
+    <ThemeProvider>
       <AdminComponents />
-      <h1>This is a test</h1>
-    </StyledApp>
+      <Test />
+    </ThemeProvider>
   );
 }
 

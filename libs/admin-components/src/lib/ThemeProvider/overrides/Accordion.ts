@@ -1,6 +1,6 @@
-// ----------------------------------------------------------------------
+import { CustomTheme } from "../";
 
-export default function Accordion(theme: any) {
+export default function Accordion(theme: CustomTheme) {
   return {
     MuiAccordion: {
       styleOverrides: {

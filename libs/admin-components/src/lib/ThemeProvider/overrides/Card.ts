@@ -1,8 +1,8 @@
 // ----------------------------------------------------------------------
 
-import { Theme } from "@mui/material";
+import { CustomTheme } from "../";
 
-export default function Card(theme: Theme) {
+export default function Card(theme: CustomTheme) {
   return {
     MuiCard: {
       styleOverrides: {

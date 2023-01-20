@@ -33,7 +33,7 @@ const themeSample = {
   customShadows,
 };
 
-export type CustomTheme = typeof themeSample;
+export type CustomTheme = ReturnType<typeof createTheme> & typeof themeSample;
 
 export const ThemeProvider: React.FC<IThemeProvider> = ({
   children,
