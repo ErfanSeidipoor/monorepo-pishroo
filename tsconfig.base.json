@@ -3,7 +3,7 @@
   "compilerOptions": {
     "rootDir": ".",
     "sourceMap": true,
-    "declaration": false,
+    "declaration": true,
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
@@ -24,7 +24,9 @@
       "@pishroo/http-exceptions": ["libs/http-exceptions/src/index.ts"],
       "@pishroo/migrations": ["libs/migrations/src/index.ts"],
       "@pishroo/models": ["libs/models/src/index.ts"],
-      "@pishroo/utils": ["libs/utils/src/index.ts"]
+      "@pishroo/utils": ["libs/utils/src/index.ts"],
+      "typeRoots": ["types", "node_modules/@types"],
+      "types": ["@emotion-types", "@window-types"]
     }
   },
   "exclude": ["node_modules", "tmp"]

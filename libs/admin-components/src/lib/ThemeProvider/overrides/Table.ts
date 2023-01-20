@@ -1,6 +1,6 @@
-import { CustomTheme } from "../";
+import { Theme } from "@mui/material/styles";
 
-export default function Table(theme: CustomTheme) {
+export default function Table(theme: Theme) {
   return {
     MuiTableRow: {
       styleOverrides: {
