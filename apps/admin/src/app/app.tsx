@@ -1,12 +1,18 @@
 import { AdminComponents } from "@pishroo/admin-components";
-import Test from "@pishroo/admin/test";
-import { ThemeProvider } from "@pishroo/admin/providers/theme";
+import Test from "@admin/test";
+
+// Providers 
+import { ThemeProvider } from "@admin/providers/theme";
+
+// pages
+import { Router } from "./pages";
+
 
 export function App() {
   return (
     <ThemeProvider>
       <AdminComponents />
-      <Test />
+      <Router />
     </ThemeProvider>
   );
 }
