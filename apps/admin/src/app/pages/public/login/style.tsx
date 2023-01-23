@@ -1,5 +1,4 @@
 import { styled } from "@mui/material/styles";
-// import { CustomTheme } from '@pishroo/admin-components';
 
 export const StyledRoot = styled("div")(({ theme }) => ({
   display: "flex",

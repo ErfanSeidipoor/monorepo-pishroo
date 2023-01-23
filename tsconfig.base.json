@@ -15,9 +15,10 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@back/*": ["apps/back/src/app/*"],
       "@admin/*": ["apps/admin/src/app/*"],
+      "@back/*": ["apps/back/src/app/*"],
       "@pishroo/admin-components": ["libs/admin-components/src/index.ts"],
+      "@pishroo/assets": ["libs/assets/src/index.ts"],
       "@pishroo/dto": ["libs/dto/src/index.ts"],
       "@pishroo/entities": ["libs/entities/src/index.ts"],
       "@pishroo/enums": ["libs/enums/src/index.ts"],
