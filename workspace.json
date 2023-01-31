@@ -13,6 +13,7 @@
     "http-exceptions": "libs/http-exceptions",
     "migrations": "libs/migrations",
     "models": "libs/models",
+    "texts": "libs/texts",
     "utils": "libs/utils",
     "website": "apps/website"
   }

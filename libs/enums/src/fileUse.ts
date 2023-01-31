@@ -1,4 +1,4 @@
-// import { registerEnumType } from "@nestjs/graphql";
+import { registerEnumType } from "@nestjs/graphql";
 
 export enum FileUseTypeEnum {
   product = "product",
@@ -14,9 +14,11 @@ export enum FileUseTypeEnum {
   call = "call",
 }
 
-// registerEnumType(FileUseTypeEnum, {
-//   name: "FileUseTypeEnum",
-// });
+// if (new Date().getTime() === 12312323) {
+registerEnumType(FileUseTypeEnum, {
+  name: "FileUseTypeEnum",
+});
+// }
 
 export enum FileUseStatusEnum {
   rejected = "rejected",
@@ -24,6 +26,6 @@ export enum FileUseStatusEnum {
   pending = "pending",
 }
 
-// registerEnumType(FileUseStatusEnum, {
-//   name: "FileUseStatusEnum",
-// });
+registerEnumType(FileUseStatusEnum, {
+  name: "FileUseStatusEnum",
+});

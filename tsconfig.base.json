@@ -1,6 +1,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "strictPropertyInitialization": false,
     "rootDir": ".",
     "sourceMap": true,
     "declaration": true,
@@ -25,6 +26,7 @@
       "@pishroo/http-exceptions": ["libs/http-exceptions/src/index.ts"],
       "@pishroo/migrations": ["libs/migrations/src/index.ts"],
       "@pishroo/models": ["libs/models/src/index.ts"],
+      "@pishroo/texts": ["libs/texts/src/index.ts"],
       "@pishroo/utils": ["libs/utils/src/index.ts"],
       "typeRoots": ["types", "node_modules/@types"],
       "types": ["@emotion-types", "@window-types"]

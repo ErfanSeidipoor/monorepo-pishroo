@@ -1,12 +1,10 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "jsx": "react-jsx",
-    "allowJs": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
+    "module": "commonjs",
     "forceConsistentCasingInFileNames": true,
     "strict": true,
+    "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true
@@ -15,7 +13,7 @@
   "include": [],
   "references": [
     {
-      "path": "./tsconfig.app.json"
+      "path": "./tsconfig.lib.json"
     }
   ]
 }
