@@ -6,6 +6,7 @@ import { useQuery } from "@apollo/client";
 import { LoginAdminInputs } from "@pishroo/dto";
 
 import { QUERY_LOGIN_ADMIN } from "./gql";
+import { LoginAdminQuery } from "@admin/gql/graphql";
 
 const useData = () => {
   const { enqueueSnackbar } = useSnackbar();
@@ -23,17 +24,20 @@ const useData = () => {
     },
   });
 
-  const { refetch, loading } = useQuery(QUERY_LOGIN_ADMIN, {
-    fetchPolicy: "standby",
-    errorPolicy: "all",
-    notifyOnNetworkStatusChange: true,
-    onError: (error) => {
-      enqueueSnackbar(error.message, { variant: "error" });
-    },
-    onCompleted: (data) => {
-      console.log("onCompleted", { data });
-    },
-  });
+  const { refetch, loading, data } = useQuery<LoginAdminQuery>(
+    QUERY_LOGIN_ADMIN,
+    {
+      fetchPolicy: "standby",
+      errorPolicy: "all",
+      notifyOnNetworkStatusChange: true,
+      onError: (error) => {
+        enqueueSnackbar(error.message, { variant: "error" });
+      },
+      onCompleted: (data) => {
+        console.log("onCompleted", { data });
+      },
+    }
+  );
 
   const onSubmit: SubmitHandler<LoginAdminInputs> = (loginAdminInputs) =>
     refetch({ loginAdminInputs });
