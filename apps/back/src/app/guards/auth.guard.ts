@@ -1,6 +1,6 @@
 import { CanActivate, ExecutionContext } from "@nestjs/common";
 import { GqlExecutionContext } from "@nestjs/graphql";
-import { UserRoleEnum } from "@pishroo/enums";
+import { UserRoleEnum } from "@back/enums";
 import { Request } from "express";
 
 export class AuthenticatedGuard implements CanActivate {

@@ -1,5 +1,3 @@
-// import { registerEnumType } from "@nestjs/graphql";
-
 export enum FileUseTypeEnum {
   product = "product",
   product_reviewer = "product_reviewer",
@@ -14,16 +12,8 @@ export enum FileUseTypeEnum {
   call = "call",
 }
 
-// registerEnumType(FileUseTypeEnum, {
-//   name: "FileUseTypeEnum",
-// });
-
 export enum FileUseStatusEnum {
   rejected = "rejected",
   accepted = "accepted",
   pending = "pending",
 }
-
-// registerEnumType(FileUseStatusEnum, {
-//   name: "FileUseStatusEnum",
-// });

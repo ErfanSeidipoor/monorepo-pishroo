@@ -15,7 +15,15 @@
         "main": "apps/admin/src/main.tsx",
         "polyfills": "apps/admin/src/polyfills.ts",
         "tsConfig": "apps/admin/tsconfig.app.json",
-        "assets": ["apps/admin/src/favicon.ico", "apps/admin/src/assets"],
+        "assets": [
+          "apps/admin/src/favicon.ico",
+          "apps/admin/src/assets",
+          {
+            "input": "libs/assets/src",
+            "glob": "**/*.{png,jpeg,jpg,svg,ttf,gif}",
+            "output": "assets"
+          }
+        ],
         "styles": [],
         "scripts": [],
         "webpackConfig": "@nrwl/react/plugins/webpack"

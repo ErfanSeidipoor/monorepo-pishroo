@@ -1,9 +1,10 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "strictPropertyInitialization": false,
     "rootDir": ".",
     "sourceMap": true,
-    "declaration": false,
+    "declaration": true,
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
@@ -15,15 +16,20 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@admin/*": ["apps/admin/src/app/*"],
       "@back/*": ["apps/back/src/app/*"],
       "@pishroo/admin-components": ["libs/admin-components/src/index.ts"],
+      "@pishroo/assets": ["libs/assets/src/index.ts"],
       "@pishroo/dto": ["libs/dto/src/index.ts"],
       "@pishroo/entities": ["libs/entities/src/index.ts"],
       "@pishroo/enums": ["libs/enums/src/index.ts"],
       "@pishroo/http-exceptions": ["libs/http-exceptions/src/index.ts"],
       "@pishroo/migrations": ["libs/migrations/src/index.ts"],
       "@pishroo/models": ["libs/models/src/index.ts"],
-      "@pishroo/utils": ["libs/utils/src/index.ts"]
+      "@pishroo/texts": ["libs/texts/src/index.ts"],
+      "@pishroo/utils": ["libs/utils/src/index.ts"],
+      "typeRoots": ["types", "node_modules/@types"],
+      "types": ["@emotion-types", "@window-types"]
     }
   },
   "exclude": ["node_modules", "tmp"]

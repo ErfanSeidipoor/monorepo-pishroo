@@ -26,7 +26,7 @@ import {
   Color,
   ProductReview,
 } from "@pishroo/entities";
-import { FileUseStatusEnum, FileUseTypeEnum } from "@pishroo/enums";
+import { FileUseStatusEnum, FileUseTypeEnum } from "@back/enums";
 import {
   COLOR_NOT_FOUND,
   CustomError,

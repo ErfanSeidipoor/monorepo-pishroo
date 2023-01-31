@@ -1,16 +1,22 @@
-import styled from "styled-components";
-import { AdminComponents } from "@pishroo/admin-components";
+import { HelmetProvider } from "react-helmet-async";
 
-const StyledApp = styled.div`
-  // Your style here
-`;
+import { ThemeProvider } from "@admin/providers/theme";
+import { ApolloProvider } from "@admin/providers/apollo";
+import { SnackbarProvider } from "@admin/providers/snackbar";
+
+import { Router } from "./pages";
 
 export function App() {
   return (
-    <StyledApp>
-      <AdminComponents />
-      <h1>This is a test</h1>
-    </StyledApp>
+    <SnackbarProvider>
+      <ThemeProvider>
+        <HelmetProvider>
+          <ApolloProvider>
+            <Router />
+          </ApolloProvider>
+        </HelmetProvider>
+      </ThemeProvider>
+    </SnackbarProvider>
   );
 }
 

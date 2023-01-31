@@ -13,7 +13,7 @@ import {
   UpdateProjectAdminInputs,
 } from "@pishroo/dto";
 import { City, File, FileUse, Project, ProjectReview } from "@pishroo/entities";
-import { FileUseStatusEnum, FileUseTypeEnum } from "@pishroo/enums";
+import { FileUseStatusEnum, FileUseTypeEnum } from "@back/enums";
 import {
   CITY_NOT_FOUND,
   CustomError,

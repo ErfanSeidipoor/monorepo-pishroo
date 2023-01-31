@@ -1,5 +1,5 @@
 export enum EventStatusEnum {
-  done = 'done',
-  inprogress = 'inprogress',
-  todo = 'todo',
+  done = "done",
+  inprogress = "inprogress",
+  todo = "todo",
 }

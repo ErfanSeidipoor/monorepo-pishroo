@@ -5,6 +5,7 @@
     "admin": "apps/admin",
     "admin-components": "libs/admin-components",
     "admin-components-e2e": "apps/admin-components-e2e",
+    "assets": "libs/assets",
     "back": "apps/back",
     "dto": "libs/dto",
     "entities": "libs/entities",
@@ -12,6 +13,7 @@
     "http-exceptions": "libs/http-exceptions",
     "migrations": "libs/migrations",
     "models": "libs/models",
+    "texts": "libs/texts",
     "utils": "libs/utils",
     "website": "apps/website"
   }

@@ -1,7 +1,7 @@
-import { CustomTheme } from "@pishroo/admin-components";
+import { Theme } from "@mui/material/styles";
 import { makeStyles } from "@mui/styles";
 
-export const useStyles = makeStyles((theme: CustomTheme) => {
+export const useStyles = makeStyles((theme: Theme) => {
   return {
     loadingContainer: {
       display: "flex",

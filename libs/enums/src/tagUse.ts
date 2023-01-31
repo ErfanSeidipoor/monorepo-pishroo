@@ -1,4 +1,4 @@
 export enum TagUseStatusEnum {
-  product = 'product',
-  project = 'project',
+  product = "product",
+  project = "project",
 }

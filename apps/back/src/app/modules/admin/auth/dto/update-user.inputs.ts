@@ -1,6 +1,6 @@
 import { Field, InputType } from "@nestjs/graphql";
 import { UpdateUserAdminInputs } from "@pishroo/dto";
-import { UserRoleEnum } from "@pishroo/enums";
+import { UserRoleEnum } from "@back/enums";
 
 @InputType()
 export class UpdateUserAdminInputsGQL extends UpdateUserAdminInputs {

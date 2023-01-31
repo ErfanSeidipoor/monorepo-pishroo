@@ -24,7 +24,7 @@ import {
   USER_WITH_THIS_USERNAME_ALREADY_EXIST,
 } from "@pishroo/http-exceptions";
 import { Ctx } from "@back/types/context.type";
-import { UserRoleEnum } from "@pishroo/enums";
+import { UserRoleEnum } from "@back/enums";
 import { paginate } from "@back/helpers/paginate";
 
 @Injectable()
