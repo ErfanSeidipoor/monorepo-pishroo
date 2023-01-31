@@ -1,6 +1,6 @@
 import { Field, InputType } from "@nestjs/graphql";
 import { CreatePropertyAdminInputs } from "@pishroo/dto";
-import { PropertyUnitEnum } from "@pishroo/enums";
+import { PropertyUnitEnum } from "@back/enums";
 
 @InputType()
 export class CreatePropertyAdminInputsGQL extends CreatePropertyAdminInputs {

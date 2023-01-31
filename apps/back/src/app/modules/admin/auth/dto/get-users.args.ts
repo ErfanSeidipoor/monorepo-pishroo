@@ -1,6 +1,6 @@
 import { ArgsType, Field } from "@nestjs/graphql";
 import { GetUsersAdminArgs } from "@pishroo/dto";
-import { UserRoleEnum } from "@pishroo/enums";
+import { UserRoleEnum } from "@back/enums";
 
 @ArgsType()
 export class GetUsersAdminArgsGQL extends GetUsersAdminArgs {

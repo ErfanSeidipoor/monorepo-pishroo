@@ -1,6 +1,6 @@
 import { ArgsType, Field } from "@nestjs/graphql";
 import { GetPropertiesAdminArgs } from "@pishroo/dto";
-import { PropertyUnitEnum } from "@pishroo/enums";
+import { PropertyUnitEnum } from "@back/enums";
 
 @ArgsType()
 export class GetPropertiesAdminArgsGQL extends GetPropertiesAdminArgs {

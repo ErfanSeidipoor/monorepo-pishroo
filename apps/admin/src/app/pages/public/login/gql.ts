@@ -1,10 +1,11 @@
 import { gql } from "@apollo/client";
 
-const MUTATION_LOGIN = gql`
-  mutation AddTodo($type: String!) {
-    addTodo(type: $type) {
+export const QUERY_LOGIN_ADMIN = gql`
+  query loginAdmin($loginAdminInputs: LoginAdminInputsGQL!) {
+    loginAdmin(loginAdminInputs: $loginAdminInputs) {
       id
-      type
+      lastName
+      firstName
     }
   }
 `;

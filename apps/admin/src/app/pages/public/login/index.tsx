@@ -10,7 +10,8 @@ import useData from "./useData";
 import assets from "./assets";
 
 export const LoginPage = () => {
-  const { isValid, control, errors, handleSubmit, onSubmit } = useData();
+  const { isValid, control, errors, handleSubmit, onSubmit, loading } =
+    useData();
 
   /* ----------------------------- render functions --------------------------- */
 
@@ -51,7 +52,8 @@ export const LoginPage = () => {
           type="submit"
           variant="contained"
           label="Submit"
-          disabled={!isValid}
+          disabled={!isValid || loading}
+          loading={loading}
         >
           {TEXTS.PAGE_LOGIN__LOGIN}
         </Button>

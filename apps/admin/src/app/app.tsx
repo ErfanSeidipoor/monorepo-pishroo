@@ -1,18 +1,22 @@
+import { HelmetProvider } from "react-helmet-async";
 
-// Providers 
 import { ThemeProvider } from "@admin/providers/theme";
-import { HelmetProvider } from 'react-helmet-async';
+import { ApolloProvider } from "@admin/providers/apollo";
+import { SnackbarProvider } from "@admin/providers/snackbar";
 
-// pages
 import { Router } from "./pages";
 
 export function App() {
   return (
-    <ThemeProvider>
-      <HelmetProvider>
-        <Router />
-      </HelmetProvider>
-    </ThemeProvider>
+    <SnackbarProvider>
+      <ThemeProvider>
+        <HelmetProvider>
+          <ApolloProvider>
+            <Router />
+          </ApolloProvider>
+        </HelmetProvider>
+      </ThemeProvider>
+    </SnackbarProvider>
   );
 }
 

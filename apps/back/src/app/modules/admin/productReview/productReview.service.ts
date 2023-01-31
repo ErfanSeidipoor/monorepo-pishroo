@@ -10,7 +10,7 @@ import {
   UpdateProductReviewAdminInputs,
 } from "@pishroo/dto";
 import { ProductReview, Product, FileUse, File } from "@pishroo/entities";
-import { FileUseStatusEnum, FileUseTypeEnum } from "@pishroo/enums";
+import { FileUseStatusEnum, FileUseTypeEnum } from "@back/enums";
 import {
   CustomError,
   FILE_NOT_FOUND,
