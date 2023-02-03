@@ -1,10 +1,12 @@
+import { FC } from "react";
+import { Outlet } from "react-router-dom";
 
-export const DashboardPage = () => {
-  return (
-    <div>
-      <h1>This is Dahsboard page</h1>
-    </div>
-  );
+import useGuard from "./useGuard";
+
+export const Dashbaord: FC = () => {
+  useGuard();
+
+  return <Outlet />;
 };
 
-export default DashboardPage
+export default Dashbaord;

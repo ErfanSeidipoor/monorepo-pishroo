@@ -1,8 +1,9 @@
+import { UserRoleEnum } from "@back/enums";
+import { paginate } from "@back/helpers/paginate";
+import { generateHashPassword, verifyPassword } from "@back/helpers/password";
+import { Ctx } from "@back/types/context.type";
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import { DataSource, Not, Repository } from "typeorm";
-import * as utils from "@pishroo/utils";
-import { Product, User, ProvinceUser, Province } from "@pishroo/entities";
 import {
   CreateUserAdminInputs,
   GetUserByIdAdminArgs,
@@ -13,7 +14,7 @@ import {
   UpdateUserAdminInputs,
   UpdateUserProvincesAdminInputs,
 } from "@pishroo/dto";
-import { generateHashPassword, verifyPassword } from "@back/helpers/password";
+import { Province, ProvinceUser, User } from "@pishroo/entities";
 import {
   CustomError,
   INVALID_USERNAME_OR_PASSWORD,
@@ -23,9 +24,8 @@ import {
   USER_WITH_THIS_PHONE_ALREADY_EXIST,
   USER_WITH_THIS_USERNAME_ALREADY_EXIST,
 } from "@pishroo/http-exceptions";
-import { Ctx } from "@back/types/context.type";
-import { UserRoleEnum } from "@back/enums";
-import { paginate } from "@back/helpers/paginate";
+import * as utils from "@pishroo/utils";
+import { DataSource, Not, Repository } from "typeorm";
 
 @Injectable()
 export class AuthService {

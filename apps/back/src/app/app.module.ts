@@ -41,6 +41,10 @@ import { CurrentUserMiddleware } from "./middlewares";
           "request.credentials": "include",
         },
       },
+      cors: {
+        credentials: true,
+        origin: [process.env.NX_ADMIN_URL],
+      },
     }),
     TypeOrmModule.forFeature(entities),
     TypeOrmModule.forRootAsync({

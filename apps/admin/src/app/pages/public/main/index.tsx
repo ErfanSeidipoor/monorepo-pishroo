@@ -4,40 +4,40 @@ import { Typography, Container, Box } from "@mui/material";
 
 import TEXTS from "@pishroo/texts";
 import { Button } from "@pishroo/admin-components";
-import { PUBLIC_ROUTE } from "@admin/constants";
+import { PUBLIC_LOGIN_ROUTE } from "@admin/constants";
 
 import { StyledContent } from "./style";
+import useData from "./useData";
+import assets from "./assets";
 
-export const NotFoundPage = () => {
+export const MainPage = () => {
   const navigate = useNavigate();
+  useData();
 
   return (
     <>
       <Helmet>
-        <title> {TEXTS.PAGE_NOT_FOUND__PAGE_TTTLE} </title>
+        <title> {TEXTS.PAGE_MAIN__PAGE_TTTLE} </title>
       </Helmet>
 
       <Container>
         <StyledContent sx={{ textAlign: "center", alignItems: "center" }}>
           <Typography variant="h3" paragraph>
-            {TEXTS.PAGE_NOT_FOUND__TITLE}
-          </Typography>
-
-          <Typography sx={{ color: "text.secondary" }}>
-            {TEXTS.PAGE_NOT_FOUND__DESCRIPTION}
+            {TEXTS.PAGE_MAIN__TITLE}
           </Typography>
 
           <Box
             component="img"
-            src="/assets/illustration_404.svg"
+            src={assets.images.login.src}
+            alt={assets.images.login.alt}
             sx={{ height: 260, mx: "auto", my: { xs: 5, sm: 10 } }}
           />
 
           <Button
-            onClick={() => navigate(PUBLIC_ROUTE)}
+            onClick={() => navigate(PUBLIC_LOGIN_ROUTE)}
             size="large"
             variant="contained"
-            label={TEXTS.PAGE_NOT_FOUND__GO_TO_HOME}
+            label={TEXTS.PAGE_NOT_FOUND__GO_TO_LOGIN_PAGE}
           />
         </StyledContent>
       </Container>
@@ -45,4 +45,4 @@ export const NotFoundPage = () => {
   );
 };
 
-export default NotFoundPage;
+export default MainPage;
