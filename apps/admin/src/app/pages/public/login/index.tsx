@@ -10,7 +10,7 @@ import useData from "./useData";
 import assets from "./assets";
 
 export const LoginPage = () => {
-  const { isValid, control, errors, handleSubmit, onSubmit, loading } =
+  const { isValid, control, errors, handleSubmit, onSubmit, isLoading } =
     useData();
 
   /* ----------------------------- render functions --------------------------- */
@@ -52,8 +52,8 @@ export const LoginPage = () => {
           type="submit"
           variant="contained"
           label="Submit"
-          disabled={!isValid || loading}
-          loading={loading}
+          disabled={!isValid || isLoading}
+          loading={isLoading}
         >
           {TEXTS.PAGE_LOGIN__LOGIN}
         </Button>
@@ -69,7 +69,7 @@ export const LoginPage = () => {
       <StyledRoot>
         <StyledSection>
           <Typography variant="h3" sx={{ px: 5, mt: 10, mb: 20 }}>
-            {TEXTS.PAGE_LOGIN__WELCOME}
+            {TEXTS.PAGE_LOGIN__WELCOME_BACK}
           </Typography>
           <img src={assets.images.login.src} alt={assets.images.login.alt} />
         </StyledSection>

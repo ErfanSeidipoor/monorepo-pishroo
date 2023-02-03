@@ -7,10 +7,14 @@ import {
   signOutSuccess,
   signInFailed,
   signOutFailed,
+  signInStart,
+  signOutStart,
+  checkUserSessionFailed,
+  checkUserSessionSuccess,
 } from "./user.action";
 
 export type UserState = {
-  readonly currentUser: User | null;
+  readonly currentUser: Partial<User> | null;
   readonly isLoading: boolean;
   readonly error: Error | null;
 };
@@ -25,16 +29,29 @@ export const userReducer = (
   state = INITIAL_STATE,
   action = {} as AnyAction
 ) => {
-  if (signInSuccess.match(action)) {
-    return { ...state, currentUser: action.payload };
+  if (signInStart.match(action) || signOutStart.match(action)) {
+    return { ...state, isLoading: true };
+  }
+
+  if (signInSuccess.match(action) || checkUserSessionSuccess.match(action)) {
+    return { ...state, currentUser: action.payload, isLoading: false };
   }
 
   if (signOutSuccess.match(action)) {
-    return { ...state, currentUser: null };
+    return { ...state, currentUser: null, isLoading: false };
   }
 
-  if (signOutFailed.match(action) || signInFailed.match(action)) {
-    return { ...state, error: action.payload };
+  if (signOutFailed.match(action)) {
+    return { ...state, error: action.payload, isLoading: false };
+  }
+
+  if (signInFailed.match(action) || checkUserSessionFailed.match(action)) {
+    return {
+      ...state,
+      error: action.payload,
+      isLoading: false,
+      currentUser: null,
+    };
   }
 
   return state;

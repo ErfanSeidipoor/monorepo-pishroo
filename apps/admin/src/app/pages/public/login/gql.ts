@@ -6,6 +6,9 @@ export const QUERY_LOGIN_ADMIN = gql`
       id
       lastName
       firstName
+      createdAt
+      roles
+      username
     }
   }
 `;
