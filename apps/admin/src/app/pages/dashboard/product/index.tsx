@@ -1,9 +1,8 @@
-export const DashboardProducPage = () => {
-  return (
-    <div>
-      <h1>This is Dashboard Prodcut Page</h1>
-    </div>
-  );
+import { FC } from "react";
+import { Outlet } from "react-router-dom";
+
+export const DashboardProducProvider: FC = () => {
+  return <Outlet />;
 };
 
-export default DashboardProducPage;
+export default DashboardProducProvider;

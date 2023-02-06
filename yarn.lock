@@ -7438,6 +7438,11 @@
   "resolved" "https://registry.npmjs.org/camelize/-/camelize-1.0.0.tgz"
   "version" "1.0.0"
 
+"can-use-dom@^0.1.0":
+  "integrity" "sha512-ceOhN1DL7Y4O6M0j9ICgmTYziV89WMd96SvSl0REd8PMgrY0B/WBOPoed5S1KUmJqXgUXh8gzSe6E3ae27upsQ=="
+  "resolved" "https://registry.npmjs.org/can-use-dom/-/can-use-dom-0.1.0.tgz"
+  "version" "0.1.0"
+
 "caniuse-api@^3.0.0":
   "integrity" "sha512-bsTwuIg/BZZK/vreVTYYbSWoe2F+71P7K5QGEX+pT250DZbfU1MQ5prOKpPR+LL6uWKK3KMwMCAS74QB3Um1uw=="
   "resolved" "https://registry.npmjs.org/caniuse-api/-/caniuse-api-3.0.0.tgz"
@@ -16985,6 +16990,21 @@
   "integrity" "sha512-6+eerH9fEnNmi/hyM1DXcRK3pWdoMQtlkQ+ns0ntzunjKqp5i3sKCc80ym8Fib3iaYhdJUOPdhlJWj1tvge2Ww=="
   "resolved" "https://registry.npmjs.org/signedsource/-/signedsource-1.0.0.tgz"
   "version" "1.0.0"
+
+"simplebar-core@^1.2.0":
+  "integrity" "sha512-OgF3poOTi3mzj6HmNvuJfPtvMH/7OsMC+2H3HXQUzddyRDxUifpjHx1/3ozziWWAGTrJejLtu4E8h/kK3eboWQ=="
+  "resolved" "https://registry.npmjs.org/simplebar-core/-/simplebar-core-1.2.0.tgz"
+  "version" "1.2.0"
+  dependencies:
+    "can-use-dom" "^0.1.0"
+    "lodash" "^4.17.21"
+
+"simplebar-react@^3.2.0":
+  "integrity" "sha512-rsKUAAARhZ/w5f/uoUf3PWjNVQN7CsFrOPMqJSsXtM2lTyXmiN5femuPLHeY0+95EF2QcQigKQABq9A2a6EvJg=="
+  "resolved" "https://registry.npmjs.org/simplebar-react/-/simplebar-react-3.2.0.tgz"
+  "version" "3.2.0"
+  dependencies:
+    "simplebar-core" "^1.2.0"
 
 "sisteransi@^1.0.5":
   "integrity" "sha512-bLGGlR1QxBcynn2d5YmDX4MGjlZvy2MRBDRNHLJ8VI6l6+9FUiyTFNJ0IveOSP0bcXgVDPRcfGqA0pjaqUpfVg=="
