@@ -5,3 +5,4 @@ export * from "./lib/ThemeProvider";
 export * from "./lib/Select";
 export * from "./lib/MultipleSelect";
 export * from "./lib/Button";
+export * from "./lib/BreadCrumbs";

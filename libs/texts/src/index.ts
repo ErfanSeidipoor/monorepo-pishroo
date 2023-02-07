@@ -1,7 +1,10 @@
 const TEXTS = {
   /* --------------------------------- general -------------------------------- */
-  USERNAME: "username",
-  PASSWORD: "password",
+  USERNAME: "Username",
+  PASSWORD: "Password",
+  PRODUCT: "Product",
+  DASHBOARD: "Dashboard",
+  USER: "User",
 
   /* ---------------------------------- lohin --------------------------------- */
   PAGE_LOGIN__PAGE_TTTLE: "Login | Pishroo ",
@@ -21,6 +24,17 @@ const TEXTS = {
   PAGE_MAIN__PAGE_TTTLE: " Pishroo ",
   PAGE_MAIN__TITLE: "Welcome to Pishroo Admin Panel",
   PAGE_NOT_FOUND__GO_TO_LOGIN_PAGE: "Go to Login",
+
+  /* ---------------------------- dashboard layout ---------------------------- */
+  DASHBOARD_LAYOUT__LOGOUT: "Logout",
+  DASHBOARD_LAYOUT__HOME: "Home",
+  DASHBOARD_LAYOUT__PROFILE: "profile",
+  DASHBOARD_LAYOUT__SETTING: "Setting",
+
+  /* --------------------------------- product -------------------------------- */
+  PAGE_PRODUCT__PAGE_TITLE: "Prdoduct | Pishroo",
+  PAGE_PRODUCT__PRODUCT: "Prdoduct",
+  PAGE_PRODUCT__NEW_PRODUCT: "New Prdoduct",
 };
 
 export default TEXTS;

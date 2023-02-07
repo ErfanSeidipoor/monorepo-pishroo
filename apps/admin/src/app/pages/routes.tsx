@@ -8,6 +8,8 @@ import {
   PUBLIC_NOT_FOUND_ROUTE,
   DASHBOARD_ROUTE,
   DASHBOARD_PRODUCT_ROUTE,
+  DASHBOARD_PRODUCT_NEW_PRODUCT_ROUTE,
+  DASHBOARD_PRODUCT_DETAILS,
 } from "@admin/constants";
 
 /* --------------------------------- Routes --------------------------------- */
@@ -38,7 +40,21 @@ export const Routes = () =>
       children: [
         {
           path: DASHBOARD_PRODUCT_ROUTE,
-          element: <ProductPage />,
+          element: <ProductProvider />,
+          children: [
+            {
+              path: DASHBOARD_PRODUCT_NEW_PRODUCT_ROUTE,
+              element: <ProductNewPage />,
+            },
+            {
+              path: DASHBOARD_PRODUCT_DETAILS,
+              element: <ProductDetailsPage />,
+            },
+            {
+              path: DASHBOARD_PRODUCT_ROUTE,
+              element: <ProductListPage />,
+            },
+          ],
         },
         {
           path: DASHBOARD_ROUTE,
@@ -64,15 +80,26 @@ const Loadable = (Component: ReturnType<typeof lazy>) => (props: any) => {
   );
 };
 
-/* --------------------------------- Public --------------------------------- */
+/* --------------------------------- public --------------------------------- */
 
 const PublicProvider = Loadable(lazy(() => import("./public")));
 const PublicPage = Loadable(lazy(() => import("./public/main")));
 const PublicLoginPage = Loadable(lazy(() => import("./public/login")));
 const PublicNotFoundPage = Loadable(lazy(() => import("./public/not-found")));
 
-/* ------------------------------- Dashboard -------------------------------- */
+/* ------------------------------- dashboard -------------------------------- */
 
 const DashboardProvider = Loadable(lazy(() => import("./dashboard")));
-const ProductPage = Loadable(lazy(() => import("./dashboard/product")));
 const DashboardPage = Loadable(lazy(() => import("./dashboard/main")));
+
+/* ---------------------------- dashboard product --------------------------- */
+const ProductProvider = Loadable(lazy(() => import("./dashboard/product")));
+const ProductListPage = Loadable(
+  lazy(() => import("./dashboard/product/list"))
+);
+const ProductNewPage = Loadable(
+  lazy(() => import("./dashboard/product/new-product"))
+);
+const ProductDetailsPage = Loadable(
+  lazy(() => import("./dashboard/product/details"))
+);
