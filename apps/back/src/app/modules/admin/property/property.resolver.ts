@@ -56,7 +56,7 @@ export class PropertyResolver {
   @Query(() => PaginatedProperty, { nullable: true })
   @UseGuards(ProductAdminGuard)
   async getPropertiesAdmin(
-    @Args() paginationArgs: PaginationArgsGQL,
+    @Args("paginationArgs") paginationArgs: PaginationArgsGQL,
     @Args() args: GetPropertiesAdminArgsGQL
   ) {
     return this.propertyService.getProperties(paginationArgs, args);

@@ -36,11 +36,13 @@ export class Product extends BaseModel {
   @Column("text", { name: "text", nullable: false })
   text: string;
 
+  @Field(() => [ProductReview], { nullable: true })
   @OneToMany(() => ProductReview, (productReview) => productReview.product, {
     cascade: true,
   })
   productReviews: ProductReview[];
 
+  @Field(() => [ProductCategory], { nullable: true })
   @OneToMany(
     () => ProductCategory,
     (productCategories) => productCategories.product,
@@ -50,6 +52,7 @@ export class Product extends BaseModel {
   )
   productCategories: ProductCategory[];
 
+  @Field(() => [ProductProject], { nullable: true })
   @OneToMany(
     () => ProductProject,
     (productProjects) => productProjects.product,
@@ -59,6 +62,7 @@ export class Product extends BaseModel {
   )
   productProjects: ProductProject[];
 
+  @Field(() => [ProductProperty], { nullable: true })
   @OneToMany(
     () => ProductProperty,
     (productProperties) => productProperties.product,
@@ -66,13 +70,15 @@ export class Product extends BaseModel {
       cascade: true,
     }
   )
-  productProperties: ProductProperty[];
+  productProperties?: ProductProperty[];
 
+  @Field(() => [ProductColor], { nullable: true })
   @OneToMany(() => ProductColor, (productColors) => productColors.color, {
     cascade: true,
   })
   productColors: ProductColor[];
 
+  @Field(() => [TagUse], { nullable: true })
   @OneToMany(() => TagUse, (tagUse) => tagUse.product, {
     cascade: true,
   })

@@ -64,7 +64,7 @@ export class CustomerResolver {
   @Query(() => PaginatedCustomer, { nullable: true })
   @UseGuards(CustomerAdminGuard)
   async getCustomersAdmin(
-    @Args() paginationArgs: PaginationArgsGQL,
+    @Args("paginationArgs") paginationArgs: PaginationArgsGQL,
     @Args() args: GetCustomersAdminArgsGQL
   ) {
     return this.customerService.getCustomers(paginationArgs, args);

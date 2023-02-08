@@ -1,10 +1,11 @@
 // mui
 import {
-  Link,
+  // Link,
   Typography,
   BreadcrumbsProps as MuiBreadcrumbsProps,
   Breadcrumbs as MuiBreadcrumbs,
 } from "@mui/material";
+import { Link } from "react-router-dom";
 
 export type IBreadcrumbs = MuiBreadcrumbsProps & {
   links?: {
@@ -22,9 +23,16 @@ export const Breadcrumbs: React.FC<IBreadcrumbs> = ({
     <MuiBreadcrumbs {...props}>
       {links.map(({ label, href, color }, index) =>
         index === links.length - 1 ? (
-          <Typography color={color || "text.primary"}>{label}</Typography>
+          <Typography key={label} color={color || "text.primary"}>
+            {label}
+          </Typography>
         ) : (
-          <Link underline="hover" color={color || "inherit"} href={href || "/"}>
+          <Link
+            key={label}
+            style={{ textDecoration: "none" }}
+            color={color || "inherit"}
+            to={href || "/"}
+          >
             {label}
           </Link>
         )

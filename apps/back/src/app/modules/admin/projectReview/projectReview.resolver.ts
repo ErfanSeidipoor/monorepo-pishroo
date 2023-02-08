@@ -58,7 +58,7 @@ export class ProjectReviewResolver {
   @Query(() => PaginatedProjectReview, { nullable: true })
   @UseGuards(ContentAdminGuard)
   async getProjectReviewsAdmin(
-    @Args() paginationArgs: PaginationArgsGQL,
+    @Args("paginationArgs") paginationArgs: PaginationArgsGQL,
     @Args() args: GetProjectReviewsAdminArgsGQL
   ) {
     return this.projectReviewService.getProjectReviews(paginationArgs, args);

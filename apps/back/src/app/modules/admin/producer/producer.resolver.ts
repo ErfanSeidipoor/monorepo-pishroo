@@ -65,7 +65,7 @@ export class ProducerResolver {
   @Query(() => PaginatedProducer, { nullable: true })
   @UseGuards(ProducerAdminGuard)
   async getProducersAdmin(
-    @Args() paginationArgs: PaginationArgsGQL,
+    @Args("paginationArgs") paginationArgs: PaginationArgsGQL,
     @Args() args: GetProducersAdminArgsGQL
   ) {
     return this.producerService.getProducers(paginationArgs, args);

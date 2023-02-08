@@ -1,7 +1,7 @@
-import { ArgsType, Field, Int } from "@nestjs/graphql";
+import { Field, InputType, Int } from "@nestjs/graphql";
 import { PaginationArgs } from "@pishroo/dto";
 
-@ArgsType()
+@InputType()
 export class PaginationArgsGQL extends PaginationArgs {
   @Field(() => Int, { nullable: true })
   limit?: number = 10;

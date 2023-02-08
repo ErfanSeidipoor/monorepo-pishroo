@@ -1,14 +1,27 @@
 import { FC } from "react";
 import { Typography, Stack } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
+import CheckTwoToneIcon from "@mui/icons-material/CheckTwoTone";
 
 import TEXTS from "@pishroo/texts";
-import { Button } from "@pishroo/admin-components";
+import { Button, ITableColumn, Table } from "@pishroo/admin-components";
 
 import useData from "./useDate";
 
 export const ProductListPage: FC = () => {
-  useData();
+  const { rows, loading } = useData();
+
+  const columns: ITableColumn<typeof rows[0]>[] = [
+    { name: "name", cell: (item) => <p>{item.name}</p>, label: "Name" },
+    { name: "slut", cell: (item) => <p>{item.slug}</p>, label: "Slug" },
+    {
+      name: "isActive",
+      cell: (item) => (
+        <CheckTwoToneIcon color={item.isActive ? "success" : "error"} />
+      ),
+      label: "Avtivation",
+    },
+  ];
 
   const renderActions = () => {
     return (
@@ -16,7 +29,7 @@ export const ProductListPage: FC = () => {
         direction="row"
         alignItems="center"
         justifyContent="space-between"
-        mb={5}
+        mb={3}
       >
         <Typography variant="h4" gutterBottom>
           {TEXTS.PAGE_PRODUCT__PRODUCT}
@@ -31,7 +44,17 @@ export const ProductListPage: FC = () => {
       </Stack>
     );
   };
-  return <>{renderActions()}</>;
+
+  const renderTable = () => {
+    return <Table rows={rows} columns={columns} loading={loading} />;
+  };
+
+  return (
+    <>
+      {renderActions()}
+      {renderTable()}
+    </>
+  );
 };
 
 export default ProductListPage;
