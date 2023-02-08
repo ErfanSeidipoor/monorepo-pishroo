@@ -54,7 +54,7 @@ export class CityResolver {
   @Query(() => PaginatedCity, { nullable: true })
   @UseGuards(ProductAdminGuard)
   async getCitiesAdmin(
-    @Args() paginationArgs: PaginationArgsGQL,
+    @Args("paginationArgs") paginationArgs: PaginationArgsGQL,
     @Args() args: GetCitiesAdminArgsGQL
   ) {
     return this.cityService.getCities(paginationArgs, args);

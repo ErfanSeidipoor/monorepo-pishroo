@@ -85,11 +85,11 @@ export class ProductResolver {
     return await this.productService.addCategoriesToProduct(inputs);
   }
 
-  @Query(() => PaginatedProduct, { nullable: true })
+  @Query(() => PaginatedProduct, { nullable: false })
   @UseGuards(ProductAdminGuard)
   async getProductsAdmin(
-    @Args() paginationArgs: PaginationArgsGQL,
-    @Args() args: GetProductsAdminArgsGQL
+    @Args("paginationArgs") paginationArgs: PaginationArgsGQL,
+    @Args("getProductsAdminArgs") args: GetProductsAdminArgsGQL
   ) {
     return this.productService.getProducts(paginationArgs, args);
   }

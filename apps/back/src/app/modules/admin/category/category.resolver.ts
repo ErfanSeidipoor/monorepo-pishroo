@@ -56,7 +56,7 @@ export class CategoryResolver {
   @Query(() => PaginatedCategory, { nullable: true })
   @UseGuards(ProductAdminGuard)
   async getCategoriesAdmin(
-    @Args() paginationArgs: PaginationArgsGQL,
+    @Args("paginationArgs") paginationArgs: PaginationArgsGQL,
     @Args() args: GetCategoriesAdminArgsGQL
   ) {
     return this.categoryService.getCategories(paginationArgs, args);

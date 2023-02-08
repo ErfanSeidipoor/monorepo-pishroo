@@ -46,7 +46,7 @@ export class ColorResolver {
   @Query(() => PaginatedColor, { nullable: true })
   @UseGuards(ProductAdminGuard)
   async getColorsAdmin(
-    @Args() paginationArgs: PaginationArgsGQL,
+    @Args("paginationArgs") paginationArgs: PaginationArgsGQL,
     @Args() args: GetColorsAdminArgsGQL
   ) {
     return this.colorService.getColors(paginationArgs, args);

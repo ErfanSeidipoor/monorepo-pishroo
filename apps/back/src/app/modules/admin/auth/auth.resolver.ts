@@ -46,7 +46,7 @@ export class AuthResolver {
   @Query(() => PaginatedUser, { nullable: true })
   @UseGuards(AdminGuard)
   async getUsersAdmin(
-    @Args() paginationArgs: PaginationArgsGQL,
+    @Args("paginationArgs") paginationArgs: PaginationArgsGQL,
     @Args() getUsersAdminArgs: GetUsersAdminArgsGQL
   ) {
     return this.authService.getUsers(paginationArgs, getUsersAdminArgs);

@@ -1,17 +1,19 @@
-import { Entity, Index, JoinColumn, ManyToOne } from 'typeorm';
-import BaseModel from './baseModel.entity';
-import { Project } from './project.entity';
-import { Product } from './product.entity';
+import { Entity, Index, JoinColumn, ManyToOne } from "typeorm";
+import BaseModel from "./baseModel.entity";
+import { Project } from "./project.entity";
+import { Product } from "./product.entity";
+import { ObjectType } from "@nestjs/graphql";
 
-@Index('product_project_pkey', ['id'], { unique: true })
-@Entity('product_project', { schema: 'public' })
+@ObjectType("ProductProject")
+@Index("product_project_pkey", ["id"], { unique: true })
+@Entity("product_project", { schema: "public" })
 export class ProductProject extends BaseModel {
   @ManyToOne(() => Project, (project) => project.productProjects, {
     nullable: false,
   })
   @JoinColumn({
-    name: 'project_id',
-    referencedColumnName: 'id',
+    name: "project_id",
+    referencedColumnName: "id",
   })
   project: Project;
 
@@ -19,8 +21,8 @@ export class ProductProject extends BaseModel {
     nullable: false,
   })
   @JoinColumn({
-    name: 'product_id',
-    referencedColumnName: 'id',
+    name: "product_id",
+    referencedColumnName: "id",
   })
   product: Product;
 }

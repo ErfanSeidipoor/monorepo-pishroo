@@ -324,7 +324,7 @@ export class ProductService {
     const productColors: ProductColor[] = [];
 
     for (const colorId of colorIds) {
-      let color = await this.colorRepo.findOne({
+      const color = await this.colorRepo.findOne({
         where: { id: colorId },
       });
 

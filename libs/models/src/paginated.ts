@@ -10,10 +10,10 @@ import { PageInfo } from "./pageInfo";
 export function Paginated<T>(classRef: Type<T>): any {
   @ObjectType({ isAbstract: true })
   abstract class PaginatedType {
-    @Field(() => [classRef], { nullable: true })
+    @Field(() => [classRef], { nullable: false })
     edges: T[];
 
-    @Field(() => PageInfo, { nullable: true })
+    @Field(() => PageInfo, { nullable: false })
     pageInfo: PageInfo;
   }
 

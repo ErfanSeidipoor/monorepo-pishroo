@@ -58,7 +58,7 @@ export class ProductReviewResolver {
   @Query(() => PaginatedProductReview, { nullable: true })
   @UseGuards(ContentAdminGuard)
   async getProductReviewsAdmin(
-    @Args() paginationArgs: PaginationArgsGQL,
+    @Args("paginationArgs") paginationArgs: PaginationArgsGQL,
     @Args() args: GetProductReviewsAdminArgsGQL
   ) {
     return this.productReviewService.getProductReviews(paginationArgs, args);

@@ -54,7 +54,7 @@ export class ProvinceResolver {
   @Query(() => PaginatedProvince, { nullable: true })
   @UseGuards(ProductAdminGuard)
   async getProvincesAdmin(
-    @Args() paginationArgs: PaginationArgsGQL,
+    @Args("paginationArgs") paginationArgs: PaginationArgsGQL,
     @Args() args: GetProvincesAdminArgsGQL
   ) {
     return this.provinceService.getProvinces(paginationArgs, args);

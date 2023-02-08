@@ -63,7 +63,7 @@ export class MessageResolver {
   @Query(() => PaginatedMessage, { nullable: true })
   @UseGuards(MessageAdminGuard)
   async getMessagesAdmin(
-    @Args() paginationArgs: PaginationArgsGQL,
+    @Args("paginationArgs") paginationArgs: PaginationArgsGQL,
     @Args() args: GetMessagesAdminArgsGQL
   ) {
     return this.messageService.getMessages(paginationArgs, args);

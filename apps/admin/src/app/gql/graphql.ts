@@ -371,6 +371,12 @@ export enum FileUseTypeEnum {
   TransporterAction = 'transporter_action'
 }
 
+export type GetProductsAdminArgsGql = {
+  isActive?: InputMaybe<Scalars['Boolean']>;
+  name?: InputMaybe<Scalars['String']>;
+  slug?: InputMaybe<Scalars['String']>;
+};
+
 export type LoginAdminInputsGql = {
   password: Scalars['String'];
   username: Scalars['String'];
@@ -855,98 +861,103 @@ export type PageInfo = {
 
 export type PaginatedCategory = {
   __typename?: 'PaginatedCategory';
-  edges?: Maybe<Array<Category>>;
-  pageInfo?: Maybe<PageInfo>;
+  edges: Array<Category>;
+  pageInfo: PageInfo;
 };
 
 export type PaginatedCity = {
   __typename?: 'PaginatedCity';
-  edges?: Maybe<Array<City>>;
-  pageInfo?: Maybe<PageInfo>;
+  edges: Array<City>;
+  pageInfo: PageInfo;
 };
 
 export type PaginatedColor = {
   __typename?: 'PaginatedColor';
-  edges?: Maybe<Array<Color>>;
-  pageInfo?: Maybe<PageInfo>;
+  edges: Array<Color>;
+  pageInfo: PageInfo;
 };
 
 export type PaginatedCustomer = {
   __typename?: 'PaginatedCustomer';
-  edges?: Maybe<Array<Customer>>;
-  pageInfo?: Maybe<PageInfo>;
+  edges: Array<Customer>;
+  pageInfo: PageInfo;
 };
 
 export type PaginatedMessage = {
   __typename?: 'PaginatedMessage';
-  edges?: Maybe<Array<Message>>;
-  pageInfo?: Maybe<PageInfo>;
+  edges: Array<Message>;
+  pageInfo: PageInfo;
 };
 
 export type PaginatedProducer = {
   __typename?: 'PaginatedProducer';
-  edges?: Maybe<Array<Producer>>;
-  pageInfo?: Maybe<PageInfo>;
+  edges: Array<Producer>;
+  pageInfo: PageInfo;
 };
 
 export type PaginatedProducerAgent = {
   __typename?: 'PaginatedProducerAgent';
-  edges?: Maybe<Array<ProducerAgent>>;
-  pageInfo?: Maybe<PageInfo>;
+  edges: Array<ProducerAgent>;
+  pageInfo: PageInfo;
 };
 
 export type PaginatedProduct = {
   __typename?: 'PaginatedProduct';
-  edges?: Maybe<Array<Product>>;
-  pageInfo?: Maybe<PageInfo>;
+  edges: Array<Product>;
+  pageInfo: PageInfo;
 };
 
 export type PaginatedProductReview = {
   __typename?: 'PaginatedProductReview';
-  edges?: Maybe<Array<ProductReview>>;
-  pageInfo?: Maybe<PageInfo>;
+  edges: Array<ProductReview>;
+  pageInfo: PageInfo;
 };
 
 export type PaginatedProject = {
   __typename?: 'PaginatedProject';
-  edges?: Maybe<Array<Project>>;
-  pageInfo?: Maybe<PageInfo>;
+  edges: Array<Project>;
+  pageInfo: PageInfo;
 };
 
 export type PaginatedProjectReview = {
   __typename?: 'PaginatedProjectReview';
-  edges?: Maybe<Array<ProjectReview>>;
-  pageInfo?: Maybe<PageInfo>;
+  edges: Array<ProjectReview>;
+  pageInfo: PageInfo;
 };
 
 export type PaginatedProperty = {
   __typename?: 'PaginatedProperty';
-  edges?: Maybe<Array<Property>>;
-  pageInfo?: Maybe<PageInfo>;
+  edges: Array<Property>;
+  pageInfo: PageInfo;
 };
 
 export type PaginatedProvince = {
   __typename?: 'PaginatedProvince';
-  edges?: Maybe<Array<Province>>;
-  pageInfo?: Maybe<PageInfo>;
+  edges: Array<Province>;
+  pageInfo: PageInfo;
 };
 
 export type PaginatedTransporter = {
   __typename?: 'PaginatedTransporter';
-  edges?: Maybe<Array<Transporter>>;
-  pageInfo?: Maybe<PageInfo>;
+  edges: Array<Transporter>;
+  pageInfo: PageInfo;
 };
 
 export type PaginatedTransporterAgent = {
   __typename?: 'PaginatedTransporterAgent';
-  edges?: Maybe<Array<TransporterAgent>>;
-  pageInfo?: Maybe<PageInfo>;
+  edges: Array<TransporterAgent>;
+  pageInfo: PageInfo;
 };
 
 export type PaginatedUser = {
   __typename?: 'PaginatedUser';
-  edges?: Maybe<Array<User>>;
-  pageInfo?: Maybe<PageInfo>;
+  edges: Array<User>;
+  pageInfo: PageInfo;
+};
+
+export type PaginationArgsGql = {
+  limit?: InputMaybe<Scalars['Int']>;
+  page?: InputMaybe<Scalars['Int']>;
 };
 
 export type Producer = {
@@ -989,11 +1000,13 @@ export type Product = {
   id: Scalars['String'];
   isActive?: Maybe<Scalars['Boolean']>;
   name: Scalars['String'];
-  productCategories: Array<ProductCategory>;
-  productColors: Array<ProductColor>;
-  productProperties: Array<ProductProperty>;
-  productReviews: Array<ProductReview>;
+  productCategories?: Maybe<Array<ProductCategory>>;
+  productColors?: Maybe<Array<ProductColor>>;
+  productProjects?: Maybe<Array<ProductProject>>;
+  productProperties?: Maybe<Array<ProductProperty>>;
+  productReviews?: Maybe<Array<ProductReview>>;
   slug: Scalars['String'];
+  tagUses?: Maybe<Array<TagUse>>;
   text: Scalars['String'];
   updatedAt?: Maybe<Scalars['DateTime']>;
 };
@@ -1017,6 +1030,14 @@ export type ProductColor = {
   deletedAt?: Maybe<Scalars['DateTime']>;
   id: Scalars['String'];
   productId: Scalars['String'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+export type ProductProject = {
+  __typename?: 'ProductProject';
+  createdAt: Scalars['DateTime'];
+  deletedAt?: Maybe<Scalars['DateTime']>;
+  id: Scalars['String'];
   updatedAt?: Maybe<Scalars['DateTime']>;
 };
 
@@ -1137,7 +1158,7 @@ export type Query = {
   getProductByIdAdmin?: Maybe<Product>;
   getProductReviewByIdAdmin?: Maybe<ProductReview>;
   getProductReviewsAdmin?: Maybe<PaginatedProductReview>;
-  getProductsAdmin?: Maybe<PaginatedProduct>;
+  getProductsAdmin: PaginatedProduct;
   getProjectByIdAdmin?: Maybe<Project>;
   getProjectReviewByIdAdmin?: Maybe<ProjectReview>;
   getProjectReviewsAdmin?: Maybe<PaginatedProjectReview>;
@@ -1160,9 +1181,8 @@ export type Query = {
 
 export type QueryGetCategoriesAdminArgs = {
   isActive?: InputMaybe<Scalars['Boolean']>;
-  limit?: InputMaybe<Scalars['Int']>;
   name?: InputMaybe<Scalars['String']>;
-  page?: InputMaybe<Scalars['Int']>;
+  paginationArgs: PaginationArgsGql;
 };
 
 
@@ -1172,9 +1192,8 @@ export type QueryGetCategoryByIdAdminArgs = {
 
 
 export type QueryGetCitiesAdminArgs = {
-  limit?: InputMaybe<Scalars['Int']>;
   name?: InputMaybe<Scalars['String']>;
-  page?: InputMaybe<Scalars['Int']>;
+  paginationArgs: PaginationArgsGql;
   provinceId?: InputMaybe<Scalars['String']>;
 };
 
@@ -1190,9 +1209,8 @@ export type QueryGetColorByIdAdminArgs = {
 
 
 export type QueryGetColorsAdminArgs = {
-  limit?: InputMaybe<Scalars['Int']>;
   name?: InputMaybe<Scalars['String']>;
-  page?: InputMaybe<Scalars['Int']>;
+  paginationArgs: PaginationArgsGql;
   value?: InputMaybe<Scalars['String']>;
 };
 
@@ -1205,8 +1223,7 @@ export type QueryGetCustomerByIdAdminArgs = {
 export type QueryGetCustomersAdminArgs = {
   cityIds?: InputMaybe<Array<Scalars['String']>>;
   isActive?: InputMaybe<Scalars['String']>;
-  limit?: InputMaybe<Scalars['Int']>;
-  page?: InputMaybe<Scalars['Int']>;
+  paginationArgs: PaginationArgsGql;
   provinceIds?: InputMaybe<Array<Scalars['String']>>;
   search?: InputMaybe<Scalars['String']>;
 };
@@ -1220,8 +1237,7 @@ export type QueryGetMessageByIdAdminArgs = {
 export type QueryGetMessagesAdminArgs = {
   customerId?: InputMaybe<Array<Scalars['String']>>;
   isActive?: InputMaybe<Scalars['String']>;
-  limit?: InputMaybe<Scalars['Int']>;
-  page?: InputMaybe<Scalars['Int']>;
+  paginationArgs: PaginationArgsGql;
   search?: InputMaybe<Scalars['String']>;
   userId?: InputMaybe<Scalars['String']>;
 };
@@ -1234,8 +1250,7 @@ export type QueryGetProducerAgentByIdAdminArgs = {
 
 export type QueryGetProducerAgentsAdminArgs = {
   isActive?: InputMaybe<Scalars['String']>;
-  limit?: InputMaybe<Scalars['Int']>;
-  page?: InputMaybe<Scalars['Int']>;
+  paginationArgs: PaginationArgsGql;
   producerId?: InputMaybe<Scalars['String']>;
   search?: InputMaybe<Scalars['String']>;
 };
@@ -1249,8 +1264,7 @@ export type QueryGetProducerByIdAdminArgs = {
 export type QueryGetProducersAdminArgs = {
   cityIds?: InputMaybe<Array<Scalars['String']>>;
   isActive?: InputMaybe<Scalars['String']>;
-  limit?: InputMaybe<Scalars['Int']>;
-  page?: InputMaybe<Scalars['Int']>;
+  paginationArgs: PaginationArgsGql;
   provinceIds?: InputMaybe<Array<Scalars['String']>>;
   search?: InputMaybe<Scalars['String']>;
 };
@@ -1267,8 +1281,7 @@ export type QueryGetProductReviewByIdAdminArgs = {
 
 
 export type QueryGetProductReviewsAdminArgs = {
-  limit?: InputMaybe<Scalars['Int']>;
-  page?: InputMaybe<Scalars['Int']>;
+  paginationArgs: PaginationArgsGql;
   productId?: InputMaybe<Scalars['String']>;
   reviewer?: InputMaybe<Scalars['String']>;
   text?: InputMaybe<Scalars['String']>;
@@ -1276,11 +1289,8 @@ export type QueryGetProductReviewsAdminArgs = {
 
 
 export type QueryGetProductsAdminArgs = {
-  isActive?: InputMaybe<Scalars['Boolean']>;
-  limit?: InputMaybe<Scalars['Int']>;
-  name?: InputMaybe<Scalars['String']>;
-  page?: InputMaybe<Scalars['Int']>;
-  slug?: InputMaybe<Scalars['String']>;
+  getProductsAdminArgs: GetProductsAdminArgsGql;
+  paginationArgs: PaginationArgsGql;
 };
 
 
@@ -1295,8 +1305,7 @@ export type QueryGetProjectReviewByIdAdminArgs = {
 
 
 export type QueryGetProjectReviewsAdminArgs = {
-  limit?: InputMaybe<Scalars['Int']>;
-  page?: InputMaybe<Scalars['Int']>;
+  paginationArgs: PaginationArgsGql;
   projectId?: InputMaybe<Scalars['String']>;
   reviewer?: InputMaybe<Scalars['String']>;
   text?: InputMaybe<Scalars['String']>;
@@ -1306,8 +1315,7 @@ export type QueryGetProjectReviewsAdminArgs = {
 export type QueryGetProjectsAdminArgs = {
   cityIds?: InputMaybe<Array<Scalars['String']>>;
   isActive?: InputMaybe<Scalars['String']>;
-  limit?: InputMaybe<Scalars['Int']>;
-  page?: InputMaybe<Scalars['Int']>;
+  paginationArgs: PaginationArgsGql;
   provinceIds?: InputMaybe<Array<Scalars['String']>>;
   search?: InputMaybe<Scalars['String']>;
 };
@@ -1315,9 +1323,8 @@ export type QueryGetProjectsAdminArgs = {
 
 export type QueryGetPropertiesAdminArgs = {
   isActive?: InputMaybe<Scalars['Boolean']>;
-  limit?: InputMaybe<Scalars['Int']>;
   name?: InputMaybe<Scalars['String']>;
-  page?: InputMaybe<Scalars['Int']>;
+  paginationArgs: PaginationArgsGql;
   units?: InputMaybe<Array<PropertyUnitEnum>>;
 };
 
@@ -1333,9 +1340,8 @@ export type QueryGetProvinceByIdAdminArgs = {
 
 
 export type QueryGetProvincesAdminArgs = {
-  limit?: InputMaybe<Scalars['Int']>;
   name?: InputMaybe<Scalars['String']>;
-  page?: InputMaybe<Scalars['Int']>;
+  paginationArgs: PaginationArgsGql;
 };
 
 
@@ -1346,8 +1352,7 @@ export type QueryGetTransporterAgentByIdAdminArgs = {
 
 export type QueryGetTransporterAgentsAdminArgs = {
   isActive?: InputMaybe<Scalars['String']>;
-  limit?: InputMaybe<Scalars['Int']>;
-  page?: InputMaybe<Scalars['Int']>;
+  paginationArgs: PaginationArgsGql;
   search?: InputMaybe<Scalars['String']>;
   transporterId?: InputMaybe<Scalars['String']>;
 };
@@ -1361,8 +1366,7 @@ export type QueryGetTransporterByIdAdminArgs = {
 export type QueryGetTransportersAdminArgs = {
   cityIds?: InputMaybe<Array<Scalars['String']>>;
   isActive?: InputMaybe<Scalars['String']>;
-  limit?: InputMaybe<Scalars['Int']>;
-  page?: InputMaybe<Scalars['Int']>;
+  paginationArgs: PaginationArgsGql;
   provinceIds?: InputMaybe<Array<Scalars['String']>>;
   search?: InputMaybe<Scalars['String']>;
 };
@@ -1376,9 +1380,8 @@ export type QueryGetUserByIdAdminArgs = {
 export type QueryGetUsersAdminArgs = {
   email?: InputMaybe<Scalars['String']>;
   isActive?: InputMaybe<Scalars['Boolean']>;
-  limit?: InputMaybe<Scalars['Int']>;
   name?: InputMaybe<Scalars['String']>;
-  page?: InputMaybe<Scalars['Int']>;
+  paginationArgs: PaginationArgsGql;
   phone?: InputMaybe<Scalars['String']>;
   roles?: InputMaybe<Array<UserRoleEnum>>;
 };
@@ -1406,6 +1409,14 @@ export type RemoveImageFromTransporterAdminInputsGql = {
 
 export type RemovePropertyFromProductAdminInputsGql = {
   productPropertyId: Scalars['String'];
+};
+
+export type TagUse = {
+  __typename?: 'TagUse';
+  createdAt: Scalars['DateTime'];
+  deletedAt?: Maybe<Scalars['DateTime']>;
+  id: Scalars['String'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
 };
 
 export type Transporter = {
@@ -1677,6 +1688,14 @@ export type LogoutAdminQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type LogoutAdminQuery = { __typename?: 'Query', logoutAdmin?: { __typename?: 'User', id: string } | null };
 
+export type GetProductsAdminQueryVariables = Exact<{
+  getProductsAdminArgs: GetProductsAdminArgsGql;
+  paginationArgs: PaginationArgsGql;
+}>;
+
+
+export type GetProductsAdminQuery = { __typename?: 'Query', getProductsAdmin: { __typename?: 'PaginatedProduct', edges: Array<{ __typename?: 'Product', slug: string, id: string, name: string, isActive?: boolean | null, createdAt: any, updatedAt?: any | null, deletedAt?: any | null, text: string, productProperties?: Array<{ __typename?: 'ProductProperty', id: string, value: string, property: { __typename?: 'Property', name: string, unit: PropertyUnitEnum } }> | null, fileUses?: Array<{ __typename?: 'FileUse', id: string, status: FileUseStatusEnum, type: FileUseTypeEnum, isPublic?: boolean | null, file: { __typename?: 'File', filename: string, size: number, id: string } }> | null }> } };
+
 export type LoginAdminQueryVariables = Exact<{
   loginAdminInputs: LoginAdminInputsGql;
 }>;
@@ -1691,5 +1710,6 @@ export type MeAdminQuery = { __typename?: 'Query', meAdmin?: { __typename?: 'Use
 
 
 export const LogoutAdminDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"logoutAdmin"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"logoutAdmin"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]} as unknown as DocumentNode<LogoutAdminQuery, LogoutAdminQueryVariables>;
+export const GetProductsAdminDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getProductsAdmin"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"getProductsAdminArgs"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"GetProductsAdminArgsGQL"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"paginationArgs"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"PaginationArgsGQL"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getProductsAdmin"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"getProductsAdminArgs"},"value":{"kind":"Variable","name":{"kind":"Name","value":"getProductsAdminArgs"}}},{"kind":"Argument","name":{"kind":"Name","value":"paginationArgs"},"value":{"kind":"Variable","name":{"kind":"Name","value":"paginationArgs"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"isActive"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}},{"kind":"Field","name":{"kind":"Name","value":"deletedAt"}},{"kind":"Field","name":{"kind":"Name","value":"text"}},{"kind":"Field","name":{"kind":"Name","value":"productProperties"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"value"}},{"kind":"Field","name":{"kind":"Name","value":"property"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"unit"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"fileUses"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"status"}},{"kind":"Field","name":{"kind":"Name","value":"type"}},{"kind":"Field","name":{"kind":"Name","value":"isPublic"}},{"kind":"Field","name":{"kind":"Name","value":"file"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"filename"}},{"kind":"Field","name":{"kind":"Name","value":"size"}},{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetProductsAdminQuery, GetProductsAdminQueryVariables>;
 export const LoginAdminDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"loginAdmin"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"loginAdminInputs"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"LoginAdminInputsGQL"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"loginAdmin"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"loginAdminInputs"},"value":{"kind":"Variable","name":{"kind":"Name","value":"loginAdminInputs"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"lastName"}},{"kind":"Field","name":{"kind":"Name","value":"firstName"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"roles"}},{"kind":"Field","name":{"kind":"Name","value":"username"}}]}}]}}]} as unknown as DocumentNode<LoginAdminQuery, LoginAdminQueryVariables>;
 export const MeAdminDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"meAdmin"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"meAdmin"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"lastName"}},{"kind":"Field","name":{"kind":"Name","value":"firstName"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"roles"}},{"kind":"Field","name":{"kind":"Name","value":"username"}}]}}]}}]} as unknown as DocumentNode<MeAdminQuery, MeAdminQueryVariables>;

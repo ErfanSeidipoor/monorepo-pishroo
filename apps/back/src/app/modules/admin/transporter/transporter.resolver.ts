@@ -70,7 +70,7 @@ export class TransporterResolver {
   @Query(() => PaginatedTransporter, { nullable: true })
   @UseGuards(TransporterAdminGuard)
   async getTransportersAdmin(
-    @Args() paginationArgs: PaginationArgsGQL,
+    @Args("paginationArgs") paginationArgs: PaginationArgsGQL,
     @Args() args: GetTransportersAdminArgsGQL
   ) {
     return this.transporterService.getTransporters(paginationArgs, args);

@@ -26,8 +26,8 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 scalar DateTime
 
 type PaginatedCity {
-  edges: [City!]
-  pageInfo: PageInfo
+  edges: [City!]!
+  pageInfo: PageInfo!
 }
 
 type Province {
@@ -41,8 +41,8 @@ type Province {
 }
 
 type PaginatedProvince {
-  edges: [Province!]
-  pageInfo: PageInfo
+  edges: [Province!]!
+  pageInfo: PageInfo!
 }
 
 type ProvinceUser {
@@ -70,8 +70,8 @@ type Message {
 }
 
 type PaginatedMessage {
-  edges: [Message!]
-  pageInfo: PageInfo
+  edges: [Message!]!
+  pageInfo: PageInfo!
 }
 
 type CustomerMessage {
@@ -103,8 +103,8 @@ type Customer {
 }
 
 type PaginatedCustomer {
-  edges: [Customer!]
-  pageInfo: PageInfo
+  edges: [Customer!]!
+  pageInfo: PageInfo!
 }
 
 type File {
@@ -136,8 +136,8 @@ type ProducerAgent {
 }
 
 type PaginatedProducerAgent {
-  edges: [ProducerAgent!]
-  pageInfo: PageInfo
+  edges: [ProducerAgent!]!
+  pageInfo: PageInfo!
 }
 
 type Producer {
@@ -157,8 +157,8 @@ type Producer {
 }
 
 type PaginatedProducer {
-  edges: [Producer!]
-  pageInfo: PageInfo
+  edges: [Producer!]!
+  pageInfo: PageInfo!
 }
 
 type Category {
@@ -171,8 +171,8 @@ type Category {
 }
 
 type PaginatedCategory {
-  edges: [Category!]
-  pageInfo: PageInfo
+  edges: [Category!]!
+  pageInfo: PageInfo!
 }
 
 type ProductCategory {
@@ -195,8 +195,8 @@ type Color {
 }
 
 type PaginatedColor {
-  edges: [Color!]
-  pageInfo: PageInfo
+  edges: [Color!]!
+  pageInfo: PageInfo!
 }
 
 type ProductColor {
@@ -223,8 +223,15 @@ type ProjectReview {
 }
 
 type PaginatedProjectReview {
-  edges: [ProjectReview!]
-  pageInfo: PageInfo
+  edges: [ProjectReview!]!
+  pageInfo: PageInfo!
+}
+
+type TagUse {
+  id: String!
+  createdAt: DateTime!
+  updatedAt: DateTime
+  deletedAt: DateTime
 }
 
 type Project {
@@ -245,8 +252,15 @@ type Project {
 }
 
 type PaginatedProject {
-  edges: [Project!]
-  pageInfo: PageInfo
+  edges: [Project!]!
+  pageInfo: PageInfo!
+}
+
+type ProductProject {
+  id: String!
+  createdAt: DateTime!
+  updatedAt: DateTime
+  deletedAt: DateTime
 }
 
 type Property {
@@ -266,8 +280,8 @@ enum PropertyUnitEnum {
 }
 
 type PaginatedProperty {
-  edges: [Property!]
-  pageInfo: PageInfo
+  edges: [Property!]!
+  pageInfo: PageInfo!
 }
 
 type ProductProperty {
@@ -295,8 +309,8 @@ type ProductReview {
 }
 
 type PaginatedProductReview {
-  edges: [ProductReview!]
-  pageInfo: PageInfo
+  edges: [ProductReview!]!
+  pageInfo: PageInfo!
 }
 
 type Product {
@@ -308,16 +322,18 @@ type Product {
   slug: String!
   isActive: Boolean
   text: String!
+  productReviews: [ProductReview!]
+  productCategories: [ProductCategory!]
+  productProjects: [ProductProject!]
+  productProperties: [ProductProperty!]
+  productColors: [ProductColor!]
+  tagUses: [TagUse!]
   fileUses: [FileUse!]
-  productCategories: [ProductCategory!]!
-  productProperties: [ProductProperty!]!
-  productColors: [ProductColor!]!
-  productReviews: [ProductReview!]!
 }
 
 type PaginatedProduct {
-  edges: [Product!]
-  pageInfo: PageInfo
+  edges: [Product!]!
+  pageInfo: PageInfo!
 }
 
 type TransporterAgent {
@@ -336,8 +352,8 @@ type TransporterAgent {
 }
 
 type PaginatedTransporterAgent {
-  edges: [TransporterAgent!]
-  pageInfo: PageInfo
+  edges: [TransporterAgent!]!
+  pageInfo: PageInfo!
 }
 
 type Transporter {
@@ -357,8 +373,8 @@ type Transporter {
 }
 
 type PaginatedTransporter {
-  edges: [Transporter!]
-  pageInfo: PageInfo
+  edges: [Transporter!]!
+  pageInfo: PageInfo!
 }
 
 type FileUse {
@@ -433,51 +449,62 @@ enum UserRoleEnum {
 }
 
 type PaginatedUser {
-  edges: [User!]
-  pageInfo: PageInfo
+  edges: [User!]!
+  pageInfo: PageInfo!
 }
 
 type Query {
   loginAdmin(loginAdminInputs: LoginAdminInputsGQL!): User!
   meAdmin: User
-  getUsersAdmin(limit: Int = 10, page: Int = 1, name: String = "", email: String = "", phone: String = "", roles: [UserRoleEnum!] = [], isActive: Boolean): PaginatedUser
+  getUsersAdmin(paginationArgs: PaginationArgsGQL!, name: String = "", email: String = "", phone: String = "", roles: [UserRoleEnum!] = [], isActive: Boolean): PaginatedUser
   getUserByIdAdmin(userId: String!): User
   logoutAdmin: User
-  getProductsAdmin(limit: Int = 10, page: Int = 1, name: String = "", slug: String = "", isActive: Boolean): PaginatedProduct
+  getProductsAdmin(paginationArgs: PaginationArgsGQL!, getProductsAdminArgs: GetProductsAdminArgsGQL!): PaginatedProduct!
   getProductByIdAdmin(productId: String!): Product
-  getCategoriesAdmin(limit: Int = 10, page: Int = 1, name: String = "", isActive: Boolean): PaginatedCategory
+  getCategoriesAdmin(paginationArgs: PaginationArgsGQL!, name: String = "", isActive: Boolean): PaginatedCategory
   getCategoryByIdAdmin(categoryId: String!): Category
-  getPropertiesAdmin(limit: Int = 10, page: Int = 1, name: String = "", isActive: Boolean, units: [PropertyUnitEnum!] = []): PaginatedProperty
+  getPropertiesAdmin(paginationArgs: PaginationArgsGQL!, name: String = "", isActive: Boolean, units: [PropertyUnitEnum!] = []): PaginatedProperty
   getPropertyByIdAdmin(propertyId: String!): Property
-  getColorsAdmin(limit: Int = 10, page: Int = 1, name: String = "", value: String = ""): PaginatedColor
+  getColorsAdmin(paginationArgs: PaginationArgsGQL!, name: String = "", value: String = ""): PaginatedColor
   getColorByIdAdmin(colorId: String!): Color
-  getProductReviewsAdmin(limit: Int = 10, page: Int = 1, reviewer: String = "", text: String = "", productId: String): PaginatedProductReview
+  getProductReviewsAdmin(paginationArgs: PaginationArgsGQL!, reviewer: String = "", text: String = "", productId: String): PaginatedProductReview
   getProductReviewByIdAdmin(productReviewId: String!): ProductReview
-  getProvincesAdmin(limit: Int = 10, page: Int = 1, name: String = ""): PaginatedProvince
+  getProvincesAdmin(paginationArgs: PaginationArgsGQL!, name: String = ""): PaginatedProvince
   getProvinceByIdAdmin(provinceId: String!): Province
-  getTransportersAdmin(limit: Int = 10, page: Int = 1, search: String = "", isActive: String, cityIds: [String!], provinceIds: [String!]): PaginatedTransporter
+  getTransportersAdmin(paginationArgs: PaginationArgsGQL!, search: String = "", isActive: String, cityIds: [String!], provinceIds: [String!]): PaginatedTransporter
   getTransporterByIdAdmin(transporterId: String!): Transporter
-  getTransporterAgentsAdmin(limit: Int = 10, page: Int = 1, search: String = "", isActive: String, transporterId: String): PaginatedTransporterAgent
+  getTransporterAgentsAdmin(paginationArgs: PaginationArgsGQL!, search: String = "", isActive: String, transporterId: String): PaginatedTransporterAgent
   getTransporterAgentByIdAdmin(transporterAgentId: String!): TransporterAgent
-  getProducersAdmin(limit: Int = 10, page: Int = 1, search: String = "", isActive: String, cityIds: [String!], provinceIds: [String!]): PaginatedProducer
+  getProducersAdmin(paginationArgs: PaginationArgsGQL!, search: String = "", isActive: String, cityIds: [String!], provinceIds: [String!]): PaginatedProducer
   getProducerByIdAdmin(producerId: String!): Producer
-  getProducerAgentsAdmin(limit: Int = 10, page: Int = 1, search: String = "", isActive: String, producerId: String): PaginatedProducerAgent
+  getProducerAgentsAdmin(paginationArgs: PaginationArgsGQL!, search: String = "", isActive: String, producerId: String): PaginatedProducerAgent
   getProducerAgentByIdAdmin(producerAgentId: String!): ProducerAgent
-  getCitiesAdmin(limit: Int = 10, page: Int = 1, name: String = "", provinceId: String): PaginatedCity
+  getCitiesAdmin(paginationArgs: PaginationArgsGQL!, name: String = "", provinceId: String): PaginatedCity
   getCityByIdAdmin(cityId: String!): City
-  getProjectsAdmin(limit: Int = 10, page: Int = 1, search: String = "", isActive: String, cityIds: [String!], provinceIds: [String!]): PaginatedProject
+  getProjectsAdmin(paginationArgs: PaginationArgsGQL!, search: String = "", isActive: String, cityIds: [String!], provinceIds: [String!]): PaginatedProject
   getProjectByIdAdmin(projectId: String!): Project
-  getProjectReviewsAdmin(limit: Int = 10, page: Int = 1, reviewer: String = "", text: String = "", projectId: String): PaginatedProjectReview
+  getProjectReviewsAdmin(paginationArgs: PaginationArgsGQL!, reviewer: String = "", text: String = "", projectId: String): PaginatedProjectReview
   getProjectReviewByIdAdmin(projectReviewId: String!): ProjectReview
-  getCustomersAdmin(limit: Int = 10, page: Int = 1, search: String = "", isActive: String, cityIds: [String!], provinceIds: [String!]): PaginatedCustomer
+  getCustomersAdmin(paginationArgs: PaginationArgsGQL!, search: String = "", isActive: String, cityIds: [String!], provinceIds: [String!]): PaginatedCustomer
   getCustomerByIdAdmin(customerId: String!): Customer
-  getMessagesAdmin(limit: Int = 10, page: Int = 1, search: String = "", isActive: String, userId: String, customerId: [String!]): PaginatedMessage
+  getMessagesAdmin(paginationArgs: PaginationArgsGQL!, search: String = "", isActive: String, userId: String, customerId: [String!]): PaginatedMessage
   getMessageByIdAdmin(messageId: String!): Message
 }
 
 input LoginAdminInputsGQL {
   username: String!
   password: String!
+}
+
+input PaginationArgsGQL {
+  limit: Int = 10
+  page: Int = 1
+}
+
+input GetProductsAdminArgsGQL {
+  name: String = ""
+  slug: String = ""
+  isActive: Boolean
 }
 
 type Mutation {
