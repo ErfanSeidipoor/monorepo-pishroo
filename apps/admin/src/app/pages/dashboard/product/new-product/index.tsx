@@ -1,4 +1,8 @@
-export const DashboardProducPage = () => {
+import { FC } from "react";
+
+import useDate from "./useDate";
+export const NewProductPage: FC = () => {
+  useDate();
   return (
     <div>
       <h1>This is Dashboard Prodcut Page -- new</h1>
@@ -6,4 +10,4 @@ export const DashboardProducPage = () => {
   );
 };
 
-export default DashboardProducPage;
+export default NewProductPage;

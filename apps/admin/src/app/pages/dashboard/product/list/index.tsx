@@ -1,25 +1,42 @@
 import { FC } from "react";
 import { Typography, Stack } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
+import { Controller } from "react-hook-form";
 import CheckTwoToneIcon from "@mui/icons-material/CheckTwoTone";
 
+import { Button, TextField } from "@pishroo/admin-components";
 import TEXTS from "@pishroo/texts";
-import { Button, ITableColumn, Table } from "@pishroo/admin-components";
+import { ITableColumn, Table, Pagination } from "@pishroo/admin-components";
+
+import FilterSidebar from "@admin/components/filter-sidebar";
+import { DASHBOARD_PRODUCT_NEW_PRODUCT_ROUTE } from "@admin/constants";
 
 import useData from "./useDate";
 
 export const ProductListPage: FC = () => {
-  const { rows, loading } = useData();
+  const {
+    rows,
+    loading,
+    navigate,
+    pageInfo,
+    handleSubmit,
+    onSubmit,
+    reset,
+    control,
+    errors,
+    isValid,
+    onPageSelect,
+  } = useData();
 
   const columns: ITableColumn<typeof rows[0]>[] = [
-    { name: "name", cell: (item) => <p>{item.name}</p>, label: "Name" },
-    { name: "slut", cell: (item) => <p>{item.slug}</p>, label: "Slug" },
+    { name: "name", cell: (item) => <p>{item.name}</p>, label: TEXTS.NAME },
+    { name: "slut", cell: (item) => <p>{item.slug}</p>, label: TEXTS.SLUG },
     {
       name: "isActive",
       cell: (item) => (
         <CheckTwoToneIcon color={item.isActive ? "success" : "error"} />
       ),
-      label: "Avtivation",
+      label: TEXTS.ACTIVATION,
     },
   ];
 
@@ -31,17 +48,63 @@ export const ProductListPage: FC = () => {
         justifyContent="space-between"
         mb={3}
       >
-        <Typography variant="h4" gutterBottom>
-          {TEXTS.PAGE_PRODUCT__PRODUCT}
-        </Typography>
+        <Stack
+          direction="row"
+          alignItems="center"
+          justifyContent="center"
+          spacing={2}
+        >
+          <Typography variant="h4">{TEXTS.PAGE_PRODUCT__PRODUCT}</Typography>
+          {renderFilterSidebar()}
+        </Stack>
         <Button
-          variant="contained"
+          variant="outlined"
           label={TEXTS.PAGE_PRODUCT__NEW_PRODUCT}
           color="secondary"
-          onClick={() => {}}
+          onClick={() => navigate(DASHBOARD_PRODUCT_NEW_PRODUCT_ROUTE)}
           startIcon={<AddIcon />}
         ></Button>
       </Stack>
+    );
+  };
+
+  const renderFilterSidebar = () => {
+    return (
+      <FilterSidebar
+        isValid={isValid || !loading}
+        disabled={loading}
+        onSubmit={handleSubmit(onSubmit)}
+        onClearClick={() => reset()}
+      >
+        <Stack spacing={3}>
+          <Controller
+            name="name"
+            control={control}
+            render={({ field }) => (
+              <TextField
+                placeholder={TEXTS.NAME}
+                label={TEXTS.NAME}
+                error={errors.name !== undefined}
+                helperText={errors.name?.message}
+                {...field}
+              />
+            )}
+          />
+          <Controller
+            name="slug"
+            control={control}
+            render={({ field }) => (
+              <TextField
+                placeholder={TEXTS.SLUG}
+                label={TEXTS.SLUG}
+                error={errors.slug !== undefined}
+                helperText={errors.slug?.message}
+                {...field}
+              />
+            )}
+          />
+        </Stack>
+      </FilterSidebar>
     );
   };
 
@@ -49,10 +112,25 @@ export const ProductListPage: FC = () => {
     return <Table rows={rows} columns={columns} loading={loading} />;
   };
 
+  const renderPagination = () => {
+    return (
+      <Stack direction="row" alignItems="center" justifyContent="center" mt={3}>
+        <Pagination
+          page={pageInfo?.currentPage}
+          count={pageInfo?.totalPages}
+          onPageSelect={onPageSelect}
+          color="primary"
+          disabled={loading}
+        />
+      </Stack>
+    );
+  };
+
   return (
     <>
       {renderActions()}
       {renderTable()}
+      {renderPagination()}
     </>
   );
 };

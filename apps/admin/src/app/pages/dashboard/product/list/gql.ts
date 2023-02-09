@@ -9,6 +9,13 @@ export const QUERY_GET_PRODUCTS_ADMIN = gql`
       getProductsAdminArgs: $getProductsAdminArgs
       paginationArgs: $paginationArgs
     ) {
+      pageInfo {
+        totalEdges
+        edgeCount
+        edgesPerPage
+        currentPage
+        totalPages
+      }
       edges {
         slug
         id
