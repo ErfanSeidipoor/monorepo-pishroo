@@ -5,6 +5,11 @@ const TEXTS = {
   PRODUCT: "Product",
   DASHBOARD: "Dashboard",
   USER: "User",
+  NAME: "Name",
+  SLUG: "Slug",
+  ACTIVATION: "ACTIVATION",
+  FILTER: "Filter",
+  CLEAR_ALL: "Clear All",
 
   /* ---------------------------------- lohin --------------------------------- */
   PAGE_LOGIN__PAGE_TTTLE: "Login | Pishroo ",
@@ -35,6 +40,10 @@ const TEXTS = {
   PAGE_PRODUCT__PAGE_TITLE: "Prdoduct | Pishroo",
   PAGE_PRODUCT__PRODUCT: "Prdoduct",
   PAGE_PRODUCT__NEW_PRODUCT: "New Prdoduct",
+
+  /* ------------------------------- new product ------------------------------ */
+  PAGE_NEW_PRODUCT__PAGE_TITLE: "New Prdoduct | Pishroo",
+  PAGE_NEW_PRODUCT__NEW_PRODUCT: "New Prdoduct",
 };
 
 export default TEXTS;
