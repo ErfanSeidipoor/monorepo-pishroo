@@ -1,39 +1,43 @@
 import { useDashboardLayout } from "@admin/hooks";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
+import { DASHBOARD_PRODUCT_ROUTE, DASHBOARD_ROUTE } from "@admin/constants";
 import {
-  DASHBOARD_PRODUCT_NEW_PRODUCT_ROUTE,
-  DASHBOARD_PRODUCT_ROUTE,
-  DASHBOARD_ROUTE,
-} from "@admin/constants";
-import {
-  GetProductsAdminArgsGql,
-  GetProductsAdminQuery,
-  GetProductsAdminQueryVariables,
-  PaginationArgsGql,
+  CreateProductAdminMutation,
+  CreateProductAdminMutationVariables,
 } from "@admin/gql/graphql";
-import { useQuery } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 
+import { CreateProductAdminInputs } from "@pishroo/dto";
 import TEXTS from "@pishroo/texts";
 import { useSnackbar } from "notistack";
 
-// import { QUERY_GET_PRODUCTS_ADMIN } from "./gql";
 import { useNavigate } from "react-router-dom";
+
+import { classValidatorResolver } from "@hookform/resolvers/class-validator";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { MUTATION_CREATE_PRODUCT_ADMIN } from "./gql";
 
 const useData = () => {
   const { setConfig } = useDashboardLayout();
+
+  const { enqueueSnackbar } = useSnackbar();
   const navigate = useNavigate();
-  // const { enqueueSnackbar } = useSnackbar();
 
-  // const [rows, setRows] = useState<
-  //   GetProductsAdminQuery["getProductsAdmin"]["edges"]
-  // >([]);
-  // const [args, setArgs] = useState<GetProductsAdminArgsGql>({});
-
-  // const [paginationArgs, setPaginationArgs] = useState<PaginationArgsGql>({
-  //   page: 1,
-  //   limit: 10,
-  // });
+  const {
+    handleSubmit,
+    control,
+    formState: { errors, isValid },
+  } = useForm<CreateProductAdminInputs>({
+    resolver: classValidatorResolver(CreateProductAdminInputs),
+    mode: "onChange",
+    defaultValues: {
+      name: "",
+      slug: "",
+      text: "",
+      isActive: false,
+    },
+  });
 
   useEffect(() => {
     setConfig({
@@ -51,23 +55,36 @@ const useData = () => {
     });
   }, [setConfig]);
 
-  // const { loading } = useQuery<
-  //   GetProductsAdminQuery,
-  //   GetProductsAdminQueryVariables
-  // >(QUERY_GET_PRODUCTS_ADMIN, {
-  //   variables: { getProductsAdminArgs: args, paginationArgs: paginationArgs },
-  //   onError: (error) => {
-  //     enqueueSnackbar(error.message, { variant: "error" });
-  //   },
-  //   onCompleted: ({ getProductsAdmin }) => {
-  //     setRows(getProductsAdmin?.edges);
-  //   },
-  // });
+  const [createProductAdmin, { loading }] = useMutation<
+    CreateProductAdminMutation,
+    CreateProductAdminMutationVariables
+  >(MUTATION_CREATE_PRODUCT_ADMIN, {
+    onError: (error) => {
+      enqueueSnackbar(error.message, { variant: "error" });
+      // dispatch(signInFailed(error));
+    },
+    onCompleted: (response) => {
+      console.log({ response });
+
+      enqueueSnackbar(TEXTS.PAGE_NEW_PRODUCT__SUCCESS, { variant: "success" });
+      navigate(DASHBOARD_PRODUCT_ROUTE);
+    },
+  });
+
+  const onSubmit: SubmitHandler<CreateProductAdminInputs> = (
+    createProductAdminInputs
+  ) => {
+    createProductAdmin({ variables: { createProductAdminInputs } });
+    console.log(createProductAdminInputs);
+  };
 
   return {
-    // rows,
-    navigate,
-    // loading,
+    isValid,
+    control,
+    errors,
+    handleSubmit,
+    onSubmit,
+    loading,
   };
 };
 

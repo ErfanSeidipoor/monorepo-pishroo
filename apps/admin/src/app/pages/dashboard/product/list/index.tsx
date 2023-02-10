@@ -4,7 +4,7 @@ import AddIcon from "@mui/icons-material/Add";
 import { Controller } from "react-hook-form";
 import CheckTwoToneIcon from "@mui/icons-material/CheckTwoTone";
 
-import { Button, TextField } from "@pishroo/admin-components";
+import { Button, Checkbox, TextField } from "@pishroo/admin-components";
 import TEXTS from "@pishroo/texts";
 import { ITableColumn, Table, Pagination } from "@pishroo/admin-components";
 
@@ -19,9 +19,9 @@ export const ProductListPage: FC = () => {
     loading,
     navigate,
     pageInfo,
-    handleSubmit,
-    onSubmit,
-    reset,
+    handleSubmitFilter,
+    onSubmitFilter,
+    onClearFilter,
     control,
     errors,
     isValid,
@@ -73,8 +73,8 @@ export const ProductListPage: FC = () => {
       <FilterSidebar
         isValid={isValid || !loading}
         disabled={loading}
-        onSubmit={handleSubmit(onSubmit)}
-        onClearClick={() => reset()}
+        onSubmit={handleSubmitFilter(onSubmitFilter)}
+        onClearClick={onClearFilter}
       >
         <Stack spacing={3}>
           <Controller
@@ -100,6 +100,19 @@ export const ProductListPage: FC = () => {
                 error={errors.slug !== undefined}
                 helperText={errors.slug?.message}
                 {...field}
+              />
+            )}
+          />
+          <Controller
+            name="isActive"
+            control={control}
+            render={({ field: { onBlur, onChange, ref, value } }) => (
+              <Checkbox
+                onBlur={onBlur}
+                label={TEXTS.IS_ACTIVE}
+                checked={value}
+                onChange={(_, checked) => onChange(checked)}
+                inputRef={ref}
               />
             )}
           />

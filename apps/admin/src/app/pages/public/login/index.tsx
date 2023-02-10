@@ -51,12 +51,10 @@ export const LoginPage = () => {
           size="large"
           type="submit"
           variant="contained"
-          label="Submit"
+          label={TEXTS.PAGE_LOGIN__LOGIN}
           disabled={!isValid || isLoading}
           loading={isLoading}
-        >
-          {TEXTS.PAGE_LOGIN__LOGIN}
-        </Button>
+        />
       </Stack>
     </form>
   );

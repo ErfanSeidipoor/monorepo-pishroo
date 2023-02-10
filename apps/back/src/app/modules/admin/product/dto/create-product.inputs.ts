@@ -12,6 +12,6 @@ export class CreateProductAdminInputsGQL extends CreateProductAdminInputs {
   @Field()
   isActive: boolean;
 
-  @Field()
-  text: string;
+  @Field({ nullable: true })
+  text?: string;
 }
