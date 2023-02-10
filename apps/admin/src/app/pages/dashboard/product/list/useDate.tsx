@@ -51,17 +51,8 @@ const useData = () => {
     page: Number(searchParams.get("page")) || 1,
   });
 
-  useEffect(() => {
-    setPaginationArgs({
-      page: Number(searchParams.get("page")) || 1,
-    });
-    setQueryArgs({
-      ...convertSearchParamsToArgs(searchParams),
-    });
-  }, [searchParams]);
-
   const {
-    handleSubmit,
+    handleSubmit: handleSubmitFilter,
     reset,
     control,
     formState: { errors, isValid },
@@ -74,18 +65,6 @@ const useData = () => {
       isActive: !!queryArgs.isActive,
     },
   });
-
-  useEffect(() => {
-    setConfig({
-      pageName: TEXTS.PAGE_PRODUCT__PAGE_TITLE,
-      breadcrumbs: {
-        links: [
-          { label: TEXTS.DASHBOARD, href: DASHBOARD_ROUTE },
-          { label: TEXTS.PAGE_PRODUCT__PRODUCT },
-        ],
-      },
-    });
-  }, [setConfig]);
 
   const { loading } = useQuery<
     GetProductsAdminQuery,
@@ -104,7 +83,30 @@ const useData = () => {
     },
   });
 
-  const onSubmit: SubmitHandler<GetProductsAdminArgs> = (loginAdminInputs) => {
+  useEffect(() => {
+    setPaginationArgs({
+      page: Number(searchParams.get("page")) || 1,
+    });
+    setQueryArgs({
+      ...convertSearchParamsToArgs(searchParams),
+    });
+  }, [searchParams]);
+
+  useEffect(() => {
+    setConfig({
+      pageName: TEXTS.PAGE_PRODUCT__PAGE_TITLE,
+      breadcrumbs: {
+        links: [
+          { label: TEXTS.DASHBOARD, href: DASHBOARD_ROUTE },
+          { label: TEXTS.PAGE_PRODUCT__PRODUCT },
+        ],
+      },
+    });
+  }, [setConfig]);
+
+  const onSubmitFilter: SubmitHandler<GetProductsAdminArgs> = (
+    loginAdminInputs
+  ) => {
     navigate(url.generate(DASHBOARD_PRODUCT_ROUTE, {}, loginAdminInputs));
   };
 
@@ -114,15 +116,23 @@ const useData = () => {
     );
   };
 
+  const onClearFilter = () => {
+    reset({
+      name: "",
+      slug: "",
+      isActive: true,
+    });
+  };
+
   return {
     pageInfo,
     rows,
     navigate,
     loading,
     paginationArgs,
-    handleSubmit,
-    onSubmit,
-    reset,
+    handleSubmitFilter,
+    onSubmitFilter,
+    onClearFilter,
     control,
     errors,
     isValid,

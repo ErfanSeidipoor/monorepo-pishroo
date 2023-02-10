@@ -1,17 +1,20 @@
 import {
   FormGroup,
-  FormControlLabelProps,
   Checkbox as MuiCheckbox,
   FormControlLabel as MuiFormControlLabel,
   CheckboxProps,
 } from "@mui/material";
 
-export type ICheckbox = CheckboxProps & FormControlLabelProps;
+export type ICheckbox = CheckboxProps & { label: string };
 
-export const Checkbox: React.FC<ICheckbox> = ({ ...props }) => {
+export const Checkbox: React.FC<ICheckbox> = ({ label, ...props }) => {
   return (
     <FormGroup>
-      <MuiFormControlLabel {...props} control={<MuiCheckbox {...props} />} />
+      <MuiFormControlLabel
+        label={label}
+        sx={{ pl: 1 }}
+        control={<MuiCheckbox {...props} />}
+      />
     </FormGroup>
   );
 };

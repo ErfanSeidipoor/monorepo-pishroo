@@ -7,9 +7,12 @@ const TEXTS = {
   USER: "User",
   NAME: "Name",
   SLUG: "Slug",
+  TEXT: "Text",
   ACTIVATION: "ACTIVATION",
   FILTER: "Filter",
   CLEAR_ALL: "Clear All",
+  CREATE: "Create",
+  IS_ACTIVE: "Is Active",
 
   /* ---------------------------------- lohin --------------------------------- */
   PAGE_LOGIN__PAGE_TTTLE: "Login | Pishroo ",
@@ -44,6 +47,7 @@ const TEXTS = {
   /* ------------------------------- new product ------------------------------ */
   PAGE_NEW_PRODUCT__PAGE_TITLE: "New Prdoduct | Pishroo",
   PAGE_NEW_PRODUCT__NEW_PRODUCT: "New Prdoduct",
+  PAGE_NEW_PRODUCT__SUCCESS: "Product Created Successfully!",
 };
 
 export default TEXTS;

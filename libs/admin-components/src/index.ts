@@ -7,3 +7,4 @@ export * from "./lib/MultipleSelect";
 export * from "./lib/Button";
 export * from "./lib/BreadCrumbs";
 export * from "./lib/Pagination";
+export * from "./lib/Checkbox";

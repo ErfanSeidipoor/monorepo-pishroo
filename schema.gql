@@ -512,7 +512,7 @@ type Mutation {
   updateUserActivationAdmin(updateUserActivationAdmin: UpdateUserActivationAdminInputsGQL!): User!
   updateUserAdmin(updateUserAdmin: UpdateUserAdminInputsGQL!): User!
   updateUserProvincesAdmin(updateUserProvincesAdmin: UpdateUserProvincesAdminInputsGQL!): User!
-  createProductAdmin(createProductAdmin: CreateProductAdminInputsGQL!): Product!
+  createProductAdmin(createProductAdminInputs: CreateProductAdminInputsGQL!): Product!
   updateProductAdmin(updateProductAdmin: UpdateProductAdminInputsGQL!): Product!
   updateProductActivationAdmin(updateProductActivationAdmin: UpdateProductActivationAdminInputsGQL!): Product!
   deleteProductAdmin(deleteProductAdmin: DeleteProductAdminInputsGQL!): Product!
@@ -620,14 +620,14 @@ input CreateProductAdminInputsGQL {
   name: String!
   slug: String!
   isActive: Boolean!
-  text: String!
+  text: String
 }
 
 input UpdateProductAdminInputsGQL {
   name: String!
   slug: String!
   isActive: Boolean!
-  text: String!
+  text: String
   productId: String!
 }
 

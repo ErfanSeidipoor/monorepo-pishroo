@@ -43,7 +43,7 @@ export class ProductResolver {
   @Mutation(() => Product)
   @UseGuards(ProductAdminGuard)
   async createProductAdmin(
-    @Args("createProductAdmin")
+    @Args("createProductAdminInputs")
     inputs: CreateProductAdminInputsGQL
   ): Promise<Product> {
     return await this.productService.createProduct(inputs);
