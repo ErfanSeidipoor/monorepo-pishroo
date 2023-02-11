@@ -460,7 +460,7 @@ type Query {
   getUserByIdAdmin(userId: String!): User
   logoutAdmin: User
   getProductsAdmin(paginationArgs: PaginationArgsGQL!, getProductsAdminArgs: GetProductsAdminArgsGQL!): PaginatedProduct!
-  getProductByIdAdmin(productId: String!): Product
+  getProductByIdAdmin(productId: String!): Product!
   getCategoriesAdmin(paginationArgs: PaginationArgsGQL!, name: String = "", isActive: Boolean): PaginatedCategory
   getCategoryByIdAdmin(categoryId: String!): Category
   getPropertiesAdmin(paginationArgs: PaginationArgsGQL!, name: String = "", isActive: Boolean, units: [PropertyUnitEnum!] = []): PaginatedProperty
@@ -513,7 +513,7 @@ type Mutation {
   updateUserAdmin(updateUserAdmin: UpdateUserAdminInputsGQL!): User!
   updateUserProvincesAdmin(updateUserProvincesAdmin: UpdateUserProvincesAdminInputsGQL!): User!
   createProductAdmin(createProductAdminInputs: CreateProductAdminInputsGQL!): Product!
-  updateProductAdmin(updateProductAdmin: UpdateProductAdminInputsGQL!): Product!
+  updateProductAdmin(updateProductAdminInputs: UpdateProductAdminInputsGQL!): Product!
   updateProductActivationAdmin(updateProductActivationAdmin: UpdateProductActivationAdminInputsGQL!): Product!
   deleteProductAdmin(deleteProductAdmin: DeleteProductAdminInputsGQL!): Product!
   addCategoriesToProductAdmin(addCategoriesToProductAdmin: AddCategoriesToProductAdminInputsGQL!): Product!
@@ -582,6 +582,7 @@ type Mutation {
   deleteMessageAdmin(deleteMessageAdmin: DeleteMessageAdminInputsGQL!): Message!
   createCustomerMessageAdmin(createCustomerMessageAdmin: CreateCustomerMessageAdminInputsGQL!): CustomerMessage!
   deleteCustomerMessageAdmin(deleteCustomerMessageAdmin: DeleteCustomerMessageAdminInputsGQL!): CustomerMessage!
+  removeImageAdmin(removeImageAdmin: RemoveImageAdminInputsGQL!): File!
   uploadFile(file: Upload!): File!
 }
 
@@ -624,11 +625,11 @@ input CreateProductAdminInputsGQL {
 }
 
 input UpdateProductAdminInputsGQL {
+  productId: String!
   name: String!
   slug: String!
   isActive: Boolean!
   text: String
-  productId: String!
 }
 
 input UpdateProductActivationAdminInputsGQL {
@@ -1038,6 +1039,10 @@ input CreateCustomerMessageAdminInputsGQL {
 
 input DeleteCustomerMessageAdminInputsGQL {
   customerMessageId: String!
+}
+
+input RemoveImageAdminInputsGQL {
+  fileId: String!
 }
 
 """The `Upload` scalar type represents a file upload."""

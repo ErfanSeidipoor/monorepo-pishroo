@@ -33,7 +33,7 @@
     "ora" "5.4.1"
     "rxjs" "6.6.7"
 
-"@apollo/client@^3.7.5":
+"@apollo/client@^3.7.0", "@apollo/client@^3.7.5":
   "integrity" "sha512-HEAhX2n2Y8Y2BwRr0UdteT94OTM7pn64K5/rTk/oLIdg/h7R2d83LdsCGDxSH5sBiqDqlv9vou4xdyTxxRWj/g=="
   "resolved" "https://registry.npmjs.org/@apollo/client/-/client-3.7.5.tgz"
   "version" "3.7.5"
@@ -4797,6 +4797,15 @@
   dependencies:
     "@types/node" "*"
 
+"@types/apollo-upload-client@^17.0.2":
+  "integrity" "sha512-NphAiBqzZv3iY8Cq+qWyi0QUFFzJ+nVd7QKI/iKV8RfILrpYDL69F/vlhjn4BNxKlmc3LxJHymcf3gFzLBwuZQ=="
+  "resolved" "https://registry.npmjs.org/@types/apollo-upload-client/-/apollo-upload-client-17.0.2.tgz"
+  "version" "17.0.2"
+  dependencies:
+    "@apollo/client" "^3.7.0"
+    "@types/extract-files" "*"
+    "graphql" "14 - 16"
+
 "@types/aria-query@^4.2.0":
   "integrity" "sha512-HnYpAE1Y6kRyKM/XkEuiRQhTHvkzMBurTHnpFLYLBGPIylZNPs9jJcuOOYWxPLJCSEtmZT0Y8rHDokKN7rRTig=="
   "resolved" "https://registry.npmjs.org/@types/aria-query/-/aria-query-4.2.2.tgz"
@@ -4948,6 +4957,11 @@
     "@types/express-serve-static-core" "^4.17.18"
     "@types/qs" "*"
     "@types/serve-static" "*"
+
+"@types/extract-files@*":
+  "integrity" "sha512-dMJJqBqyhsfJKuK7p7HyyNmki7qj1AlwhUKWx6KrU7i1K2T2SPsUsSUTWFmr/sEM1q8rfR8j5IyUmYrDbrhfjQ=="
+  "resolved" "https://registry.npmjs.org/@types/extract-files/-/extract-files-8.1.1.tgz"
+  "version" "8.1.1"
 
 "@types/fs-capacitor@*":
   "integrity" "sha512-FKVPOCFbhCvZxpVAMhdBdTfVfXUpsh15wFHgqOKxh9N9vzWZVuWCSijZ5T4U34XYNnuj2oduh6xcs1i+LPI+BQ=="
@@ -6268,6 +6282,13 @@
     "@apollo/utils.logger" "^1.0.0"
     "apollo-reporting-protobuf" "^3.3.2"
     "apollo-server-env" "^4.2.1"
+
+"apollo-upload-client@^17.0.0":
+  "integrity" "sha512-pue33bWVbdlXAGFPkgz53TTmxVMrKeQr0mdRcftNY+PoHIdbGZD0hoaXHvO6OePJAkFz7OiCFUf98p1G/9+Ykw=="
+  "resolved" "https://registry.npmjs.org/apollo-upload-client/-/apollo-upload-client-17.0.0.tgz"
+  "version" "17.0.0"
+  dependencies:
+    "extract-files" "^11.0.0"
 
 "app-root-dir@^1.0.2":
   "integrity" "sha512-jlpIfsOoNoafl92Sz//64uQHGSyMrD2vYG5d8o2a4qGvyNCvXur7bzIsWtAC/6flI2RYAp3kv8rsfBtaLm7w0g=="
@@ -10896,7 +10917,7 @@
   "resolved" "https://registry.npmjs.org/graphql-ws/-/graphql-ws-5.5.5.tgz"
   "version" "5.5.5"
 
-"graphql@^16.5.0", "graphql@0.13.1 - 16":
+"graphql@^16.5.0", "graphql@0.13.1 - 16", "graphql@14 - 16":
   "integrity" "sha512-qbHgh8Ix+j/qY+a/ZcJnFQ+j8ezakqPiHwPiZhV/3PgGlgf96QMBB5/f2rkiC9sgLoy/xvT6TSiaf2nTHJh5iA=="
   "resolved" "https://registry.npmjs.org/graphql/-/graphql-16.5.0.tgz"
   "version" "16.5.0"

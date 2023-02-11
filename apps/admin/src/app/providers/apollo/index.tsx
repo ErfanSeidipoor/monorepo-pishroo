@@ -4,20 +4,21 @@ import {
   ApolloClient,
   InMemoryCache,
   ApolloProvider as Provider,
-  HttpLink,
 } from "@apollo/client";
+
+import { createUploadLink } from "apollo-upload-client";
 
 export const ApolloProvider: FC<{
   children: React.ReactNode;
 }> = ({ children }) => {
   const client = new ApolloClient({
-    link: new HttpLink({
+    link: createUploadLink({
       uri: process.env["NX_BACK_URL"] + "/graphql",
       credentials: "include",
     }),
-    // uri: process.env["NX_BACK_URL"],
-    cache: new InMemoryCache(),
-    // credentials: "include",
+    cache: new InMemoryCache({
+      dataIdFromObject: (object) => object["id"] as string,
+    }),
   });
 
   return <Provider client={client}>{children}</Provider>;

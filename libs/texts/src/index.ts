@@ -12,7 +12,18 @@ const TEXTS = {
   FILTER: "Filter",
   CLEAR_ALL: "Clear All",
   CREATE: "Create",
+  UPDATE: "Update",
   IS_ACTIVE: "Is Active",
+  ACTIONS: "Actions",
+  DEACTIVE: "Deactive",
+  ACTIVE: "Active",
+  CONFIRM: "Confirm",
+  CANCEL: "Cancel",
+  DEACTIVE_WARNING_MESSAGE: "Are You Sure to Deactive ?",
+  ACTIVE_WARNING_MESSAGE: "Are You Sure to Active ?",
+
+  /* ----------------------------- image compoent ----------------------------- */
+  COMPONENT_IMAGE_REMOVED_SUCCESS: "Image removed Succesfully!",
 
   /* ---------------------------------- lohin --------------------------------- */
   PAGE_LOGIN__PAGE_TTTLE: "Login | Pishroo ",
@@ -48,6 +59,12 @@ const TEXTS = {
   PAGE_NEW_PRODUCT__PAGE_TITLE: "New Prdoduct | Pishroo",
   PAGE_NEW_PRODUCT__NEW_PRODUCT: "New Prdoduct",
   PAGE_NEW_PRODUCT__SUCCESS: "Product Created Successfully!",
+
+  /* ----------------------------- product details ---------------------------- */
+  PAGE_PRODUCT_UPDATE__PAGE_TITLE: "Prdoduct Details | Pishroo",
+  PAGE_PRODUCT_UPDATE__UPDATE_PRODUCT: "Update Product",
+  PAGE_PRODUCT_UPDATE__IMAGES: "Images",
+  PAGE_PRODUCT_UPDATE__SUCCESS: "Product Updated Successfully!",
 };
 
 export default TEXTS;

@@ -48,3 +48,16 @@ export const QUERY_GET_PRODUCTS_ADMIN = gql`
     }
   }
 `;
+
+export const MUTATION_UPDATE_PRODUCT_ACTIVATION_ADMIN = gql`
+  mutation updateProductActivationAdmin(
+    $updateProductActivationAdmin: UpdateProductActivationAdminInputsGQL!
+  ) {
+    updateProductActivationAdmin(
+      updateProductActivationAdmin: $updateProductActivationAdmin
+    ) {
+      id
+      isActive
+    }
+  }
+`;

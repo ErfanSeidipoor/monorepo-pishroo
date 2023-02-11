@@ -1,21 +1,24 @@
 import { useDashboardLayout } from "@admin/hooks";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useMutation } from "@apollo/client";
+import { useSnackbar } from "notistack";
+import { classValidatorResolver } from "@hookform/resolvers/class-validator";
 
-import { DASHBOARD_PRODUCT_ROUTE, DASHBOARD_ROUTE } from "@admin/constants";
+import {
+  DASHBOARD_PRODUCT_DETAILS,
+  DASHBOARD_PRODUCT_ROUTE,
+  DASHBOARD_ROUTE,
+} from "@admin/constants";
 import {
   CreateProductAdminMutation,
   CreateProductAdminMutationVariables,
 } from "@admin/gql/graphql";
-import { useMutation } from "@apollo/client";
 
 import { CreateProductAdminInputs } from "@pishroo/dto";
 import TEXTS from "@pishroo/texts";
-import { useSnackbar } from "notistack";
-
-import { useNavigate } from "react-router-dom";
-
-import { classValidatorResolver } from "@hookform/resolvers/class-validator";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { url } from "@pishroo/utils";
 import { MUTATION_CREATE_PRODUCT_ADMIN } from "./gql";
 
 const useData = () => {
@@ -61,13 +64,14 @@ const useData = () => {
   >(MUTATION_CREATE_PRODUCT_ADMIN, {
     onError: (error) => {
       enqueueSnackbar(error.message, { variant: "error" });
-      // dispatch(signInFailed(error));
     },
     onCompleted: (response) => {
-      console.log({ response });
+      const {
+        createProductAdmin: { id },
+      } = response;
 
       enqueueSnackbar(TEXTS.PAGE_NEW_PRODUCT__SUCCESS, { variant: "success" });
-      navigate(DASHBOARD_PRODUCT_ROUTE);
+      navigate(url.generate(DASHBOARD_PRODUCT_DETAILS, { productId: id }));
     },
   });
 
@@ -75,7 +79,6 @@ const useData = () => {
     createProductAdminInputs
   ) => {
     createProductAdmin({ variables: { createProductAdminInputs } });
-    console.log(createProductAdminInputs);
   };
 
   return {
