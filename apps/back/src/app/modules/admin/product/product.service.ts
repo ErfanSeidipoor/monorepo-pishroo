@@ -122,6 +122,7 @@ export class ProductService {
     }
 
     /* ------------------------ checking name duplication ----------------------- */
+
     if (name !== product.name) {
       const nameDuplication = await this.productRepo.findOne({
         where: {

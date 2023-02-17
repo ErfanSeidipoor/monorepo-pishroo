@@ -48,7 +48,7 @@ export const Routes = () =>
             },
             {
               path: DASHBOARD_PRODUCT_DETAILS,
-              element: <ProductDetailsPage />,
+              element: <ProductUpdatePage />,
             },
             {
               path: DASHBOARD_PRODUCT_ROUTE,
@@ -100,6 +100,6 @@ const ProductListPage = Loadable(
 const ProductNewPage = Loadable(
   lazy(() => import("./dashboard/product/new-product"))
 );
-const ProductDetailsPage = Loadable(
-  lazy(() => import("./dashboard/product/details"))
+const ProductUpdatePage = Loadable(
+  lazy(() => import("./dashboard/product/update"))
 );

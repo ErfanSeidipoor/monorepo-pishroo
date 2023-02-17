@@ -4,7 +4,7 @@ import { Controller, Get, Param, Res, UseGuards } from "@nestjs/common";
 import { Response } from "express";
 import { FileService } from "./file.service";
 
-@Controller("file")
+@Controller("/file")
 export class FileController {
   constructor(private fileService: FileService) {}
 

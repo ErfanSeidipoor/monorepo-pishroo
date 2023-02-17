@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Stack, Typography } from "@mui/material";
+import { Stack, Typography, Box } from "@mui/material";
 import { Controller } from "react-hook-form";
 
 import { Button, TextField, Checkbox } from "@pishroo/admin-components";
@@ -7,14 +7,14 @@ import TEXTS from "@pishroo/texts";
 
 import useData from "./useDate";
 
-export const NewProductPage: FC = () => {
+export const ProductDetails: FC = () => {
   const { isValid, control, errors, handleSubmit, onSubmit, loading } =
     useData();
 
   return (
-    <>
-      <Typography variant="h4" sx={{ mb: 3 }}>
-        {TEXTS.PAGE_NEW_PRODUCT__NEW_PRODUCT}
+    <Box sx={{ mb: 3 }}>
+      <Typography variant="h4" sx={{ mb: 2 }}>
+        {TEXTS.PAGE_PRODUCT_UPDATE__UPDATE_PRODUCT}
       </Typography>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Stack spacing={3}>
@@ -80,14 +80,14 @@ export const NewProductPage: FC = () => {
             size="large"
             type="submit"
             variant="contained"
-            label={TEXTS.CREATE}
+            label={TEXTS.UPDATE}
             disabled={!isValid || loading}
             loading={loading}
           />
         </Stack>
       </form>
-    </>
+    </Box>
   );
 };
 
-export default NewProductPage;
+export default ProductDetails;

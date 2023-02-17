@@ -1,14 +1,26 @@
 import { FC } from "react";
-import { Typography, Stack } from "@mui/material";
+import {
+  Typography,
+  Stack,
+  Chip,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogContentText,
+  DialogActions,
+} from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import { Controller } from "react-hook-form";
-import CheckTwoToneIcon from "@mui/icons-material/CheckTwoTone";
+import {
+  CheckTwoTone as CheckTwoToneIcon,
+  EditTwoTone as EditTwoToneIcon,
+} from "@mui/icons-material";
 
 import { Button, Checkbox, TextField } from "@pishroo/admin-components";
 import TEXTS from "@pishroo/texts";
 import { ITableColumn, Table, Pagination } from "@pishroo/admin-components";
 
-import FilterSidebar from "@admin/components/filter-sidebar";
+import { FilterSidebar, TableCellAction } from "@admin/components";
 import { DASHBOARD_PRODUCT_NEW_PRODUCT_ROUTE } from "@admin/constants";
 
 import useData from "./useDate";
@@ -26,6 +38,10 @@ export const ProductListPage: FC = () => {
     errors,
     isValid,
     onPageSelect,
+    onEdit,
+    activationItem,
+    setActivationItem,
+    onUpdateProductActivation,
   } = useData();
 
   const columns: ITableColumn<typeof rows[0]>[] = [
@@ -34,9 +50,34 @@ export const ProductListPage: FC = () => {
     {
       name: "isActive",
       cell: (item) => (
-        <CheckTwoToneIcon color={item.isActive ? "success" : "error"} />
+        <Chip
+          label={item.isActive ? TEXTS.ACTIVE : TEXTS.DEACTIVE}
+          color={item.isActive ? "success" : "error"}
+        />
       ),
       label: TEXTS.ACTIVATION,
+    },
+    {
+      name: "actions",
+      cell: (item) => (
+        <TableCellAction
+          actions={[
+            {
+              label: TEXTS.UPDATE,
+              icon: <EditTwoToneIcon />,
+              onClick: () => onEdit(item.id),
+            },
+            {
+              label: item.isActive ? TEXTS.DEACTIVE : TEXTS.ACTIVE,
+              icon: (
+                <CheckTwoToneIcon color={item.isActive ? "error" : "success"} />
+              ),
+              onClick: () => setActivationItem(item),
+            },
+          ]}
+        />
+      ),
+      label: TEXTS.ACTIONS,
     },
   ];
 
@@ -139,8 +180,43 @@ export const ProductListPage: FC = () => {
     );
   };
 
+  const renderDeleteDialog = () => {
+    return (
+      <Dialog
+        fullWidth
+        maxWidth={"sm"}
+        open={!!activationItem}
+        onClose={() => setActivationItem(undefined)}
+      >
+        <DialogTitle fontSize={20} mb={2}>
+          {activationItem?.isActive ? TEXTS.DEACTIVE : TEXTS.ACTIVE}
+        </DialogTitle>
+
+        <DialogContent>
+          <DialogContentText fontSize={18} mb={1}>
+            {activationItem?.isActive
+              ? TEXTS.DEACTIVE_WARNING_MESSAGE
+              : TEXTS.ACTIVE_WARNING_MESSAGE}
+          </DialogContentText>
+          <DialogContentText fontSize={18}>
+            {TEXTS.NAME}: {activationItem?.name}
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button
+            onClick={() => setActivationItem(undefined)}
+            label={TEXTS.CANCEL}
+            color="inherit"
+          />
+          <Button onClick={onUpdateProductActivation} label={TEXTS.CONFIRM} />
+        </DialogActions>
+      </Dialog>
+    );
+  };
+
   return (
     <>
+      {renderDeleteDialog()}
       {renderActions()}
       {renderTable()}
       {renderPagination()}

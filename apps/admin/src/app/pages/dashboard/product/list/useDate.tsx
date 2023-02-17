@@ -4,27 +4,41 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { classValidatorResolver } from "@hookform/resolvers/class-validator";
 import { useEffect, useState } from "react";
 import { useSnackbar } from "notistack";
-import { useQuery } from "@apollo/client";
-
-import { DASHBOARD_PRODUCT_ROUTE, DASHBOARD_ROUTE } from "@admin/constants";
-import {
-  GetProductsAdminArgsGql,
-  GetProductsAdminQuery,
-  GetProductsAdminQueryVariables,
-  PaginationArgsGql,
-} from "@admin/gql/graphql";
+import { useMutation, useQuery } from "@apollo/client";
 
 import TEXTS from "@pishroo/texts";
 import { GetProductsAdminArgs } from "@pishroo/dto";
 import { url } from "@pishroo/utils";
 
-import { QUERY_GET_PRODUCTS_ADMIN } from "./gql";
+import {
+  DASHBOARD_PRODUCT_DETAILS,
+  DASHBOARD_PRODUCT_ROUTE,
+  DASHBOARD_ROUTE,
+} from "@admin/constants";
+import {
+  GetProductsAdminArgsGql,
+  GetProductsAdminQuery,
+  GetProductsAdminQueryVariables,
+  PaginationArgsGql,
+  UpdateProductActivationAdminMutation,
+  UpdateProductActivationAdminMutationVariables,
+} from "@admin/gql/graphql";
+
+import {
+  QUERY_GET_PRODUCTS_ADMIN,
+  MUTATION_UPDATE_PRODUCT_ACTIVATION_ADMIN,
+} from "./gql";
 
 const useData = () => {
   const { setConfig } = useDashboardLayout();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const { enqueueSnackbar } = useSnackbar();
+  const [rows, setRows] = useState<
+    GetProductsAdminQuery["getProductsAdmin"]["edges"]
+  >([]);
+
+  const [activationItem, setActivationItem] = useState<typeof rows[0]>();
 
   const convertSearchParamsToArgs = (searchParams: URLSearchParams) => {
     return {
@@ -35,10 +49,6 @@ const useData = () => {
         : true,
     };
   };
-
-  const [rows, setRows] = useState<
-    GetProductsAdminQuery["getProductsAdmin"]["edges"]
-  >([]);
 
   const [pageInfo, setPageInfo] =
     useState<GetProductsAdminQuery["getProductsAdmin"]["pageInfo"]>();
@@ -83,6 +93,23 @@ const useData = () => {
     },
   });
 
+  const [
+    updateProductActivationAdmin,
+    { loading: updateProductActivaitonLoading },
+  ] = useMutation<
+    UpdateProductActivationAdminMutation,
+    UpdateProductActivationAdminMutationVariables
+  >(MUTATION_UPDATE_PRODUCT_ACTIVATION_ADMIN, {
+    onError: (error) => {
+      enqueueSnackbar(error.message, { variant: "error" });
+    },
+    onCompleted: (res) => {
+      console.log(res);
+
+      setActivationItem(undefined);
+    },
+  });
+
   useEffect(() => {
     setPaginationArgs({
       page: Number(searchParams.get("page")) || 1,
@@ -124,6 +151,21 @@ const useData = () => {
     });
   };
 
+  const onEdit = (productId: string) => {
+    navigate(url.generate(DASHBOARD_PRODUCT_DETAILS, { productId }));
+  };
+
+  const onUpdateProductActivation = () => {
+    if (activationItem)
+      updateProductActivationAdmin({
+        variables: {
+          updateProductActivationAdmin: {
+            isActive: !activationItem?.isActive,
+            productId: activationItem?.id,
+          },
+        },
+      });
+  };
   return {
     pageInfo,
     rows,
@@ -137,6 +179,11 @@ const useData = () => {
     errors,
     isValid,
     onPageSelect,
+    onEdit,
+    activationItem,
+    setActivationItem,
+    updateProductActivaitonLoading,
+    onUpdateProductActivation,
   };
 };
 

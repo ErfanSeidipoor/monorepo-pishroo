@@ -52,7 +52,7 @@ export class ProductResolver {
   @Mutation(() => Product)
   @UseGuards(ProductAdminGuard)
   async updateProductAdmin(
-    @Args("updateProductAdmin")
+    @Args("updateProductAdminInputs")
     inputs: UpdateProductAdminInputsGQL
   ): Promise<Product> {
     return await this.productService.updateProduct(inputs);
@@ -94,7 +94,7 @@ export class ProductResolver {
     return this.productService.getProducts(paginationArgs, args);
   }
 
-  @Query(() => Product, { nullable: true })
+  @Query(() => Product, { nullable: false })
   @UseGuards(ProductAdminGuard)
   async getProductByIdAdmin(
     @Args() getProductByIdAdminArgs: GetProductByIdAdminArgsGQL

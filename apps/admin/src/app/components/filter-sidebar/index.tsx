@@ -16,7 +16,7 @@ import TEXTS from "@pishroo/texts";
 
 import Scrollbar from "../scrollbar";
 
-const FilterSidebar: FC<{
+export const FilterSidebar: FC<{
   children: React.ReactNode;
   onFilterClick?: () => void;
   onClearClick?: () => void;

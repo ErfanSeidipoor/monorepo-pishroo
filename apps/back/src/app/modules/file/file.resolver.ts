@@ -7,11 +7,21 @@ import { createWriteStream } from "fs";
 import * as GraphQLUpload from "graphql-upload/GraphQLUpload.js";
 import path = require("path");
 import { v4 as uuid } from "uuid";
+import { RemoveImageAdminInputsGQL } from "./dto";
 import { FileService } from "./file.service";
 
 @Resolver()
 export class FileResolver {
   constructor(private fileService: FileService) {}
+
+  @Mutation(() => File)
+  @UseGuards(AdminGuard)
+  async removeImageAdmin(
+    @Args("removeImageAdmin")
+    inputs: RemoveImageAdminInputsGQL
+  ): Promise<File> {
+    return await this.fileService.removeImage(inputs);
+  }
 
   @Mutation(() => File)
   @UseGuards(AdminGuard)
