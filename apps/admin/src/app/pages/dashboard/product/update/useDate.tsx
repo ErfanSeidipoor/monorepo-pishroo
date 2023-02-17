@@ -1,4 +1,3 @@
-import { useDashboardLayout } from "@admin/hooks";
 import { useQuery } from "@apollo/client";
 import { useSnackbar } from "notistack";
 import { useEffect } from "react";
@@ -6,6 +5,7 @@ import { useParams } from "react-router-dom";
 
 import TEXTS from "@pishroo/texts";
 
+import { useDashboardLayout } from "@admin/hooks";
 import { DASHBOARD_PRODUCT_ROUTE, DASHBOARD_ROUTE } from "@admin/constants";
 import {
   GetProductByIdAdminQuery,

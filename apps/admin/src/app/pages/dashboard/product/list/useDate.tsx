@@ -6,6 +6,10 @@ import { useEffect, useState } from "react";
 import { useSnackbar } from "notistack";
 import { useMutation, useQuery } from "@apollo/client";
 
+import TEXTS from "@pishroo/texts";
+import { GetProductsAdminArgs } from "@pishroo/dto";
+import { url } from "@pishroo/utils";
+
 import {
   DASHBOARD_PRODUCT_DETAILS,
   DASHBOARD_PRODUCT_ROUTE,
@@ -19,10 +23,6 @@ import {
   UpdateProductActivationAdminMutation,
   UpdateProductActivationAdminMutationVariables,
 } from "@admin/gql/graphql";
-
-import TEXTS from "@pishroo/texts";
-import { GetProductsAdminArgs } from "@pishroo/dto";
-import { url } from "@pishroo/utils";
 
 import {
   QUERY_GET_PRODUCTS_ADMIN,
