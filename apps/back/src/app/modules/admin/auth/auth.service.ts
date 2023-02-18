@@ -271,7 +271,7 @@ export class AuthService {
     }
 
     if (roles && roles.length) {
-      queryBuilder.andWhere("user.roles <@:roles", {
+      queryBuilder.andWhere("user.roles <:roles", {
         roles: [UserRoleEnum.admin_content, UserRoleEnum.supper_admin],
       });
     }

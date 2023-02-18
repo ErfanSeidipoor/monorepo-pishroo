@@ -456,7 +456,7 @@ type PaginatedUser {
 type Query {
   loginAdmin(loginAdminInputs: LoginAdminInputsGQL!): User!
   meAdmin: User
-  getUsersAdmin(paginationArgs: PaginationArgsGQL!, name: String = "", email: String = "", phone: String = "", roles: [UserRoleEnum!] = [], isActive: Boolean): PaginatedUser
+  getUsersAdmin(paginationArgs: PaginationArgsGQL!, getUsersAdminArgs: GetUsersAdminArgsGQL!): PaginatedUser!
   getUserByIdAdmin(userId: String!): User
   logoutAdmin: User
   getProductsAdmin(paginationArgs: PaginationArgsGQL!, getProductsAdminArgs: GetProductsAdminArgsGQL!): PaginatedProduct!
@@ -499,6 +499,14 @@ input LoginAdminInputsGQL {
 input PaginationArgsGQL {
   limit: Int = 10
   page: Int = 1
+}
+
+input GetUsersAdminArgsGQL {
+  name: String = ""
+  email: String = ""
+  phone: String = ""
+  roles: [UserRoleEnum!] = []
+  isActive: Boolean
 }
 
 input GetProductsAdminArgsGQL {

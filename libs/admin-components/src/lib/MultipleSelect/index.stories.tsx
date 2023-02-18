@@ -75,3 +75,41 @@ Disabled.args = {
     { value: 2, label: "two" },
   ],
 };
+
+/* ---------------------------------- enum ---------------------------------- */
+
+export enum OptionsEnum {
+  option1 = "option1",
+  option2 = "option2",
+  option3 = "option3",
+  option4 = "option4",
+  option5 = "option5",
+  option6 = "option6",
+  option7 = "option7",
+}
+
+const TemplateEnum: ComponentStory<typeof MultipleSelect<OptionsEnum>> = (
+  args
+) => {
+  const [selectedItems, setSelectedItems] = useState<OptionsEnum[]>([]);
+
+  return (
+    <MultipleSelect
+      selectedItems={selectedItems}
+      {...args}
+      onSelectItems={(items) => {
+        setSelectedItems(items);
+      }}
+    />
+  );
+};
+
+export const Enum = TemplateEnum.bind({});
+Enum.args = {
+  label: "disabled",
+  labelId: "disabled-simple-select-readonly-label",
+  getLabel: (item) => item.toString(),
+  getValue: (item) =>
+    Object.values(OptionsEnum).findIndex((item_) => item === item_),
+  items: Object.values(OptionsEnum),
+};

@@ -6,7 +6,11 @@ import DashboardTwoToneIcon from "@mui/icons-material/DashboardTwoTone";
 import PermIdentityTwoToneIcon from "@mui/icons-material/PermIdentityTwoTone";
 
 import TEXTS from "@pishroo/texts";
-import { DASHBOARD_PRODUCT_ROUTE, DASHBOARD_ROUTE } from "@admin/constants";
+import {
+  DASHBOARD_PRODUCT_ROUTE,
+  DASHBOARD_ROUTE,
+  DASHBOARD_USER_ROUTE,
+} from "@admin/constants";
 
 import { StyledNavItem, StyledNavItemIcon } from "./style";
 
@@ -26,7 +30,7 @@ export const NavSection: FC = () => {
     },
     {
       title: TEXTS.USER,
-      path: DASHBOARD_PRODUCT_ROUTE,
+      path: DASHBOARD_USER_ROUTE,
       icon: <PermIdentityTwoToneIcon />,
     },
   ];
