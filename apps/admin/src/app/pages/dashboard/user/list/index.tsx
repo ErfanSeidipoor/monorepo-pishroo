@@ -27,7 +27,7 @@ import TEXTS from "@pishroo/texts";
 import { ITableColumn, Table, Pagination } from "@pishroo/admin-components";
 
 import { FilterSidebar, TableCellAction } from "@admin/components";
-import { DASHBOARD_PRODUCT_NEW_PRODUCT_ROUTE } from "@admin/constants";
+import { DASHBOARD_USER_NEW_USER_ROUTE } from "@admin/constants";
 
 import useData from "./useDate";
 
@@ -47,7 +47,7 @@ export const UserListPage: FC = () => {
     onEdit,
     activationItem,
     setActivationItem,
-    onUpdateProductActivation,
+    onUpdateUserActivation,
   } = useData();
 
   const columns: ITableColumn<typeof rows[0]>[] = [
@@ -111,14 +111,14 @@ export const UserListPage: FC = () => {
           justifyContent="center"
           spacing={2}
         >
-          <Typography variant="h4">{TEXTS.PAGE_PRODUCT__PRODUCT}</Typography>
+          <Typography variant="h4">{TEXTS.PAGE_USER__USER}</Typography>
           {renderFilterSidebar()}
         </Stack>
         <Button
           variant="outlined"
-          label={TEXTS.PAGE_PRODUCT__NEW_PRODUCT}
+          label={TEXTS.PAGE_USER__NEW_USER}
           color="secondary"
-          onClick={() => navigate(DASHBOARD_PRODUCT_NEW_PRODUCT_ROUTE)}
+          onClick={() => navigate(DASHBOARD_USER_NEW_USER_ROUTE)}
           startIcon={<AddIcon />}
         ></Button>
       </Stack>
@@ -256,7 +256,7 @@ export const UserListPage: FC = () => {
             label={TEXTS.CANCEL}
             color="inherit"
           />
-          <Button onClick={onUpdateProductActivation} label={TEXTS.CONFIRM} />
+          <Button onClick={onUpdateUserActivation} label={TEXTS.CONFIRM} />
         </DialogActions>
       </Dialog>
     );

@@ -68,7 +68,8 @@ export class AuthResolver {
   @Mutation(() => User)
   @UseGuards(SuperAdminGuard)
   async createUserAdmin(
-    @Args("createUserAdmin") CreateUserAdminInputs: CreateUserAdminInputsGQL
+    @Args("createUserAdminInputs")
+    CreateUserAdminInputs: CreateUserAdminInputsGQL
   ): Promise<User> {
     return await this.authService.createUser(CreateUserAdminInputs);
   }
@@ -87,7 +88,7 @@ export class AuthResolver {
   @Mutation(() => User)
   @UseGuards(SuperAdminGuard)
   async updateUserAdmin(
-    @Args("updateUserAdmin")
+    @Args("updateUserAdminInputs")
     updateUserAdminInputs: UpdateUserAdminInputsGQL
   ): Promise<User> {
     return await this.authService.updateUser(updateUserAdminInputs);

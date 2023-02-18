@@ -21,13 +21,13 @@ import {
   GetUsersAdminQuery,
   GetUsersAdminQueryVariables,
   PaginationArgsGql,
-  UpdateProductActivationAdminMutation,
-  UpdateProductActivationAdminMutationVariables,
+  UpdateUserActivationAdminMutation,
+  UpdateUserActivationAdminMutationVariables,
 } from "@admin/gql/graphql";
 
 import {
   QUERY_GET_USERS_ADMIN,
-  MUTATION_UPDATE_PRODUCT_ACTIVATION_ADMIN,
+  MUTATION_UPDATE_USER_ACTIVATION_ADMIN,
 } from "./gql";
 
 const useData = () => {
@@ -96,22 +96,20 @@ const useData = () => {
     }
   );
 
-  const [
-    updateProductActivationAdmin,
-    { loading: updateProductActivaitonLoading },
-  ] = useMutation<
-    UpdateProductActivationAdminMutation,
-    UpdateProductActivationAdminMutationVariables
-  >(MUTATION_UPDATE_PRODUCT_ACTIVATION_ADMIN, {
-    onError: (error) => {
-      enqueueSnackbar(error.message, { variant: "error" });
-    },
-    onCompleted: (res) => {
-      console.log(res);
+  const [updateUserActivationAdmin, { loading: updateUserActivaitonLoading }] =
+    useMutation<
+      UpdateUserActivationAdminMutation,
+      UpdateUserActivationAdminMutationVariables
+    >(MUTATION_UPDATE_USER_ACTIVATION_ADMIN, {
+      onError: (error) => {
+        enqueueSnackbar(error.message, { variant: "error" });
+      },
+      onCompleted: (res) => {
+        console.log(res);
 
-      setActivationItem(undefined);
-    },
-  });
+        setActivationItem(undefined);
+      },
+    });
 
   useEffect(() => {
     setPaginationArgs({
@@ -156,17 +154,17 @@ const useData = () => {
     });
   };
 
-  const onEdit = (productId: string) => {
-    navigate(url.generate(DASHBOARD_USER_DETAILS, { productId }));
+  const onEdit = (userId: string) => {
+    navigate(url.generate(DASHBOARD_USER_DETAILS, { userId }));
   };
 
-  const onUpdateProductActivation = () => {
+  const onUpdateUserActivation = () => {
     if (activationItem)
-      updateProductActivationAdmin({
+      updateUserActivationAdmin({
         variables: {
-          updateProductActivationAdmin: {
+          updateUserActivationAdmin: {
             isActive: !activationItem?.isActive,
-            productId: activationItem?.id,
+            userId: activationItem?.id,
           },
         },
       });
@@ -187,8 +185,8 @@ const useData = () => {
     onEdit,
     activationItem,
     setActivationItem,
-    updateProductActivaitonLoading,
-    onUpdateProductActivation,
+    updateUserActivaitonLoading,
+    onUpdateUserActivation,
   };
 };
 
