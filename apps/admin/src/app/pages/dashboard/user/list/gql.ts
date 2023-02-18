@@ -33,12 +33,12 @@ export const QUERY_GET_USERS_ADMIN = gql`
   }
 `;
 
-export const MUTATION_UPDATE_PRODUCT_ACTIVATION_ADMIN = gql`
-  mutation updateProductActivationAdmin(
-    $updateProductActivationAdmin: UpdateProductActivationAdminInputsGQL!
+export const MUTATION_UPDATE_USER_ACTIVATION_ADMIN = gql`
+  mutation updateUserActivationAdmin(
+    $updateUserActivationAdmin: UpdateUserActivationAdminInputsGQL!
   ) {
-    updateProductActivationAdmin(
-      updateProductActivationAdmin: $updateProductActivationAdmin
+    updateUserActivationAdmin(
+      updateUserActivationAdmin: $updateUserActivationAdmin
     ) {
       id
       isActive

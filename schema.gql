@@ -516,9 +516,9 @@ input GetProductsAdminArgsGQL {
 }
 
 type Mutation {
-  createUserAdmin(createUserAdmin: CreateUserAdminInputsGQL!): User!
+  createUserAdmin(createUserAdminInputs: CreateUserAdminInputsGQL!): User!
   updateUserActivationAdmin(updateUserActivationAdmin: UpdateUserActivationAdminInputsGQL!): User!
-  updateUserAdmin(updateUserAdmin: UpdateUserAdminInputsGQL!): User!
+  updateUserAdmin(updateUserAdminInputs: UpdateUserAdminInputsGQL!): User!
   updateUserProvincesAdmin(updateUserProvincesAdmin: UpdateUserProvincesAdminInputsGQL!): User!
   createProductAdmin(createProductAdminInputs: CreateProductAdminInputsGQL!): Product!
   updateProductAdmin(updateProductAdminInputs: UpdateProductAdminInputsGQL!): Product!

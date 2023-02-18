@@ -1,26 +1,21 @@
 import { FC } from "react";
-import { Stack, Typography } from "@mui/material";
+import { Stack, Typography, Box } from "@mui/material";
 import { Controller } from "react-hook-form";
 
-import {
-  Button,
-  TextField,
-  Checkbox,
-  MultipleSelect,
-} from "@pishroo/admin-components";
+import { Button, TextField, MultipleSelect } from "@pishroo/admin-components";
 import TEXTS from "@pishroo/texts";
 
 import useData from "./useDate";
 import { UserRoleEnum } from "@pishroo/enums";
 
-export const NewProductPage: FC = () => {
+export const ProductDetails: FC = () => {
   const { isValid, control, errors, handleSubmit, onSubmit, loading } =
     useData();
 
   return (
-    <>
-      <Typography variant="h4" sx={{ mb: 3 }}>
-        {TEXTS.PAGE_NEW_USER__NEW_USER}
+    <Box sx={{ mb: 3 }}>
+      <Typography variant="h4" sx={{ mb: 2 }}>
+        {TEXTS.PAGE_USER_UPDATE__UPDATE_USER}
       </Typography>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Stack spacing={3}>
@@ -95,20 +90,6 @@ export const NewProductPage: FC = () => {
             )}
           />
           <Controller
-            name="password"
-            control={control}
-            render={({ field }) => (
-              <TextField
-                placeholder={TEXTS.PASSWORD}
-                label={TEXTS.PASSWORD}
-                error={errors.password !== undefined}
-                helperText={errors.password?.message}
-                {...field}
-                disabled={loading}
-              />
-            )}
-          />
-          <Controller
             name="roles"
             control={control}
             render={({ field: { onBlur, onChange, ref, value } }) => (
@@ -127,33 +108,19 @@ export const NewProductPage: FC = () => {
               />
             )}
           />
-          <Controller
-            name="isActive"
-            control={control}
-            render={({ field: { onBlur, onChange, ref, value } }) => (
-              <Checkbox
-                onBlur={onBlur}
-                label={TEXTS.IS_ACTIVE}
-                checked={value}
-                onChange={(_, checked) => onChange(checked)}
-                inputRef={ref}
-                disabled={loading}
-              />
-            )}
-          />
           <Button
             fullWidth
             size="large"
             type="submit"
             variant="contained"
-            label={TEXTS.CREATE}
+            label={TEXTS.UPDATE}
             disabled={!isValid || loading}
             loading={loading}
           />
         </Stack>
       </form>
-    </>
+    </Box>
   );
 };
 
-export default NewProductPage;
+export default ProductDetails;

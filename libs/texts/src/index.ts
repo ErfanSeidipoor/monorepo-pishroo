@@ -1,6 +1,8 @@
 const TEXTS = {
   /* --------------------------------- general -------------------------------- */
   USERNAME: "Username",
+  FIRSTNAME: "First name",
+  LASTNAME: "Last name",
   PASSWORD: "Password",
   PRODUCT: "Product",
   DASHBOARD: "Dashboard",
