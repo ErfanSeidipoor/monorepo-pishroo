@@ -43,11 +43,11 @@ export class AuthResolver {
     return await this.authService.me(userId);
   }
 
-  @Query(() => PaginatedUser, { nullable: true })
+  @Query(() => PaginatedUser, { nullable: false })
   @UseGuards(AdminGuard)
   async getUsersAdmin(
     @Args("paginationArgs") paginationArgs: PaginationArgsGQL,
-    @Args() getUsersAdminArgs: GetUsersAdminArgsGQL
+    @Args("getUsersAdminArgs") getUsersAdminArgs: GetUsersAdminArgsGQL
   ) {
     return this.authService.getUsers(paginationArgs, getUsersAdminArgs);
   }

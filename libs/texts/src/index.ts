@@ -6,6 +6,9 @@ const TEXTS = {
   DASHBOARD: "Dashboard",
   USER: "User",
   NAME: "Name",
+  EMAIL: "Email",
+  PHONE: "Phone",
+  USERNMAE: "Username",
   SLUG: "Slug",
   TEXT: "Text",
   ACTIVATION: "ACTIVATION",
@@ -14,11 +17,13 @@ const TEXTS = {
   CREATE: "Create",
   UPDATE: "Update",
   IS_ACTIVE: "Is Active",
+  ROLE: "Role",
   ACTIONS: "Actions",
   DEACTIVE: "Deactive",
   ACTIVE: "Active",
   CONFIRM: "Confirm",
   CANCEL: "Cancel",
+  IMAGES: "Images",
   DEACTIVE_WARNING_MESSAGE: "Are You Sure to Deactive ?",
   ACTIVE_WARNING_MESSAGE: "Are You Sure to Active ?",
 
@@ -63,8 +68,22 @@ const TEXTS = {
   /* ----------------------------- product details ---------------------------- */
   PAGE_PRODUCT_UPDATE__PAGE_TITLE: "Prdoduct Details | Pishroo",
   PAGE_PRODUCT_UPDATE__UPDATE_PRODUCT: "Update Product",
-  PAGE_PRODUCT_UPDATE__IMAGES: "Images",
   PAGE_PRODUCT_UPDATE__SUCCESS: "Product Updated Successfully!",
+
+  /* ---------------------------------- user ---------------------------------- */
+  PAGE_USER__PAGE_TITLE: "User | Pishroo",
+  PAGE_USER__USER: "User",
+  PAGE_USER__NEW_USER: "New User",
+
+  /* -------------------------------- new user -------------------------------- */
+  PAGE_NEW_USER__PAGE_TITLE: "New User | Pishroo",
+  PAGE_NEW_USER__NEW_USER: "New User",
+  PAGE_NEW_USER__SUCCESS: "Product Created Successfully!",
+
+  /* ------------------------------ user details ------------------------------ */
+  PAGE_USER_UPDATE__PAGE_TITLE: "User Details | Pishroo",
+  PAGE_USER_UPDATE__UPDATE_USER: "Update User",
+  PAGE_USER_UPDATE__SUCCESS: "User Updated Successfully!",
 };
 
 export default TEXTS;

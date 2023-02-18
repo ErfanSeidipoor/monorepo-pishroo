@@ -10,6 +10,9 @@ import {
   DASHBOARD_PRODUCT_ROUTE,
   DASHBOARD_PRODUCT_NEW_PRODUCT_ROUTE,
   DASHBOARD_PRODUCT_DETAILS,
+  DASHBOARD_USER_ROUTE,
+  DASHBOARD_USER_NEW_USER_ROUTE,
+  DASHBOARD_USER_DETAILS,
 } from "@admin/constants";
 
 /* --------------------------------- Routes --------------------------------- */
@@ -53,6 +56,24 @@ export const Routes = () =>
             {
               path: DASHBOARD_PRODUCT_ROUTE,
               element: <ProductListPage />,
+            },
+          ],
+        },
+        {
+          path: DASHBOARD_USER_ROUTE,
+          element: <UserProvider />,
+          children: [
+            {
+              path: DASHBOARD_USER_NEW_USER_ROUTE,
+              element: <UserNewPage />,
+            },
+            {
+              path: DASHBOARD_USER_DETAILS,
+              element: <UserUpdatePage />,
+            },
+            {
+              path: DASHBOARD_USER_ROUTE,
+              element: <UserListPage />,
             },
           ],
         },
@@ -103,3 +124,9 @@ const ProductNewPage = Loadable(
 const ProductUpdatePage = Loadable(
   lazy(() => import("./dashboard/product/update"))
 );
+
+/* ---------------------------- dashboard user --------------------------- */
+const UserProvider = Loadable(lazy(() => import("./dashboard/user")));
+const UserListPage = Loadable(lazy(() => import("./dashboard/user/list")));
+const UserNewPage = Loadable(lazy(() => import("./dashboard/user/new-user")));
+const UserUpdatePage = Loadable(lazy(() => import("./dashboard/user/update")));

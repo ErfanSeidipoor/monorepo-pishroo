@@ -8,6 +8,6 @@ export const generate = <T>(baseUrl: string, params?: Params, query?: T) => {
       url: generatePath(baseUrl, params),
       query: instanceToPlain(query),
     },
-    { arrayFormat: "bracket" }
+    { arrayFormat: "none" }
   );
 };

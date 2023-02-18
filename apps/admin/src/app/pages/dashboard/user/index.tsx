@@ -1,8 +1,8 @@
 import { FC } from "react";
 import { Outlet } from "react-router-dom";
 
-export const DashboardProductProvider: FC = () => {
+export const DashboardUserProvider: FC = () => {
   return <Outlet />;
 };
 
-export default DashboardProductProvider;
+export default DashboardUserProvider;

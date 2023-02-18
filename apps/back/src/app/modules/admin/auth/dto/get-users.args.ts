@@ -1,8 +1,8 @@
-import { ArgsType, Field } from "@nestjs/graphql";
+import { Field, InputType } from "@nestjs/graphql";
 import { GetUsersAdminArgs } from "@pishroo/dto";
 import { UserRoleEnum } from "@back/enums";
 
-@ArgsType()
+@InputType()
 export class GetUsersAdminArgsGQL extends GetUsersAdminArgs {
   @Field(() => String, { nullable: true })
   name?: string = "";

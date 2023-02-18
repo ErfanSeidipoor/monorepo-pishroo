@@ -10,7 +10,7 @@ export const ProductImages: FC = () => {
   return (
     <Box sx={{ mb: 3 }}>
       <Typography variant="h4" sx={{ mb: 2 }}>
-        {TEXTS.PAGE_PRODUCT_UPDATE__IMAGES}
+        {TEXTS.IMAGES}
       </Typography>
 
       {!loading && (
