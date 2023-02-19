@@ -27,7 +27,7 @@ export class ProvinceResolver {
   @Mutation(() => Province)
   @UseGuards(ProductAdminGuard)
   async createProvinceAdmin(
-    @Args("createProvinceAdmin")
+    @Args("createProvinceAdminInputs")
     inputs: CreateProvinceAdminInputsGQL
   ): Promise<Province> {
     return await this.provinceService.createProvince(inputs);
@@ -36,7 +36,7 @@ export class ProvinceResolver {
   @Mutation(() => Province)
   @UseGuards(ProductAdminGuard)
   async updateProvinceAdmin(
-    @Args("updateProvinceAdmin")
+    @Args("updateProvinceAdminInputs")
     inputs: UpdateProvinceAdminInputsGQL
   ): Promise<Province> {
     return await this.provinceService.updateProvince(inputs);
@@ -51,11 +51,11 @@ export class ProvinceResolver {
     return await this.provinceService.deleteProvince(inputs);
   }
 
-  @Query(() => PaginatedProvince, { nullable: true })
+  @Query(() => PaginatedProvince, { nullable: false })
   @UseGuards(ProductAdminGuard)
   async getProvincesAdmin(
-    @Args("paginationArgs") paginationArgs: PaginationArgsGQL,
-    @Args() args: GetProvincesAdminArgsGQL
+    @Args("getProvincesAdminArgs") args: GetProvincesAdminArgsGQL,
+    @Args("paginationArgs") paginationArgs: PaginationArgsGQL
   ) {
     return this.provinceService.getProvinces(paginationArgs, args);
   }

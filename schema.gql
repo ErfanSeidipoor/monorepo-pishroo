@@ -469,7 +469,7 @@ type Query {
   getColorByIdAdmin(colorId: String!): Color
   getProductReviewsAdmin(paginationArgs: PaginationArgsGQL!, reviewer: String = "", text: String = "", productId: String): PaginatedProductReview
   getProductReviewByIdAdmin(productReviewId: String!): ProductReview
-  getProvincesAdmin(paginationArgs: PaginationArgsGQL!, name: String = ""): PaginatedProvince
+  getProvincesAdmin(getProvincesAdminArgs: GetProvincesAdminArgsGQL!, paginationArgs: PaginationArgsGQL!): PaginatedProvince!
   getProvinceByIdAdmin(provinceId: String!): Province
   getTransportersAdmin(paginationArgs: PaginationArgsGQL!, search: String = "", isActive: String, cityIds: [String!], provinceIds: [String!]): PaginatedTransporter
   getTransporterByIdAdmin(transporterId: String!): Transporter
@@ -479,7 +479,7 @@ type Query {
   getProducerByIdAdmin(producerId: String!): Producer
   getProducerAgentsAdmin(paginationArgs: PaginationArgsGQL!, search: String = "", isActive: String, producerId: String): PaginatedProducerAgent
   getProducerAgentByIdAdmin(producerAgentId: String!): ProducerAgent
-  getCitiesAdmin(paginationArgs: PaginationArgsGQL!, name: String = "", provinceId: String): PaginatedCity
+  getCitiesAdmin(getCitiesAdminArgs: GetCitiesAdminArgsGQL!, paginationArgs: PaginationArgsGQL!): PaginatedCity!
   getCityByIdAdmin(cityId: String!): City
   getProjectsAdmin(paginationArgs: PaginationArgsGQL!, search: String = "", isActive: String, cityIds: [String!], provinceIds: [String!]): PaginatedProject
   getProjectByIdAdmin(projectId: String!): Project
@@ -515,6 +515,16 @@ input GetProductsAdminArgsGQL {
   isActive: Boolean
 }
 
+input GetProvincesAdminArgsGQL {
+  name: String = ""
+  provinceId: String = ""
+}
+
+input GetCitiesAdminArgsGQL {
+  name: String = ""
+  provinceId: String
+}
+
 type Mutation {
   createUserAdmin(createUserAdminInputs: CreateUserAdminInputsGQL!): User!
   updateUserActivationAdmin(updateUserActivationAdmin: UpdateUserActivationAdminInputsGQL!): User!
@@ -545,8 +555,8 @@ type Mutation {
   createProductReviewAdmin(createProductReviewAdmin: CreateProductReviewAdminInputsGQL!): ProductReview!
   updateProductReviewAdmin(updateProductReviewAdmin: UpdateProductReviewAdminInputsGQL!): ProductReview!
   deleteProductReviewAdmin(deleteProductReviewAdmin: DeleteProductReviewAdminInputsGQL!): ProductReview!
-  createProvinceAdmin(createProvinceAdmin: CreateProvinceAdminInputsGQL!): Province!
-  updateProvinceAdmin(updateProvinceAdmin: UpdateProvinceAdminInputsGQL!): Province!
+  createProvinceAdmin(createProvinceAdminInputs: CreateProvinceAdminInputsGQL!): Province!
+  updateProvinceAdmin(updateProvinceAdminInputs: UpdateProvinceAdminInputsGQL!): Province!
   deleteProvinceAdmin(deleteProvinceAdmin: DeleteProvinceAdminInputsGQL!): Province!
   createTransporterAdmin(createTransporterAdmin: CreateTransporterAdminInputsGQL!): Transporter!
   updateTransporterAdmin(updateTransporterAdmin: UpdateTransporterAdminInputsGQL!): Transporter!
@@ -568,8 +578,8 @@ type Mutation {
   updateProducerAgentAdmin(updateProducerAgentAdmin: UpdateProducerAgentAdminInputsGQL!): ProducerAgent!
   updateProducerAgentActivationAdmin(updateProducerAgentActivationAdmin: UpdateProducerAgentActivationAdminInputsGQL!): ProducerAgent!
   deleteProducerAgentAdmin(deleteProducerAgentAdmin: DeleteProducerAgentAdminInputsGQL!): ProducerAgent!
-  createCityAdmin(createCityAdmin: CreateCityAdminInputsGQL!): City!
-  updateCityAdmin(updateCityAdmin: UpdateCityAdminInputsGQL!): City!
+  createCityAdmin(createCityAdminInputs: CreateCityAdminInputsGQL!): City!
+  updateCityAdmin(updateCityAdminInputs: UpdateCityAdminInputsGQL!): City!
   deleteCityAdmin(deleteCityAdmin: DeleteCityAdminInputsGQL!): City!
   createProjectAdmin(createProjectAdmin: CreateProjectAdminInputsGQL!): Project!
   updateProjectAdmin(updateProjectAdmin: UpdateProjectAdminInputsGQL!): Project!

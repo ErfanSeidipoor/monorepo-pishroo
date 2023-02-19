@@ -91,7 +91,6 @@ export const FilterSidebar: FC<{
                 <Button
                   fullWidth
                   size="large"
-                  type="submit"
                   color="inherit"
                   variant="outlined"
                   startIcon={<ClearAllIcon />}

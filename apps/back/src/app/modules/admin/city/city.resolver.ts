@@ -27,7 +27,7 @@ export class CityResolver {
   @Mutation(() => City)
   @UseGuards(ProductAdminGuard)
   async createCityAdmin(
-    @Args("createCityAdmin")
+    @Args("createCityAdminInputs")
     inputs: CreateCityAdminInputsGQL
   ): Promise<City> {
     return await this.cityService.createCity(inputs);
@@ -36,7 +36,7 @@ export class CityResolver {
   @Mutation(() => City)
   @UseGuards(ProductAdminGuard)
   async updateCityAdmin(
-    @Args("updateCityAdmin")
+    @Args("updateCityAdminInputs")
     inputs: UpdateCityAdminInputsGQL
   ): Promise<City> {
     return await this.cityService.updateCity(inputs);
@@ -51,11 +51,11 @@ export class CityResolver {
     return await this.cityService.deleteCity(inputs);
   }
 
-  @Query(() => PaginatedCity, { nullable: true })
+  @Query(() => PaginatedCity, { nullable: false })
   @UseGuards(ProductAdminGuard)
   async getCitiesAdmin(
-    @Args("paginationArgs") paginationArgs: PaginationArgsGQL,
-    @Args() args: GetCitiesAdminArgsGQL
+    @Args("getCitiesAdminArgs") args: GetCitiesAdminArgsGQL,
+    @Args("paginationArgs") paginationArgs: PaginationArgsGQL
   ) {
     return this.cityService.getCities(paginationArgs, args);
   }

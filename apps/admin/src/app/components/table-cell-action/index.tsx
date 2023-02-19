@@ -42,7 +42,7 @@ export const TableCellAction: FC<{
         }}
       >
         {actions.map(({ label, icon, onClick }) => (
-          <MenuItem onClick={onClick}>
+          <MenuItem onClick={onClick} key={label}>
             <Stack
               spacing={2}
               gap={1}

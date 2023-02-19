@@ -180,7 +180,7 @@ export const ProductListPage: FC = () => {
     );
   };
 
-  const renderDeleteDialog = () => {
+  const renderActivationDialog = () => {
     return (
       <Dialog
         fullWidth
@@ -216,7 +216,7 @@ export const ProductListPage: FC = () => {
 
   return (
     <>
-      {renderDeleteDialog()}
+      {renderActivationDialog()}
       {renderActions()}
       {renderTable()}
       {renderPagination()}

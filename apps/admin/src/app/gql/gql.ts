@@ -13,15 +13,24 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  * Therefore it is highly recommended to use the babel-plugin for production.
  */
 const documents = {
+    "\n  query getProvincesAdminAotoComplete(\n    $getProvincesAdminArgs: GetProvincesAdminArgsGQL!\n  ) {\n    getProvincesAdmin(\n      getProvincesAdminArgs: $getProvincesAdminArgs\n      paginationArgs: { limit: 30, page: 1 }\n    ) {\n      edges {\n        id\n        name\n      }\n    }\n  }\n": types.GetProvincesAdminAotoCompleteDocument,
     "\n  mutation removeImageAdmin($removeImageAdmin: RemoveImageAdminInputsGQL!) {\n    removeImageAdmin(removeImageAdmin: $removeImageAdmin) {\n      id\n      filename\n    }\n  }\n": types.RemoveImageAdminDocument,
     "\n  mutation uploadFile($file: Upload!) {\n    uploadFile(file: $file) {\n      id\n      path\n      filename\n    }\n  }\n": types.UploadFileDocument,
     "\n  query logoutAdmin {\n    logoutAdmin {\n      id\n    }\n  }\n": types.LogoutAdminDocument,
+    "\n  query getCitiesAdmin(\n    $getCitiesAdminArgs: GetCitiesAdminArgsGQL!\n    $paginationArgs: PaginationArgsGQL!\n  ) {\n    getCitiesAdmin(\n      getCitiesAdminArgs: $getCitiesAdminArgs\n      paginationArgs: $paginationArgs\n    ) {\n      pageInfo {\n        totalEdges\n        edgeCount\n        edgesPerPage\n        currentPage\n        totalPages\n      }\n      edges {\n        id\n        name\n        province {\n          name\n          id\n        }\n      }\n    }\n  }\n": types.GetCitiesAdminDocument,
+    "\n  mutation createCityAdmin($createCityAdminInputs: CreateCityAdminInputsGQL!) {\n    createCityAdmin(createCityAdminInputs: $createCityAdminInputs) {\n      id\n      name\n      province {\n        id\n        name\n      }\n    }\n  }\n": types.CreateCityAdminDocument,
+    "\n  mutation updateCityAdmin($updateCityAdminInputs: UpdateCityAdminInputsGQL!) {\n    updateCityAdmin(updateCityAdminInputs: $updateCityAdminInputs) {\n      id\n      name\n      provinceId\n      province {\n        name\n        id\n      }\n    }\n  }\n": types.UpdateCityAdminDocument,
+    "\n  query getCityByIdAdmin($cityId: String!) {\n    getCityByIdAdmin(cityId: $cityId) {\n      id\n      name\n      provinceId\n      province {\n        name\n        id\n      }\n    }\n  }\n": types.GetCityByIdAdminDocument,
     "\n  query getProductsAdmin(\n    $getProductsAdminArgs: GetProductsAdminArgsGQL!\n    $paginationArgs: PaginationArgsGQL!\n  ) {\n    getProductsAdmin(\n      getProductsAdminArgs: $getProductsAdminArgs\n      paginationArgs: $paginationArgs\n    ) {\n      pageInfo {\n        totalEdges\n        edgeCount\n        edgesPerPage\n        currentPage\n        totalPages\n      }\n      edges {\n        slug\n        id\n        name\n        isActive\n        createdAt\n        updatedAt\n        deletedAt\n        text\n        productProperties {\n          id\n          value\n          property {\n            name\n            unit\n          }\n        }\n        fileUses {\n          id\n          status\n          type\n          isPublic\n          file {\n            filename\n            size\n            id\n          }\n        }\n      }\n    }\n  }\n": types.GetProductsAdminDocument,
     "\n  mutation updateProductActivationAdmin(\n    $updateProductActivationAdmin: UpdateProductActivationAdminInputsGQL!\n  ) {\n    updateProductActivationAdmin(\n      updateProductActivationAdmin: $updateProductActivationAdmin\n    ) {\n      id\n      isActive\n    }\n  }\n": types.UpdateProductActivationAdminDocument,
     "\n  mutation createProductAdmin(\n    $createProductAdminInputs: CreateProductAdminInputsGQL!\n  ) {\n    createProductAdmin(createProductAdminInputs: $createProductAdminInputs) {\n      slug\n      id\n      name\n      createdAt\n      updatedAt\n      deletedAt\n      isActive\n      text\n    }\n  }\n": types.CreateProductAdminDocument,
     "\n  mutation updateProductAdmin(\n    $updateProductAdminInputs: UpdateProductAdminInputsGQL!\n  ) {\n    updateProductAdmin(updateProductAdminInputs: $updateProductAdminInputs) {\n      slug\n      id\n      name\n      createdAt\n      updatedAt\n      deletedAt\n      isActive\n      text\n    }\n  }\n": types.UpdateProductAdminDocument,
     "\n  mutation addImageToProductAdmin(\n    $addImageToProductAdmin: AddImageToProductAdminInputsGQL!\n  ) {\n    addImageToProductAdmin(addImageToProductAdmin: $addImageToProductAdmin) {\n      id\n    }\n  }\n": types.AddImageToProductAdminDocument,
     "\n  query getProductByIdAdmin($productId: String!) {\n    getProductByIdAdmin(productId: $productId) {\n      id\n      name\n      slug\n      isActive\n      text\n      fileUses {\n        file {\n          id\n          filename\n          path\n        }\n      }\n    }\n  }\n": types.GetProductByIdAdminDocument,
+    "\n  query getProvincesAdmin(\n    $getProvincesAdminArgs: GetProvincesAdminArgsGQL!\n    $paginationArgs: PaginationArgsGQL!\n  ) {\n    getProvincesAdmin(\n      getProvincesAdminArgs: $getProvincesAdminArgs\n      paginationArgs: $paginationArgs\n    ) {\n      pageInfo {\n        totalEdges\n        edgeCount\n        edgesPerPage\n        currentPage\n        totalPages\n      }\n      edges {\n        id\n        name\n      }\n    }\n  }\n": types.GetProvincesAdminDocument,
+    "\n  mutation createProvinceAdmin(\n    $createProvinceAdminInputs: CreateProvinceAdminInputsGQL!\n  ) {\n    createProvinceAdmin(createProvinceAdminInputs: $createProvinceAdminInputs) {\n      id\n      name\n    }\n  }\n": types.CreateProvinceAdminDocument,
+    "\n  mutation updateProvinceAdmin(\n    $updateProvinceAdminInputs: UpdateProvinceAdminInputsGQL!\n  ) {\n    updateProvinceAdmin(updateProvinceAdminInputs: $updateProvinceAdminInputs) {\n      id\n      name\n    }\n  }\n": types.UpdateProvinceAdminDocument,
+    "\n  query getProvinceByIdAdmin($provinceId: String!) {\n    getProvinceByIdAdmin(provinceId: $provinceId) {\n      id\n      name\n    }\n  }\n": types.GetProvinceByIdAdminDocument,
     "\n  query getUsersAdmin(\n    $getUsersAdminArgs: GetUsersAdminArgsGQL!\n    $paginationArgs: PaginationArgsGQL!\n  ) {\n    getUsersAdmin(\n      getUsersAdminArgs: $getUsersAdminArgs\n      paginationArgs: $paginationArgs\n    ) {\n      pageInfo {\n        totalEdges\n        edgeCount\n        edgesPerPage\n        currentPage\n        totalPages\n      }\n      edges {\n        id\n        createdAt\n        updatedAt\n        deletedAt\n        username\n        firstName\n        lastName\n        email\n        phone\n        roles\n        isActive\n      }\n    }\n  }\n": types.GetUsersAdminDocument,
     "\n  mutation updateUserActivationAdmin(\n    $updateUserActivationAdmin: UpdateUserActivationAdminInputsGQL!\n  ) {\n    updateUserActivationAdmin(\n      updateUserActivationAdmin: $updateUserActivationAdmin\n    ) {\n      id\n      isActive\n    }\n  }\n": types.UpdateUserActivationAdminDocument,
     "\n  mutation createUserAdmin($createUserAdminInputs: CreateUserAdminInputsGQL!) {\n    createUserAdmin(createUserAdminInputs: $createUserAdminInputs) {\n      id\n      createdAt\n      username\n      firstName\n      lastName\n      email\n      phone\n      roles\n      isActive\n    }\n  }\n": types.CreateUserAdminDocument,
@@ -48,6 +57,10 @@ export function graphql(source: string): unknown;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
+export function graphql(source: "\n  query getProvincesAdminAotoComplete(\n    $getProvincesAdminArgs: GetProvincesAdminArgsGQL!\n  ) {\n    getProvincesAdmin(\n      getProvincesAdminArgs: $getProvincesAdminArgs\n      paginationArgs: { limit: 30, page: 1 }\n    ) {\n      edges {\n        id\n        name\n      }\n    }\n  }\n"): (typeof documents)["\n  query getProvincesAdminAotoComplete(\n    $getProvincesAdminArgs: GetProvincesAdminArgsGQL!\n  ) {\n    getProvincesAdmin(\n      getProvincesAdminArgs: $getProvincesAdminArgs\n      paginationArgs: { limit: 30, page: 1 }\n    ) {\n      edges {\n        id\n        name\n      }\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
 export function graphql(source: "\n  mutation removeImageAdmin($removeImageAdmin: RemoveImageAdminInputsGQL!) {\n    removeImageAdmin(removeImageAdmin: $removeImageAdmin) {\n      id\n      filename\n    }\n  }\n"): (typeof documents)["\n  mutation removeImageAdmin($removeImageAdmin: RemoveImageAdminInputsGQL!) {\n    removeImageAdmin(removeImageAdmin: $removeImageAdmin) {\n      id\n      filename\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
@@ -57,6 +70,22 @@ export function graphql(source: "\n  mutation uploadFile($file: Upload!) {\n    
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "\n  query logoutAdmin {\n    logoutAdmin {\n      id\n    }\n  }\n"): (typeof documents)["\n  query logoutAdmin {\n    logoutAdmin {\n      id\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  query getCitiesAdmin(\n    $getCitiesAdminArgs: GetCitiesAdminArgsGQL!\n    $paginationArgs: PaginationArgsGQL!\n  ) {\n    getCitiesAdmin(\n      getCitiesAdminArgs: $getCitiesAdminArgs\n      paginationArgs: $paginationArgs\n    ) {\n      pageInfo {\n        totalEdges\n        edgeCount\n        edgesPerPage\n        currentPage\n        totalPages\n      }\n      edges {\n        id\n        name\n        province {\n          name\n          id\n        }\n      }\n    }\n  }\n"): (typeof documents)["\n  query getCitiesAdmin(\n    $getCitiesAdminArgs: GetCitiesAdminArgsGQL!\n    $paginationArgs: PaginationArgsGQL!\n  ) {\n    getCitiesAdmin(\n      getCitiesAdminArgs: $getCitiesAdminArgs\n      paginationArgs: $paginationArgs\n    ) {\n      pageInfo {\n        totalEdges\n        edgeCount\n        edgesPerPage\n        currentPage\n        totalPages\n      }\n      edges {\n        id\n        name\n        province {\n          name\n          id\n        }\n      }\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  mutation createCityAdmin($createCityAdminInputs: CreateCityAdminInputsGQL!) {\n    createCityAdmin(createCityAdminInputs: $createCityAdminInputs) {\n      id\n      name\n      province {\n        id\n        name\n      }\n    }\n  }\n"): (typeof documents)["\n  mutation createCityAdmin($createCityAdminInputs: CreateCityAdminInputsGQL!) {\n    createCityAdmin(createCityAdminInputs: $createCityAdminInputs) {\n      id\n      name\n      province {\n        id\n        name\n      }\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  mutation updateCityAdmin($updateCityAdminInputs: UpdateCityAdminInputsGQL!) {\n    updateCityAdmin(updateCityAdminInputs: $updateCityAdminInputs) {\n      id\n      name\n      provinceId\n      province {\n        name\n        id\n      }\n    }\n  }\n"): (typeof documents)["\n  mutation updateCityAdmin($updateCityAdminInputs: UpdateCityAdminInputsGQL!) {\n    updateCityAdmin(updateCityAdminInputs: $updateCityAdminInputs) {\n      id\n      name\n      provinceId\n      province {\n        name\n        id\n      }\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  query getCityByIdAdmin($cityId: String!) {\n    getCityByIdAdmin(cityId: $cityId) {\n      id\n      name\n      provinceId\n      province {\n        name\n        id\n      }\n    }\n  }\n"): (typeof documents)["\n  query getCityByIdAdmin($cityId: String!) {\n    getCityByIdAdmin(cityId: $cityId) {\n      id\n      name\n      provinceId\n      province {\n        name\n        id\n      }\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
@@ -81,6 +110,22 @@ export function graphql(source: "\n  mutation addImageToProductAdmin(\n    $addI
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "\n  query getProductByIdAdmin($productId: String!) {\n    getProductByIdAdmin(productId: $productId) {\n      id\n      name\n      slug\n      isActive\n      text\n      fileUses {\n        file {\n          id\n          filename\n          path\n        }\n      }\n    }\n  }\n"): (typeof documents)["\n  query getProductByIdAdmin($productId: String!) {\n    getProductByIdAdmin(productId: $productId) {\n      id\n      name\n      slug\n      isActive\n      text\n      fileUses {\n        file {\n          id\n          filename\n          path\n        }\n      }\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  query getProvincesAdmin(\n    $getProvincesAdminArgs: GetProvincesAdminArgsGQL!\n    $paginationArgs: PaginationArgsGQL!\n  ) {\n    getProvincesAdmin(\n      getProvincesAdminArgs: $getProvincesAdminArgs\n      paginationArgs: $paginationArgs\n    ) {\n      pageInfo {\n        totalEdges\n        edgeCount\n        edgesPerPage\n        currentPage\n        totalPages\n      }\n      edges {\n        id\n        name\n      }\n    }\n  }\n"): (typeof documents)["\n  query getProvincesAdmin(\n    $getProvincesAdminArgs: GetProvincesAdminArgsGQL!\n    $paginationArgs: PaginationArgsGQL!\n  ) {\n    getProvincesAdmin(\n      getProvincesAdminArgs: $getProvincesAdminArgs\n      paginationArgs: $paginationArgs\n    ) {\n      pageInfo {\n        totalEdges\n        edgeCount\n        edgesPerPage\n        currentPage\n        totalPages\n      }\n      edges {\n        id\n        name\n      }\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  mutation createProvinceAdmin(\n    $createProvinceAdminInputs: CreateProvinceAdminInputsGQL!\n  ) {\n    createProvinceAdmin(createProvinceAdminInputs: $createProvinceAdminInputs) {\n      id\n      name\n    }\n  }\n"): (typeof documents)["\n  mutation createProvinceAdmin(\n    $createProvinceAdminInputs: CreateProvinceAdminInputsGQL!\n  ) {\n    createProvinceAdmin(createProvinceAdminInputs: $createProvinceAdminInputs) {\n      id\n      name\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  mutation updateProvinceAdmin(\n    $updateProvinceAdminInputs: UpdateProvinceAdminInputsGQL!\n  ) {\n    updateProvinceAdmin(updateProvinceAdminInputs: $updateProvinceAdminInputs) {\n      id\n      name\n    }\n  }\n"): (typeof documents)["\n  mutation updateProvinceAdmin(\n    $updateProvinceAdminInputs: UpdateProvinceAdminInputsGQL!\n  ) {\n    updateProvinceAdmin(updateProvinceAdminInputs: $updateProvinceAdminInputs) {\n      id\n      name\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  query getProvinceByIdAdmin($provinceId: String!) {\n    getProvinceByIdAdmin(provinceId: $provinceId) {\n      id\n      name\n    }\n  }\n"): (typeof documents)["\n  query getProvinceByIdAdmin($provinceId: String!) {\n    getProvinceByIdAdmin(provinceId: $provinceId) {\n      id\n      name\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
