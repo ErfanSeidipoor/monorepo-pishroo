@@ -21,3 +21,17 @@ export const DASHBOARD_PRODUCT_DETAILS =
 export const DASHBOARD_USER_ROUTE = DASHBOARD_ROUTE + "/user";
 export const DASHBOARD_USER_NEW_USER_ROUTE = DASHBOARD_USER_ROUTE + "/new-user";
 export const DASHBOARD_USER_DETAILS = DASHBOARD_USER_ROUTE + "/:userId";
+
+/* -------------------------------- province -------------------------------- */
+
+export const DASHBOARD_PROVINCE_ROUTE = DASHBOARD_ROUTE + "/province";
+export const DASHBOARD_PROVINCE_NEW_PROVINCE_ROUTE =
+  DASHBOARD_PROVINCE_ROUTE + "/new-province";
+export const DASHBOARD_PROVINCE_DETAILS =
+  DASHBOARD_PROVINCE_ROUTE + "/:provinceId";
+
+/* ---------------------------------- city ---------------------------------- */
+
+export const DASHBOARD_CITY_ROUTE = DASHBOARD_ROUTE + "/city";
+export const DASHBOARD_CITY_NEW_CITY_ROUTE = DASHBOARD_CITY_ROUTE + "/new-city";
+export const DASHBOARD_CITY_DETAILS = DASHBOARD_CITY_ROUTE + "/:cityId";

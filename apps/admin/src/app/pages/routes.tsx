@@ -13,6 +13,12 @@ import {
   DASHBOARD_USER_ROUTE,
   DASHBOARD_USER_NEW_USER_ROUTE,
   DASHBOARD_USER_DETAILS,
+  DASHBOARD_PROVINCE_ROUTE,
+  DASHBOARD_PROVINCE_NEW_PROVINCE_ROUTE,
+  DASHBOARD_PROVINCE_DETAILS,
+  DASHBOARD_CITY_ROUTE,
+  DASHBOARD_CITY_NEW_CITY_ROUTE,
+  DASHBOARD_CITY_DETAILS,
 } from "@admin/constants";
 
 /* --------------------------------- Routes --------------------------------- */
@@ -78,6 +84,42 @@ export const Routes = () =>
           ],
         },
         {
+          path: DASHBOARD_PROVINCE_ROUTE,
+          element: <ProvinceProvider />,
+          children: [
+            {
+              path: DASHBOARD_PROVINCE_NEW_PROVINCE_ROUTE,
+              element: <ProvinceNewPage />,
+            },
+            {
+              path: DASHBOARD_PROVINCE_DETAILS,
+              element: <ProvinceUpdatePage />,
+            },
+            {
+              path: DASHBOARD_PROVINCE_ROUTE,
+              element: <ProvinceListPage />,
+            },
+          ],
+        },
+        {
+          path: DASHBOARD_CITY_ROUTE,
+          element: <CityProvider />,
+          children: [
+            {
+              path: DASHBOARD_CITY_NEW_CITY_ROUTE,
+              element: <CityNewPage />,
+            },
+            {
+              path: DASHBOARD_CITY_DETAILS,
+              element: <CityUpdatePage />,
+            },
+            {
+              path: DASHBOARD_CITY_ROUTE,
+              element: <CityListPage />,
+            },
+          ],
+        },
+        {
           path: DASHBOARD_ROUTE,
           element: <DashboardPage />,
         },
@@ -130,3 +172,21 @@ const UserProvider = Loadable(lazy(() => import("./dashboard/user")));
 const UserListPage = Loadable(lazy(() => import("./dashboard/user/list")));
 const UserNewPage = Loadable(lazy(() => import("./dashboard/user/new-user")));
 const UserUpdatePage = Loadable(lazy(() => import("./dashboard/user/update")));
+
+/* -------------------------- dashboard province ------------------------- */
+const ProvinceProvider = Loadable(lazy(() => import("./dashboard/province")));
+const ProvinceListPage = Loadable(
+  lazy(() => import("./dashboard/province/list"))
+);
+const ProvinceNewPage = Loadable(
+  lazy(() => import("./dashboard/province/new-province"))
+);
+const ProvinceUpdatePage = Loadable(
+  lazy(() => import("./dashboard/province/update"))
+);
+
+/* ----------------------------- dashboard city ----------------------------- */
+const CityProvider = Loadable(lazy(() => import("./dashboard/city")));
+const CityListPage = Loadable(lazy(() => import("./dashboard/city/list")));
+const CityNewPage = Loadable(lazy(() => import("./dashboard/city/new-city")));
+const CityUpdatePage = Loadable(lazy(() => import("./dashboard/city/update")));

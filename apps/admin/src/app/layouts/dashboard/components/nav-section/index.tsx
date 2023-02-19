@@ -4,10 +4,14 @@ import { Box, List, ListItemText } from "@mui/material";
 import NaturePeopleTwoToneIcon from "@mui/icons-material/NaturePeopleTwoTone";
 import DashboardTwoToneIcon from "@mui/icons-material/DashboardTwoTone";
 import PermIdentityTwoToneIcon from "@mui/icons-material/PermIdentityTwoTone";
+import MapTwoToneIcon from "@mui/icons-material/MapTwoTone";
+import MapsHomeWorkTwoToneIcon from "@mui/icons-material/MapsHomeWorkTwoTone";
 
 import TEXTS from "@pishroo/texts";
 import {
+  DASHBOARD_CITY_ROUTE,
   DASHBOARD_PRODUCT_ROUTE,
+  DASHBOARD_PROVINCE_ROUTE,
   DASHBOARD_ROUTE,
   DASHBOARD_USER_ROUTE,
 } from "@admin/constants";
@@ -32,6 +36,16 @@ export const NavSection: FC = () => {
       title: TEXTS.USER,
       path: DASHBOARD_USER_ROUTE,
       icon: <PermIdentityTwoToneIcon />,
+    },
+    {
+      title: TEXTS.PROVINCE,
+      path: DASHBOARD_PROVINCE_ROUTE,
+      icon: <MapTwoToneIcon />,
+    },
+    {
+      title: TEXTS.CITY,
+      path: DASHBOARD_CITY_ROUTE,
+      icon: <MapsHomeWorkTwoToneIcon />,
     },
   ];
 

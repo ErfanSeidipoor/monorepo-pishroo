@@ -114,7 +114,7 @@ export class ProvinceService {
     paginationArgs: PaginationArgs,
     args: GetProvincesAdminArgs
   ) {
-    const { name } = args;
+    const { name, provinceId } = args;
 
     const queryBuilder = this.provinceRepo.createQueryBuilder("province");
 
@@ -123,6 +123,12 @@ export class ProvinceService {
     if (name) {
       queryBuilder.andWhere("province.name ilike :name", {
         name: `%${name}%`,
+      });
+    }
+
+    if (provinceId) {
+      queryBuilder.andWhere("province.id = :provinceId", {
+        provinceId,
       });
     }
 

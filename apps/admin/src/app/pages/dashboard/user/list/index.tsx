@@ -228,7 +228,7 @@ export const UserListPage: FC = () => {
     );
   };
 
-  const renderDeleteDialog = () => {
+  const renderActivationDialog = () => {
     return (
       <Dialog
         fullWidth
@@ -264,7 +264,7 @@ export const UserListPage: FC = () => {
 
   return (
     <>
-      {renderDeleteDialog()}
+      {renderActivationDialog()}
       {renderActions()}
       {renderTable()}
       {renderPagination()}

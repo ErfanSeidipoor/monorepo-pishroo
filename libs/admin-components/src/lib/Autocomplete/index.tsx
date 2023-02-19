@@ -38,7 +38,7 @@ export const Autocomplete = <T extends {}>({
       getOptionLabel={(option: T) => getLabel(option)}
       options={items}
       loading={loading}
-      value={selectedItem}
+      value={selectedItem || null}
       onChange={(e, value) => {
         onSelectItem(value);
         setInputValue(value ? getLabel(value) : "");

@@ -89,20 +89,6 @@ export class CityService {
     if (!province) {
       throw new CustomError(PROVINCE_NOT_FOUND);
     }
-
-    /* ------------------------ checking name duplication ----------------------- */
-
-    const nameDuplication = await this.cityRepo.findOne({
-      where: {
-        name,
-        provinceId,
-      },
-    });
-
-    if (nameDuplication) {
-      throw new CustomError(CITY_WITH_THIS_NAME_ALREADY_EXIST);
-    }
-
     /* -------------------------------- updating -------------------------------- */
 
     utils.object.assignProps(city, {

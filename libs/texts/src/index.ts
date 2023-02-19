@@ -26,6 +26,8 @@ const TEXTS = {
   CONFIRM: "Confirm",
   CANCEL: "Cancel",
   IMAGES: "Images",
+  PROVINCE: "Province",
+  CITY: "City",
   DEACTIVE_WARNING_MESSAGE: "Are You Sure to Deactive ?",
   ACTIVE_WARNING_MESSAGE: "Are You Sure to Active ?",
 
@@ -80,12 +82,45 @@ const TEXTS = {
   /* -------------------------------- new user -------------------------------- */
   PAGE_NEW_USER__PAGE_TITLE: "New User | Pishroo",
   PAGE_NEW_USER__NEW_USER: "New User",
-  PAGE_NEW_USER__SUCCESS: "Product Created Successfully!",
+  PAGE_NEW_USER__SUCCESS: "User Created Successfully!",
 
   /* ------------------------------ user details ------------------------------ */
   PAGE_USER_UPDATE__PAGE_TITLE: "User Details | Pishroo",
   PAGE_USER_UPDATE__UPDATE_USER: "Update User",
   PAGE_USER_UPDATE__SUCCESS: "User Updated Successfully!",
+
+  /* -------------------------------- province -------------------------------- */
+
+  PAGE_PROVINCE__PAGE_TITLE: "Province | Pishroo",
+  PAGE_PROVINCE__PROVINCE: "Province",
+  PAGE_PROVINCE__NEW_PROVINCE: "New Province",
+
+  /* ------------------------------- new province ------------------------------ */
+  PAGE_NEW_PROVINCE__PAGE_TITLE: "New Province | Pishroo",
+  PAGE_NEW_PROVINCE__NEW_PROVINCE: "New Province",
+  PAGE_NEW_PROVINCE__SUCCESS: "Province Created Successfully!",
+
+  /* --------------------------- province details ----------------------------- */
+  PAGE_PROVINCE_UPDATE__PAGE_TITLE: "Province Details | Pishroo",
+  PAGE_PROVINCE_UPDATE__UPDATE_PROVINCE: "Update Province",
+  PAGE_PROVINCE_UPDATE__SUCCESS: "Province Updated Successfully!",
+
+  /* ---------------------------------- city ---------------------------------- */
+
+  PAGE_CITY__PAGE_TITLE: "City | Pishroo",
+  PAGE_CITY__CITY: "City",
+  PAGE_CITY__NEW_CITY: "New City",
+
+  /* -------------------------------- new city -------------------------------- */
+  PAGE_NEW_CITY__PAGE_TITLE: "New City | Pishroo",
+  PAGE_NEW_CITY__NEW_CITY: "New City",
+  PAGE_NEW_CITY__SUCCESS: "City Created Successfully!",
+
+  /* ------------------------------ city details ------------------------------ */
+
+  PAGE_CITY_UPDATE__PAGE_TITLE: "City Details | Pishroo",
+  PAGE_CITY_UPDATE__UPDATE_CITY: "Update City",
+  PAGE_CITY_UPDATE__SUCCESS: "City Updated Successfully!",
 };
 
 export default TEXTS;
