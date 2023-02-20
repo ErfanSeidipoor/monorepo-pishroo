@@ -1,7 +1,7 @@
 import { gql } from "@apollo/client";
 
 export const GET_PROVINCES_ADMIN_AUTO_COMPLETE = gql`
-  query getProvincesAdminAotoComplete(
+  query getProvincesAdminAutoComplete(
     $getProvincesAdminArgs: GetProvincesAdminArgsGQL!
   ) {
     getProvincesAdmin(

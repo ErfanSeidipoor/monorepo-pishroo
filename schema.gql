@@ -485,7 +485,7 @@ type Query {
   getProjectByIdAdmin(projectId: String!): Project
   getProjectReviewsAdmin(paginationArgs: PaginationArgsGQL!, reviewer: String = "", text: String = "", projectId: String): PaginatedProjectReview
   getProjectReviewByIdAdmin(projectReviewId: String!): ProjectReview
-  getCustomersAdmin(paginationArgs: PaginationArgsGQL!, search: String = "", isActive: String, cityIds: [String!], provinceIds: [String!]): PaginatedCustomer
+  getCustomersAdmin(paginationArgs: PaginationArgsGQL!, getCustomersAdminArgs: GetCustomersAdminArgsGQL!): PaginatedCustomer!
   getCustomerByIdAdmin(customerId: String!): Customer
   getMessagesAdmin(paginationArgs: PaginationArgsGQL!, search: String = "", isActive: String, userId: String, customerId: [String!]): PaginatedMessage
   getMessageByIdAdmin(messageId: String!): Message
@@ -523,6 +523,14 @@ input GetProvincesAdminArgsGQL {
 input GetCitiesAdminArgsGQL {
   name: String = ""
   provinceId: String
+  cityId: String
+}
+
+input GetCustomersAdminArgsGQL {
+  search: String = ""
+  isActive: Boolean
+  cityIds: [String!]
+  provinceIds: [String!]
 }
 
 type Mutation {
@@ -590,8 +598,8 @@ type Mutation {
   createProjectReviewAdmin(createProjectReviewAdmin: CreateProjectReviewAdminInputsGQL!): ProjectReview!
   updateProjectReviewAdmin(updateProjectReviewAdmin: UpdateProjectReviewAdminInputsGQL!): ProjectReview!
   deleteProjectReviewAdmin(deleteProjectReviewAdmin: DeleteProjectReviewAdminInputsGQL!): ProjectReview!
-  createCustomerAdmin(createCustomerAdmin: CreateCustomerAdminInputsGQL!): Customer!
-  updateCustomerAdmin(updateCustomerAdmin: UpdateCustomerAdminInputsGQL!): Customer!
+  createCustomerAdmin(createCustomerAdminInputs: CreateCustomerAdminInputsGQL!): Customer!
+  updateCustomerAdmin(updateCustomerAdminInputs: UpdateCustomerAdminInputsGQL!): Customer!
   updateCustomerActivationAdmin(updateCustomerActivationAdmin: UpdateCustomerActivationAdminInputsGQL!): Customer!
   deleteCustomerAdmin(deleteCustomerAdmin: DeleteCustomerAdminInputsGQL!): Customer!
   createMessageAdmin(createMessageAdmin: CreateMessageAdminInputsGQL!): Message!
@@ -998,28 +1006,28 @@ input DeleteProjectReviewAdminInputsGQL {
 input CreateCustomerAdminInputsGQL {
   firstName: String!
   lastName: String!
-  email: String!
+  email: String
   jobTitle: String!
-  phone: String!
-  officePhone: String!
+  phone: String
+  officePhone: String
   isActive: Boolean!
-  cityId: String!
+  cityId: String
 }
 
 input UpdateCustomerAdminInputsGQL {
   customerId: String!
   firstName: String!
   lastName: String!
-  email: String!
+  email: String
   jobTitle: String!
-  phone: String!
-  officePhone: String!
+  phone: String
+  officePhone: String
   isActive: Boolean!
   cityId: String!
 }
 
 input UpdateCustomerActivationAdminInputsGQL {
-  producerId: String!
+  customerId: String!
   isActive: Boolean!
 }
 

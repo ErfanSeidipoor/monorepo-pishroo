@@ -2,8 +2,8 @@ import { useQuery } from "@apollo/client";
 import { useEffect, useState } from "react";
 
 import {
-  GetProvincesAdminAotoCompleteQuery,
-  GetProvincesAdminAotoCompleteQueryVariables,
+  GetProvincesAdminAutoCompleteQuery,
+  GetProvincesAdminAutoCompleteQueryVariables,
   GetProvincesAdminArgsGql,
 } from "@admin/gql/graphql";
 
@@ -15,7 +15,7 @@ const useData = (provinceId: string) => {
     provinceId: provinceId || undefined,
   });
   const [rows, setRows] = useState<
-    GetProvincesAdminAotoCompleteQuery["getProvincesAdmin"]["edges"]
+    GetProvincesAdminAutoCompleteQuery["getProvincesAdmin"]["edges"]
   >([]);
 
   useEffect(() => {
@@ -25,8 +25,8 @@ const useData = (provinceId: string) => {
   }, [provinceId]);
 
   const { loading } = useQuery<
-    GetProvincesAdminAotoCompleteQuery,
-    GetProvincesAdminAotoCompleteQueryVariables
+    GetProvincesAdminAutoCompleteQuery,
+    GetProvincesAdminAutoCompleteQueryVariables
   >(GET_PROVINCES_ADMIN_AUTO_COMPLETE, {
     variables: {
       getProvincesAdminArgs: queryArgs,

@@ -4,7 +4,7 @@ import { UpdateCustomerActivationAdminInputs } from "@pishroo/dto";
 @InputType()
 export class UpdateCustomerActivationAdminInputsGQL extends UpdateCustomerActivationAdminInputs {
   @Field()
-  producerId: string;
+  customerId: string;
 
   @Field()
   isActive: boolean;

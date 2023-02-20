@@ -19,6 +19,9 @@ import {
   DASHBOARD_CITY_ROUTE,
   DASHBOARD_CITY_NEW_CITY_ROUTE,
   DASHBOARD_CITY_DETAILS,
+  DASHBOARD_CUSTOMER_ROUTE,
+  DASHBOARD_CUSTOMER_NEW_CUSTOMER_ROUTE,
+  DASHBOARD_CUSTOMER_DETAILS,
 } from "@admin/constants";
 
 /* --------------------------------- Routes --------------------------------- */
@@ -120,6 +123,24 @@ export const Routes = () =>
           ],
         },
         {
+          path: DASHBOARD_CUSTOMER_ROUTE,
+          element: <CustomerProvider />,
+          children: [
+            {
+              path: DASHBOARD_CUSTOMER_NEW_CUSTOMER_ROUTE,
+              element: <CustomerNewPage />,
+            },
+            {
+              path: DASHBOARD_CUSTOMER_DETAILS,
+              element: <CustomerUpdatePage />,
+            },
+            {
+              path: DASHBOARD_CUSTOMER_ROUTE,
+              element: <CustomerListPage />,
+            },
+          ],
+        },
+        {
           path: DASHBOARD_ROUTE,
           element: <DashboardPage />,
         },
@@ -190,3 +211,15 @@ const CityProvider = Loadable(lazy(() => import("./dashboard/city")));
 const CityListPage = Loadable(lazy(() => import("./dashboard/city/list")));
 const CityNewPage = Loadable(lazy(() => import("./dashboard/city/new-city")));
 const CityUpdatePage = Loadable(lazy(() => import("./dashboard/city/update")));
+
+/* --------------------------- dashboard customer --------------------------- */
+const CustomerProvider = Loadable(lazy(() => import("./dashboard/customer")));
+const CustomerListPage = Loadable(
+  lazy(() => import("./dashboard/customer/list"))
+);
+const CustomerNewPage = Loadable(
+  lazy(() => import("./dashboard/customer/new-customer"))
+);
+const CustomerUpdatePage = Loadable(
+  lazy(() => import("./dashboard/customer/update"))
+);

@@ -9,4 +9,9 @@ export class GetCitiesAdminArgs {
   @IsUUID()
   @IsString()
   provinceId?: string;
+
+  @IsOptional()
+  @IsUUID()
+  @IsString()
+  cityId?: string;
 }

@@ -35,3 +35,11 @@ export const DASHBOARD_PROVINCE_DETAILS =
 export const DASHBOARD_CITY_ROUTE = DASHBOARD_ROUTE + "/city";
 export const DASHBOARD_CITY_NEW_CITY_ROUTE = DASHBOARD_CITY_ROUTE + "/new-city";
 export const DASHBOARD_CITY_DETAILS = DASHBOARD_CITY_ROUTE + "/:cityId";
+
+/* --------------------------------- product -------------------------------- */
+
+export const DASHBOARD_CUSTOMER_ROUTE = DASHBOARD_ROUTE + "/customer";
+export const DASHBOARD_CUSTOMER_NEW_CUSTOMER_ROUTE =
+  DASHBOARD_CUSTOMER_ROUTE + "/new-customer";
+export const DASHBOARD_CUSTOMER_DETAILS =
+  DASHBOARD_CUSTOMER_ROUTE + "/:customerId";
