@@ -8,9 +8,8 @@ import {
   MaxLength,
   MinLength,
 } from "class-validator";
-import { CreateCustomerAdminInputs } from "./create-customer.inputs";
 
-export class UpdateCustomerAdminInputs extends CreateCustomerAdminInputs {
+export class UpdateCustomerAdminInputs {
   @IsUUID()
   customerId: string;
 
@@ -44,7 +43,6 @@ export class UpdateCustomerAdminInputs extends CreateCustomerAdminInputs {
   @IsBoolean()
   isActive: boolean;
 
-  @IsOptional()
   @IsUUID()
-  cityId?: string;
+  cityId: string;
 }

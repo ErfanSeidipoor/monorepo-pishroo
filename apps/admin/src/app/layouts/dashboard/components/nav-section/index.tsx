@@ -6,10 +6,12 @@ import DashboardTwoToneIcon from "@mui/icons-material/DashboardTwoTone";
 import PermIdentityTwoToneIcon from "@mui/icons-material/PermIdentityTwoTone";
 import MapTwoToneIcon from "@mui/icons-material/MapTwoTone";
 import MapsHomeWorkTwoToneIcon from "@mui/icons-material/MapsHomeWorkTwoTone";
+import CallTwoToneIcon from "@mui/icons-material/CallTwoTone";
 
 import TEXTS from "@pishroo/texts";
 import {
   DASHBOARD_CITY_ROUTE,
+  DASHBOARD_CUSTOMER_ROUTE,
   DASHBOARD_PRODUCT_ROUTE,
   DASHBOARD_PROVINCE_ROUTE,
   DASHBOARD_ROUTE,
@@ -46,6 +48,11 @@ export const NavSection: FC = () => {
       title: TEXTS.CITY,
       path: DASHBOARD_CITY_ROUTE,
       icon: <MapsHomeWorkTwoToneIcon />,
+    },
+    {
+      title: TEXTS.CUSTOMER,
+      path: DASHBOARD_CUSTOMER_ROUTE,
+      icon: <CallTwoToneIcon />,
     },
   ];
 

@@ -28,7 +28,7 @@ export class CustomerResolver {
   @Mutation(() => Customer)
   @UseGuards(CustomerAdminGuard)
   async createCustomerAdmin(
-    @Args("createCustomerAdmin")
+    @Args("createCustomerAdminInputs")
     inputs: CreateCustomerAdminInputsGQL
   ): Promise<Customer> {
     return await this.customerService.createCustomer(inputs);
@@ -37,7 +37,7 @@ export class CustomerResolver {
   @Mutation(() => Customer)
   @UseGuards(CustomerAdminGuard)
   async updateCustomerAdmin(
-    @Args("updateCustomerAdmin")
+    @Args("updateCustomerAdminInputs")
     inputs: UpdateCustomerAdminInputsGQL
   ): Promise<Customer> {
     return await this.customerService.updateCustomer(inputs);
@@ -61,11 +61,11 @@ export class CustomerResolver {
     return await this.customerService.deleteCustomer(inputs);
   }
 
-  @Query(() => PaginatedCustomer, { nullable: true })
+  @Query(() => PaginatedCustomer, { nullable: false })
   @UseGuards(CustomerAdminGuard)
   async getCustomersAdmin(
     @Args("paginationArgs") paginationArgs: PaginationArgsGQL,
-    @Args() args: GetCustomersAdminArgsGQL
+    @Args("getCustomersAdminArgs") args: GetCustomersAdminArgsGQL
   ) {
     return this.customerService.getCustomers(paginationArgs, args);
   }

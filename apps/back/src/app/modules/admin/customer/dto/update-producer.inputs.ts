@@ -12,21 +12,21 @@ export class UpdateCustomerAdminInputsGQL extends UpdateCustomerAdminInputs {
   @Field()
   lastName: string;
 
-  @Field()
+  @Field({ nullable: true })
   email?: string;
 
   @Field()
   jobTitle: string;
 
-  @Field()
+  @Field({ nullable: true })
   phone?: string;
 
-  @Field()
+  @Field({ nullable: true })
   officePhone?: string;
 
   @Field()
   isActive: boolean;
 
   @Field()
-  cityId?: string;
+  cityId: string;
 }

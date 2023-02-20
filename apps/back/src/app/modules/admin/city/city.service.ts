@@ -118,7 +118,7 @@ export class CityService {
   }
 
   async getCities(paginationArgs: PaginationArgs, args: GetCitiesAdminArgs) {
-    const { name, provinceId } = args;
+    const { name, provinceId, cityId } = args;
 
     const queryBuilder = this.cityRepo.createQueryBuilder("city");
 
@@ -133,6 +133,12 @@ export class CityService {
     if (provinceId) {
       queryBuilder.andWhere("city.provinceId = :provinceId", {
         provinceId,
+      });
+    }
+
+    if (cityId) {
+      queryBuilder.andWhere("city.id = :cityId", {
+        cityId,
       });
     }
 

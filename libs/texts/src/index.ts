@@ -10,6 +10,7 @@ const TEXTS = {
   NAME: "Name",
   EMAIL: "Email",
   PHONE: "Phone",
+  OFFICE_PHONE: "Office Phone",
   USERNMAE: "Username",
   SLUG: "Slug",
   TEXT: "Text",
@@ -28,6 +29,9 @@ const TEXTS = {
   IMAGES: "Images",
   PROVINCE: "Province",
   CITY: "City",
+  SEARCH: "Search",
+  JOB_TITLE: "Job Title",
+  CUSTOMER: "Customer",
   DEACTIVE_WARNING_MESSAGE: "Are You Sure to Deactive ?",
   ACTIVE_WARNING_MESSAGE: "Are You Sure to Active ?",
 
@@ -121,6 +125,23 @@ const TEXTS = {
   PAGE_CITY_UPDATE__PAGE_TITLE: "City Details | Pishroo",
   PAGE_CITY_UPDATE__UPDATE_CITY: "Update City",
   PAGE_CITY_UPDATE__SUCCESS: "City Updated Successfully!",
+
+  /* ---------------------------------- city ---------------------------------- */
+
+  PAGE_CUSTOMER__PAGE_TITLE: "Customer | Pishroo",
+  PAGE_CUSTOMER__CUSTOMER: "Customer",
+  PAGE_CUSTOMER__NEW_CUSTOMER: "New Customer",
+
+  /* -------------------------------- new city -------------------------------- */
+  PAGE_NEW_CUSTOMER__PAGE_TITLE: "New Customer | Pishroo",
+  PAGE_NEW_CUSTOMER__NEW_CUSTOMER: "New Customer",
+  PAGE_NEW_CUSTOMER__SUCCESS: "Customer Created Successfully!",
+
+  /* ------------------------------ city details ------------------------------ */
+
+  PAGE_CUSTOMER_UPDATE__PAGE_TITLE: "Customer Details | Pishroo",
+  PAGE_CUSTOMER_UPDATE__UPDATE_CUSTOMER: "Update Customer",
+  PAGE_CUSTOMER_UPDATE__SUCCESS: "Customer Updated Successfully!",
 };
 
 export default TEXTS;
