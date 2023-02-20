@@ -25,11 +25,11 @@ import {
   FilterSidebar,
   TableCellAction,
 } from "@admin/components";
-import { DASHBOARD_CUSTOMER_NEW_CUSTOMER_ROUTE } from "@admin/constants";
+import { DASHBOARD_TRANSPORTER_NEW_TRANSPORTER_ROUTE } from "@admin/constants";
 
 import useData from "./useDate";
 
-export const CustomerListPage: FC = () => {
+export const TransporterListPage: FC = () => {
   const {
     rows,
     loading,
@@ -45,33 +45,27 @@ export const CustomerListPage: FC = () => {
     onEdit,
     activationItem,
     setActivationItem,
-    onUpdateCustomerActivation,
+    onUpdateTransporterActivation,
   } = useData();
 
   const columns: ITableColumn<typeof rows[0]>[] = [
     {
       name: "name",
-      cell: (item) => (
-        <p>
-          {item.firstName} <br />
-          {item.lastName}
-        </p>
-      ),
+      cell: (item) => <p>{item.name}</p>,
       label: TEXTS.NAME,
     },
 
     { name: "email", cell: (item) => <p>{item.email}</p>, label: TEXTS.EMAIL },
     {
-      name: "jobTitle",
-      cell: (item) => <p>{item.jobTitle}</p>,
-      label: TEXTS.JOB_TITLE,
+      name: "phone",
+      cell: (item) => <p>{item.phone}</p>,
+      label: TEXTS.PHONE,
     },
     {
       name: "phone",
       cell: (item) => (
         <p>
           {item.phone} <br />
-          {item.officePhone}{" "}
         </p>
       ),
       label: TEXTS.PHONE,
@@ -134,14 +128,16 @@ export const CustomerListPage: FC = () => {
           justifyContent="center"
           spacing={2}
         >
-          <Typography variant="h4">{TEXTS.PAGE_CUSTOMER__CUSTOMER}</Typography>
+          <Typography variant="h4">
+            {TEXTS.PAGE_TRANSPORTER__TRANSPORTER}
+          </Typography>
           {renderFilterSidebar()}
         </Stack>
         <Button
           variant="outlined"
-          label={TEXTS.PAGE_CUSTOMER__NEW_CUSTOMER}
+          label={TEXTS.PAGE_TRANSPORTER__NEW_TRANSPORTER}
           color="secondary"
-          onClick={() => navigate(DASHBOARD_CUSTOMER_NEW_CUSTOMER_ROUTE)}
+          onClick={() => navigate(DASHBOARD_TRANSPORTER_NEW_TRANSPORTER_ROUTE)}
           startIcon={<AddIcon />}
         ></Button>
       </Stack>
@@ -240,7 +236,7 @@ export const CustomerListPage: FC = () => {
               : TEXTS.ACTIVE_WARNING_MESSAGE}
           </DialogContentText>
           <DialogContentText fontSize={18}>
-            {TEXTS.NAME}: {activationItem?.firstName} {activationItem?.lastName}
+            {TEXTS.NAME}: {activationItem?.name}
           </DialogContentText>
         </DialogContent>
         <DialogActions>
@@ -249,7 +245,10 @@ export const CustomerListPage: FC = () => {
             label={TEXTS.CANCEL}
             color="inherit"
           />
-          <Button onClick={onUpdateCustomerActivation} label={TEXTS.CONFIRM} />
+          <Button
+            onClick={onUpdateTransporterActivation}
+            label={TEXTS.CONFIRM}
+          />
         </DialogActions>
       </Dialog>
     );
@@ -265,4 +264,4 @@ export const CustomerListPage: FC = () => {
   );
 };
 
-export default CustomerListPage;
+export default TransporterListPage;

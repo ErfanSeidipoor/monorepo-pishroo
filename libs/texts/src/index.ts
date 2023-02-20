@@ -14,6 +14,8 @@ const TEXTS = {
   USERNMAE: "Username",
   SLUG: "Slug",
   TEXT: "Text",
+  ADDRESS: "Address",
+  DESCRIPTION: "Description",
   ACTIVATION: "ACTIVATION",
   FILTER: "Filter",
   CLEAR_ALL: "Clear All",
@@ -32,6 +34,7 @@ const TEXTS = {
   SEARCH: "Search",
   JOB_TITLE: "Job Title",
   CUSTOMER: "Customer",
+  TRANSPORTER: "Transporter",
   DEACTIVE_WARNING_MESSAGE: "Are You Sure to Deactive ?",
   ACTIVE_WARNING_MESSAGE: "Are You Sure to Active ?",
 
@@ -126,22 +129,41 @@ const TEXTS = {
   PAGE_CITY_UPDATE__UPDATE_CITY: "Update City",
   PAGE_CITY_UPDATE__SUCCESS: "City Updated Successfully!",
 
-  /* ---------------------------------- city ---------------------------------- */
+  /* -------------------------------- customer -------------------------------- */
 
   PAGE_CUSTOMER__PAGE_TITLE: "Customer | Pishroo",
   PAGE_CUSTOMER__CUSTOMER: "Customer",
   PAGE_CUSTOMER__NEW_CUSTOMER: "New Customer",
 
-  /* -------------------------------- new city -------------------------------- */
+  /* -----------------------------  customer new  ---------------------------- */
+
   PAGE_NEW_CUSTOMER__PAGE_TITLE: "New Customer | Pishroo",
   PAGE_NEW_CUSTOMER__NEW_CUSTOMER: "New Customer",
   PAGE_NEW_CUSTOMER__SUCCESS: "Customer Created Successfully!",
 
-  /* ------------------------------ city details ------------------------------ */
+  /* ----------------------------- customer update ---------------------------- */
 
   PAGE_CUSTOMER_UPDATE__PAGE_TITLE: "Customer Details | Pishroo",
   PAGE_CUSTOMER_UPDATE__UPDATE_CUSTOMER: "Update Customer",
   PAGE_CUSTOMER_UPDATE__SUCCESS: "Customer Updated Successfully!",
+
+  /* ------------------------------- transporter ------------------------------ */
+
+  PAGE_TRANSPORTER__PAGE_TITLE: "Transporter | Pishroo",
+  PAGE_TRANSPORTER__TRANSPORTER: "Transporter",
+  PAGE_TRANSPORTER__NEW_TRANSPORTER: "New Transporter",
+
+  /* ----------------------------- transporter new ---------------------------- */
+
+  PAGE_NEW_TRANSPORTER__PAGE_TITLE: "New Transporter | Pishroo",
+  PAGE_NEW_TRANSPORTER__NEW_TRANSPORTER: "New Transporter",
+  PAGE_NEW_TRANSPORTER__SUCCESS: "Transporter Created Successfully!",
+
+  /* --------------------------- transporter update --------------------------- */
+
+  PAGE_TRANSPORTER_UPDATE__PAGE_TITLE: "Transporter Details | Pishroo",
+  PAGE_TRANSPORTER_UPDATE__UPDATE_TRANSPORTER: "Update Transporter",
+  PAGE_TRANSPORTER_UPDATE__SUCCESS: "Transporter Updated Successfully!",
 };
 
 export default TEXTS;

@@ -1,7 +1,45 @@
-import { IsUUID } from "class-validator";
-import { CreateTransporterAdminInputs } from "./create-transporter.inputs";
+import {
+  IsBoolean,
+  IsString,
+  MaxLength,
+  MinLength,
+  IsPhoneNumber,
+  IsOptional,
+  IsEmail,
+  IsUUID,
+} from "class-validator";
 
-export class UpdateTransporterAdminInputs extends CreateTransporterAdminInputs {
+export class UpdateTransporterAdminInputs {
   @IsUUID()
   transporterId: string;
+
+  @IsString()
+  @MinLength(3)
+  @MaxLength(50)
+  name: string;
+
+  @IsOptional()
+  @IsPhoneNumber()
+  phone?: string;
+
+  @IsOptional()
+  @IsEmail()
+  email?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(500)
+  description: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(256)
+  address: string;
+
+  @IsBoolean()
+  isActive: boolean;
+
+  @IsOptional()
+  @IsUUID()
+  cityId?: string;
 }

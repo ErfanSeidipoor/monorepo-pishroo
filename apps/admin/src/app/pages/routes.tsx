@@ -22,6 +22,9 @@ import {
   DASHBOARD_CUSTOMER_ROUTE,
   DASHBOARD_CUSTOMER_NEW_CUSTOMER_ROUTE,
   DASHBOARD_CUSTOMER_DETAILS,
+  DASHBOARD_TRANSPORTER_ROUTE,
+  DASHBOARD_TRANSPORTER_NEW_TRANSPORTER_ROUTE,
+  DASHBOARD_TRANSPORTER_DETAILS,
 } from "@admin/constants";
 
 /* --------------------------------- Routes --------------------------------- */
@@ -141,6 +144,24 @@ export const Routes = () =>
           ],
         },
         {
+          path: DASHBOARD_TRANSPORTER_ROUTE,
+          element: <TransporterProvider />,
+          children: [
+            {
+              path: DASHBOARD_TRANSPORTER_NEW_TRANSPORTER_ROUTE,
+              element: <TransporterNewPage />,
+            },
+            {
+              path: DASHBOARD_TRANSPORTER_DETAILS,
+              element: <TransporterUpdatePage />,
+            },
+            {
+              path: DASHBOARD_TRANSPORTER_ROUTE,
+              element: <TransporterListPage />,
+            },
+          ],
+        },
+        {
           path: DASHBOARD_ROUTE,
           element: <DashboardPage />,
         },
@@ -213,6 +234,7 @@ const CityNewPage = Loadable(lazy(() => import("./dashboard/city/new-city")));
 const CityUpdatePage = Loadable(lazy(() => import("./dashboard/city/update")));
 
 /* --------------------------- dashboard customer --------------------------- */
+
 const CustomerProvider = Loadable(lazy(() => import("./dashboard/customer")));
 const CustomerListPage = Loadable(
   lazy(() => import("./dashboard/customer/list"))
@@ -222,4 +244,19 @@ const CustomerNewPage = Loadable(
 );
 const CustomerUpdatePage = Loadable(
   lazy(() => import("./dashboard/customer/update"))
+);
+
+/* -------------------------- dashboard transporter ------------------------- */
+
+const TransporterProvider = Loadable(
+  lazy(() => import("./dashboard/transporter"))
+);
+const TransporterListPage = Loadable(
+  lazy(() => import("./dashboard/transporter/list"))
+);
+const TransporterNewPage = Loadable(
+  lazy(() => import("./dashboard/transporter/new-transporter"))
+);
+const TransporterUpdatePage = Loadable(
+  lazy(() => import("./dashboard/transporter/update"))
 );
