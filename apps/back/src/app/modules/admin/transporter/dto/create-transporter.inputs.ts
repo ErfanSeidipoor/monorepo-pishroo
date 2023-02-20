@@ -6,10 +6,10 @@ export class CreateTransporterAdminInputsGQL extends CreateTransporterAdminInput
   @Field()
   name: string;
 
-  @Field()
+  @Field({ nullable: true })
   phone?: string;
 
-  @Field()
+  @Field({ nullable: true })
   email?: string;
 
   @Field()
@@ -21,6 +21,6 @@ export class CreateTransporterAdminInputsGQL extends CreateTransporterAdminInput
   @Field()
   isActive: boolean;
 
-  @Field()
+  @Field({ nullable: true })
   cityId?: string;
 }

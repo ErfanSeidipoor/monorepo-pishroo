@@ -471,7 +471,7 @@ type Query {
   getProductReviewByIdAdmin(productReviewId: String!): ProductReview
   getProvincesAdmin(getProvincesAdminArgs: GetProvincesAdminArgsGQL!, paginationArgs: PaginationArgsGQL!): PaginatedProvince!
   getProvinceByIdAdmin(provinceId: String!): Province
-  getTransportersAdmin(paginationArgs: PaginationArgsGQL!, search: String = "", isActive: String, cityIds: [String!], provinceIds: [String!]): PaginatedTransporter
+  getTransportersAdmin(paginationArgs: PaginationArgsGQL!, getTransportersAdminArgs: GetTransportersAdminArgsGQL!): PaginatedTransporter!
   getTransporterByIdAdmin(transporterId: String!): Transporter
   getTransporterAgentsAdmin(paginationArgs: PaginationArgsGQL!, search: String = "", isActive: String, transporterId: String): PaginatedTransporterAgent
   getTransporterAgentByIdAdmin(transporterAgentId: String!): TransporterAgent
@@ -520,6 +520,13 @@ input GetProvincesAdminArgsGQL {
   provinceId: String = ""
 }
 
+input GetTransportersAdminArgsGQL {
+  search: String = ""
+  isActive: Boolean
+  cityIds: [String!]
+  provinceIds: [String!]
+}
+
 input GetCitiesAdminArgsGQL {
   name: String = ""
   provinceId: String
@@ -566,9 +573,9 @@ type Mutation {
   createProvinceAdmin(createProvinceAdminInputs: CreateProvinceAdminInputsGQL!): Province!
   updateProvinceAdmin(updateProvinceAdminInputs: UpdateProvinceAdminInputsGQL!): Province!
   deleteProvinceAdmin(deleteProvinceAdmin: DeleteProvinceAdminInputsGQL!): Province!
-  createTransporterAdmin(createTransporterAdmin: CreateTransporterAdminInputsGQL!): Transporter!
-  updateTransporterAdmin(updateTransporterAdmin: UpdateTransporterAdminInputsGQL!): Transporter!
-  updateTransporterActivationAdmin(updateTransporterActivationAdmin: UpdateTransporterActivationAdminInputsGQL!): Transporter!
+  createTransporterAdmin(createTransporterAdminInputs: CreateTransporterAdminInputsGQL!): Transporter!
+  updateTransporterAdmin(updateTransporterAdminInputs: UpdateTransporterAdminInputsGQL!): Transporter!
+  updateTransporterActivationAdmin(updateTransporterActivationAdminInputs: UpdateTransporterActivationAdminInputsGQL!): Transporter!
   deleteTransporterAdmin(deleteTransporterAdmin: DeleteTransporterAdminInputsGQL!): Transporter!
   addImageToTransporterAdmin(addImageToTransporterAdmin: AddImageToTransporterAdminInputsGQL!): Transporter!
   removeImageFromTransporterAdmin(removeImageFromTransporterAdmin: RemoveImageFromTransporterAdminInputsGQL!): Transporter!
@@ -794,23 +801,23 @@ input DeleteProvinceAdminInputsGQL {
 
 input CreateTransporterAdminInputsGQL {
   name: String!
-  phone: String!
-  email: String!
+  phone: String
+  email: String
   description: String!
   address: String!
   isActive: Boolean!
-  cityId: String!
+  cityId: String
 }
 
 input UpdateTransporterAdminInputsGQL {
+  transporterId: String!
   name: String!
-  phone: String!
-  email: String!
+  phone: String
+  email: String
   description: String!
   address: String!
   isActive: Boolean!
-  cityId: String!
-  transporterId: String!
+  cityId: String
 }
 
 input UpdateTransporterActivationAdminInputsGQL {

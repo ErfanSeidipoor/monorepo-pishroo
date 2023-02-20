@@ -7,6 +7,7 @@ import PermIdentityTwoToneIcon from "@mui/icons-material/PermIdentityTwoTone";
 import MapTwoToneIcon from "@mui/icons-material/MapTwoTone";
 import MapsHomeWorkTwoToneIcon from "@mui/icons-material/MapsHomeWorkTwoTone";
 import CallTwoToneIcon from "@mui/icons-material/CallTwoTone";
+import LocalShippingTwoToneIcon from "@mui/icons-material/LocalShippingTwoTone";
 
 import TEXTS from "@pishroo/texts";
 import {
@@ -15,6 +16,7 @@ import {
   DASHBOARD_PRODUCT_ROUTE,
   DASHBOARD_PROVINCE_ROUTE,
   DASHBOARD_ROUTE,
+  DASHBOARD_TRANSPORTER_ROUTE,
   DASHBOARD_USER_ROUTE,
 } from "@admin/constants";
 
@@ -53,6 +55,11 @@ export const NavSection: FC = () => {
       title: TEXTS.CUSTOMER,
       path: DASHBOARD_CUSTOMER_ROUTE,
       icon: <CallTwoToneIcon />,
+    },
+    {
+      title: TEXTS.TRANSPORTER,
+      path: DASHBOARD_TRANSPORTER_ROUTE,
+      icon: <LocalShippingTwoToneIcon />,
     },
   ];
 

@@ -34,7 +34,7 @@ export class TransporterResolver {
   @Mutation(() => Transporter)
   @UseGuards(TransporterAdminGuard)
   async createTransporterAdmin(
-    @Args("createTransporterAdmin")
+    @Args("createTransporterAdminInputs")
     inputs: CreateTransporterAdminInputsGQL
   ): Promise<Transporter> {
     return await this.transporterService.createTransporter(inputs);
@@ -43,7 +43,7 @@ export class TransporterResolver {
   @Mutation(() => Transporter)
   @UseGuards(TransporterAdminGuard)
   async updateTransporterAdmin(
-    @Args("updateTransporterAdmin")
+    @Args("updateTransporterAdminInputs")
     inputs: UpdateTransporterAdminInputsGQL
   ): Promise<Transporter> {
     return await this.transporterService.updateTransporter(inputs);
@@ -52,7 +52,7 @@ export class TransporterResolver {
   @Mutation(() => Transporter)
   @UseGuards(TransporterAdminGuard)
   async updateTransporterActivationAdmin(
-    @Args("updateTransporterActivationAdmin")
+    @Args("updateTransporterActivationAdminInputs")
     inputs: UpdateTransporterActivationAdminInputsGQL
   ): Promise<Transporter> {
     return await this.transporterService.updateTransporterActivation(inputs);
@@ -67,11 +67,11 @@ export class TransporterResolver {
     return await this.transporterService.deleteTransporter(inputs);
   }
 
-  @Query(() => PaginatedTransporter, { nullable: true })
+  @Query(() => PaginatedTransporter, { nullable: false })
   @UseGuards(TransporterAdminGuard)
   async getTransportersAdmin(
     @Args("paginationArgs") paginationArgs: PaginationArgsGQL,
-    @Args() args: GetTransportersAdminArgsGQL
+    @Args("getTransportersAdminArgs") args: GetTransportersAdminArgsGQL
   ) {
     return this.transporterService.getTransporters(paginationArgs, args);
   }
@@ -79,7 +79,8 @@ export class TransporterResolver {
   @Query(() => Transporter, { nullable: true })
   @UseGuards(TransporterAdminGuard)
   async getTransporterByIdAdmin(
-    @Args() getTransporterByIdAdminArgs: GetTransporterByIdAdminArgsGQL
+    @Args()
+    getTransporterByIdAdminArgs: GetTransporterByIdAdminArgsGQL
   ) {
     return this.transporterService.getTransporterById(
       getTransporterByIdAdminArgs
