@@ -29,7 +29,7 @@ export class ProducerResolver {
   @Mutation(() => Producer)
   @UseGuards(ProducerAdminGuard)
   async createProducerAdmin(
-    @Args("createProducerAdmin")
+    @Args("createProducerAdminInputs")
     inputs: CreateProducerAdminInputsGQL
   ): Promise<Producer> {
     return await this.producerService.createProducer(inputs);
@@ -38,7 +38,7 @@ export class ProducerResolver {
   @Mutation(() => Producer)
   @UseGuards(ProducerAdminGuard)
   async updateProducerAdmin(
-    @Args("updateProducerAdmin")
+    @Args("updateProducerAdminInputs")
     inputs: UpdateProducerAdminInputsGQL
   ): Promise<Producer> {
     return await this.producerService.updateProducer(inputs);
@@ -47,7 +47,7 @@ export class ProducerResolver {
   @Mutation(() => Producer)
   @UseGuards(ProducerAdminGuard)
   async updateProducerActivationAdmin(
-    @Args("updateProducerActivationAdmin")
+    @Args("updateProducerActivationAdminInputs")
     inputs: UpdateProducerActivationAdminInputsGQL
   ): Promise<Producer> {
     return await this.producerService.updateProducerActivation(inputs);
@@ -62,11 +62,11 @@ export class ProducerResolver {
     return await this.producerService.deleteProducer(inputs);
   }
 
-  @Query(() => PaginatedProducer, { nullable: true })
+  @Query(() => PaginatedProducer, { nullable: false })
   @UseGuards(ProducerAdminGuard)
   async getProducersAdmin(
     @Args("paginationArgs") paginationArgs: PaginationArgsGQL,
-    @Args() args: GetProducersAdminArgsGQL
+    @Args("getProducersAdminArgs") args: GetProducersAdminArgsGQL
   ) {
     return this.producerService.getProducers(paginationArgs, args);
   }

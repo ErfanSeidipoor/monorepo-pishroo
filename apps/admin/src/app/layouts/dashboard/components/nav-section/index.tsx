@@ -9,11 +9,15 @@ import MapsHomeWorkTwoToneIcon from "@mui/icons-material/MapsHomeWorkTwoTone";
 import CallTwoToneIcon from "@mui/icons-material/CallTwoTone";
 import LocalShippingTwoToneIcon from "@mui/icons-material/LocalShippingTwoTone";
 import TwoWheelerTwoToneIcon from "@mui/icons-material/TwoWheelerTwoTone";
+import FactoryTwoToneIcon from "@mui/icons-material/FactoryTwoTone";
+import CarpenterTwoToneIcon from "@mui/icons-material/CarpenterTwoTone";
 
 import TEXTS from "@pishroo/texts";
 import {
   DASHBOARD_CITY_ROUTE,
   DASHBOARD_CUSTOMER_ROUTE,
+  DASHBOARD_PRODUCER_AGENT_ROUTE,
+  DASHBOARD_PRODUCER_ROUTE,
   DASHBOARD_PRODUCT_ROUTE,
   DASHBOARD_PROVINCE_ROUTE,
   DASHBOARD_ROUTE,
@@ -67,6 +71,16 @@ export const NavSection: FC = () => {
       title: TEXTS.TRANSPORTER_AGENT,
       path: DASHBOARD_TRANSPORTER_AGENT_ROUTE,
       icon: <TwoWheelerTwoToneIcon />,
+    },
+    {
+      title: TEXTS.PRODUCER,
+      path: DASHBOARD_PRODUCER_ROUTE,
+      icon: <FactoryTwoToneIcon />,
+    },
+    {
+      title: TEXTS.PRODUCER_AGENT,
+      path: DASHBOARD_PRODUCER_AGENT_ROUTE,
+      icon: <CarpenterTwoToneIcon />,
     },
   ];
 

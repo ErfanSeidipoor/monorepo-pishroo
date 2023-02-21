@@ -12,10 +12,10 @@ export class CreateProducerAgentAdminInputsGQL extends CreateProducerAgentAdminI
   @Field()
   lastName: string;
 
-  @Field()
+  @Field({ nullable: true })
   email?: string;
 
-  @Field()
+  @Field({ nullable: true })
   phone?: string;
 
   @Field()

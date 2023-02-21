@@ -6,10 +6,10 @@ export class CreateProducerAdminInputsGQL extends CreateProducerAdminInputs {
   @Field()
   name: string;
 
-  @Field()
+  @Field({ nullable: true })
   phone?: string;
 
-  @Field()
+  @Field({ nullable: true })
   email?: string;
 
   @Field()
@@ -21,6 +21,6 @@ export class CreateProducerAdminInputsGQL extends CreateProducerAdminInputs {
   @Field()
   isActive: boolean;
 
-  @Field()
+  @Field({ nullable: true })
   cityId?: string;
 }

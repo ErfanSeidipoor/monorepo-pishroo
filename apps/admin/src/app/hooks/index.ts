@@ -6,3 +6,5 @@ export * from "./useUserDetails";
 export * from "./useCustomerDetails";
 export * from "./useTransporterDetails";
 export * from "./useTransporterAgentDetails";
+export * from "./useProducerDetails";
+export * from "./useProducerAgentDetails";

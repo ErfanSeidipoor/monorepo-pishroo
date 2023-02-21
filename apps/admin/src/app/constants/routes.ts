@@ -58,3 +58,19 @@ export const DASHBOARD_TRANSPORTER_AGENT_NEW_TRANSPORTER_AGENT_ROUTE =
   DASHBOARD_TRANSPORTER_AGENT_ROUTE + "/new-transporter-agent";
 export const DASHBOARD_TRANSPORTER_AGENT_DETAILS =
   DASHBOARD_TRANSPORTER_AGENT_ROUTE + "/:transporterAgentId";
+
+/* -------------------------------- producer -------------------------------- */
+
+export const DASHBOARD_PRODUCER_ROUTE = DASHBOARD_ROUTE + "/producer";
+export const DASHBOARD_PRODUCER_NEW_PRODUCER_ROUTE =
+  DASHBOARD_PRODUCER_ROUTE + "/new-producer";
+export const DASHBOARD_PRODUCER_DETAILS =
+  DASHBOARD_PRODUCER_ROUTE + "/:producerId";
+
+/* ----------------------------- producer agent ----------------------------- */
+export const DASHBOARD_PRODUCER_AGENT_ROUTE =
+  DASHBOARD_ROUTE + "/producer-agent";
+export const DASHBOARD_PRODUCER_AGENT_NEW_PRODUCER_AGENT_ROUTE =
+  DASHBOARD_PRODUCER_AGENT_ROUTE + "/new-producer-agent";
+export const DASHBOARD_PRODUCER_AGENT_DETAILS =
+  DASHBOARD_PRODUCER_AGENT_ROUTE + "/:producerAgentId";

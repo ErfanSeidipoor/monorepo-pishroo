@@ -36,6 +36,8 @@ const TEXTS = {
   CUSTOMER: "Customer",
   TRANSPORTER: "Transporter",
   TRANSPORTER_AGENT: "Transporter Agent",
+  PRODUCER: "Producer",
+  PRODUCER_AGENT: "Producer Agent",
   DEACTIVE_WARNING_MESSAGE: "Are You Sure to Deactive ?",
   ACTIVE_WARNING_MESSAGE: "Are You Sure to Active ?",
 
@@ -187,6 +189,42 @@ const TEXTS = {
     "Update Transporter Agent",
   PAGE_TRANSPORTER_AGENT_UPDATE__SUCCESS:
     "Transporter Agent Updated Successfully!",
+
+  /* -------------------------------- producer -------------------------------- */
+
+  PAGE_PRODUCER__PAGE_TITLE: "Producer | Pishroo",
+  PAGE_PRODUCER__PRODUCER: "Producer",
+  PAGE_PRODUCER__NEW_PRODUCER: "New Producer",
+
+  /* ------------------------------ producer new ------------------------------ */
+
+  PAGE_NEW_PRODUCER__PAGE_TITLE: "New Producer | Pishroo",
+  PAGE_NEW_PRODUCER__NEW_PRODUCER: "New Producer",
+  PAGE_NEW_PRODUCER__SUCCESS: "Producer Created Successfully!",
+
+  /* ----------------------------- producer update ---------------------------- */
+
+  PAGE_PRODUCER_UPDATE__PAGE_TITLE: "Producer Details | Pishroo",
+  PAGE_PRODUCER_UPDATE__UPDATE_PRODUCER: "Update Producer",
+  PAGE_PRODUCER_UPDATE__SUCCESS: "Producer Updated Successfully!",
+
+  /* ----------------------------- producer agent ----------------------------- */
+
+  PAGE_PRODUCER_AGENT__PAGE_TITLE: "Producer Agent | Pishroo",
+  PAGE_PRODUCER_AGENT__PRODUCER_AGENT: "Producer Agent",
+  PAGE_PRODUCER_AGENT__NEW_PRODUCER_AGENT: "New Producer Agent",
+
+  /* --------------------------- producer agent new --------------------------- */
+
+  PAGE_NEW_PRODUCER_AGENT__PAGE_TITLE: "New Producer Agent | Pishroo",
+  PAGE_NEW_PRODUCER_AGENT__NEW_PRODUCER_AGENT: "New Producer Agent",
+  PAGE_NEW_PRODUCER_AGENT__SUCCESS: "Producer Agent Created Successfully!",
+
+  /* -------------------------- producer agent update ------------------------- */
+
+  PAGE_PRODUCER_AGENT_UPDATE__PAGE_TITLE: "Producer Agent Details | Pishroo",
+  PAGE_PRODUCER_AGENT_UPDATE__UPDATE_PRODUCER_AGENT: "Update Producer Agent",
+  PAGE_PRODUCER_AGENT_UPDATE__SUCCESS: "Producer Agent Updated Successfully!",
 };
 
 export default TEXTS;
