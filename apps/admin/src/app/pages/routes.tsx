@@ -25,6 +25,9 @@ import {
   DASHBOARD_TRANSPORTER_ROUTE,
   DASHBOARD_TRANSPORTER_NEW_TRANSPORTER_ROUTE,
   DASHBOARD_TRANSPORTER_DETAILS,
+  DASHBOARD_TRANSPORTER_AGENT_ROUTE,
+  DASHBOARD_TRANSPORTER_AGENT_DETAILS,
+  DASHBOARD_TRANSPORTER_AGENT_NEW_TRANSPORTER_AGENT_ROUTE,
 } from "@admin/constants";
 
 /* --------------------------------- Routes --------------------------------- */
@@ -162,6 +165,24 @@ export const Routes = () =>
           ],
         },
         {
+          path: DASHBOARD_TRANSPORTER_AGENT_ROUTE,
+          element: <TransporterAgentProvider />,
+          children: [
+            {
+              path: DASHBOARD_TRANSPORTER_AGENT_NEW_TRANSPORTER_AGENT_ROUTE,
+              element: <TransporterAgentNewPage />,
+            },
+            {
+              path: DASHBOARD_TRANSPORTER_AGENT_DETAILS,
+              element: <TransporterAgentUpdatePage />,
+            },
+            {
+              path: DASHBOARD_TRANSPORTER_AGENT_ROUTE,
+              element: <TransporterAgentListPage />,
+            },
+          ],
+        },
+        {
           path: DASHBOARD_ROUTE,
           element: <DashboardPage />,
         },
@@ -259,4 +280,19 @@ const TransporterNewPage = Loadable(
 );
 const TransporterUpdatePage = Loadable(
   lazy(() => import("./dashboard/transporter/update"))
+);
+
+/* ----------------------- dashboard transporter agent ---------------------- */
+
+const TransporterAgentProvider = Loadable(
+  lazy(() => import("./dashboard/transporter-agent"))
+);
+const TransporterAgentListPage = Loadable(
+  lazy(() => import("./dashboard/transporter-agent/list"))
+);
+const TransporterAgentNewPage = Loadable(
+  lazy(() => import("./dashboard/transporter-agent/new"))
+);
+const TransporterAgentUpdatePage = Loadable(
+  lazy(() => import("./dashboard/transporter-agent/update"))
 );

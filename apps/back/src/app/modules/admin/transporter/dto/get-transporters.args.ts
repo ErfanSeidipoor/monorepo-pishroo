@@ -14,4 +14,7 @@ export class GetTransportersAdminArgsGQL extends GetTransportersAdminArgs {
 
   @Field(() => [String], { nullable: true })
   provinceIds?: string[];
+
+  @Field(() => String, { nullable: true })
+  transporterId?: string;
 }

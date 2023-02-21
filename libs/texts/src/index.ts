@@ -35,6 +35,7 @@ const TEXTS = {
   JOB_TITLE: "Job Title",
   CUSTOMER: "Customer",
   TRANSPORTER: "Transporter",
+  TRANSPORTER_AGENT: "Transporter Agent",
   DEACTIVE_WARNING_MESSAGE: "Are You Sure to Deactive ?",
   ACTIVE_WARNING_MESSAGE: "Are You Sure to Active ?",
 
@@ -164,6 +165,28 @@ const TEXTS = {
   PAGE_TRANSPORTER_UPDATE__PAGE_TITLE: "Transporter Details | Pishroo",
   PAGE_TRANSPORTER_UPDATE__UPDATE_TRANSPORTER: "Update Transporter",
   PAGE_TRANSPORTER_UPDATE__SUCCESS: "Transporter Updated Successfully!",
+
+  /* ---------------------------- transporter agent --------------------------- */
+
+  PAGE_TRANSPORTER_AGENT__PAGE_TITLE: "Transporter Agent | Pishroo",
+  PAGE_TRANSPORTER_AGENT__TRANSPORTER_AGENT: "Transporter Agent",
+  PAGE_TRANSPORTER_AGENT__NEW_TRANSPORTER_AGENT: "New Transporter Agent",
+
+  /* -------------------------- transporter agent new ------------------------- */
+
+  PAGE_NEW_TRANSPORTER_AGENT__PAGE_TITLE: "New Transporter Agent | Pishroo",
+  PAGE_NEW_TRANSPORTER_AGENT__NEW_TRANSPORTER_AGENT: "New Transporter Agent",
+  PAGE_NEW_TRANSPORTER_AGENT__SUCCESS:
+    "Transporter Agent Created Successfully!",
+
+  /* ------------------------ transporter agent update ------------------------ */
+
+  PAGE_TRANSPORTER_AGENT_UPDATE__PAGE_TITLE:
+    "Transporter Agent Details | Pishroo",
+  PAGE_TRANSPORTER_AGENT_UPDATE__UPDATE_TRANSPORTER_AGENT:
+    "Update Transporter Agent",
+  PAGE_TRANSPORTER_AGENT_UPDATE__SUCCESS:
+    "Transporter Agent Updated Successfully!",
 };
 
 export default TEXTS;

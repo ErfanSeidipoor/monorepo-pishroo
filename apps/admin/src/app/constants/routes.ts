@@ -50,3 +50,11 @@ export const DASHBOARD_TRANSPORTER_NEW_TRANSPORTER_ROUTE =
   DASHBOARD_TRANSPORTER_ROUTE + "/new-transporter";
 export const DASHBOARD_TRANSPORTER_DETAILS =
   DASHBOARD_TRANSPORTER_ROUTE + "/:transporterId";
+
+/* ---------------------------- transporter agent --------------------------- */
+export const DASHBOARD_TRANSPORTER_AGENT_ROUTE =
+  DASHBOARD_ROUTE + "/transporter-agent";
+export const DASHBOARD_TRANSPORTER_AGENT_NEW_TRANSPORTER_AGENT_ROUTE =
+  DASHBOARD_TRANSPORTER_AGENT_ROUTE + "/new-transporter-agent";
+export const DASHBOARD_TRANSPORTER_AGENT_DETAILS =
+  DASHBOARD_TRANSPORTER_AGENT_ROUTE + "/:transporterAgentId";

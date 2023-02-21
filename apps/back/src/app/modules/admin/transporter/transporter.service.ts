@@ -220,7 +220,7 @@ export class TransporterService {
     paginationArgs: PaginationArgs,
     args: GetTransportersAdminArgs
   ) {
-    const { isActive, search, cityIds, provinceIds } = args;
+    const { isActive, search, cityIds, provinceIds, transporterId } = args;
 
     const queryBuilder = this.transporterRepo
       .createQueryBuilder("transporter")
@@ -256,6 +256,12 @@ export class TransporterService {
     if (provinceIds && provinceIds.length) {
       queryBuilder.andWhere("city.provinceId IN (:...provinceIds)", {
         provinceIds,
+      });
+    }
+
+    if (transporterId) {
+      queryBuilder.andWhere("transporter.id = :transporterId", {
+        transporterId,
       });
     }
     /* ---------------------------------- Order --------------------------------- */

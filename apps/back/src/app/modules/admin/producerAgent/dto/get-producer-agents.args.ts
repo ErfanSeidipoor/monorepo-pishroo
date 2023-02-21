@@ -6,7 +6,7 @@ export class GetProducerAgentsAdminArgsGQL extends GetProducerAgentsAdminArgs {
   @Field(() => String, { nullable: true })
   search?: string = "";
 
-  @Field(() => String, { nullable: true })
+  @Field(() => Boolean, { nullable: true })
   isActive?: boolean;
 
   @Field(() => String, { nullable: true })
