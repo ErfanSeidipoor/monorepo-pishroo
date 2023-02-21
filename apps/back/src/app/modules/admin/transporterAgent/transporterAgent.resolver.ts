@@ -31,7 +31,7 @@ export class TransporterAgentResolver {
   @Mutation(() => TransporterAgent)
   @UseGuards(TransporterAdminGuard)
   async createTransporterAgentAdmin(
-    @Args("createTransporterAgentAdmin")
+    @Args("createTransporterAgentAdminInputs")
     inputs: CreateTransporterAgentAdminInputsGQL
   ): Promise<TransporterAgent> {
     return await this.transporterAgentService.createTransporterAgent(inputs);
@@ -40,7 +40,7 @@ export class TransporterAgentResolver {
   @Mutation(() => TransporterAgent)
   @UseGuards(TransporterAdminGuard)
   async updateTransporterAgentAdmin(
-    @Args("updateTransporterAgentAdmin")
+    @Args("updateTransporterAgentAdminInputs")
     inputs: UpdateTransporterAgentAdminInputsGQL
   ): Promise<TransporterAgent> {
     return await this.transporterAgentService.updateTransporterAgent(inputs);
@@ -49,7 +49,7 @@ export class TransporterAgentResolver {
   @Mutation(() => TransporterAgent)
   @UseGuards(TransporterAdminGuard)
   async updateTransporterAgentActivationAdmin(
-    @Args("updateTransporterAgentActivationAdmin")
+    @Args("updateTransporterAgentActivationAdminInputs")
     inputs: UpdateTransporterAgentActivationAdminInputsGQL
   ): Promise<TransporterAgent> {
     return await this.transporterAgentService.updateTransporterAgentActivation(
@@ -66,11 +66,12 @@ export class TransporterAgentResolver {
     return await this.transporterAgentService.deleteTransporterAgent(inputs);
   }
 
-  @Query(() => PaginatedTransporterAgent, { nullable: true })
+  @Query(() => PaginatedTransporterAgent, { nullable: false })
   @UseGuards(TransporterAdminGuard)
   async getTransporterAgentsAdmin(
     @Args("paginationArgs") paginationArgs: PaginationArgsGQL,
-    @Args() args: GetTransporterAgentsAdminArgsGQL
+    @Args("getTransporterAgentsAdminArgs")
+    args: GetTransporterAgentsAdminArgsGQL
   ) {
     return this.transporterAgentService.getTransporterAgents(
       paginationArgs,

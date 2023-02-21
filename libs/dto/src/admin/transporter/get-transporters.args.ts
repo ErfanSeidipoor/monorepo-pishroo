@@ -27,4 +27,9 @@ export class GetTransportersAdminArgs {
   @IsArray()
   @ArrayMaxSize(10)
   provinceIds?: string[];
+
+  @IsOptional()
+  @IsUUID()
+  @IsString()
+  transporterId?: string;
 }

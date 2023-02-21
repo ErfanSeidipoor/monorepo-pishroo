@@ -5,3 +5,4 @@ export * from "./useCityDetails";
 export * from "./useUserDetails";
 export * from "./useCustomerDetails";
 export * from "./useTransporterDetails";
+export * from "./useTransporterAgentDetails";

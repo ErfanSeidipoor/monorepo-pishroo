@@ -8,6 +8,7 @@ import MapTwoToneIcon from "@mui/icons-material/MapTwoTone";
 import MapsHomeWorkTwoToneIcon from "@mui/icons-material/MapsHomeWorkTwoTone";
 import CallTwoToneIcon from "@mui/icons-material/CallTwoTone";
 import LocalShippingTwoToneIcon from "@mui/icons-material/LocalShippingTwoTone";
+import TwoWheelerTwoToneIcon from "@mui/icons-material/TwoWheelerTwoTone";
 
 import TEXTS from "@pishroo/texts";
 import {
@@ -16,6 +17,7 @@ import {
   DASHBOARD_PRODUCT_ROUTE,
   DASHBOARD_PROVINCE_ROUTE,
   DASHBOARD_ROUTE,
+  DASHBOARD_TRANSPORTER_AGENT_ROUTE,
   DASHBOARD_TRANSPORTER_ROUTE,
   DASHBOARD_USER_ROUTE,
 } from "@admin/constants";
@@ -60,6 +62,11 @@ export const NavSection: FC = () => {
       title: TEXTS.TRANSPORTER,
       path: DASHBOARD_TRANSPORTER_ROUTE,
       icon: <LocalShippingTwoToneIcon />,
+    },
+    {
+      title: TEXTS.TRANSPORTER_AGENT,
+      path: DASHBOARD_TRANSPORTER_AGENT_ROUTE,
+      icon: <TwoWheelerTwoToneIcon />,
     },
   ];
 
