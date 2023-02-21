@@ -28,6 +28,12 @@ import {
   DASHBOARD_TRANSPORTER_AGENT_ROUTE,
   DASHBOARD_TRANSPORTER_AGENT_DETAILS,
   DASHBOARD_TRANSPORTER_AGENT_NEW_TRANSPORTER_AGENT_ROUTE,
+  DASHBOARD_PRODUCER_ROUTE,
+  DASHBOARD_PRODUCER_NEW_PRODUCER_ROUTE,
+  DASHBOARD_PRODUCER_DETAILS,
+  DASHBOARD_PRODUCER_AGENT_ROUTE,
+  DASHBOARD_PRODUCER_AGENT_NEW_PRODUCER_AGENT_ROUTE,
+  DASHBOARD_PRODUCER_AGENT_DETAILS,
 } from "@admin/constants";
 
 /* --------------------------------- Routes --------------------------------- */
@@ -183,6 +189,43 @@ export const Routes = () =>
           ],
         },
         {
+          path: DASHBOARD_PRODUCER_ROUTE,
+          element: <ProducerProvider />,
+          children: [
+            {
+              path: DASHBOARD_PRODUCER_NEW_PRODUCER_ROUTE,
+              element: <ProducerNewPage />,
+            },
+            {
+              path: DASHBOARD_PRODUCER_DETAILS,
+              element: <ProducerUpdatePage />,
+            },
+            {
+              path: DASHBOARD_PRODUCER_ROUTE,
+              element: <ProducerListPage />,
+            },
+          ],
+        },
+        {
+          path: DASHBOARD_PRODUCER_AGENT_ROUTE,
+          element: <ProducerAgentProvider />,
+          children: [
+            {
+              path: DASHBOARD_PRODUCER_AGENT_NEW_PRODUCER_AGENT_ROUTE,
+              element: <ProducerAgentNewPage />,
+            },
+            {
+              path: DASHBOARD_PRODUCER_AGENT_DETAILS,
+              element: <ProducerAgentUpdatePage />,
+            },
+            {
+              path: DASHBOARD_PRODUCER_AGENT_ROUTE,
+              element: <ProducerAgentListPage />,
+            },
+          ],
+        },
+
+        {
           path: DASHBOARD_ROUTE,
           element: <DashboardPage />,
         },
@@ -295,4 +338,32 @@ const TransporterAgentNewPage = Loadable(
 );
 const TransporterAgentUpdatePage = Loadable(
   lazy(() => import("./dashboard/transporter-agent/update"))
+);
+
+/* -------------------------- dashboard producer ------------------------- */
+
+const ProducerProvider = Loadable(lazy(() => import("./dashboard/producer")));
+const ProducerListPage = Loadable(
+  lazy(() => import("./dashboard/producer/list"))
+);
+const ProducerNewPage = Loadable(
+  lazy(() => import("./dashboard/producer/new-producer"))
+);
+const ProducerUpdatePage = Loadable(
+  lazy(() => import("./dashboard/producer/update"))
+);
+
+/* ----------------------- dashboard producer agent ---------------------- */
+
+const ProducerAgentProvider = Loadable(
+  lazy(() => import("./dashboard/producer-agent"))
+);
+const ProducerAgentListPage = Loadable(
+  lazy(() => import("./dashboard/producer-agent/list"))
+);
+const ProducerAgentNewPage = Loadable(
+  lazy(() => import("./dashboard/producer-agent/new"))
+);
+const ProducerAgentUpdatePage = Loadable(
+  lazy(() => import("./dashboard/producer-agent/update"))
 );

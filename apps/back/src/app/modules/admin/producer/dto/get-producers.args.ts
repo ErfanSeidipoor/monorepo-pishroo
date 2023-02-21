@@ -1,12 +1,12 @@
-import { ArgsType, Field } from "@nestjs/graphql";
+import { InputType, Field } from "@nestjs/graphql";
 import { GetProducersAdminArgs } from "@pishroo/dto";
 
-@ArgsType()
+@InputType()
 export class GetProducersAdminArgsGQL extends GetProducersAdminArgs {
   @Field(() => String, { nullable: true })
   search?: string = "";
 
-  @Field(() => String, { nullable: true })
+  @Field(() => Boolean, { nullable: true })
   isActive?: boolean;
 
   @Field(() => [String], { nullable: true })
@@ -14,4 +14,7 @@ export class GetProducersAdminArgsGQL extends GetProducersAdminArgs {
 
   @Field(() => [String], { nullable: true })
   provinceIds?: string[];
+
+  @Field(() => String, { nullable: true })
+  producerId?: string;
 }

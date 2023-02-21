@@ -27,4 +27,9 @@ export class GetProducersAdminArgs {
   @IsArray()
   @ArrayMaxSize(10)
   provinceIds?: string[];
+
+  @IsOptional()
+  @IsUUID()
+  @IsString()
+  producerId?: string;
 }

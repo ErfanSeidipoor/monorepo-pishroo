@@ -475,9 +475,9 @@ type Query {
   getTransporterByIdAdmin(transporterId: String!): Transporter
   getTransporterAgentsAdmin(paginationArgs: PaginationArgsGQL!, getTransporterAgentsAdminArgs: GetTransporterAgentsAdminArgsGQL!): PaginatedTransporterAgent!
   getTransporterAgentByIdAdmin(transporterAgentId: String!): TransporterAgent
-  getProducersAdmin(paginationArgs: PaginationArgsGQL!, search: String = "", isActive: String, cityIds: [String!], provinceIds: [String!]): PaginatedProducer
+  getProducersAdmin(paginationArgs: PaginationArgsGQL!, getProducersAdminArgs: GetProducersAdminArgsGQL!): PaginatedProducer!
   getProducerByIdAdmin(producerId: String!): Producer
-  getProducerAgentsAdmin(paginationArgs: PaginationArgsGQL!, search: String = "", isActive: Boolean, producerId: String): PaginatedProducerAgent
+  getProducerAgentsAdmin(paginationArgs: PaginationArgsGQL!, getProducerAgentsAdminArgs: GetProducerAgentsAdminArgsGQL!): PaginatedProducerAgent!
   getProducerAgentByIdAdmin(producerAgentId: String!): ProducerAgent
   getCitiesAdmin(getCitiesAdminArgs: GetCitiesAdminArgsGQL!, paginationArgs: PaginationArgsGQL!): PaginatedCity!
   getCityByIdAdmin(cityId: String!): City
@@ -532,6 +532,20 @@ input GetTransporterAgentsAdminArgsGQL {
   search: String = ""
   isActive: Boolean
   transporterId: String
+}
+
+input GetProducersAdminArgsGQL {
+  search: String = ""
+  isActive: Boolean
+  cityIds: [String!]
+  provinceIds: [String!]
+  producerId: String
+}
+
+input GetProducerAgentsAdminArgsGQL {
+  search: String = ""
+  isActive: Boolean
+  producerId: String
 }
 
 input GetCitiesAdminArgsGQL {
@@ -590,15 +604,15 @@ type Mutation {
   updateTransporterAgentAdmin(updateTransporterAgentAdminInputs: UpdateTransporterAgentAdminInputsGQL!): TransporterAgent!
   updateTransporterAgentActivationAdmin(updateTransporterAgentActivationAdminInputs: UpdateTransporterAgentActivationAdminInputsGQL!): TransporterAgent!
   deleteTransporterAgentAdmin(deleteTransporterAgentAdmin: DeleteTransporterAgentAdminInputsGQL!): TransporterAgent!
-  createProducerAdmin(createProducerAdmin: CreateProducerAdminInputsGQL!): Producer!
-  updateProducerAdmin(updateProducerAdmin: UpdateProducerAdminInputsGQL!): Producer!
-  updateProducerActivationAdmin(updateProducerActivationAdmin: UpdateProducerActivationAdminInputsGQL!): Producer!
+  createProducerAdmin(createProducerAdminInputs: CreateProducerAdminInputsGQL!): Producer!
+  updateProducerAdmin(updateProducerAdminInputs: UpdateProducerAdminInputsGQL!): Producer!
+  updateProducerActivationAdmin(updateProducerActivationAdminInputs: UpdateProducerActivationAdminInputsGQL!): Producer!
   deleteProducerAdmin(deleteProducerAdmin: DeleteProducerAdminInputsGQL!): Producer!
   addImageToProducerAdmin(addImageToProducerAdmin: AddImageToProducerAdminInputsGQL!): Producer!
   removeImageFromProducerAdmin(removeImageFromProducerAdmin: RemoveImageFromProducerAdminInputsGQL!): Producer!
-  createProducerAgentAdmin(createProducerAgentAdmin: CreateProducerAgentAdminInputsGQL!): ProducerAgent!
-  updateProducerAgentAdmin(updateProducerAgentAdmin: UpdateProducerAgentAdminInputsGQL!): ProducerAgent!
-  updateProducerAgentActivationAdmin(updateProducerAgentActivationAdmin: UpdateProducerAgentActivationAdminInputsGQL!): ProducerAgent!
+  createProducerAgentAdmin(createProducerAgentAdminInputs: CreateProducerAgentAdminInputsGQL!): ProducerAgent!
+  updateProducerAgentAdmin(updateProducerAgentAdminInputs: UpdateProducerAgentAdminInputsGQL!): ProducerAgent!
+  updateProducerAgentActivationAdmin(updateProducerAgentActivationAdminInputs: UpdateProducerAgentActivationAdminInputsGQL!): ProducerAgent!
   deleteProducerAgentAdmin(deleteProducerAgentAdmin: DeleteProducerAgentAdminInputsGQL!): ProducerAgent!
   createCityAdmin(createCityAdminInputs: CreateCityAdminInputsGQL!): City!
   updateCityAdmin(updateCityAdminInputs: UpdateCityAdminInputsGQL!): City!
@@ -876,23 +890,23 @@ input DeleteTransporterAgentAdminInputsGQL {
 
 input CreateProducerAdminInputsGQL {
   name: String!
-  phone: String!
-  email: String!
+  phone: String
+  email: String
   description: String!
   address: String!
   isActive: Boolean!
-  cityId: String!
+  cityId: String
 }
 
 input UpdateProducerAdminInputsGQL {
   producerId: String!
   name: String!
-  phone: String!
-  email: String!
+  phone: String
+  email: String
   description: String!
   address: String!
   isActive: Boolean!
-  cityId: String!
+  cityId: String
 }
 
 input UpdateProducerActivationAdminInputsGQL {
@@ -917,8 +931,8 @@ input CreateProducerAgentAdminInputsGQL {
   producerId: String!
   firstName: String!
   lastName: String!
-  email: String!
-  phone: String!
+  email: String
+  phone: String
   description: String!
   isActive: Boolean!
 }
@@ -926,8 +940,8 @@ input CreateProducerAgentAdminInputsGQL {
 input UpdateProducerAgentAdminInputsGQL {
   firstName: String!
   lastName: String!
-  email: String!
-  phone: String!
+  email: String
+  phone: String
   description: String!
   isActive: Boolean!
   producerAgentId: String!

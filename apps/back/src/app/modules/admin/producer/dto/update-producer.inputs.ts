@@ -9,10 +9,10 @@ export class UpdateProducerAdminInputsGQL extends UpdateProducerAdminInputs {
   @Field()
   name: string;
 
-  @Field()
+  @Field({ nullable: true })
   phone?: string;
 
-  @Field()
+  @Field({ nullable: true })
   email?: string;
 
   @Field()
@@ -24,6 +24,6 @@ export class UpdateProducerAdminInputsGQL extends UpdateProducerAdminInputs {
   @Field()
   isActive: boolean;
 
-  @Field()
+  @Field({ nullable: true })
   cityId?: string;
 }

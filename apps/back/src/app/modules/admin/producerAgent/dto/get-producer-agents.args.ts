@@ -1,7 +1,7 @@
-import { ArgsType, Field } from "@nestjs/graphql";
+import { InputType, Field } from "@nestjs/graphql";
 import { GetProducerAgentsAdminArgs } from "@pishroo/dto";
 
-@ArgsType()
+@InputType()
 export class GetProducerAgentsAdminArgsGQL extends GetProducerAgentsAdminArgs {
   @Field(() => String, { nullable: true })
   search?: string = "";

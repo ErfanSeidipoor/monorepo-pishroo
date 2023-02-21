@@ -215,7 +215,7 @@ export class ProducerService {
     paginationArgs: PaginationArgs,
     args: GetProducersAdminArgs
   ) {
-    const { isActive, search, cityIds, provinceIds } = args;
+    const { isActive, search, cityIds, provinceIds, producerId } = args;
 
     const queryBuilder = this.producerRepo
       .createQueryBuilder("producer")
@@ -253,6 +253,13 @@ export class ProducerService {
         provinceIds,
       });
     }
+
+    if (producerId) {
+      queryBuilder.andWhere("producer.id = :producerId", {
+        producerId,
+      });
+    }
+
     /* ---------------------------------- Order --------------------------------- */
 
     queryBuilder.addOrderBy("producer.createdAt", "DESC");
