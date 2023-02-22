@@ -34,6 +34,9 @@ import {
   DASHBOARD_PRODUCER_AGENT_ROUTE,
   DASHBOARD_PRODUCER_AGENT_NEW_PRODUCER_AGENT_ROUTE,
   DASHBOARD_PRODUCER_AGENT_DETAILS,
+  DASHBOARD_PROJECT_ROUTE,
+  DASHBOARD_PROJECT_NEW_PROJECT_ROUTE,
+  DASHBOARD_PROJECT_DETAILS,
 } from "@admin/constants";
 
 /* --------------------------------- Routes --------------------------------- */
@@ -224,6 +227,24 @@ export const Routes = () =>
             },
           ],
         },
+        {
+          path: DASHBOARD_PROJECT_ROUTE,
+          element: <ProjectProvider />,
+          children: [
+            {
+              path: DASHBOARD_PROJECT_NEW_PROJECT_ROUTE,
+              element: <ProjectNewPage />,
+            },
+            {
+              path: DASHBOARD_PROJECT_DETAILS,
+              element: <ProjectUpdatePage />,
+            },
+            {
+              path: DASHBOARD_PROJECT_ROUTE,
+              element: <ProjectListPage />,
+            },
+          ],
+        },
 
         {
           path: DASHBOARD_ROUTE,
@@ -292,6 +313,7 @@ const ProvinceUpdatePage = Loadable(
 );
 
 /* ----------------------------- dashboard city ----------------------------- */
+
 const CityProvider = Loadable(lazy(() => import("./dashboard/city")));
 const CityListPage = Loadable(lazy(() => import("./dashboard/city/list")));
 const CityNewPage = Loadable(lazy(() => import("./dashboard/city/new-city")));
@@ -366,4 +388,14 @@ const ProducerAgentNewPage = Loadable(
 );
 const ProducerAgentUpdatePage = Loadable(
   lazy(() => import("./dashboard/producer-agent/update"))
+);
+
+/* ---------------------------- dashboard project --------------------------- */
+const ProjectProvider = Loadable(lazy(() => import("./dashboard/project")));
+const ProjectListPage = Loadable(
+  lazy(() => import("./dashboard/project/list"))
+);
+const ProjectNewPage = Loadable(lazy(() => import("./dashboard/project/new")));
+const ProjectUpdatePage = Loadable(
+  lazy(() => import("./dashboard/project/update"))
 );

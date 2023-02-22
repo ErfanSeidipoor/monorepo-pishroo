@@ -35,7 +35,7 @@ export class ProjectResolver {
   @Mutation(() => Project)
   @UseGuards(ContentAdminGuard)
   async createProjectAdmin(
-    @Args("createProjectAdmin")
+    @Args("createProjectAdminInputs")
     inputs: CreateProjectAdminInputsGQL
   ): Promise<Project> {
     return await this.projectService.createProject(inputs);
@@ -44,7 +44,7 @@ export class ProjectResolver {
   @Mutation(() => Project)
   @UseGuards(ContentAdminGuard)
   async updateProjectAdmin(
-    @Args("updateProjectAdmin")
+    @Args("updateProjectAdminInputs")
     inputs: UpdateProjectAdminInputsGQL
   ): Promise<Project> {
     return await this.projectService.updateProject(inputs);
@@ -53,7 +53,7 @@ export class ProjectResolver {
   @Mutation(() => Project)
   @UseGuards(ContentAdminGuard)
   async updateProjectActivationAdmin(
-    @Args("updateProjectActivationAdmin")
+    @Args("updateProjectActivationAdminInputs")
     inputs: UpdateProjectActivationAdminInputsGQL
   ): Promise<Project> {
     return await this.projectService.updateProjectActivation(inputs);
@@ -68,11 +68,11 @@ export class ProjectResolver {
     return await this.projectService.deleteProject(inputs);
   }
 
-  @Query(() => PaginatedProject, { nullable: true })
+  @Query(() => PaginatedProject, { nullable: false })
   @UseGuards(ContentAdminGuard)
   async getProjectsAdmin(
     @Args("paginationArgs") paginationArgs: PaginationArgsGQL,
-    @Args() args: GetProjectsAdminArgsGQL
+    @Args("getProjectsAdminArgs") args: GetProjectsAdminArgsGQL
   ) {
     return this.projectService.getProjects(paginationArgs, args);
   }
@@ -92,7 +92,7 @@ export class ProjectResolver {
   @Mutation(() => Project)
   @UseGuards(ContentAdminGuard)
   async addImageToProjectAdmin(
-    @Args("addImageToProjectAdmin")
+    @Args("addImageToProjectAdminInputs")
     inputs: AddImageToProjectAdminInputsGQL
   ): Promise<Project> {
     return await this.projectService.addImageToProject(inputs);

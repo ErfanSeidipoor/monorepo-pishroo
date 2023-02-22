@@ -1,3 +1,4 @@
+import { Transform } from "class-transformer";
 import {
   IsBoolean,
   IsString,
@@ -29,10 +30,17 @@ export class CreateProjectAdminInputs {
   description?: string;
 
   @IsOptional()
+  @Transform((props) => props.value || undefined)
+  @Transform(({ value }) => +value || value)
   @IsLatitude()
   lat?: number;
 
   @IsOptional()
+  @Transform(({ value }) => {
+    console.log(value);
+
+    return +value || value;
+  })
   @IsLongitude()
   long?: number;
 

@@ -74,3 +74,11 @@ export const DASHBOARD_PRODUCER_AGENT_NEW_PRODUCER_AGENT_ROUTE =
   DASHBOARD_PRODUCER_AGENT_ROUTE + "/new-producer-agent";
 export const DASHBOARD_PRODUCER_AGENT_DETAILS =
   DASHBOARD_PRODUCER_AGENT_ROUTE + "/:producerAgentId";
+
+/* --------------------------------- project -------------------------------- */
+
+export const DASHBOARD_PROJECT_ROUTE = DASHBOARD_ROUTE + "/project";
+export const DASHBOARD_PROJECT_NEW_PROJECT_ROUTE =
+  DASHBOARD_PROJECT_ROUTE + "/new-project";
+export const DASHBOARD_PROJECT_DETAILS =
+  DASHBOARD_PROJECT_ROUTE + "/:projectId";
