@@ -16,6 +16,8 @@ const TEXTS = {
   TEXT: "Text",
   ADDRESS: "Address",
   DESCRIPTION: "Description",
+  LATITUDE: "Latitude",
+  LONGITUDE: "Longitude",
   ACTIVATION: "ACTIVATION",
   FILTER: "Filter",
   CLEAR_ALL: "Clear All",
@@ -38,6 +40,7 @@ const TEXTS = {
   TRANSPORTER_AGENT: "Transporter Agent",
   PRODUCER: "Producer",
   PRODUCER_AGENT: "Producer Agent",
+  PROJECT: "Project",
   DEACTIVE_WARNING_MESSAGE: "Are You Sure to Deactive ?",
   ACTIVE_WARNING_MESSAGE: "Are You Sure to Active ?",
 
@@ -225,6 +228,24 @@ const TEXTS = {
   PAGE_PRODUCER_AGENT_UPDATE__PAGE_TITLE: "Producer Agent Details | Pishroo",
   PAGE_PRODUCER_AGENT_UPDATE__UPDATE_PRODUCER_AGENT: "Update Producer Agent",
   PAGE_PRODUCER_AGENT_UPDATE__SUCCESS: "Producer Agent Updated Successfully!",
+
+  /* --------------------------------- project -------------------------------- */
+
+  PAGE_PROJECT__PAGE_TITLE: "Project | Pishroo",
+  PAGE_PROJECT__PROJECT: "Project",
+  PAGE_PROJECT__NEW_PROJECT: "New Project",
+
+  /* ------------------------------- new project ------------------------------ */
+
+  PAGE_NEW_PROJECT__PAGE_TITLE: "New Project | Pishroo",
+  PAGE_NEW_PROJECT__NEW_PROJECT: "New Project",
+  PAGE_NEW_PROJECT__SUCCESS: "Product Created Successfully!",
+
+  /* ----------------------------- project details ---------------------------- */
+
+  PAGE_PROJECT_UPDATE__PAGE_TITLE: "Project Details | Pishroo",
+  PAGE_PROJECT_UPDATE__UPDATE_PROJECT: "Update Project",
+  PAGE_PROJECT_UPDATE__SUCCESS: "Project Updated Successfully!",
 };
 
 export default TEXTS;

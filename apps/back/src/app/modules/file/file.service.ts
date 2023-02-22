@@ -2,7 +2,6 @@ import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { RemoveImageAdminInputs } from "@pishroo/dto";
 import { File, FileUse, User } from "@pishroo/entities";
-import { FileUseTypeEnum } from "@pishroo/enums";
 import {
   CustomError,
   FILE_NOT_FOUND,
@@ -58,7 +57,6 @@ export class FileService {
 
     const fileUse = await this.fileUseRepo.findOne({
       where: {
-        type: FileUseTypeEnum.product,
         fileId,
       },
       relations: ["file", "product"],

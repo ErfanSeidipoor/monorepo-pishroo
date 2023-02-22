@@ -7,26 +7,26 @@ import { useSnackbar } from "notistack";
 import { useMutation, useQuery } from "@apollo/client";
 
 import TEXTS from "@pishroo/texts";
-import { GetProductsAdminArgs } from "@pishroo/dto";
+import { GetProjectsAdminArgs } from "@pishroo/dto";
 import { url } from "@pishroo/utils";
 
 import {
-  DASHBOARD_PRODUCT_DETAILS,
-  DASHBOARD_PRODUCT_ROUTE,
+  DASHBOARD_PROJECT_DETAILS,
+  DASHBOARD_PROJECT_ROUTE,
   DASHBOARD_ROUTE,
 } from "@admin/constants";
 import {
-  GetProductsAdminArgsGql,
-  GetProductsAdminQuery,
-  GetProductsAdminQueryVariables,
+  GetProjectsAdminArgsGql,
+  GetProjectsAdminQuery,
+  GetProjectsAdminQueryVariables,
   PaginationArgsGql,
-  UpdateProductActivationAdminMutation,
-  UpdateProductActivationAdminMutationVariables,
+  UpdateProjectActivationAdminMutation,
+  UpdateProjectActivationAdminMutationVariables,
 } from "@admin/gql/graphql";
 
 import {
-  QUERY_GET_PRODUCTS_ADMIN,
-  MUTATION_UPDATE_PRODUCT_ACTIVATION_ADMIN,
+  QUERY_GET_PROJECTS_ADMIN,
+  MUTATION_UPDATE_PROJECT_ACTIVATION_ADMIN,
 } from "./gql";
 
 const useData = () => {
@@ -35,15 +35,17 @@ const useData = () => {
   const [searchParams] = useSearchParams();
   const { enqueueSnackbar } = useSnackbar();
   const [rows, setRows] = useState<
-    GetProductsAdminQuery["getProductsAdmin"]["edges"]
+    GetProjectsAdminQuery["getProjectsAdmin"]["edges"]
   >([]);
 
   const [activationItem, setActivationItem] = useState<typeof rows[0]>();
 
   const convertSearchParamsToArgs = (searchParams: URLSearchParams) => {
     return {
-      name: searchParams.get("name") || "",
-      slug: searchParams.get("slug") || "",
+      search: searchParams.get("search") || "",
+      provinceIds: searchParams.get("provinceIds")
+        ? [searchParams.get("provinceIds") || ""]
+        : undefined,
       isActive: searchParams.has("isActive")
         ? searchParams.get("isActive") === "true"
         : true,
@@ -51,9 +53,9 @@ const useData = () => {
   };
 
   const [pageInfo, setPageInfo] =
-    useState<GetProductsAdminQuery["getProductsAdmin"]["pageInfo"]>();
+    useState<GetProjectsAdminQuery["getProjectsAdmin"]["pageInfo"]>();
 
-  const [queryArgs, setQueryArgs] = useState<GetProductsAdminArgsGql>({
+  const [queryArgs, setQueryArgs] = useState<GetProjectsAdminArgsGql>({
     ...convertSearchParamsToArgs(searchParams),
   });
 
@@ -66,40 +68,40 @@ const useData = () => {
     reset,
     control,
     formState: { errors, isValid },
-  } = useForm<GetProductsAdminArgs>({
-    resolver: classValidatorResolver(GetProductsAdminArgs),
+  } = useForm<GetProjectsAdminArgs>({
+    resolver: classValidatorResolver(GetProjectsAdminArgs),
     mode: "onChange",
     defaultValues: {
-      name: queryArgs.name || "",
-      slug: queryArgs.slug || "",
+      search: queryArgs.search || "",
+      provinceIds: queryArgs.provinceIds || [],
       isActive: !!queryArgs.isActive,
     },
   });
 
   const { loading } = useQuery<
-    GetProductsAdminQuery,
-    GetProductsAdminQueryVariables
-  >(QUERY_GET_PRODUCTS_ADMIN, {
+    GetProjectsAdminQuery,
+    GetProjectsAdminQueryVariables
+  >(QUERY_GET_PROJECTS_ADMIN, {
     variables: {
-      getProductsAdminArgs: queryArgs,
+      getProjectsAdminArgs: queryArgs,
       paginationArgs: paginationArgs,
     },
     onError: (error) => {
       enqueueSnackbar(error.message, { variant: "error" });
     },
-    onCompleted: ({ getProductsAdmin }) => {
-      setRows(getProductsAdmin?.edges);
-      setPageInfo(getProductsAdmin?.pageInfo);
+    onCompleted: ({ getProjectsAdmin }) => {
+      setRows(getProjectsAdmin?.edges);
+      setPageInfo(getProjectsAdmin?.pageInfo);
     },
   });
 
   const [
-    updateProductActivationAdmin,
-    { loading: updateProductActivaitonLoading },
+    updateProjectActivationAdmin,
+    { loading: updateProjectActivaitonLoading },
   ] = useMutation<
-    UpdateProductActivationAdminMutation,
-    UpdateProductActivationAdminMutationVariables
-  >(MUTATION_UPDATE_PRODUCT_ACTIVATION_ADMIN, {
+    UpdateProjectActivationAdminMutation,
+    UpdateProjectActivationAdminMutationVariables
+  >(MUTATION_UPDATE_PROJECT_ACTIVATION_ADMIN, {
     onError: (error) => {
       enqueueSnackbar(error.message, { variant: "error" });
     },
@@ -121,49 +123,48 @@ const useData = () => {
 
   useEffect(() => {
     setConfig({
-      pageName: TEXTS.PAGE_PRODUCT__PAGE_TITLE,
+      pageName: TEXTS.PAGE_PROJECT__PAGE_TITLE,
       breadcrumbs: {
         links: [
           { label: TEXTS.DASHBOARD, href: DASHBOARD_ROUTE },
-          { label: TEXTS.PAGE_PRODUCT__PRODUCT },
+          { label: TEXTS.PAGE_PROJECT__PROJECT },
         ],
       },
     });
   }, [setConfig]);
 
-  const onSubmitFilter: SubmitHandler<GetProductsAdminArgs> = (
+  const onSubmitFilter: SubmitHandler<GetProjectsAdminArgs> = (
     loginAdminInputs
   ) => {
-    navigate(url.generate(DASHBOARD_PRODUCT_ROUTE, {}, loginAdminInputs));
+    navigate(url.generate(DASHBOARD_PROJECT_ROUTE, {}, loginAdminInputs));
   };
 
   const onPageSelect = (page: number) => {
     navigate(
-      url.generate(DASHBOARD_PRODUCT_ROUTE, {}, { ...paginationArgs, page })
+      url.generate(DASHBOARD_PROJECT_ROUTE, {}, { ...paginationArgs, page })
     );
   };
 
   const onClearFilter = () => {
     reset({
-      name: "",
-      slug: "",
+      search: "",
+      provinceIds: [],
       isActive: true,
     });
-
-    navigate(url.generate(DASHBOARD_PRODUCT_DETAILS, {}, {}));
+    navigate(url.generate(DASHBOARD_PROJECT_ROUTE, {}, {}));
   };
 
-  const onEdit = (productId: string) => {
-    navigate(url.generate(DASHBOARD_PRODUCT_DETAILS, { productId }));
+  const onEdit = (projectId: string) => {
+    navigate(url.generate(DASHBOARD_PROJECT_DETAILS, { projectId }));
   };
 
-  const onUpdateProductActivation = () => {
+  const onUpdateProjectActivation = () => {
     if (activationItem)
-      updateProductActivationAdmin({
+      updateProjectActivationAdmin({
         variables: {
-          updateProductActivationAdmin: {
+          updateProjectActivationAdmin: {
             isActive: !activationItem?.isActive,
-            productId: activationItem?.id,
+            projectId: activationItem?.id,
           },
         },
       });
@@ -184,8 +185,8 @@ const useData = () => {
     onEdit,
     activationItem,
     setActivationItem,
-    updateProductActivaitonLoading,
-    onUpdateProductActivation,
+    updateProjectActivaitonLoading,
+    onUpdateProjectActivation,
   };
 };
 

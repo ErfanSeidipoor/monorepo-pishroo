@@ -12,15 +12,15 @@ export class CreateProjectAdminInputsGQL extends CreateProjectAdminInputs {
   @Field()
   isActive: boolean;
 
-  @Field()
+  @Field({ nullable: true })
   description?: string;
 
-  @Field()
+  @Field({ nullable: true })
   lat?: number;
 
-  @Field()
+  @Field({ nullable: true })
   long?: number;
 
-  @Field()
+  @Field({ nullable: true })
   cityId?: string;
 }

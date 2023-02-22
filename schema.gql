@@ -481,7 +481,7 @@ type Query {
   getProducerAgentByIdAdmin(producerAgentId: String!): ProducerAgent
   getCitiesAdmin(getCitiesAdminArgs: GetCitiesAdminArgsGQL!, paginationArgs: PaginationArgsGQL!): PaginatedCity!
   getCityByIdAdmin(cityId: String!): City
-  getProjectsAdmin(paginationArgs: PaginationArgsGQL!, search: String = "", isActive: String, cityIds: [String!], provinceIds: [String!]): PaginatedProject
+  getProjectsAdmin(paginationArgs: PaginationArgsGQL!, getProjectsAdminArgs: GetProjectsAdminArgsGQL!): PaginatedProject!
   getProjectByIdAdmin(projectId: String!): Project
   getProjectReviewsAdmin(paginationArgs: PaginationArgsGQL!, reviewer: String = "", text: String = "", projectId: String): PaginatedProjectReview
   getProjectReviewByIdAdmin(projectReviewId: String!): ProjectReview
@@ -554,6 +554,13 @@ input GetCitiesAdminArgsGQL {
   cityId: String
 }
 
+input GetProjectsAdminArgsGQL {
+  search: String = ""
+  isActive: Boolean
+  cityIds: [String!]
+  provinceIds: [String!]
+}
+
 input GetCustomersAdminArgsGQL {
   search: String = ""
   isActive: Boolean
@@ -617,11 +624,11 @@ type Mutation {
   createCityAdmin(createCityAdminInputs: CreateCityAdminInputsGQL!): City!
   updateCityAdmin(updateCityAdminInputs: UpdateCityAdminInputsGQL!): City!
   deleteCityAdmin(deleteCityAdmin: DeleteCityAdminInputsGQL!): City!
-  createProjectAdmin(createProjectAdmin: CreateProjectAdminInputsGQL!): Project!
-  updateProjectAdmin(updateProjectAdmin: UpdateProjectAdminInputsGQL!): Project!
-  updateProjectActivationAdmin(updateProjectActivationAdmin: UpdateProjectActivationAdminInputsGQL!): Project!
+  createProjectAdmin(createProjectAdminInputs: CreateProjectAdminInputsGQL!): Project!
+  updateProjectAdmin(updateProjectAdminInputs: UpdateProjectAdminInputsGQL!): Project!
+  updateProjectActivationAdmin(updateProjectActivationAdminInputs: UpdateProjectActivationAdminInputsGQL!): Project!
   deleteProjectAdmin(deleteProjectAdmin: DeleteProjectAdminInputsGQL!): Project!
-  addImageToProjectAdmin(addImageToProjectAdmin: AddImageToProjectAdminInputsGQL!): Project!
+  addImageToProjectAdmin(addImageToProjectAdminInputs: AddImageToProjectAdminInputsGQL!): Project!
   removeImageFromProjectAdmin(removeImageFromProjectAdmin: RemoveImageFromProjectAdminInputsGQL!): Project!
   createProjectReviewAdmin(createProjectReviewAdmin: CreateProjectReviewAdminInputsGQL!): ProjectReview!
   updateProjectReviewAdmin(updateProjectReviewAdmin: UpdateProjectReviewAdminInputsGQL!): ProjectReview!
@@ -975,10 +982,10 @@ input CreateProjectAdminInputsGQL {
   name: String!
   slug: String!
   isActive: Boolean!
-  description: String!
-  lat: Float!
-  long: Float!
-  cityId: String!
+  description: String
+  lat: Float
+  long: Float
+  cityId: String
 }
 
 input UpdateProjectAdminInputsGQL {
@@ -986,10 +993,10 @@ input UpdateProjectAdminInputsGQL {
   name: String!
   slug: String!
   isActive: Boolean!
-  description: String!
-  lat: Float!
-  long: Float!
-  cityId: String!
+  description: String
+  lat: Float
+  long: Float
+  cityId: String
 }
 
 input UpdateProjectActivationAdminInputsGQL {
