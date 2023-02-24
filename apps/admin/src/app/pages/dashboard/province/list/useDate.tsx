@@ -102,9 +102,9 @@ const useData = () => {
   }, [setConfig]);
 
   const onSubmitFilter: SubmitHandler<GetProvincesAdminArgs> = (
-    loginAdminInputs
+    getProvincesAdminArgs
   ) => {
-    navigate(url.generate(DASHBOARD_PROVINCE_ROUTE, {}, loginAdminInputs));
+    navigate(url.generate(DASHBOARD_PROVINCE_ROUTE, {}, getProvincesAdminArgs));
   };
 
   const onPageSelect = (page: number) => {

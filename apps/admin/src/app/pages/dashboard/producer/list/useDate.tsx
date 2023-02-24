@@ -134,9 +134,9 @@ const useData = () => {
   }, [setConfig]);
 
   const onSubmitFilter: SubmitHandler<GetProducersAdminArgs> = (
-    loginAdminInputs
+    getProducersAdminArgs
   ) => {
-    navigate(url.generate(DASHBOARD_PRODUCER_ROUTE, {}, loginAdminInputs));
+    navigate(url.generate(DASHBOARD_PRODUCER_ROUTE, {}, getProducersAdminArgs));
   };
 
   const onPageSelect = (page: number) => {

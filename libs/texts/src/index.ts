@@ -27,6 +27,7 @@ const TEXTS = {
   ROLE: "Role",
   ACTIONS: "Actions",
   DEACTIVE: "Deactive",
+  DELETE: "Delete",
   ACTIVE: "Active",
   CONFIRM: "Confirm",
   CANCEL: "Cancel",
@@ -41,7 +42,10 @@ const TEXTS = {
   PRODUCER: "Producer",
   PRODUCER_AGENT: "Producer Agent",
   PROJECT: "Project",
+  PROJECT_REVIEW: "Project Review",
+  REVIEWER: "Reviewer",
   DEACTIVE_WARNING_MESSAGE: "Are You Sure to Deactive ?",
+  DELETE_WARNING_MESSAGE: "Are You Sure to Delete ?",
   ACTIVE_WARNING_MESSAGE: "Are You Sure to Active ?",
 
   /* ----------------------------- image compoent ----------------------------- */
@@ -246,6 +250,24 @@ const TEXTS = {
   PAGE_PROJECT_UPDATE__PAGE_TITLE: "Project Details | Pishroo",
   PAGE_PROJECT_UPDATE__UPDATE_PROJECT: "Update Project",
   PAGE_PROJECT_UPDATE__SUCCESS: "Project Updated Successfully!",
+
+  /* ----------------------------- project review ----------------------------- */
+
+  PAGE_PROJECT_REVIEW__PAGE_TITLE: "Project Review | Pishroo",
+  PAGE_PROJECT_REVIEW__PROJECT_REVIEW: "Project Review ",
+  PAGE_PROJECT_REVIEW__NEW_PROJECT_REVIEW: "New Project Review ",
+
+  /* --------------------------- new project review --------------------------- */
+
+  PAGE_NEW_PROJECT_REVIEW__PAGE_TITLE: "New Project Review  | Pishroo",
+  PAGE_NEW_PROJECT_REVIEW__NEW_PROJECT_REVIEW: "New Project Review ",
+  PAGE_NEW_PROJECT_REVIEW__SUCCESS: "Project Review  Created Successfully!",
+
+  /* ------------------------- project review details ------------------------- */
+
+  PAGE_PROJECT_REVIEW_UPDATE__PAGE_TITLE: "Project Review  Details | Pishroo",
+  PAGE_PROJECT_REVIEW_UPDATE__UPDATE_PROJECT_REVIEW: "Update Project Review ",
+  PAGE_PROJECT_REVIEW_UPDATE__SUCCESS: "Project Review Updated Successfully!",
 };
 
 export default TEXTS;

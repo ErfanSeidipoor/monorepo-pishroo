@@ -483,7 +483,7 @@ type Query {
   getCityByIdAdmin(cityId: String!): City
   getProjectsAdmin(paginationArgs: PaginationArgsGQL!, getProjectsAdminArgs: GetProjectsAdminArgsGQL!): PaginatedProject!
   getProjectByIdAdmin(projectId: String!): Project
-  getProjectReviewsAdmin(paginationArgs: PaginationArgsGQL!, reviewer: String = "", text: String = "", projectId: String): PaginatedProjectReview
+  getProjectReviewsAdmin(paginationArgs: PaginationArgsGQL!, getProjectReviewsAdminArgs: GetProjectReviewsAdminArgsGQL!): PaginatedProjectReview!
   getProjectReviewByIdAdmin(projectReviewId: String!): ProjectReview
   getCustomersAdmin(paginationArgs: PaginationArgsGQL!, getCustomersAdminArgs: GetCustomersAdminArgsGQL!): PaginatedCustomer!
   getCustomerByIdAdmin(customerId: String!): Customer
@@ -561,6 +561,12 @@ input GetProjectsAdminArgsGQL {
   provinceIds: [String!]
 }
 
+input GetProjectReviewsAdminArgsGQL {
+  reviewer: String = ""
+  text: String = ""
+  projectId: String
+}
+
 input GetCustomersAdminArgsGQL {
   search: String = ""
   isActive: Boolean
@@ -630,9 +636,9 @@ type Mutation {
   deleteProjectAdmin(deleteProjectAdmin: DeleteProjectAdminInputsGQL!): Project!
   addImageToProjectAdmin(addImageToProjectAdminInputs: AddImageToProjectAdminInputsGQL!): Project!
   removeImageFromProjectAdmin(removeImageFromProjectAdmin: RemoveImageFromProjectAdminInputsGQL!): Project!
-  createProjectReviewAdmin(createProjectReviewAdmin: CreateProjectReviewAdminInputsGQL!): ProjectReview!
-  updateProjectReviewAdmin(updateProjectReviewAdmin: UpdateProjectReviewAdminInputsGQL!): ProjectReview!
-  deleteProjectReviewAdmin(deleteProjectReviewAdmin: DeleteProjectReviewAdminInputsGQL!): ProjectReview!
+  createProjectReviewAdmin(createProjectReviewAdminInputs: CreateProjectReviewAdminInputsGQL!): ProjectReview!
+  updateProjectReviewAdmin(updateProjectReviewAdminInputs: UpdateProjectReviewAdminInputsGQL!): ProjectReview!
+  deleteProjectReviewAdmin(deleteProjectReviewAdminInputs: DeleteProjectReviewAdminInputsGQL!): ProjectReview!
   createCustomerAdmin(createCustomerAdminInputs: CreateCustomerAdminInputsGQL!): Customer!
   updateCustomerAdmin(updateCustomerAdminInputs: UpdateCustomerAdminInputsGQL!): Customer!
   updateCustomerActivationAdmin(updateCustomerActivationAdmin: UpdateCustomerActivationAdminInputsGQL!): Customer!
@@ -1026,12 +1032,12 @@ input CreateProjectReviewAdminInputsGQL {
 }
 
 input UpdateProjectReviewAdminInputsGQL {
-  reviewer: String
-  fileId: String
-  text: String
-  projectId: String
+  reviewer: String!
+  fileId: String!
+  text: String!
+  projectId: String!
   isActive: Boolean!
-  projectReviewId: String
+  projectReviewId: String!
 }
 
 input DeleteProjectReviewAdminInputsGQL {

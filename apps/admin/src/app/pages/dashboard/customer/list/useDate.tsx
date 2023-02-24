@@ -134,9 +134,9 @@ const useData = () => {
   }, [setConfig]);
 
   const onSubmitFilter: SubmitHandler<GetCustomersAdminArgs> = (
-    loginAdminInputs
+    getCustomersAdminArgs
   ) => {
-    navigate(url.generate(DASHBOARD_CUSTOMER_ROUTE, {}, loginAdminInputs));
+    navigate(url.generate(DASHBOARD_CUSTOMER_ROUTE, {}, getCustomersAdminArgs));
   };
 
   const onPageSelect = (page: number) => {

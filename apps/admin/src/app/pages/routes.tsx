@@ -37,6 +37,9 @@ import {
   DASHBOARD_PROJECT_ROUTE,
   DASHBOARD_PROJECT_NEW_PROJECT_ROUTE,
   DASHBOARD_PROJECT_DETAILS,
+  DASHBOARD_PROJECT_REVIEW_ROUTE,
+  DASHBOARD_PROJECT_REVIEW_DETAILS,
+  DASHBOARD_PROJECT_REVIEW_NEW_PROJECT_REVIEW_ROUTE,
 } from "@admin/constants";
 
 /* --------------------------------- Routes --------------------------------- */
@@ -237,7 +240,31 @@ export const Routes = () =>
             },
             {
               path: DASHBOARD_PROJECT_DETAILS,
-              element: <ProjectUpdatePage />,
+              element: <ProjectDetailsProvider />,
+              children: [
+                {
+                  path: DASHBOARD_PROJECT_REVIEW_ROUTE,
+                  element: <ProjectReviewProvider />,
+                  children: [
+                    {
+                      path: DASHBOARD_PROJECT_REVIEW_NEW_PROJECT_REVIEW_ROUTE,
+                      element: <ProjectReviewNewPage />,
+                    },
+                    {
+                      path: DASHBOARD_PROJECT_REVIEW_DETAILS,
+                      element: <ProjectReviewUpdatePage />,
+                    },
+                    {
+                      path: DASHBOARD_PROJECT_REVIEW_ROUTE,
+                      element: <ProjectReviewListPage />,
+                    },
+                  ],
+                },
+                {
+                  path: DASHBOARD_PROJECT_DETAILS,
+                  element: <ProjectDetailsPage />,
+                },
+              ],
             },
             {
               path: DASHBOARD_PROJECT_ROUTE,
@@ -245,7 +272,6 @@ export const Routes = () =>
             },
           ],
         },
-
         {
           path: DASHBOARD_ROUTE,
           element: <DashboardPage />,
@@ -396,6 +422,23 @@ const ProjectListPage = Loadable(
   lazy(() => import("./dashboard/project/list"))
 );
 const ProjectNewPage = Loadable(lazy(() => import("./dashboard/project/new")));
-const ProjectUpdatePage = Loadable(
-  lazy(() => import("./dashboard/project/update"))
+const ProjectDetailsProvider = Loadable(
+  lazy(() => import("./dashboard/project/details"))
+);
+const ProjectDetailsPage = Loadable(
+  lazy(() => import("./dashboard/project/details/main"))
+);
+
+/* ------------------------ dashboard project review ------------------------ */
+const ProjectReviewProvider = Loadable(
+  lazy(() => import("./dashboard/project/details/project-review"))
+);
+const ProjectReviewListPage = Loadable(
+  lazy(() => import("./dashboard/project/details/project-review/list"))
+);
+const ProjectReviewNewPage = Loadable(
+  lazy(() => import("./dashboard/project/details/project-review/new"))
+);
+const ProjectReviewUpdatePage = Loadable(
+  lazy(() => import("./dashboard/project/details/project-review/details"))
 );

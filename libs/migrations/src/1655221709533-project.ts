@@ -128,7 +128,7 @@ export class project1655221709533 implements MigrationInterface {
             name: "reviewer",
             type: "varchar",
             length: "100",
-            isUnique: true,
+            isUnique: false,
             isNullable: false,
           },
           {

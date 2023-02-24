@@ -104,7 +104,7 @@ export class FileUse extends BaseModel {
 
   @ManyToOne(() => ProjectReview, (projectReview) => projectReview.fileUses)
   @JoinColumn({
-    name: "product_review_id",
+    name: "project_review_id",
     referencedColumnName: "id",
   })
   projectReview?: ProjectReview;

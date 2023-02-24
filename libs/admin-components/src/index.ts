@@ -1,4 +1,3 @@
-export * from "./lib/admin-components";
 export * from "./lib/Table";
 export * from "./lib/TextField";
 export * from "./lib/ThemeProvider";
@@ -9,3 +8,4 @@ export * from "./lib/BreadCrumbs";
 export * from "./lib/Pagination";
 export * from "./lib/Checkbox";
 export * from "./lib/Autocomplete";
+export * from "./lib/AutocompleteMultiple";

@@ -31,7 +31,7 @@ export class ProjectReviewResolver {
   @Mutation(() => ProjectReview)
   @UseGuards(ContentAdminGuard)
   async createProjectReviewAdmin(
-    @Args("createProjectReviewAdmin")
+    @Args("createProjectReviewAdminInputs")
     inputs: CreateProjectReviewAdminInputsGQL
   ): Promise<ProjectReview> {
     return await this.projectReviewService.createProjectReview(inputs);
@@ -40,7 +40,7 @@ export class ProjectReviewResolver {
   @Mutation(() => ProjectReview)
   @UseGuards(ContentAdminGuard)
   async updateProjectReviewAdmin(
-    @Args("updateProjectReviewAdmin")
+    @Args("updateProjectReviewAdminInputs")
     inputs: UpdateProjectReviewAdminInputsGQL
   ): Promise<ProjectReview> {
     return await this.projectReviewService.updateProjectReview(inputs);
@@ -49,17 +49,17 @@ export class ProjectReviewResolver {
   @Mutation(() => ProjectReview)
   @UseGuards(ContentAdminGuard)
   async deleteProjectReviewAdmin(
-    @Args("deleteProjectReviewAdmin")
+    @Args("deleteProjectReviewAdminInputs")
     inputs: DeleteProjectReviewAdminInputsGQL
   ): Promise<ProjectReview> {
     return await this.projectReviewService.deleteProjectReview(inputs);
   }
 
-  @Query(() => PaginatedProjectReview, { nullable: true })
+  @Query(() => PaginatedProjectReview, { nullable: false })
   @UseGuards(ContentAdminGuard)
   async getProjectReviewsAdmin(
     @Args("paginationArgs") paginationArgs: PaginationArgsGQL,
-    @Args() args: GetProjectReviewsAdminArgsGQL
+    @Args("getProjectReviewsAdminArgs") args: GetProjectReviewsAdminArgsGQL
   ) {
     return this.projectReviewService.getProjectReviews(paginationArgs, args);
   }

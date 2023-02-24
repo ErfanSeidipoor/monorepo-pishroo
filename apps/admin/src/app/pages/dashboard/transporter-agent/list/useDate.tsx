@@ -134,10 +134,14 @@ const useData = () => {
   }, [setConfig]);
 
   const onSubmitFilter: SubmitHandler<GetTransporterAgentsAdminArgs> = (
-    loginAdminInputs
+    getTransporterAgentsAdminArgs
   ) => {
     navigate(
-      url.generate(DASHBOARD_TRANSPORTER_AGENT_ROUTE, {}, loginAdminInputs)
+      url.generate(
+        DASHBOARD_TRANSPORTER_AGENT_ROUTE,
+        {},
+        getTransporterAgentsAdminArgs
+      )
     );
   };
 

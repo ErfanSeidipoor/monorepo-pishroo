@@ -3,21 +3,21 @@ import { UpdateProjectReviewAdminInputs } from "@pishroo/dto";
 
 @InputType()
 export class UpdateProjectReviewAdminInputsGQL extends UpdateProjectReviewAdminInputs {
-  @Field(() => String, { nullable: true })
+  @Field(() => String, { nullable: false })
   reviewer: string;
 
-  @Field(() => String, { nullable: true })
+  @Field(() => String, { nullable: false })
   fileId: string;
 
-  @Field(() => String, { nullable: true })
+  @Field(() => String, { nullable: false })
   text: string;
 
-  @Field(() => String, { nullable: true })
+  @Field(() => String, { nullable: false })
   projectId: string;
 
-  @Field()
+  @Field(() => Boolean, { nullable: false })
   isActive: boolean;
 
-  @Field(() => String, { nullable: true })
+  @Field(() => String, { nullable: false })
   projectReviewId: string;
 }
