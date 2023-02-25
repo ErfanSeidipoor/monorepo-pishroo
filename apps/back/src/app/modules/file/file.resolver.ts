@@ -1,13 +1,13 @@
 import { UserId } from "@back/decorators";
 import { AdminGuard } from "@back/guards";
 import { UseGuards } from "@nestjs/common";
-import { Args, Mutation, Resolver } from "@nestjs/graphql";
+import { Args, Mutation, Resolver, Query } from "@nestjs/graphql";
 import { File } from "@pishroo/entities";
 import { createWriteStream } from "fs";
 import * as GraphQLUpload from "graphql-upload/GraphQLUpload.js";
 import path = require("path");
 import { v4 as uuid } from "uuid";
-import { RemoveImageAdminInputsGQL } from "./dto";
+import { GetFileByIdAdminArgsGQL, RemoveImageAdminInputsGQL } from "./dto";
 import { FileService } from "./file.service";
 
 @Resolver()
@@ -21,6 +21,14 @@ export class FileResolver {
     inputs: RemoveImageAdminInputsGQL
   ): Promise<File> {
     return await this.fileService.removeImage(inputs);
+  }
+
+  @Query(() => File, { nullable: true })
+  @UseGuards(AdminGuard)
+  async getFileByIdAdmin(
+    @Args() getFileByIdAdminArgs: GetFileByIdAdminArgsGQL
+  ) {
+    return this.fileService.getFileById(getFileByIdAdminArgs);
   }
 
   @Mutation(() => File)

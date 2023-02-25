@@ -5,6 +5,8 @@ import { Controller } from "react-hook-form";
 import { Button, TextField } from "@pishroo/admin-components";
 import TEXTS from "@pishroo/texts";
 
+import { InuputImage } from "@admin/components";
+
 import useData from "./useDate";
 
 export const ProjectReviewDetails: FC = () => {
@@ -28,7 +30,17 @@ export const ProjectReviewDetails: FC = () => {
                 error={errors.fileId !== undefined}
                 helperText={errors.fileId?.message}
                 {...field}
-                disabled={loading}
+                disabled={true}
+              />
+            )}
+          />
+          <Controller
+            name="fileId"
+            control={control}
+            render={({ field: { onChange, ref, value } }) => (
+              <InuputImage
+                fileId={value}
+                onUploadComplete={(value) => onChange(value)}
               />
             )}
           />

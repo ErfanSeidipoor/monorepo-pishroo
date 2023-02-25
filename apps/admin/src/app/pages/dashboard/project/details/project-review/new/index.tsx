@@ -2,8 +2,10 @@ import { FC } from "react";
 import { Stack, Typography } from "@mui/material";
 import { Controller } from "react-hook-form";
 
-import { Button, TextField, Checkbox } from "@pishroo/admin-components";
+import { Button, TextField } from "@pishroo/admin-components";
 import TEXTS from "@pishroo/texts";
+
+import { InuputImage } from "@admin/components";
 
 import useData from "./useDate";
 
@@ -28,7 +30,17 @@ export const NewProjectReviewPage: FC = () => {
                 error={errors.fileId !== undefined}
                 helperText={errors.fileId?.message}
                 {...field}
-                disabled={loading}
+                disabled={true}
+              />
+            )}
+          />
+          <Controller
+            name="fileId"
+            control={control}
+            render={({ field: { onChange, ref, value } }) => (
+              <InuputImage
+                fileId={value}
+                onUploadComplete={(value) => onChange(value)}
               />
             )}
           />

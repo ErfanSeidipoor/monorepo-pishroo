@@ -19,6 +19,7 @@ const documents = {
     "\n  query getTransportersAdminAutoComplete(\n    $getTransportersAdminArgs: GetTransportersAdminArgsGQL!\n  ) {\n    getTransportersAdmin(\n      getTransportersAdminArgs: $getTransportersAdminArgs\n      paginationArgs: { limit: 30, page: 1 }\n    ) {\n      edges {\n        id\n        name\n        city {\n          name\n          id\n          province {\n            id\n            name\n          }\n        }\n      }\n    }\n  }\n": types.GetTransportersAdminAutoCompleteDocument,
     "\n  mutation removeImageAdmin($removeImageAdmin: RemoveImageAdminInputsGQL!) {\n    removeImageAdmin(removeImageAdmin: $removeImageAdmin) {\n      id\n      filename\n    }\n  }\n": types.RemoveImageAdminDocument,
     "\n  mutation uploadFile($file: Upload!) {\n    uploadFile(file: $file) {\n      id\n      path\n      filename\n    }\n  }\n": types.UploadFileDocument,
+    "\n  query getFileByIdAdmin($fileId: String!) {\n    getFileByIdAdmin(fileId: $fileId) {\n      id\n      filename\n    }\n  }\n": types.GetFileByIdAdminDocument,
     "\n  query logoutAdmin {\n    logoutAdmin {\n      id\n    }\n  }\n": types.LogoutAdminDocument,
     "\n  query getCitiesAdmin(\n    $getCitiesAdminArgs: GetCitiesAdminArgsGQL!\n    $paginationArgs: PaginationArgsGQL!\n  ) {\n    getCitiesAdmin(\n      getCitiesAdminArgs: $getCitiesAdminArgs\n      paginationArgs: $paginationArgs\n    ) {\n      pageInfo {\n        totalEdges\n        edgeCount\n        edgesPerPage\n        currentPage\n        totalPages\n      }\n      edges {\n        id\n        name\n        province {\n          name\n          id\n        }\n      }\n    }\n  }\n": types.GetCitiesAdminDocument,
     "\n  mutation createCityAdmin($createCityAdminInputs: CreateCityAdminInputsGQL!) {\n    createCityAdmin(createCityAdminInputs: $createCityAdminInputs) {\n      id\n      name\n      province {\n        id\n        name\n      }\n    }\n  }\n": types.CreateCityAdminDocument,
@@ -117,6 +118,10 @@ export function graphql(source: "\n  mutation removeImageAdmin($removeImageAdmin
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "\n  mutation uploadFile($file: Upload!) {\n    uploadFile(file: $file) {\n      id\n      path\n      filename\n    }\n  }\n"): (typeof documents)["\n  mutation uploadFile($file: Upload!) {\n    uploadFile(file: $file) {\n      id\n      path\n      filename\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  query getFileByIdAdmin($fileId: String!) {\n    getFileByIdAdmin(fileId: $fileId) {\n      id\n      filename\n    }\n  }\n"): (typeof documents)["\n  query getFileByIdAdmin($fileId: String!) {\n    getFileByIdAdmin(fileId: $fileId) {\n      id\n      filename\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

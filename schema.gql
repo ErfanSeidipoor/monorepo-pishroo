@@ -489,6 +489,7 @@ type Query {
   getCustomerByIdAdmin(customerId: String!): Customer
   getMessagesAdmin(paginationArgs: PaginationArgsGQL!, search: String = "", isActive: String, userId: String, customerId: [String!]): PaginatedMessage
   getMessageByIdAdmin(messageId: String!): Message
+  getFileByIdAdmin(fileId: String!): File
 }
 
 input LoginAdminInputsGQL {
