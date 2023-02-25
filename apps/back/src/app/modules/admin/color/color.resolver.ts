@@ -19,7 +19,7 @@ export class ColorResolver {
   @Mutation(() => Color)
   @UseGuards(ProductAdminGuard)
   async createColorAdmin(
-    @Args("createColorAdmin")
+    @Args("createColorAdminInputs")
     inputs: CreateColorAdminInputsGQL
   ): Promise<Color> {
     return await this.colorService.createColor(inputs);
@@ -43,11 +43,11 @@ export class ColorResolver {
     return await this.colorService.deleteColor(inputs);
   }
 
-  @Query(() => PaginatedColor, { nullable: true })
+  @Query(() => PaginatedColor, { nullable: false })
   @UseGuards(ProductAdminGuard)
   async getColorsAdmin(
     @Args("paginationArgs") paginationArgs: PaginationArgsGQL,
-    @Args() args: GetColorsAdminArgsGQL
+    @Args("getColorsAdminArgs") args: GetColorsAdminArgsGQL
   ) {
     return this.colorService.getColors(paginationArgs, args);
   }

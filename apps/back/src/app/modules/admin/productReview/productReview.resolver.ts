@@ -31,7 +31,7 @@ export class ProductReviewResolver {
   @Mutation(() => ProductReview)
   @UseGuards(ContentAdminGuard)
   async createProductReviewAdmin(
-    @Args("createProductReviewAdmin")
+    @Args("createProductReviewAdminInputs")
     inputs: CreateProductReviewAdminInputsGQL
   ): Promise<ProductReview> {
     return await this.productReviewService.createProductReview(inputs);
@@ -40,7 +40,7 @@ export class ProductReviewResolver {
   @Mutation(() => ProductReview)
   @UseGuards(ContentAdminGuard)
   async updateProductReviewAdmin(
-    @Args("updateProductReviewAdmin")
+    @Args("updateProductReviewAdminInputs")
     inputs: UpdateProductReviewAdminInputsGQL
   ): Promise<ProductReview> {
     return await this.productReviewService.updateProductReview(inputs);
@@ -49,17 +49,17 @@ export class ProductReviewResolver {
   @Mutation(() => ProductReview)
   @UseGuards(ContentAdminGuard)
   async deleteProductReviewAdmin(
-    @Args("deleteProductReviewAdmin")
+    @Args("deleteProductReviewAdminInputs")
     inputs: DeleteProductReviewAdminInputsGQL
   ): Promise<ProductReview> {
     return await this.productReviewService.deleteProductReview(inputs);
   }
 
-  @Query(() => PaginatedProductReview, { nullable: true })
+  @Query(() => PaginatedProductReview, { nullable: false })
   @UseGuards(ContentAdminGuard)
   async getProductReviewsAdmin(
     @Args("paginationArgs") paginationArgs: PaginationArgsGQL,
-    @Args() args: GetProductReviewsAdminArgsGQL
+    @Args("getProductReviewsAdminArgs") args: GetProductReviewsAdminArgsGQL
   ) {
     return this.productReviewService.getProductReviews(paginationArgs, args);
   }

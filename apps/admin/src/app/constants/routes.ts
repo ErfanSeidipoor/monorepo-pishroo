@@ -91,3 +91,12 @@ export const DASHBOARD_PROJECT_REVIEW_NEW_PROJECT_REVIEW_ROUTE =
   DASHBOARD_PROJECT_REVIEW_ROUTE + "/new";
 export const DASHBOARD_PROJECT_REVIEW_DETAILS =
   DASHBOARD_PROJECT_REVIEW_ROUTE + "/:projectReviewId";
+
+/* ----------------------------- product review ----------------------------- */
+
+export const DASHBOARD_PRODUCT_REVIEW_ROUTE =
+  DASHBOARD_ROUTE + "/product/:productId/product-review";
+export const DASHBOARD_PRODUCT_REVIEW_NEW_PRODUCT_REVIEW_ROUTE =
+  DASHBOARD_PRODUCT_REVIEW_ROUTE + "/new";
+export const DASHBOARD_PRODUCT_REVIEW_DETAILS =
+  DASHBOARD_PRODUCT_REVIEW_ROUTE + "/:productReviewId";

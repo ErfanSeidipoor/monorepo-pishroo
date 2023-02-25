@@ -1,11 +1,10 @@
 import { FC } from "react";
+import { Outlet } from "react-router-dom";
 
-import Details from "./components/details";
-import Images from "./components/images";
 import Context from "./context";
 import useData from "./useDate";
 
-export const ProductUpdatePage: FC = () => {
+export const DashboardProductDetailsProvider: FC = () => {
   const { getProductLoading, product, productId, refetch } = useData();
 
   return (
@@ -17,10 +16,9 @@ export const ProductUpdatePage: FC = () => {
         refetch,
       }}
     >
-      <Details />
-      <Images />
+      <Outlet />
     </Context.Provider>
   );
 };
 
-export default ProductUpdatePage;
+export default DashboardProductDetailsProvider;

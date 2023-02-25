@@ -106,10 +106,10 @@ export class ProductResolver {
   /*                                    color                                   */
   /* -------------------------------------------------------------------------- */
 
-  @Mutation(() => Color)
+  @Mutation(() => Product)
   @UseGuards(ProductAdminGuard)
   async addColorsToProductAdmin(
-    @Args("addColorsToProductAdmin")
+    @Args("addColorsToProductAdminInputs")
     inputs: AddColorsToProductAdminInputsGQL
   ): Promise<Product> {
     return await this.productService.addColorsToProduct(inputs);

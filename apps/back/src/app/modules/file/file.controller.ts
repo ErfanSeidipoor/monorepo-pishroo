@@ -15,7 +15,6 @@ export class FileController {
     @Res() response: Response,
     @UserId() userId: string
   ) {
-    console.log("file", { userId });
     const file = await this.fileService.downloadFile(filename);
     file.pipe(response);
   }

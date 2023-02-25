@@ -13,6 +13,7 @@ import AddIcon from "@mui/icons-material/Add";
 import { Controller } from "react-hook-form";
 import {
   CheckTwoTone as CheckTwoToneIcon,
+  ReviewsTwoTone as ReviewsTwoToneIcon,
   EditTwoTone as EditTwoToneIcon,
 } from "@mui/icons-material";
 
@@ -42,6 +43,7 @@ export const ProductListPage: FC = () => {
     activationItem,
     setActivationItem,
     onUpdateProductActivation,
+    onReview,
   } = useData();
 
   const columns: ITableColumn<typeof rows[0]>[] = [
@@ -66,6 +68,11 @@ export const ProductListPage: FC = () => {
               label: TEXTS.UPDATE,
               icon: <EditTwoToneIcon />,
               onClick: () => onEdit(item.id),
+            },
+            {
+              label: TEXTS.PRODUCT_REVIEW,
+              icon: <ReviewsTwoToneIcon />,
+              onClick: () => onReview(item.id),
             },
             {
               label: item.isActive ? TEXTS.DEACTIVE : TEXTS.ACTIVE,

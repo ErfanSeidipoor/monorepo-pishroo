@@ -10,8 +10,6 @@ const useData = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log(user);
-
     if (user) {
       navigate(DASHBOARD_ROUTE);
     }

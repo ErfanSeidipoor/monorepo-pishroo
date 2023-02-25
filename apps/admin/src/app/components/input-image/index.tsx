@@ -114,8 +114,6 @@ export const InuputImage: FC<{
     );
   };
 
-  console.log(fileName);
-
   return (
     <Card sx={{ maxWidth: 250 }}>
       {renderDialog()}

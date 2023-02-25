@@ -76,14 +76,6 @@ const useData = () => {
     });
   };
 
-  console.log({
-    getUserLoading,
-    updateUserLoading,
-    loading: updateUserLoading || getUserLoading,
-    isValid,
-    errors,
-  });
-
   return {
     isValid,
     control,

@@ -10,3 +10,4 @@ export * from "./useProducerDetails";
 export * from "./useProducerAgentDetails";
 export * from "./useProjectDetails";
 export * from "./useProjectReviewDetails";
+export * from "./useProductReviewDetails";
