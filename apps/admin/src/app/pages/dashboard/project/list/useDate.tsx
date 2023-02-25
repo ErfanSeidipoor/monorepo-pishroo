@@ -12,6 +12,7 @@ import { url } from "@pishroo/utils";
 
 import {
   DASHBOARD_PROJECT_DETAILS,
+  DASHBOARD_PROJECT_REVIEW_ROUTE,
   DASHBOARD_PROJECT_ROUTE,
   DASHBOARD_ROUTE,
 } from "@admin/constants";
@@ -134,9 +135,9 @@ const useData = () => {
   }, [setConfig]);
 
   const onSubmitFilter: SubmitHandler<GetProjectsAdminArgs> = (
-    loginAdminInputs
+    getProjectsAdminArgs
   ) => {
-    navigate(url.generate(DASHBOARD_PROJECT_ROUTE, {}, loginAdminInputs));
+    navigate(url.generate(DASHBOARD_PROJECT_ROUTE, {}, getProjectsAdminArgs));
   };
 
   const onPageSelect = (page: number) => {
@@ -156,6 +157,10 @@ const useData = () => {
 
   const onEdit = (projectId: string) => {
     navigate(url.generate(DASHBOARD_PROJECT_DETAILS, { projectId }));
+  };
+
+  const onReview = (projectId: string) => {
+    navigate(url.generate(DASHBOARD_PROJECT_REVIEW_ROUTE, { projectId }));
   };
 
   const onUpdateProjectActivation = () => {
@@ -183,6 +188,7 @@ const useData = () => {
     isValid,
     onPageSelect,
     onEdit,
+    onReview,
     activationItem,
     setActivationItem,
     updateProjectActivaitonLoading,

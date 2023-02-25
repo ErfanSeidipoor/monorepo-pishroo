@@ -104,9 +104,9 @@ const useData = () => {
   }, [setConfig]);
 
   const onSubmitFilter: SubmitHandler<GetCitiesAdminArgs> = (
-    loginAdminInputs
+    getCitiesAdminArgs
   ) => {
-    navigate(url.generate(DASHBOARD_CITY_ROUTE, {}, loginAdminInputs));
+    navigate(url.generate(DASHBOARD_CITY_ROUTE, {}, getCitiesAdminArgs));
   };
 
   const onPageSelect = (page: number) => {

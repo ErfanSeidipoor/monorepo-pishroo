@@ -134,10 +134,14 @@ const useData = () => {
   }, [setConfig]);
 
   const onSubmitFilter: SubmitHandler<GetProducerAgentsAdminArgs> = (
-    loginAdminInputs
+    getProducerAgentsAdminArgs
   ) => {
     navigate(
-      url.generate(DASHBOARD_PRODUCER_AGENT_ROUTE, {}, loginAdminInputs)
+      url.generate(
+        DASHBOARD_PRODUCER_AGENT_ROUTE,
+        {},
+        getProducerAgentsAdminArgs
+      )
     );
   };
 

@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import { RemoveImageAdminInputs } from "@pishroo/dto";
+import { GetFileByIdAdminArgs, RemoveImageAdminInputs } from "@pishroo/dto";
 import { File, FileUse, User } from "@pishroo/entities";
 import {
   CustomError,
@@ -84,5 +84,22 @@ export class FileService {
     }
 
     return createReadStream(file.path);
+  }
+
+  async getFileById(args: GetFileByIdAdminArgs): Promise<File> {
+    const { fileId } = args;
+
+    const file = await this.fileRepo
+      .createQueryBuilder("file")
+      .andWhere("file.id = :fileId", {
+        fileId,
+      })
+      .getOne();
+
+    if (!file) {
+      throw new CustomError(FILE_NOT_FOUND);
+    }
+
+    return file;
   }
 }

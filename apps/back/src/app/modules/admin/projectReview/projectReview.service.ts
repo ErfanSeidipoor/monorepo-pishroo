@@ -107,6 +107,7 @@ export class ProjectReviewService {
     if (!projectReview) {
       throw new CustomError(PRODUCT_REVIEW_NOT_FOUND);
     }
+    console.log({ projectReview });
 
     /* ----------------------------- file & fileUse ----------------------------- */
 

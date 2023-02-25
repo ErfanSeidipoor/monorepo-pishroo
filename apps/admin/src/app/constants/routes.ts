@@ -12,42 +12,42 @@ export const DASHBOARD_ROUTE = "/dashboard";
 
 export const DASHBOARD_PRODUCT_ROUTE = DASHBOARD_ROUTE + "/product";
 export const DASHBOARD_PRODUCT_NEW_PRODUCT_ROUTE =
-  DASHBOARD_PRODUCT_ROUTE + "/new-product";
+  DASHBOARD_PRODUCT_ROUTE + "/new";
 export const DASHBOARD_PRODUCT_DETAILS =
   DASHBOARD_PRODUCT_ROUTE + "/:productId";
 
 /* ---------------------------------- user ---------------------------------- */
 
 export const DASHBOARD_USER_ROUTE = DASHBOARD_ROUTE + "/user";
-export const DASHBOARD_USER_NEW_USER_ROUTE = DASHBOARD_USER_ROUTE + "/new-user";
+export const DASHBOARD_USER_NEW_USER_ROUTE = DASHBOARD_USER_ROUTE + "/new";
 export const DASHBOARD_USER_DETAILS = DASHBOARD_USER_ROUTE + "/:userId";
 
 /* -------------------------------- province -------------------------------- */
 
 export const DASHBOARD_PROVINCE_ROUTE = DASHBOARD_ROUTE + "/province";
 export const DASHBOARD_PROVINCE_NEW_PROVINCE_ROUTE =
-  DASHBOARD_PROVINCE_ROUTE + "/new-province";
+  DASHBOARD_PROVINCE_ROUTE + "/new";
 export const DASHBOARD_PROVINCE_DETAILS =
   DASHBOARD_PROVINCE_ROUTE + "/:provinceId";
 
 /* ---------------------------------- city ---------------------------------- */
 
 export const DASHBOARD_CITY_ROUTE = DASHBOARD_ROUTE + "/city";
-export const DASHBOARD_CITY_NEW_CITY_ROUTE = DASHBOARD_CITY_ROUTE + "/new-city";
+export const DASHBOARD_CITY_NEW_CITY_ROUTE = DASHBOARD_CITY_ROUTE + "/new";
 export const DASHBOARD_CITY_DETAILS = DASHBOARD_CITY_ROUTE + "/:cityId";
 
 /* --------------------------------- customer ------------------------------- */
 
 export const DASHBOARD_CUSTOMER_ROUTE = DASHBOARD_ROUTE + "/customer";
 export const DASHBOARD_CUSTOMER_NEW_CUSTOMER_ROUTE =
-  DASHBOARD_CUSTOMER_ROUTE + "/new-customer";
+  DASHBOARD_CUSTOMER_ROUTE + "/new";
 export const DASHBOARD_CUSTOMER_DETAILS =
   DASHBOARD_CUSTOMER_ROUTE + "/:customerId";
 
 /* ------------------------------- transporter ------------------------------ */
 export const DASHBOARD_TRANSPORTER_ROUTE = DASHBOARD_ROUTE + "/transporter";
 export const DASHBOARD_TRANSPORTER_NEW_TRANSPORTER_ROUTE =
-  DASHBOARD_TRANSPORTER_ROUTE + "/new-transporter";
+  DASHBOARD_TRANSPORTER_ROUTE + "/new";
 export const DASHBOARD_TRANSPORTER_DETAILS =
   DASHBOARD_TRANSPORTER_ROUTE + "/:transporterId";
 
@@ -55,7 +55,7 @@ export const DASHBOARD_TRANSPORTER_DETAILS =
 export const DASHBOARD_TRANSPORTER_AGENT_ROUTE =
   DASHBOARD_ROUTE + "/transporter-agent";
 export const DASHBOARD_TRANSPORTER_AGENT_NEW_TRANSPORTER_AGENT_ROUTE =
-  DASHBOARD_TRANSPORTER_AGENT_ROUTE + "/new-transporter-agent";
+  DASHBOARD_TRANSPORTER_AGENT_ROUTE + "/new";
 export const DASHBOARD_TRANSPORTER_AGENT_DETAILS =
   DASHBOARD_TRANSPORTER_AGENT_ROUTE + "/:transporterAgentId";
 
@@ -71,7 +71,7 @@ export const DASHBOARD_PRODUCER_DETAILS =
 export const DASHBOARD_PRODUCER_AGENT_ROUTE =
   DASHBOARD_ROUTE + "/producer-agent";
 export const DASHBOARD_PRODUCER_AGENT_NEW_PRODUCER_AGENT_ROUTE =
-  DASHBOARD_PRODUCER_AGENT_ROUTE + "/new-producer-agent";
+  DASHBOARD_PRODUCER_AGENT_ROUTE + "/new";
 export const DASHBOARD_PRODUCER_AGENT_DETAILS =
   DASHBOARD_PRODUCER_AGENT_ROUTE + "/:producerAgentId";
 
@@ -82,3 +82,12 @@ export const DASHBOARD_PROJECT_NEW_PROJECT_ROUTE =
   DASHBOARD_PROJECT_ROUTE + "/new-project";
 export const DASHBOARD_PROJECT_DETAILS =
   DASHBOARD_PROJECT_ROUTE + "/:projectId";
+
+/* ----------------------------- project review ----------------------------- */
+
+export const DASHBOARD_PROJECT_REVIEW_ROUTE =
+  DASHBOARD_ROUTE + "/project/:projectId/project-review";
+export const DASHBOARD_PROJECT_REVIEW_NEW_PROJECT_REVIEW_ROUTE =
+  DASHBOARD_PROJECT_REVIEW_ROUTE + "/new";
+export const DASHBOARD_PROJECT_REVIEW_DETAILS =
+  DASHBOARD_PROJECT_REVIEW_ROUTE + "/:projectReviewId";

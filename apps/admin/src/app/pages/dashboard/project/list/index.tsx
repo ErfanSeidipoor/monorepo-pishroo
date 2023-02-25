@@ -13,9 +13,9 @@ import AddIcon from "@mui/icons-material/Add";
 import { Controller } from "react-hook-form";
 import {
   CheckTwoTone as CheckTwoToneIcon,
+  ReviewsTwoTone as ReviewsTwoToneIcon,
   EditTwoTone as EditTwoToneIcon,
 } from "@mui/icons-material";
-
 import { Button, Checkbox, TextField } from "@pishroo/admin-components";
 import TEXTS from "@pishroo/texts";
 import { ITableColumn, Table, Pagination } from "@pishroo/admin-components";
@@ -43,6 +43,7 @@ export const ProjectListPage: FC = () => {
     isValid,
     onPageSelect,
     onEdit,
+    onReview,
     activationItem,
     setActivationItem,
     onUpdateProjectActivation,
@@ -80,6 +81,11 @@ export const ProjectListPage: FC = () => {
               label: TEXTS.UPDATE,
               icon: <EditTwoToneIcon />,
               onClick: () => onEdit(item.id),
+            },
+            {
+              label: TEXTS.PROJECT_REVIEW,
+              icon: <ReviewsTwoToneIcon />,
+              onClick: () => onReview(item.id),
             },
             {
               label: item.isActive ? TEXTS.DEACTIVE : TEXTS.ACTIVE,
