@@ -1,7 +1,7 @@
-import { ArgsType, Field } from "@nestjs/graphql";
+import { InputType, Field } from "@nestjs/graphql";
 import { GetProductReviewsAdminArgs } from "@pishroo/dto";
 
-@ArgsType()
+@InputType()
 export class GetProductReviewsAdminArgsGQL extends GetProductReviewsAdminArgs {
   @Field(() => String, { nullable: true })
   reviewer?: string = "";

@@ -37,8 +37,6 @@ export class CreateProjectAdminInputs {
 
   @IsOptional()
   @Transform(({ value }) => {
-    console.log(value);
-
     return +value || value;
   })
   @IsLongitude()

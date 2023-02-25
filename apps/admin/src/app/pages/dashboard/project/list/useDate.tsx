@@ -107,8 +107,6 @@ const useData = () => {
       enqueueSnackbar(error.message, { variant: "error" });
     },
     onCompleted: (res) => {
-      console.log(res);
-
       setActivationItem(undefined);
     },
   });

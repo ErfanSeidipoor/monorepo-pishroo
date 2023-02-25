@@ -43,7 +43,9 @@ const TEXTS = {
   PRODUCER_AGENT: "Producer Agent",
   PROJECT: "Project",
   PROJECT_REVIEW: "Project Review",
+  PRODUCT_REVIEW: "Product Review",
   REVIEWER: "Reviewer",
+  COLORS: "Colors",
   DEACTIVE_WARNING_MESSAGE: "Are You Sure to Deactive ?",
   DELETE_WARNING_MESSAGE: "Are You Sure to Delete ?",
   ACTIVE_WARNING_MESSAGE: "Are You Sure to Active ?",
@@ -268,6 +270,24 @@ const TEXTS = {
   PAGE_PROJECT_REVIEW_UPDATE__PAGE_TITLE: "Project Review  Details | Pishroo",
   PAGE_PROJECT_REVIEW_UPDATE__UPDATE_PROJECT_REVIEW: "Update Project Review ",
   PAGE_PROJECT_REVIEW_UPDATE__SUCCESS: "Project Review Updated Successfully!",
+
+  /* ----------------------------- product review ----------------------------- */
+
+  PAGE_PRODUCT_REVIEW__PAGE_TITLE: "Product Review | Pishroo",
+  PAGE_PRODUCT_REVIEW__PRODUCT_REVIEW: "Product Review ",
+  PAGE_PRODUCT_REVIEW__NEW_PRODUCT_REVIEW: "New Product Review ",
+
+  /* --------------------------- new product review --------------------------- */
+
+  PAGE_NEW_PRODUCT_REVIEW__PAGE_TITLE: "New Product Review  | Pishroo",
+  PAGE_NEW_PRODUCT_REVIEW__NEW_PRODUCT_REVIEW: "New Product Review ",
+  PAGE_NEW_PRODUCT_REVIEW__SUCCESS: "Product Review  Created Successfully!",
+
+  /* ------------------------- product review details ------------------------- */
+
+  PAGE_PRODUCT_REVIEW_UPDATE__PAGE_TITLE: "Product Review  Details | Pishroo",
+  PAGE_PRODUCT_REVIEW_UPDATE__UPDATE_PRODUCT_REVIEW: "Update Product Review ",
+  PAGE_PRODUCT_REVIEW_UPDATE__SUCCESS: "Product Review Updated Successfully!",
 };
 
 export default TEXTS;

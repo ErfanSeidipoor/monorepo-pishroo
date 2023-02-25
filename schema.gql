@@ -465,9 +465,9 @@ type Query {
   getCategoryByIdAdmin(categoryId: String!): Category
   getPropertiesAdmin(paginationArgs: PaginationArgsGQL!, name: String = "", isActive: Boolean, units: [PropertyUnitEnum!] = []): PaginatedProperty
   getPropertyByIdAdmin(propertyId: String!): Property
-  getColorsAdmin(paginationArgs: PaginationArgsGQL!, name: String = "", value: String = ""): PaginatedColor
+  getColorsAdmin(paginationArgs: PaginationArgsGQL!, getColorsAdminArgs: GetColorsAdminArgsGQL!): PaginatedColor!
   getColorByIdAdmin(colorId: String!): Color
-  getProductReviewsAdmin(paginationArgs: PaginationArgsGQL!, reviewer: String = "", text: String = "", productId: String): PaginatedProductReview
+  getProductReviewsAdmin(paginationArgs: PaginationArgsGQL!, getProductReviewsAdminArgs: GetProductReviewsAdminArgsGQL!): PaginatedProductReview!
   getProductReviewByIdAdmin(productReviewId: String!): ProductReview
   getProvincesAdmin(getProvincesAdminArgs: GetProvincesAdminArgsGQL!, paginationArgs: PaginationArgsGQL!): PaginatedProvince!
   getProvinceByIdAdmin(provinceId: String!): Province
@@ -514,6 +514,17 @@ input GetProductsAdminArgsGQL {
   name: String = ""
   slug: String = ""
   isActive: Boolean
+}
+
+input GetColorsAdminArgsGQL {
+  name: String = ""
+  value: String = ""
+}
+
+input GetProductReviewsAdminArgsGQL {
+  reviewer: String = ""
+  text: String = ""
+  productId: String
 }
 
 input GetProvincesAdminArgsGQL {
@@ -585,7 +596,7 @@ type Mutation {
   updateProductActivationAdmin(updateProductActivationAdmin: UpdateProductActivationAdminInputsGQL!): Product!
   deleteProductAdmin(deleteProductAdmin: DeleteProductAdminInputsGQL!): Product!
   addCategoriesToProductAdmin(addCategoriesToProductAdmin: AddCategoriesToProductAdminInputsGQL!): Product!
-  addColorsToProductAdmin(addColorsToProductAdmin: AddColorsToProductAdminInputsGQL!): Color!
+  addColorsToProductAdmin(addColorsToProductAdminInputs: AddColorsToProductAdminInputsGQL!): Product!
   addPropertyToProductAdmin(addPropertyToProductAdmin: AddPropertyToProductAdminInputsGQL!): Product!
   removePropertyFromProductAdmin(removePropertyFromProductAdmin: RemovePropertyFromProductAdminInputsGQL!): Product!
   updatePropertyOfProductAdmin(updatePropertyOfProductAdmin: UpdatePropertyOfProductAdminInputsGQL!): Product!
@@ -599,12 +610,12 @@ type Mutation {
   updatePropertyAdmin(updatePropertyAdmin: UpdatePropertyAdminInputsGQL!): Property!
   updatePropertyActivationAdmin(updatePropertyActivationAdmin: UpdatePropertyActivationAdminInputsGQL!): Property!
   deletePropertyAdmin(deletePropertyAdmin: DeletePropertyAdminInputsGQL!): Property!
-  createColorAdmin(createColorAdmin: CreateColorAdminInputsGQL!): Color!
+  createColorAdmin(createColorAdminInputs: CreateColorAdminInputsGQL!): Color!
   updateColorAdmin(updateColorAdmin: UpdateColorAdminInputsGQL!): Color!
   deleteColorAdmin(deleteColorAdmin: DeleteColorAdminInputsGQL!): Color!
-  createProductReviewAdmin(createProductReviewAdmin: CreateProductReviewAdminInputsGQL!): ProductReview!
-  updateProductReviewAdmin(updateProductReviewAdmin: UpdateProductReviewAdminInputsGQL!): ProductReview!
-  deleteProductReviewAdmin(deleteProductReviewAdmin: DeleteProductReviewAdminInputsGQL!): ProductReview!
+  createProductReviewAdmin(createProductReviewAdminInputs: CreateProductReviewAdminInputsGQL!): ProductReview!
+  updateProductReviewAdmin(updateProductReviewAdminInputs: UpdateProductReviewAdminInputsGQL!): ProductReview!
+  deleteProductReviewAdmin(deleteProductReviewAdminInputs: DeleteProductReviewAdminInputsGQL!): ProductReview!
   createProvinceAdmin(createProvinceAdminInputs: CreateProvinceAdminInputsGQL!): Province!
   updateProvinceAdmin(updateProvinceAdminInputs: UpdateProvinceAdminInputsGQL!): Province!
   deleteProvinceAdmin(deleteProvinceAdmin: DeleteProvinceAdminInputsGQL!): Province!

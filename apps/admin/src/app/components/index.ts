@@ -9,3 +9,4 @@ export * from "./auto-complete-province";
 export * from "./auto-complete-city";
 export * from "./auto-complete-transporter";
 export * from "./auto-complete-producer";
+export * from "./auto-complete-multi-color";

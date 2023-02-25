@@ -8,6 +8,15 @@ export const QUERY_GET_PRODUCT_BY_ID_ADMIN = gql`
       slug
       isActive
       text
+      productColors {
+        id
+        colorId
+        color {
+          id
+          value
+          name
+        }
+      }
       fileUses {
         file {
           id

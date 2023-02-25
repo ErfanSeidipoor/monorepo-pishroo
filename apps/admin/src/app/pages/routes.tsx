@@ -40,6 +40,9 @@ import {
   DASHBOARD_PROJECT_REVIEW_ROUTE,
   DASHBOARD_PROJECT_REVIEW_DETAILS,
   DASHBOARD_PROJECT_REVIEW_NEW_PROJECT_REVIEW_ROUTE,
+  DASHBOARD_PRODUCT_REVIEW_ROUTE,
+  DASHBOARD_PRODUCT_REVIEW_NEW_PRODUCT_REVIEW_ROUTE,
+  DASHBOARD_PRODUCT_REVIEW_DETAILS,
 } from "@admin/constants";
 
 /* --------------------------------- Routes --------------------------------- */
@@ -78,7 +81,31 @@ export const Routes = () =>
             },
             {
               path: DASHBOARD_PRODUCT_DETAILS,
-              element: <ProductUpdatePage />,
+              element: <ProductDetailsProvider />,
+              children: [
+                {
+                  path: DASHBOARD_PRODUCT_REVIEW_ROUTE,
+                  element: <ProductReviewProvider />,
+                  children: [
+                    {
+                      path: DASHBOARD_PRODUCT_REVIEW_NEW_PRODUCT_REVIEW_ROUTE,
+                      element: <ProductReviewNewPage />,
+                    },
+                    {
+                      path: DASHBOARD_PRODUCT_REVIEW_DETAILS,
+                      element: <ProductReviewUpdatePage />,
+                    },
+                    {
+                      path: DASHBOARD_PRODUCT_REVIEW_ROUTE,
+                      element: <ProductReviewListPage />,
+                    },
+                  ],
+                },
+                {
+                  path: DASHBOARD_PRODUCT_DETAILS,
+                  element: <ProductDetailsPage />,
+                },
+              ],
             },
             {
               path: DASHBOARD_PRODUCT_ROUTE,
@@ -316,8 +343,26 @@ const ProductListPage = Loadable(
 const ProductNewPage = Loadable(
   lazy(() => import("./dashboard/product/new-product"))
 );
-const ProductUpdatePage = Loadable(
-  lazy(() => import("./dashboard/product/update"))
+const ProductDetailsPage = Loadable(
+  lazy(() => import("./dashboard/product/details/main"))
+);
+const ProductDetailsProvider = Loadable(
+  lazy(() => import("./dashboard/product/details"))
+);
+
+/* ------------------------ dashboard product review ------------------------ */
+
+const ProductReviewProvider = Loadable(
+  lazy(() => import("./dashboard/product/details/product-review"))
+);
+const ProductReviewListPage = Loadable(
+  lazy(() => import("./dashboard/product/details/product-review/list"))
+);
+const ProductReviewNewPage = Loadable(
+  lazy(() => import("./dashboard/product/details/product-review/new"))
+);
+const ProductReviewUpdatePage = Loadable(
+  lazy(() => import("./dashboard/product/details/product-review/details"))
 );
 
 /* ---------------------------- dashboard user --------------------------- */
