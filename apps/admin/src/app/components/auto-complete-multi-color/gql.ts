@@ -1,7 +1,7 @@
 import { gql } from "@apollo/client";
 
-export const GET_COLORS_ADMIN_AUTO_COMPLETE = gql`
-  query getColorsAdminAutoComplete(
+export const GET_COLORS_ADMIN_AUTO_COMPLETE_MULTI = gql`
+  query getColorsAdminAutoCompleteMulti(
     $getColorsAdminArgs: GetColorsAdminArgsGQL!
   ) {
     getColorsAdmin(

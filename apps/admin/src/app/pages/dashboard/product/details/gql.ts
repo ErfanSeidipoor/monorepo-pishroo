@@ -17,6 +17,14 @@ export const QUERY_GET_PRODUCT_BY_ID_ADMIN = gql`
           name
         }
       }
+      productCategories {
+        id
+        categoryId
+        category {
+          id
+          name
+        }
+      }
       fileUses {
         file {
           id

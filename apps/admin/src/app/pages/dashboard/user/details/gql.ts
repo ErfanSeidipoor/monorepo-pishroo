@@ -13,6 +13,15 @@ export const QUERY_GET_USER_BY_ID_ADMIN = gql`
       phone
       roles
       isActive
+
+      provinceUsers {
+        id
+        provinceId
+        province {
+          id
+          name
+        }
+      }
     }
   }
 `;

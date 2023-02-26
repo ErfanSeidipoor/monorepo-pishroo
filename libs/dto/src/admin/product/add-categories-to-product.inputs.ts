@@ -4,8 +4,6 @@ import {
   IsArray,
   IsString,
   IsUUID,
-  MaxLength,
-  MinLength,
 } from "class-validator";
 
 export class AddCategoriesToProductAdminInputs {
@@ -13,10 +11,9 @@ export class AddCategoriesToProductAdminInputs {
   productId: string;
 
   @IsString({ each: true })
-  @MinLength(3, { each: true })
-  @MaxLength(50, { each: true })
+  @IsUUID("4", { each: true })
   @IsArray()
-  @ArrayMaxSize(15)
+  @ArrayMaxSize(5)
   @ArrayMinSize(0)
-  categories: string[];
+  categoryIds: string[];
 }

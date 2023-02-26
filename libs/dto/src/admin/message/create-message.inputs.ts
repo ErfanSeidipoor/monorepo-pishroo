@@ -17,7 +17,7 @@ export class CreateMessageAdminInputs {
   @IsUUID("4", { each: true })
   @IsArray()
   @ArrayMaxSize(100)
-  customerIds?: string[];
+  customerIds: string[];
 
   @IsUUID()
   userId: string;

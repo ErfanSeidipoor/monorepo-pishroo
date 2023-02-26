@@ -2,23 +2,23 @@ import { useQuery } from "@apollo/client";
 import { useState } from "react";
 
 import {
-  GetColorsAdminAutoCompleteQuery,
-  GetColorsAdminAutoCompleteQueryVariables,
+  GetColorsAdminAutoCompleteMultiQuery,
+  GetColorsAdminAutoCompleteMultiQueryVariables,
 } from "@admin/gql/graphql";
 
-import { GET_COLORS_ADMIN_AUTO_COMPLETE } from "./gql";
+import { GET_COLORS_ADMIN_AUTO_COMPLETE_MULTI } from "./gql";
 
 const useData = () => {
   const [errorQuery, setErrorQuery] = useState("");
 
   const [rows, setRows] = useState<
-    GetColorsAdminAutoCompleteQuery["getColorsAdmin"]["edges"]
+    GetColorsAdminAutoCompleteMultiQuery["getColorsAdmin"]["edges"]
   >([]);
 
   const { loading } = useQuery<
-    GetColorsAdminAutoCompleteQuery,
-    GetColorsAdminAutoCompleteQueryVariables
-  >(GET_COLORS_ADMIN_AUTO_COMPLETE, {
+    GetColorsAdminAutoCompleteMultiQuery,
+    GetColorsAdminAutoCompleteMultiQueryVariables
+  >(GET_COLORS_ADMIN_AUTO_COMPLETE_MULTI, {
     variables: { getColorsAdminArgs: {} },
     onError: (error) => {
       setErrorQuery(error.message);

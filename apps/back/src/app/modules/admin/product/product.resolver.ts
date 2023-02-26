@@ -10,7 +10,6 @@ import {
   Resolver,
 } from "@nestjs/graphql";
 import {
-  Color,
   FileUse,
   PaginatedProduct,
   Product,
@@ -76,15 +75,6 @@ export class ProductResolver {
     return await this.productService.deleteProduct(inputs);
   }
 
-  @Mutation(() => Product)
-  @UseGuards(ProductAdminGuard)
-  async addCategoriesToProductAdmin(
-    @Args("addCategoriesToProductAdmin")
-    inputs: AddCategoriesToProductAdminInputsGQL
-  ): Promise<Product> {
-    return await this.productService.addCategoriesToProduct(inputs);
-  }
-
   @Query(() => PaginatedProduct, { nullable: false })
   @UseGuards(ProductAdminGuard)
   async getProductsAdmin(
@@ -100,6 +90,19 @@ export class ProductResolver {
     @Args() getProductByIdAdminArgs: GetProductByIdAdminArgsGQL
   ) {
     return this.productService.getProductById(getProductByIdAdminArgs);
+  }
+
+  /* -------------------------------------------------------------------------- */
+  /*                                  category                                  */
+  /* -------------------------------------------------------------------------- */
+
+  @Mutation(() => Product)
+  @UseGuards(ProductAdminGuard)
+  async addCategoriesToProductAdmin(
+    @Args("addCategoriesToProductAdminInputs")
+    inputs: AddCategoriesToProductAdminInputsGQL
+  ): Promise<Product> {
+    return await this.productService.addCategoriesToProduct(inputs);
   }
 
   /* -------------------------------------------------------------------------- */

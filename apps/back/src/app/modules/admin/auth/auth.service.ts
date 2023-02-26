@@ -241,7 +241,7 @@ export class AuthService {
     paginationArgs: PaginationArgs,
     getUsersAdminArgs: GetUsersAdminArgs
   ) {
-    const { name, roles, isActive, email, phone } = getUsersAdminArgs;
+    const { name, roles, isActive, email, phone, userId } = getUsersAdminArgs;
 
     const queryBuilder = this.userRepo.createQueryBuilder("user");
 
@@ -279,6 +279,12 @@ export class AuthService {
     if (typeof isActive !== "undefined") {
       queryBuilder.andWhere("user.isActive = :isActive", {
         isActive,
+      });
+    }
+
+    if (userId) {
+      queryBuilder.andWhere("user.id = :userId", {
+        userId,
       });
     }
     /* -------------------------------------------------------------------------- */

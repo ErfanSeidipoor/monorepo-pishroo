@@ -97,7 +97,7 @@ export class AuthResolver {
   @Mutation(() => User)
   @UseGuards(SuperAdminGuard)
   async updateUserProvincesAdmin(
-    @Args("updateUserProvincesAdmin")
+    @Args("updateUserProvincesAdminInputs")
     inputs: UpdateUserProvincesAdminInputsGQL
   ): Promise<User> {
     return await this.authService.UpdateUserProvinces(inputs);

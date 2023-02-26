@@ -7,5 +7,5 @@ export class AddCategoriesToProductAdminInputsGQL extends AddCategoriesToProduct
   productId: string;
 
   @Field(() => [String], { nullable: false })
-  categories: string[];
+  categoryIds: string[];
 }

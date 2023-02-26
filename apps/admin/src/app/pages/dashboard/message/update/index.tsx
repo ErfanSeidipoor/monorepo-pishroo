@@ -4,15 +4,15 @@ import Details from "./components/details";
 import Context from "./context";
 import useData from "./useDate";
 
-export const UserUpdatePage: FC = () => {
-  const { getUserLoading, user, userId, refetch } = useData();
+export const MessageUpdatePage: FC = () => {
+  const { getMessageLoading, message, messageId, refetch } = useData();
 
   return (
     <Context.Provider
       value={{
-        getUserLoading,
-        user,
-        userId,
+        getMessageLoading,
+        message,
+        messageId,
         refetch,
       }}
     >
@@ -21,4 +21,4 @@ export const UserUpdatePage: FC = () => {
   );
 };
 
-export default UserUpdatePage;
+export default MessageUpdatePage;

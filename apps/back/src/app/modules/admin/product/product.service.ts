@@ -253,7 +253,7 @@ export class ProductService {
   /* -------------------------------------------------------------------------- */
 
   async addCategoriesToProduct(args: AddCategoriesToProductAdminInputs) {
-    const { categories: names, productId } = args;
+    const { categoryIds, productId } = args;
 
     /* --------------------------------- product -------------------------------- */
     const product = await this.productRepo.findOne({
@@ -270,11 +270,11 @@ export class ProductService {
 
     const productCategories: ProductCategory[] = [];
 
-    for (const name of names) {
-      let category = await this.categoryRepo.findOne({ where: { name } });
-      if (!category) {
-        category = await this.categoryRepo.create({ name });
-      }
+    for (const categoryId of categoryIds) {
+      const category = await this.categoryRepo.findOne({
+        where: { id: categoryId },
+      });
+
       const productCategory = this.productCategoryRepo.create({
         category,
         product,

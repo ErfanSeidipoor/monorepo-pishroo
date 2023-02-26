@@ -100,3 +100,19 @@ export const DASHBOARD_PRODUCT_REVIEW_NEW_PRODUCT_REVIEW_ROUTE =
   DASHBOARD_PRODUCT_REVIEW_ROUTE + "/new";
 export const DASHBOARD_PRODUCT_REVIEW_DETAILS =
   DASHBOARD_PRODUCT_REVIEW_ROUTE + "/:productReviewId";
+
+/* -------------------------------- category -------------------------------- */
+
+export const DASHBOARD_CATEGORY_ROUTE = DASHBOARD_ROUTE + "/category";
+export const DASHBOARD_CATEGORY_NEW_CATEGORY_ROUTE =
+  DASHBOARD_CATEGORY_ROUTE + "/new";
+export const DASHBOARD_CATEGORY_DETAILS =
+  DASHBOARD_CATEGORY_ROUTE + "/:categoryId";
+
+/* -------------------------------- category -------------------------------- */
+
+export const DASHBOARD_MESSAGE_ROUTE = DASHBOARD_ROUTE + "/message";
+export const DASHBOARD_MESSAGE_NEW_MESSAGE_ROUTE =
+  DASHBOARD_MESSAGE_ROUTE + "/new";
+export const DASHBOARD_MESSAGE_DETAILS =
+  DASHBOARD_MESSAGE_ROUTE + "/:messageId";

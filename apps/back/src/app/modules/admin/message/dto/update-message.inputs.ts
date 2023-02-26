@@ -4,6 +4,9 @@ import { UpdateMessageAdminInputs } from "@pishroo/dto";
 @InputType()
 export class UpdateMessageAdminInputsGQL extends UpdateMessageAdminInputs {
   @Field()
+  messageId: string;
+
+  @Field()
   text: string;
 
   @Field()
@@ -13,5 +16,5 @@ export class UpdateMessageAdminInputsGQL extends UpdateMessageAdminInputs {
   isActive: boolean;
 
   @Field(() => [String], { nullable: false })
-  customerMessagesIds?: string[];
+  customerIds: string[];
 }

@@ -33,6 +33,7 @@ const TEXTS = {
   CANCEL: "Cancel",
   IMAGES: "Images",
   PROVINCE: "Province",
+  PROVINCES: "Provinces",
   CITY: "City",
   SEARCH: "Search",
   JOB_TITLE: "Job Title",
@@ -45,7 +46,11 @@ const TEXTS = {
   PROJECT_REVIEW: "Project Review",
   PRODUCT_REVIEW: "Product Review",
   REVIEWER: "Reviewer",
+  CATEGORY: "Category",
   COLORS: "Colors",
+  CATEGORIES: "Categories",
+  MESSAGE: "Message",
+  IS_SUBMITED: "Is Submited",
   DEACTIVE_WARNING_MESSAGE: "Are You Sure to Deactive ?",
   DELETE_WARNING_MESSAGE: "Are You Sure to Delete ?",
   ACTIVE_WARNING_MESSAGE: "Are You Sure to Active ?",
@@ -288,6 +293,42 @@ const TEXTS = {
   PAGE_PRODUCT_REVIEW_UPDATE__PAGE_TITLE: "Product Review  Details | Pishroo",
   PAGE_PRODUCT_REVIEW_UPDATE__UPDATE_PRODUCT_REVIEW: "Update Product Review ",
   PAGE_PRODUCT_REVIEW_UPDATE__SUCCESS: "Product Review Updated Successfully!",
+
+  /* -------------------------------- category -------------------------------- */
+
+  PAGE_CATEGORY__PAGE_TITLE: "Category | Pishroo",
+  PAGE_CATEGORY__CATEGORY: "Category ",
+  PAGE_CATEGORY__NEW_CATEGORY: "New Category ",
+
+  /* ------------------------------ new category ------------------------------ */
+
+  PAGE_NEW_CATEGORY__PAGE_TITLE: "New Category | Pishroo",
+  PAGE_NEW_CATEGORY__NEW_CATEGORY: "New Category ",
+  PAGE_NEW_CATEGORY__SUCCESS: "Category  Created Successfully!",
+
+  /* ---------------------------- category details ---------------------------- */
+
+  PAGE_CATEGORY_UPDATE__PAGE_TITLE: "Category Details | Pishroo",
+  PAGE_CATEGORY_UPDATE__UPDATE_CATEGORY: "Update Category ",
+  PAGE_CATEGORY_UPDATE__SUCCESS: "Category Updated Successfully!",
+
+  /* -------------------------------- message -------------------------------- */
+
+  PAGE_MESSAGE__PAGE_TITLE: "Message | Pishroo",
+  PAGE_MESSAGE__MESSAGE: "Message ",
+  PAGE_MESSAGE__NEW_MESSAGE: "New Message ",
+
+  /* ------------------------------ new message ------------------------------ */
+
+  PAGE_NEW_MESSAGE__PAGE_TITLE: "New Message | Pishroo",
+  PAGE_NEW_MESSAGE__NEW_MESSAGE: "New Message ",
+  PAGE_NEW_MESSAGE__SUCCESS: "Message  Created Successfully!",
+
+  /* ---------------------------- message details ---------------------------- */
+
+  PAGE_MESSAGE_UPDATE__PAGE_TITLE: "Message Details | Pishroo",
+  PAGE_MESSAGE_UPDATE__UPDATE_MESSAGE: "Update Message ",
+  PAGE_MESSAGE_UPDATE__SUCCESS: "Message Updated Successfully!",
 };
 
 export default TEXTS;

@@ -20,7 +20,7 @@ export class CategoryResolver {
   @Mutation(() => Category)
   @UseGuards(ProductAdminGuard)
   async createCategoryAdmin(
-    @Args("createCategoryAdmin")
+    @Args("createCategoryAdminInputs")
     inputs: CreateCategoryAdminInputsGQL
   ): Promise<Category> {
     return await this.categoryService.createCategory(inputs);
@@ -29,7 +29,7 @@ export class CategoryResolver {
   @Mutation(() => Category)
   @UseGuards(ProductAdminGuard)
   async updateCategoryAdmin(
-    @Args("updateCategoryAdmin")
+    @Args("updateCategoryAdminInputs")
     inputs: UpdateCategoryAdminInputsGQL
   ): Promise<Category> {
     return await this.categoryService.updateCategory(inputs);
@@ -38,7 +38,7 @@ export class CategoryResolver {
   @Mutation(() => Category)
   @UseGuards(ProductAdminGuard)
   async updateCategoryActivationAdmin(
-    @Args("updateCategoryActivationAdmin")
+    @Args("updateCategoryActivationAdminInputs")
     inputs: UpdateCategoryActivationAdminInputsGQL
   ): Promise<Category> {
     return await this.categoryService.updateCategoryActivation(inputs);
@@ -47,17 +47,17 @@ export class CategoryResolver {
   @Mutation(() => Category)
   @UseGuards(ProductAdminGuard)
   async deleteCategoryAdmin(
-    @Args("deleteCategoryAdmin")
+    @Args("deleteCategoryAdminInputs")
     inputs: DeleteCategoryAdminInputsGQL
   ): Promise<Category> {
     return await this.categoryService.deleteCategory(inputs);
   }
 
-  @Query(() => PaginatedCategory, { nullable: true })
+  @Query(() => PaginatedCategory, { nullable: false })
   @UseGuards(ProductAdminGuard)
   async getCategoriesAdmin(
     @Args("paginationArgs") paginationArgs: PaginationArgsGQL,
-    @Args() args: GetCategoriesAdminArgsGQL
+    @Args("getCategoriesAdminArgs") args: GetCategoriesAdminArgsGQL
   ) {
     return this.categoryService.getCategories(paginationArgs, args);
   }

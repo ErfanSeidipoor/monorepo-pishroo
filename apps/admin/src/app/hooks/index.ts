@@ -11,3 +11,5 @@ export * from "./useProducerAgentDetails";
 export * from "./useProjectDetails";
 export * from "./useProjectReviewDetails";
 export * from "./useProductReviewDetails";
+export * from "./useCategoryDetails";
+export * from "./useMessageDetails";

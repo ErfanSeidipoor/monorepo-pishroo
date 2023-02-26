@@ -28,8 +28,6 @@ export const ProductColors: FC = () => {
                 label={TEXTS.COLORS}
                 colorIds={value}
                 onChange={(colorIds) => {
-                  console.log({ colorIds });
-
                   onChange(colorIds);
                 }}
                 inputRef={ref}

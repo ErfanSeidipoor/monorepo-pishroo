@@ -13,5 +13,5 @@ export class CreateMessageAdminInputsGQL extends CreateMessageAdminInputs {
   isActive: boolean;
 
   @Field(() => [String], { nullable: false })
-  customerIds?: string[];
+  customerIds: string[];
 }
