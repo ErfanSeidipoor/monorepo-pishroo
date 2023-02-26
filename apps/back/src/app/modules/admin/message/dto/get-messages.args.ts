@@ -1,13 +1,16 @@
-import { ArgsType, Field } from "@nestjs/graphql";
+import { InputType, Field } from "@nestjs/graphql";
 import { GetMessagesAdminArgs } from "@pishroo/dto";
 
-@ArgsType()
+@InputType()
 export class GetMessagesAdminArgsGQL extends GetMessagesAdminArgs {
   @Field(() => String, { nullable: true })
   search?: string = "";
 
-  @Field(() => String, { nullable: true })
+  @Field(() => Boolean, { nullable: true })
   isActive?: boolean;
+
+  @Field(() => Boolean, { nullable: true })
+  isSubmitted?: boolean;
 
   @Field(() => String, { nullable: true })
   userId?: string;

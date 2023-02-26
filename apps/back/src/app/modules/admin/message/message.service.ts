@@ -209,7 +209,7 @@ export class MessageService {
     paginationArgs: PaginationArgs,
     args: GetMessagesAdminArgs
   ) {
-    const { isActive, search, customerId, userId } = args;
+    const { isActive, isSubmitted, search, customerId, userId } = args;
 
     const queryBuilder = this.messageRepo
       .createQueryBuilder("message")
@@ -226,6 +226,12 @@ export class MessageService {
     if (typeof isActive !== "undefined") {
       queryBuilder.andWhere("message.isActive = :isActive", {
         isActive,
+      });
+    }
+
+    if (typeof isSubmitted !== "undefined") {
+      queryBuilder.andWhere("message.isSubmited = :isSubmitted", {
+        isSubmitted,
       });
     }
 
@@ -277,5 +283,17 @@ export class MessageService {
         messageId,
       })
       .getMany();
+  }
+
+  async user(messageId: string): Promise<User> {
+    const message = await this.messageRepo
+      .createQueryBuilder("message")
+      .leftJoinAndSelect("message.user", "user")
+      .andWhere("message.id = :messageId", {
+        messageId,
+      })
+      .getOne();
+
+    return message.user;
   }
 }

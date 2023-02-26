@@ -1,7 +1,30 @@
-import { IsUUID } from "class-validator";
-import { CreateMessageAdminInputs } from "./create-message.inputs";
+import {
+  ArrayMaxSize,
+  IsArray,
+  IsBoolean,
+  IsString,
+  IsUUID,
+  MaxLength,
+  MinLength,
+} from "class-validator";
 
-export class UpdateMessageAdminInputs extends CreateMessageAdminInputs {
+export class UpdateMessageAdminInputs {
   @IsUUID()
   messageId: string;
+
+  @IsString()
+  @MinLength(2)
+  @MaxLength(50)
+  text: string;
+
+  @IsUUID("4", { each: true })
+  @IsArray()
+  @ArrayMaxSize(100)
+  customerIds: string[];
+
+  @IsUUID()
+  userId: string;
+
+  @IsBoolean()
+  isActive: boolean;
 }

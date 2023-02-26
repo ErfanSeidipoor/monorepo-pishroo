@@ -12,11 +12,15 @@ import TwoWheelerTwoToneIcon from "@mui/icons-material/TwoWheelerTwoTone";
 import FactoryTwoToneIcon from "@mui/icons-material/FactoryTwoTone";
 import CarpenterTwoToneIcon from "@mui/icons-material/CarpenterTwoTone";
 import AccountTreeTwoToneIcon from "@mui/icons-material/AccountTreeTwoTone";
+import CategoryTwoToneIcon from "@mui/icons-material/CategoryTwoTone";
+import EmailTwoToneIcon from "@mui/icons-material/EmailTwoTone";
 
 import TEXTS from "@pishroo/texts";
 import {
+  DASHBOARD_CATEGORY_ROUTE,
   DASHBOARD_CITY_ROUTE,
   DASHBOARD_CUSTOMER_ROUTE,
+  DASHBOARD_MESSAGE_ROUTE,
   DASHBOARD_PRODUCER_AGENT_ROUTE,
   DASHBOARD_PRODUCER_ROUTE,
   DASHBOARD_PRODUCT_ROUTE,
@@ -88,6 +92,16 @@ export const NavSection: FC = () => {
       title: TEXTS.PROJECT,
       path: DASHBOARD_PROJECT_ROUTE,
       icon: <AccountTreeTwoToneIcon />,
+    },
+    {
+      title: TEXTS.CATEGORY,
+      path: DASHBOARD_CATEGORY_ROUTE,
+      icon: <CategoryTwoToneIcon />,
+    },
+    {
+      title: TEXTS.MESSAGE,
+      path: DASHBOARD_MESSAGE_ROUTE,
+      icon: <EmailTwoToneIcon />,
     },
   ];
 

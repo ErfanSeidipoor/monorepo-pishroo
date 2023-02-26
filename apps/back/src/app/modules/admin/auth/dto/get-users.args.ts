@@ -18,4 +18,7 @@ export class GetUsersAdminArgsGQL extends GetUsersAdminArgs {
 
   @Field(() => Boolean, { nullable: true })
   isActive?: boolean;
+
+  @Field(() => String, { nullable: true })
+  userId?: string;
 }

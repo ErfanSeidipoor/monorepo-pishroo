@@ -10,6 +10,10 @@ export class GetMessagesAdminArgs {
   isActive?: boolean;
 
   @IsOptional()
+  @IsBoolean()
+  isSubmitted?: boolean;
+
+  @IsOptional()
   @IsUUID()
   userId?: string;
 

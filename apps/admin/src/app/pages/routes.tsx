@@ -43,6 +43,12 @@ import {
   DASHBOARD_PRODUCT_REVIEW_ROUTE,
   DASHBOARD_PRODUCT_REVIEW_NEW_PRODUCT_REVIEW_ROUTE,
   DASHBOARD_PRODUCT_REVIEW_DETAILS,
+  DASHBOARD_CATEGORY_ROUTE,
+  DASHBOARD_CATEGORY_NEW_CATEGORY_ROUTE,
+  DASHBOARD_CATEGORY_DETAILS,
+  DASHBOARD_MESSAGE_ROUTE,
+  DASHBOARD_MESSAGE_NEW_MESSAGE_ROUTE,
+  DASHBOARD_MESSAGE_DETAILS,
 } from "@admin/constants";
 
 /* --------------------------------- Routes --------------------------------- */
@@ -113,6 +119,25 @@ export const Routes = () =>
             },
           ],
         },
+        {
+          path: DASHBOARD_CATEGORY_ROUTE,
+          element: <CategoryProvider />,
+          children: [
+            {
+              path: DASHBOARD_CATEGORY_NEW_CATEGORY_ROUTE,
+              element: <CategoryNewPage />,
+            },
+            {
+              path: DASHBOARD_CATEGORY_DETAILS,
+              element: <CategoryUpdatePage />,
+            },
+            {
+              path: DASHBOARD_CATEGORY_ROUTE,
+              element: <CategoryListPage />,
+            },
+          ],
+        },
+
         {
           path: DASHBOARD_USER_ROUTE,
           element: <UserProvider />,
@@ -258,6 +283,24 @@ export const Routes = () =>
           ],
         },
         {
+          path: DASHBOARD_MESSAGE_ROUTE,
+          element: <MessageProvider />,
+          children: [
+            {
+              path: DASHBOARD_MESSAGE_NEW_MESSAGE_ROUTE,
+              element: <MessageNewPage />,
+            },
+            {
+              path: DASHBOARD_MESSAGE_DETAILS,
+              element: <MessageUpdatePage />,
+            },
+            {
+              path: DASHBOARD_MESSAGE_ROUTE,
+              element: <MessageListPage />,
+            },
+          ],
+        },
+        {
           path: DASHBOARD_PROJECT_ROUTE,
           element: <ProjectProvider />,
           children: [
@@ -369,7 +412,7 @@ const ProductReviewUpdatePage = Loadable(
 const UserProvider = Loadable(lazy(() => import("./dashboard/user")));
 const UserListPage = Loadable(lazy(() => import("./dashboard/user/list")));
 const UserNewPage = Loadable(lazy(() => import("./dashboard/user/new-user")));
-const UserUpdatePage = Loadable(lazy(() => import("./dashboard/user/update")));
+const UserUpdatePage = Loadable(lazy(() => import("./dashboard/user/details")));
 
 /* -------------------------- dashboard province ------------------------- */
 const ProvinceProvider = Loadable(lazy(() => import("./dashboard/province")));
@@ -486,4 +529,28 @@ const ProjectReviewNewPage = Loadable(
 );
 const ProjectReviewUpdatePage = Loadable(
   lazy(() => import("./dashboard/project/details/project-review/details"))
+);
+
+/* --------------------------- dashboard category --------------------------- */
+
+const CategoryProvider = Loadable(lazy(() => import("./dashboard/category")));
+const CategoryListPage = Loadable(
+  lazy(() => import("./dashboard/category/list"))
+);
+const CategoryNewPage = Loadable(
+  lazy(() => import("./dashboard/category/new"))
+);
+const CategoryUpdatePage = Loadable(
+  lazy(() => import("./dashboard/category/update"))
+);
+
+/* --------------------------- dashboard message --------------------------- */
+
+const MessageProvider = Loadable(lazy(() => import("./dashboard/message")));
+const MessageListPage = Loadable(
+  lazy(() => import("./dashboard/message/list"))
+);
+const MessageNewPage = Loadable(lazy(() => import("./dashboard/message/new")));
+const MessageUpdatePage = Loadable(
+  lazy(() => import("./dashboard/message/update"))
 );

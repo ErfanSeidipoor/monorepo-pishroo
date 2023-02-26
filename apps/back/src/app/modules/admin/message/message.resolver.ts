@@ -9,7 +9,12 @@ import {
   ResolveField,
   Resolver,
 } from "@nestjs/graphql";
-import { CustomerMessage, Message, PaginatedMessage } from "@pishroo/entities";
+import {
+  CustomerMessage,
+  Message,
+  PaginatedMessage,
+  User,
+} from "@pishroo/entities";
 import {
   CreateMessageAdminInputsGQL,
   DeleteMessageAdminInputsGQL,
@@ -27,7 +32,7 @@ export class MessageResolver {
   @Mutation(() => Message)
   @UseGuards(MessageAdminGuard)
   async createMessageAdmin(
-    @Args("createMessageAdmin")
+    @Args("createMessageAdminInputs")
     inputs: CreateMessageAdminInputsGQL
   ): Promise<Message> {
     return await this.messageService.createMessage(inputs);
@@ -36,7 +41,7 @@ export class MessageResolver {
   @Mutation(() => Message)
   @UseGuards(MessageAdminGuard)
   async updateMessageAdmin(
-    @Args("updateMessageAdmin")
+    @Args("updateMessageAdminInputs")
     inputs: UpdateMessageAdminInputsGQL
   ): Promise<Message> {
     return await this.messageService.updateMessage(inputs);
@@ -45,7 +50,7 @@ export class MessageResolver {
   @Mutation(() => Message)
   @UseGuards(MessageAdminGuard)
   async updateMessageActivationAdmin(
-    @Args("updateMessageActivationAdmin")
+    @Args("updateMessageActivationAdminInputs")
     inputs: UpdateMessageActivationAdminInputsGQL
   ): Promise<Message> {
     return await this.messageService.updateMessageActivation(inputs);
@@ -54,17 +59,17 @@ export class MessageResolver {
   @Mutation(() => Message)
   @UseGuards(MessageAdminGuard)
   async deleteMessageAdmin(
-    @Args("deleteMessageAdmin")
+    @Args("deleteMessageAdminInputs")
     inputs: DeleteMessageAdminInputsGQL
   ): Promise<Message> {
     return await this.messageService.deleteMessage(inputs);
   }
 
-  @Query(() => PaginatedMessage, { nullable: true })
+  @Query(() => PaginatedMessage, { nullable: false })
   @UseGuards(MessageAdminGuard)
   async getMessagesAdmin(
     @Args("paginationArgs") paginationArgs: PaginationArgsGQL,
-    @Args() args: GetMessagesAdminArgsGQL
+    @Args("getMessagesAdminArgs") args: GetMessagesAdminArgsGQL
   ) {
     return this.messageService.getMessages(paginationArgs, args);
   }
@@ -72,7 +77,8 @@ export class MessageResolver {
   @Query(() => Message, { nullable: true })
   @UseGuards(MessageAdminGuard)
   async getMessageByIdAdmin(
-    @Args() getMessageByIdAdminArgs: GetMessageByIdAdminArgsGQL
+    @Args()
+    getMessageByIdAdminArgs: GetMessageByIdAdminArgsGQL
   ) {
     return this.messageService.getMessageById(getMessageByIdAdminArgs);
   }
@@ -87,5 +93,11 @@ export class MessageResolver {
     @Parent() message: Message
   ): Promise<CustomerMessage[]> {
     return this.messageService.customerMessages(message.id);
+  }
+
+  @ResolveField(() => User, { nullable: false })
+  @UseGuards(MessageAdminGuard)
+  async user(@Parent() message: Message): Promise<User> {
+    return this.messageService.user(message.id);
   }
 }

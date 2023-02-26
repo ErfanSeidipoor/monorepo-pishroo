@@ -67,6 +67,7 @@ type Message {
   isSubmited: Boolean
   userId: String!
   customerMessages: [CustomerMessage!]!
+  user: User!
 }
 
 type PaginatedMessage {
@@ -461,7 +462,7 @@ type Query {
   logoutAdmin: User
   getProductsAdmin(paginationArgs: PaginationArgsGQL!, getProductsAdminArgs: GetProductsAdminArgsGQL!): PaginatedProduct!
   getProductByIdAdmin(productId: String!): Product!
-  getCategoriesAdmin(paginationArgs: PaginationArgsGQL!, name: String = "", isActive: Boolean): PaginatedCategory
+  getCategoriesAdmin(paginationArgs: PaginationArgsGQL!, getCategoriesAdminArgs: GetCategoriesAdminArgsGQL!): PaginatedCategory!
   getCategoryByIdAdmin(categoryId: String!): Category
   getPropertiesAdmin(paginationArgs: PaginationArgsGQL!, name: String = "", isActive: Boolean, units: [PropertyUnitEnum!] = []): PaginatedProperty
   getPropertyByIdAdmin(propertyId: String!): Property
@@ -487,7 +488,7 @@ type Query {
   getProjectReviewByIdAdmin(projectReviewId: String!): ProjectReview
   getCustomersAdmin(paginationArgs: PaginationArgsGQL!, getCustomersAdminArgs: GetCustomersAdminArgsGQL!): PaginatedCustomer!
   getCustomerByIdAdmin(customerId: String!): Customer
-  getMessagesAdmin(paginationArgs: PaginationArgsGQL!, search: String = "", isActive: String, userId: String, customerId: [String!]): PaginatedMessage
+  getMessagesAdmin(paginationArgs: PaginationArgsGQL!, getMessagesAdminArgs: GetMessagesAdminArgsGQL!): PaginatedMessage!
   getMessageByIdAdmin(messageId: String!): Message
   getFileByIdAdmin(fileId: String!): File
 }
@@ -508,11 +509,17 @@ input GetUsersAdminArgsGQL {
   phone: String = ""
   roles: [UserRoleEnum!] = []
   isActive: Boolean
+  userId: String
 }
 
 input GetProductsAdminArgsGQL {
   name: String = ""
   slug: String = ""
+  isActive: Boolean
+}
+
+input GetCategoriesAdminArgsGQL {
+  name: String = ""
   isActive: Boolean
 }
 
@@ -586,26 +593,34 @@ input GetCustomersAdminArgsGQL {
   provinceIds: [String!]
 }
 
+input GetMessagesAdminArgsGQL {
+  search: String = ""
+  isActive: Boolean
+  isSubmitted: Boolean
+  userId: String
+  customerId: [String!]
+}
+
 type Mutation {
   createUserAdmin(createUserAdminInputs: CreateUserAdminInputsGQL!): User!
   updateUserActivationAdmin(updateUserActivationAdmin: UpdateUserActivationAdminInputsGQL!): User!
   updateUserAdmin(updateUserAdminInputs: UpdateUserAdminInputsGQL!): User!
-  updateUserProvincesAdmin(updateUserProvincesAdmin: UpdateUserProvincesAdminInputsGQL!): User!
+  updateUserProvincesAdmin(updateUserProvincesAdminInputs: UpdateUserProvincesAdminInputsGQL!): User!
   createProductAdmin(createProductAdminInputs: CreateProductAdminInputsGQL!): Product!
   updateProductAdmin(updateProductAdminInputs: UpdateProductAdminInputsGQL!): Product!
   updateProductActivationAdmin(updateProductActivationAdmin: UpdateProductActivationAdminInputsGQL!): Product!
   deleteProductAdmin(deleteProductAdmin: DeleteProductAdminInputsGQL!): Product!
-  addCategoriesToProductAdmin(addCategoriesToProductAdmin: AddCategoriesToProductAdminInputsGQL!): Product!
+  addCategoriesToProductAdmin(addCategoriesToProductAdminInputs: AddCategoriesToProductAdminInputsGQL!): Product!
   addColorsToProductAdmin(addColorsToProductAdminInputs: AddColorsToProductAdminInputsGQL!): Product!
   addPropertyToProductAdmin(addPropertyToProductAdmin: AddPropertyToProductAdminInputsGQL!): Product!
   removePropertyFromProductAdmin(removePropertyFromProductAdmin: RemovePropertyFromProductAdminInputsGQL!): Product!
   updatePropertyOfProductAdmin(updatePropertyOfProductAdmin: UpdatePropertyOfProductAdminInputsGQL!): Product!
   addImageToProductAdmin(addImageToProductAdmin: AddImageToProductAdminInputsGQL!): Product!
   removeImageFromProductAdmin(removeImageFromProductAdmin: RemoveImageFromProductAdminInputsGQL!): Product!
-  createCategoryAdmin(createCategoryAdmin: CreateCategoryAdminInputsGQL!): Category!
-  updateCategoryAdmin(updateCategoryAdmin: UpdateCategoryAdminInputsGQL!): Category!
-  updateCategoryActivationAdmin(updateCategoryActivationAdmin: UpdateCategoryActivationAdminInputsGQL!): Category!
-  deleteCategoryAdmin(deleteCategoryAdmin: DeleteCategoryAdminInputsGQL!): Category!
+  createCategoryAdmin(createCategoryAdminInputs: CreateCategoryAdminInputsGQL!): Category!
+  updateCategoryAdmin(updateCategoryAdminInputs: UpdateCategoryAdminInputsGQL!): Category!
+  updateCategoryActivationAdmin(updateCategoryActivationAdminInputs: UpdateCategoryActivationAdminInputsGQL!): Category!
+  deleteCategoryAdmin(deleteCategoryAdminInputs: DeleteCategoryAdminInputsGQL!): Category!
   createPropertyAdmin(createPropertyAdmin: CreatePropertyAdminInputsGQL!): Property!
   updatePropertyAdmin(updatePropertyAdmin: UpdatePropertyAdminInputsGQL!): Property!
   updatePropertyActivationAdmin(updatePropertyActivationAdmin: UpdatePropertyActivationAdminInputsGQL!): Property!
@@ -655,10 +670,10 @@ type Mutation {
   updateCustomerAdmin(updateCustomerAdminInputs: UpdateCustomerAdminInputsGQL!): Customer!
   updateCustomerActivationAdmin(updateCustomerActivationAdmin: UpdateCustomerActivationAdminInputsGQL!): Customer!
   deleteCustomerAdmin(deleteCustomerAdmin: DeleteCustomerAdminInputsGQL!): Customer!
-  createMessageAdmin(createMessageAdmin: CreateMessageAdminInputsGQL!): Message!
-  updateMessageAdmin(updateMessageAdmin: UpdateMessageAdminInputsGQL!): Message!
-  updateMessageActivationAdmin(updateMessageActivationAdmin: UpdateMessageActivationAdminInputsGQL!): Message!
-  deleteMessageAdmin(deleteMessageAdmin: DeleteMessageAdminInputsGQL!): Message!
+  createMessageAdmin(createMessageAdminInputs: CreateMessageAdminInputsGQL!): Message!
+  updateMessageAdmin(updateMessageAdminInputs: UpdateMessageAdminInputsGQL!): Message!
+  updateMessageActivationAdmin(updateMessageActivationAdminInputs: UpdateMessageActivationAdminInputsGQL!): Message!
+  deleteMessageAdmin(deleteMessageAdminInputs: DeleteMessageAdminInputsGQL!): Message!
   createCustomerMessageAdmin(createCustomerMessageAdmin: CreateCustomerMessageAdminInputsGQL!): CustomerMessage!
   deleteCustomerMessageAdmin(deleteCustomerMessageAdmin: DeleteCustomerMessageAdminInputsGQL!): CustomerMessage!
   removeImageAdmin(removeImageAdmin: RemoveImageAdminInputsGQL!): File!
@@ -722,7 +737,7 @@ input DeleteProductAdminInputsGQL {
 
 input AddCategoriesToProductAdminInputsGQL {
   productId: String!
-  categories: [String!]!
+  categoryIds: [String!]!
 }
 
 input AddColorsToProductAdminInputsGQL {
@@ -1096,10 +1111,11 @@ input CreateMessageAdminInputsGQL {
 }
 
 input UpdateMessageAdminInputsGQL {
+  messageId: String!
   text: String!
   userId: String!
   isActive: Boolean!
-  customerMessagesIds: [String!]!
+  customerIds: [String!]!
 }
 
 input UpdateMessageActivationAdminInputsGQL {

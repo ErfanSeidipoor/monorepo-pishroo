@@ -1,11 +1,11 @@
 import { UserRoleEnum } from "@pishroo/enums";
-// import { Transform } from "class-transformer";
 import {
   IsArray,
   IsBoolean,
   IsEnum,
   IsOptional,
   IsString,
+  IsUUID,
 } from "class-validator";
 
 export class GetUsersAdminArgs {
@@ -29,4 +29,9 @@ export class GetUsersAdminArgs {
   @IsOptional()
   @IsBoolean()
   isActive?: boolean;
+
+  @IsOptional()
+  @IsUUID()
+  @IsString()
+  userId?: string;
 }
