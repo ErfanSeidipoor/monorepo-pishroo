@@ -389,6 +389,7 @@ export type GetColorsAdminArgsGql = {
 
 export type GetCustomersAdminArgsGql = {
   cityIds?: InputMaybe<Array<Scalars['String']>>;
+  customerIds?: InputMaybe<Array<Scalars['String']>>;
   isActive?: InputMaybe<Scalars['Boolean']>;
   provinceIds?: InputMaybe<Array<Scalars['String']>>;
   search?: InputMaybe<Scalars['String']>;

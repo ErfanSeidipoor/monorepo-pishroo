@@ -27,4 +27,10 @@ export class GetCustomersAdminArgs {
   @IsArray()
   @ArrayMaxSize(10)
   provinceIds?: string[];
+
+  @IsOptional()
+  @IsUUID("4", { each: true })
+  @IsArray()
+  @ArrayMaxSize(100)
+  customerIds?: string[];
 }

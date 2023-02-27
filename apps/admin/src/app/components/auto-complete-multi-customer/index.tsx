@@ -11,7 +11,9 @@ export const AutoCompleteMultiCustomer: FC<
     onChange?: (customerIds?: string[]) => void;
   } & TextFieldProps
 > = ({ customerIds, onChange = () => "", error, ...props }) => {
-  const { loading, errorQuery, rows } = useData();
+  const { loading, errorQuery, rows, onInputChange } = useData(
+    customerIds || []
+  );
 
   return (
     <AutocompleteMultiple
@@ -20,13 +22,16 @@ export const AutoCompleteMultiCustomer: FC<
       autoFocus={false}
       items={rows}
       getLabel={(item) =>
-        item.firstName + " " + item.lastName + "-" + item.jobTitle
+        item.firstName + " " + item.lastName + " - " + item.jobTitle
       }
+      onChangeInput={(search) => {
+        onInputChange(search);
+      }}
       getValue={(item) => item.id}
       selectedItems={rows.filter((item) => customerIds?.includes(item.id))}
-      onSelectItems={(items) =>
-        onChange(items ? items.map((item) => item.id) : [])
-      }
+      onSelectItems={(items) => {
+        onChange(items ? items.map((item) => item.id) : []);
+      }}
       {...props}
     />
   );

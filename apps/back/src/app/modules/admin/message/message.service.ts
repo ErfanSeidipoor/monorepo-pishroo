@@ -104,7 +104,10 @@ export class MessageService {
       where: {
         id: messageId,
       },
+      relations: ["customerMessages"],
     });
+
+    const { customerMessages: oldCustomerMessages } = message;
 
     if (!message) {
       throw new CustomError(MESSAGE_NOT_FOUND);
@@ -143,6 +146,7 @@ export class MessageService {
       customerMessages.push(
         this.customerMessageRepo.create({
           customerId,
+          messageId,
         })
       );
     }
@@ -153,13 +157,22 @@ export class MessageService {
       isActive,
       userId,
       text,
-      customerMessages,
       count: customerMessages.length,
     });
 
+    console.log({ message });
+
     /* --------------------------------- output --------------------------------- */
 
-    return await message.save();
+    await this.dataSource.transaction(async (manager) => {
+      await manager.save(message);
+      await manager.remove(oldCustomerMessages);
+      await manager.save(customerMessages);
+    });
+
+    message.customerMessages = customerMessages;
+
+    return message;
   }
 
   async deleteMessage(inputs: DeleteMessageAdminInputs): Promise<Message> {
