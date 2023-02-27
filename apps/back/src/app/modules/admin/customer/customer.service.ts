@@ -249,7 +249,7 @@ export class CustomerService {
     paginationArgs: PaginationArgs,
     args: GetCustomersAdminArgs
   ) {
-    const { isActive, search, cityIds, provinceIds } = args;
+    const { isActive, search, cityIds, provinceIds, customerIds } = args;
 
     const queryBuilder = this.customerRepo
       .createQueryBuilder("customer")
@@ -288,6 +288,13 @@ export class CustomerService {
         provinceIds,
       });
     }
+
+    if (customerIds && customerIds.length) {
+      queryBuilder.andWhere("customer.id IN (:...customerIds)", {
+        customerIds,
+      });
+    }
+
     /* ---------------------------------- Order --------------------------------- */
 
     queryBuilder.addOrderBy("customer.createdAt", "DESC");

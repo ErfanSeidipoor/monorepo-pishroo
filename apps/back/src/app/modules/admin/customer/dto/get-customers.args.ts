@@ -14,4 +14,7 @@ export class GetCustomersAdminArgsGQL extends GetCustomersAdminArgs {
 
   @Field(() => [String], { nullable: true })
   provinceIds?: string[];
+
+  @Field(() => [String], { nullable: true })
+  customerIds?: string[];
 }

@@ -1,5 +1,5 @@
 import { useQuery } from "@apollo/client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import {
   GetCustomersAdminAutoCompleteMultiQuery,
@@ -8,14 +8,21 @@ import {
 
 import { GET_PROVINCES_ADMIN_AUTO_COMPLETE_MULTI } from "./gql";
 
-const useData = () => {
-  const [errorQuery, setErrorQuery] = useState("");
+const useData = (customerIds: string[]) => {
+  const [searchedRows, setSearchedRows] = useState<
+    GetCustomersAdminAutoCompleteMultiQuery["getCustomersAdmin"]["edges"]
+  >([]);
+  const [selectedRows, setSelectedRows] = useState<
+    GetCustomersAdminAutoCompleteMultiQuery["getCustomersAdmin"]["edges"]
+  >([]);
 
   const [rows, setRows] = useState<
     GetCustomersAdminAutoCompleteMultiQuery["getCustomersAdmin"]["edges"]
   >([]);
 
-  const { loading } = useQuery<
+  const [errorQuery, setErrorQuery] = useState("");
+
+  const { loading, refetch } = useQuery<
     GetCustomersAdminAutoCompleteMultiQuery,
     GetCustomersAdminAutoCompleteMultiQueryVariables
   >(GET_PROVINCES_ADMIN_AUTO_COMPLETE_MULTI, {
@@ -23,15 +30,41 @@ const useData = () => {
     onError: (error) => {
       setErrorQuery(error.message);
     },
-    onCompleted: ({ getCustomersAdmin }) => {
-      setRows(getCustomersAdmin?.edges);
-    },
   });
 
+  useEffect(() => {
+    const getCustomer = async (customerIds: string[]) => {
+      const {
+        data: { getCustomersAdmin },
+      } = await refetch({ getCustomersAdminArgs: { customerIds } });
+      setSelectedRows(getCustomersAdmin.edges);
+    };
+
+    if (customerIds && customerIds.length) {
+      getCustomer(customerIds);
+    }
+  }, [customerIds, refetch]);
+
+  useEffect(() => {
+    const rows = searchedRows.filter(
+      (row) => !selectedRows.find((row_) => row_.id === row.id)
+    );
+    setRows([...selectedRows, ...rows]);
+  }, [selectedRows, searchedRows]);
+
+  const onInputChange = async (search: string) => {
+    setSearchedRows([]);
+    const {
+      data: { getCustomersAdmin },
+    } = await refetch({ getCustomersAdminArgs: { search, customerIds: [] } });
+    setSearchedRows(getCustomersAdmin.edges);
+  };
+
   return {
+    rows,
     loading,
     errorQuery,
-    rows,
+    onInputChange,
   };
 };
 

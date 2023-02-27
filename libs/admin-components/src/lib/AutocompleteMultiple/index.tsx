@@ -39,6 +39,7 @@ export const AutocompleteMultiple = <T extends {}>({
   return (
     <MuiAutocomplete
       id="asynchronous-demo"
+      clearOnBlur={false}
       multiple
       isOptionEqualToValue={(option, value) =>
         getValue(option) === getValue(value)
@@ -72,6 +73,7 @@ export const AutocompleteMultiple = <T extends {}>({
         ));
       }}
       disabled={disabled}
+      disableCloseOnSelect
       renderInput={(params) => (
         <TextField
           {...props}
