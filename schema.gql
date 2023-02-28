@@ -296,6 +296,11 @@ type ProductProperty {
   productId: String!
 }
 
+type PaginatedProductProperty {
+  edges: [ProductProperty!]!
+  pageInfo: PageInfo!
+}
+
 type ProductReview {
   id: String!
   createdAt: DateTime!
@@ -461,10 +466,12 @@ type Query {
   getUserByIdAdmin(userId: String!): User
   logoutAdmin: User
   getProductsAdmin(paginationArgs: PaginationArgsGQL!, getProductsAdminArgs: GetProductsAdminArgsGQL!): PaginatedProduct!
+  getProductPropertiesAdmin(paginationArgs: PaginationArgsGQL!, getProductPropertiesAdminArgs: GetProductPropertiesAdminArgsGQL!): PaginatedProductProperty!
   getProductByIdAdmin(productId: String!): Product!
+  getProductPropertyByIdAdmin(productPropertyId: String!): ProductProperty!
   getCategoriesAdmin(paginationArgs: PaginationArgsGQL!, getCategoriesAdminArgs: GetCategoriesAdminArgsGQL!): PaginatedCategory!
   getCategoryByIdAdmin(categoryId: String!): Category
-  getPropertiesAdmin(paginationArgs: PaginationArgsGQL!, name: String = "", isActive: Boolean, units: [PropertyUnitEnum!] = []): PaginatedProperty
+  getPropertiesAdmin(paginationArgs: PaginationArgsGQL!, getPropertiesAdminArgs: GetPropertiesAdminArgsGQL!): PaginatedProperty!
   getPropertyByIdAdmin(propertyId: String!): Property
   getColorsAdmin(paginationArgs: PaginationArgsGQL!, getColorsAdminArgs: GetColorsAdminArgsGQL!): PaginatedColor!
   getColorByIdAdmin(colorId: String!): Color
@@ -518,9 +525,21 @@ input GetProductsAdminArgsGQL {
   isActive: Boolean
 }
 
+input GetProductPropertiesAdminArgsGQL {
+  productId: String!
+  name: String = ""
+}
+
 input GetCategoriesAdminArgsGQL {
   name: String = ""
   isActive: Boolean
+}
+
+input GetPropertiesAdminArgsGQL {
+  name: String = ""
+  isActive: Boolean
+  units: [PropertyUnitEnum!] = []
+  propertyId: String
 }
 
 input GetColorsAdminArgsGQL {
@@ -613,19 +632,19 @@ type Mutation {
   deleteProductAdmin(deleteProductAdmin: DeleteProductAdminInputsGQL!): Product!
   addCategoriesToProductAdmin(addCategoriesToProductAdminInputs: AddCategoriesToProductAdminInputsGQL!): Product!
   addColorsToProductAdmin(addColorsToProductAdminInputs: AddColorsToProductAdminInputsGQL!): Product!
-  addPropertyToProductAdmin(addPropertyToProductAdmin: AddPropertyToProductAdminInputsGQL!): Product!
-  removePropertyFromProductAdmin(removePropertyFromProductAdmin: RemovePropertyFromProductAdminInputsGQL!): Product!
-  updatePropertyOfProductAdmin(updatePropertyOfProductAdmin: UpdatePropertyOfProductAdminInputsGQL!): Product!
+  addPropertyToProductAdmin(addPropertyToProductAdminInputs: AddPropertyToProductAdminInputsGQL!): ProductProperty!
+  removePropertyFromProductAdmin(removePropertyFromProductAdminInputs: RemovePropertyFromProductAdminInputsGQL!): Product!
+  updatePropertyOfProductAdmin(updatePropertyOfProductAdminInputs: UpdatePropertyOfProductAdminInputsGQL!): ProductProperty!
   addImageToProductAdmin(addImageToProductAdmin: AddImageToProductAdminInputsGQL!): Product!
   removeImageFromProductAdmin(removeImageFromProductAdmin: RemoveImageFromProductAdminInputsGQL!): Product!
   createCategoryAdmin(createCategoryAdminInputs: CreateCategoryAdminInputsGQL!): Category!
   updateCategoryAdmin(updateCategoryAdminInputs: UpdateCategoryAdminInputsGQL!): Category!
   updateCategoryActivationAdmin(updateCategoryActivationAdminInputs: UpdateCategoryActivationAdminInputsGQL!): Category!
   deleteCategoryAdmin(deleteCategoryAdminInputs: DeleteCategoryAdminInputsGQL!): Category!
-  createPropertyAdmin(createPropertyAdmin: CreatePropertyAdminInputsGQL!): Property!
-  updatePropertyAdmin(updatePropertyAdmin: UpdatePropertyAdminInputsGQL!): Property!
-  updatePropertyActivationAdmin(updatePropertyActivationAdmin: UpdatePropertyActivationAdminInputsGQL!): Property!
-  deletePropertyAdmin(deletePropertyAdmin: DeletePropertyAdminInputsGQL!): Property!
+  createPropertyAdmin(createPropertyAdminInputs: CreatePropertyAdminInputsGQL!): Property!
+  updatePropertyAdmin(updatePropertyAdminInputs: UpdatePropertyAdminInputsGQL!): Property!
+  updatePropertyActivationAdmin(updatePropertyActivationAdminInputs: UpdatePropertyActivationAdminInputsGQL!): Property!
+  deletePropertyAdmin(deletePropertyAdminInputs: DeletePropertyAdminInputsGQL!): Property!
   createColorAdmin(createColorAdminInputs: CreateColorAdminInputsGQL!): Color!
   updateColorAdmin(updateColorAdmin: UpdateColorAdminInputsGQL!): Color!
   deleteColorAdmin(deleteColorAdmin: DeleteColorAdminInputsGQL!): Color!

@@ -14,6 +14,7 @@ import CarpenterTwoToneIcon from "@mui/icons-material/CarpenterTwoTone";
 import AccountTreeTwoToneIcon from "@mui/icons-material/AccountTreeTwoTone";
 import CategoryTwoToneIcon from "@mui/icons-material/CategoryTwoTone";
 import EmailTwoToneIcon from "@mui/icons-material/EmailTwoTone";
+import HorizontalSplitTwoToneIcon from "@mui/icons-material/HorizontalSplitTwoTone";
 
 import TEXTS from "@pishroo/texts";
 import {
@@ -25,6 +26,7 @@ import {
   DASHBOARD_PRODUCER_ROUTE,
   DASHBOARD_PRODUCT_ROUTE,
   DASHBOARD_PROJECT_ROUTE,
+  DASHBOARD_PROPERTY_ROUTE,
   DASHBOARD_PROVINCE_ROUTE,
   DASHBOARD_ROUTE,
   DASHBOARD_TRANSPORTER_AGENT_ROUTE,
@@ -47,6 +49,11 @@ export const NavSection: FC = () => {
       title: TEXTS.PRODUCT,
       path: DASHBOARD_PRODUCT_ROUTE,
       icon: <NaturePeopleTwoToneIcon />,
+    },
+    {
+      title: TEXTS.PROPERTY,
+      path: DASHBOARD_PROPERTY_ROUTE,
+      icon: <HorizontalSplitTwoToneIcon />,
     },
     {
       title: TEXTS.USER,

@@ -13,3 +13,5 @@ export * from "./useProjectReviewDetails";
 export * from "./useProductReviewDetails";
 export * from "./useCategoryDetails";
 export * from "./useMessageDetails";
+export * from "./usePropertyDetails";
+export * from "./useProductPropertyDetails";

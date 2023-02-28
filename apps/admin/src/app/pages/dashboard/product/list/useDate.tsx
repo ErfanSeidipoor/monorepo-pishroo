@@ -12,6 +12,7 @@ import { url } from "@pishroo/utils";
 
 import {
   DASHBOARD_PRODUCT_DETAILS,
+  DASHBOARD_PRODUCT_PROPERTY_ROUTE,
   DASHBOARD_PRODUCT_REVIEW_ROUTE,
   DASHBOARD_PRODUCT_ROUTE,
   DASHBOARD_ROUTE,
@@ -160,6 +161,10 @@ const useData = () => {
     navigate(url.generate(DASHBOARD_PRODUCT_REVIEW_ROUTE, { productId }));
   };
 
+  const onProperty = (productId: string) => {
+    navigate(url.generate(DASHBOARD_PRODUCT_PROPERTY_ROUTE, { productId }));
+  };
+
   const onUpdateProductActivation = () => {
     if (activationItem)
       updateProductActivationAdmin({
@@ -190,6 +195,7 @@ const useData = () => {
     updateProductActivaitonLoading,
     onUpdateProductActivation,
     onReview,
+    onProperty,
   };
 };
 

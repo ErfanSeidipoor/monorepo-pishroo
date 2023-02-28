@@ -8,6 +8,7 @@ const TEXTS = {
   DASHBOARD: "Dashboard",
   USER: "User",
   NAME: "Name",
+  UNIT: "Unit",
   EMAIL: "Email",
   PHONE: "Phone",
   OFFICE_PHONE: "Office Phone",
@@ -23,6 +24,7 @@ const TEXTS = {
   CLEAR_ALL: "Clear All",
   CREATE: "Create",
   UPDATE: "Update",
+  VALUE: "Value",
   IS_ACTIVE: "Is Active",
   ROLE: "Role",
   ACTIONS: "Actions",
@@ -45,8 +47,10 @@ const TEXTS = {
   PROJECT: "Project",
   PROJECT_REVIEW: "Project Review",
   PRODUCT_REVIEW: "Product Review",
+  PRODUCT_PROPERTY: "Product property",
   REVIEWER: "Reviewer",
   CATEGORY: "Category",
+  PROPERTY: "Property",
   COLORS: "Colors",
   CATEGORIES: "Categories",
   MESSAGE: "Message",
@@ -294,6 +298,27 @@ const TEXTS = {
   PAGE_PRODUCT_REVIEW_UPDATE__UPDATE_PRODUCT_REVIEW: "Update Product Review ",
   PAGE_PRODUCT_REVIEW_UPDATE__SUCCESS: "Product Review Updated Successfully!",
 
+  /* --------------------------- product property --------------------------- */
+
+  PAGE_PRODUCT_PROPERTY__PAGE_TITLE: "Product Property | Pishroo",
+  PAGE_PRODUCT_PROPERTY__PRODUCT_PROPERTY: "Product Property ",
+  PAGE_PRODUCT_PROPERTY__NEW_PRODUCT_PROPERTY: "New Product Property ",
+
+  /* -------------------------- new product property ------------------------- */
+
+  PAGE_NEW_PRODUCT_PROPERTY__PAGE_TITLE: "New Product Property  | Pishroo",
+  PAGE_NEW_PRODUCT_PROPERTY__NEW_PRODUCT_PROPERTY: "New Product Property ",
+  PAGE_NEW_PRODUCT_PROPERTY__SUCCESS: "Product Property  Created Successfully!",
+
+  /* ------------------------- product property details ---------------------- */
+
+  PAGE_PRODUCT_PROPERTY_UPDATE__PAGE_TITLE:
+    "Product Property  Details | Pishroo",
+  PAGE_PRODUCT_PROPERTY_UPDATE__UPDATE_PRODUCT_PROPERTY:
+    "Update Product Property ",
+  PAGE_PRODUCT_PROPERTY_UPDATE__SUCCESS:
+    "Product Property Updated Successfully!",
+
   /* -------------------------------- category -------------------------------- */
 
   PAGE_CATEGORY__PAGE_TITLE: "Category | Pishroo",
@@ -311,6 +336,24 @@ const TEXTS = {
   PAGE_CATEGORY_UPDATE__PAGE_TITLE: "Category Details | Pishroo",
   PAGE_CATEGORY_UPDATE__UPDATE_CATEGORY: "Update Category ",
   PAGE_CATEGORY_UPDATE__SUCCESS: "Category Updated Successfully!",
+
+  /* -------------------------------- property -------------------------------- */
+
+  PAGE_PROPERTY__PAGE_TITLE: "Property | Pishroo",
+  PAGE_PROPERTY__PROPERTY: "Property ",
+  PAGE_PROPERTY__NEW_PROPERTY: "New Property ",
+
+  /* ------------------------------ new property ------------------------------ */
+
+  PAGE_NEW_PROPERTY__PAGE_TITLE: "New Property | Pishroo",
+  PAGE_NEW_PROPERTY__NEW_PROPERTY: "New Property ",
+  PAGE_NEW_PROPERTY__SUCCESS: "Property  Created Successfully!",
+
+  /* ---------------------------- property details ---------------------------- */
+
+  PAGE_PROPERTY_UPDATE__PAGE_TITLE: "Property Details | Pishroo",
+  PAGE_PROPERTY_UPDATE__UPDATE_PROPERTY: "Update Property ",
+  PAGE_PROPERTY_UPDATE__SUCCESS: "Property Updated Successfully!",
 
   /* -------------------------------- message -------------------------------- */
 

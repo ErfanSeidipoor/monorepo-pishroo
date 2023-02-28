@@ -20,7 +20,7 @@ export class PropertyResolver {
   @Mutation(() => Property)
   @UseGuards(ProductAdminGuard)
   async createPropertyAdmin(
-    @Args("createPropertyAdmin")
+    @Args("createPropertyAdminInputs")
     inputs: CreatePropertyAdminInputsGQL
   ): Promise<Property> {
     return await this.propertyService.createProperty(inputs);
@@ -29,7 +29,7 @@ export class PropertyResolver {
   @Mutation(() => Property)
   @UseGuards(ProductAdminGuard)
   async updatePropertyAdmin(
-    @Args("updatePropertyAdmin")
+    @Args("updatePropertyAdminInputs")
     inputs: UpdatePropertyAdminInputsGQL
   ): Promise<Property> {
     return await this.propertyService.updateProperty(inputs);
@@ -38,7 +38,7 @@ export class PropertyResolver {
   @Mutation(() => Property)
   @UseGuards(ProductAdminGuard)
   async updatePropertyActivationAdmin(
-    @Args("updatePropertyActivationAdmin")
+    @Args("updatePropertyActivationAdminInputs")
     inputs: UpdatePropertyActivationAdminInputsGQL
   ): Promise<Property> {
     return await this.propertyService.updatePropertyActivation(inputs);
@@ -47,17 +47,17 @@ export class PropertyResolver {
   @Mutation(() => Property)
   @UseGuards(ProductAdminGuard)
   async deletePropertyAdmin(
-    @Args("deletePropertyAdmin")
+    @Args("deletePropertyAdminInputs")
     inputs: DeletePropertyAdminInputsGQL
   ): Promise<Property> {
     return await this.propertyService.deleteProperty(inputs);
   }
 
-  @Query(() => PaginatedProperty, { nullable: true })
+  @Query(() => PaginatedProperty, { nullable: false })
   @UseGuards(ProductAdminGuard)
   async getPropertiesAdmin(
     @Args("paginationArgs") paginationArgs: PaginationArgsGQL,
-    @Args() args: GetPropertiesAdminArgsGQL
+    @Args("getPropertiesAdminArgs") args: GetPropertiesAdminArgsGQL
   ) {
     return this.propertyService.getProperties(paginationArgs, args);
   }

@@ -49,6 +49,12 @@ import {
   DASHBOARD_MESSAGE_ROUTE,
   DASHBOARD_MESSAGE_NEW_MESSAGE_ROUTE,
   DASHBOARD_MESSAGE_DETAILS,
+  DASHBOARD_PROPERTY_ROUTE,
+  DASHBOARD_PROPERTY_NEW_PROPERTY_ROUTE,
+  DASHBOARD_PROPERTY_DETAILS,
+  DASHBOARD_PRODUCT_PROPERTY_ROUTE,
+  DASHBOARD_PRODUCT_PROPERTY_NEW_PRODUCT_PROPERTY_ROUTE,
+  DASHBOARD_PRODUCT_PROPERTY_DETAILS,
 } from "@admin/constants";
 
 /* --------------------------------- Routes --------------------------------- */
@@ -104,6 +110,24 @@ export const Routes = () =>
                     {
                       path: DASHBOARD_PRODUCT_REVIEW_ROUTE,
                       element: <ProductReviewListPage />,
+                    },
+                  ],
+                },
+                {
+                  path: DASHBOARD_PRODUCT_PROPERTY_ROUTE,
+                  element: <ProductPropertyProvider />,
+                  children: [
+                    {
+                      path: DASHBOARD_PRODUCT_PROPERTY_NEW_PRODUCT_PROPERTY_ROUTE,
+                      element: <ProductPropertyNewPage />,
+                    },
+                    {
+                      path: DASHBOARD_PRODUCT_PROPERTY_DETAILS,
+                      element: <ProductPropertyUpdatePage />,
+                    },
+                    {
+                      path: DASHBOARD_PRODUCT_PROPERTY_ROUTE,
+                      element: <ProductPropertyListPage />,
                     },
                   ],
                 },
@@ -301,6 +325,24 @@ export const Routes = () =>
           ],
         },
         {
+          path: DASHBOARD_PROPERTY_ROUTE,
+          element: <PropertyProvider />,
+          children: [
+            {
+              path: DASHBOARD_PROPERTY_NEW_PROPERTY_ROUTE,
+              element: <PropertyNewPage />,
+            },
+            {
+              path: DASHBOARD_PROPERTY_DETAILS,
+              element: <PropertyUpdatePage />,
+            },
+            {
+              path: DASHBOARD_PROPERTY_ROUTE,
+              element: <PropertyListPage />,
+            },
+          ],
+        },
+        {
           path: DASHBOARD_PROJECT_ROUTE,
           element: <ProjectProvider />,
           children: [
@@ -379,6 +421,7 @@ const DashboardProvider = Loadable(lazy(() => import("./dashboard")));
 const DashboardPage = Loadable(lazy(() => import("./dashboard/main")));
 
 /* ---------------------------- dashboard product --------------------------- */
+
 const ProductProvider = Loadable(lazy(() => import("./dashboard/product")));
 const ProductListPage = Loadable(
   lazy(() => import("./dashboard/product/list"))
@@ -408,13 +451,30 @@ const ProductReviewUpdatePage = Loadable(
   lazy(() => import("./dashboard/product/details/product-review/details"))
 );
 
+/* ------------------------ dashboard property review ---------------------- */
+
+const ProductPropertyProvider = Loadable(
+  lazy(() => import("./dashboard/product/details/product-property"))
+);
+const ProductPropertyListPage = Loadable(
+  lazy(() => import("./dashboard/product/details/product-property/list"))
+);
+const ProductPropertyNewPage = Loadable(
+  lazy(() => import("./dashboard/product/details/product-property/new"))
+);
+const ProductPropertyUpdatePage = Loadable(
+  lazy(() => import("./dashboard/product/details/product-property/details"))
+);
+
 /* ---------------------------- dashboard user --------------------------- */
+
 const UserProvider = Loadable(lazy(() => import("./dashboard/user")));
 const UserListPage = Loadable(lazy(() => import("./dashboard/user/list")));
 const UserNewPage = Loadable(lazy(() => import("./dashboard/user/new-user")));
 const UserUpdatePage = Loadable(lazy(() => import("./dashboard/user/details")));
 
 /* -------------------------- dashboard province ------------------------- */
+
 const ProvinceProvider = Loadable(lazy(() => import("./dashboard/province")));
 const ProvinceListPage = Loadable(
   lazy(() => import("./dashboard/province/list"))
@@ -505,6 +565,7 @@ const ProducerAgentUpdatePage = Loadable(
 );
 
 /* ---------------------------- dashboard project --------------------------- */
+
 const ProjectProvider = Loadable(lazy(() => import("./dashboard/project")));
 const ProjectListPage = Loadable(
   lazy(() => import("./dashboard/project/list"))
@@ -518,6 +579,7 @@ const ProjectDetailsPage = Loadable(
 );
 
 /* ------------------------ dashboard project review ------------------------ */
+
 const ProjectReviewProvider = Loadable(
   lazy(() => import("./dashboard/project/details/project-review"))
 );
@@ -553,4 +615,17 @@ const MessageListPage = Loadable(
 const MessageNewPage = Loadable(lazy(() => import("./dashboard/message/new")));
 const MessageUpdatePage = Loadable(
   lazy(() => import("./dashboard/message/update"))
+);
+
+/* --------------------------- dashboard property --------------------------- */
+
+const PropertyProvider = Loadable(lazy(() => import("./dashboard/property")));
+const PropertyListPage = Loadable(
+  lazy(() => import("./dashboard/property/list"))
+);
+const PropertyNewPage = Loadable(
+  lazy(() => import("./dashboard/property/new"))
+);
+const PropertyUpdatePage = Loadable(
+  lazy(() => import("./dashboard/property/update"))
 );

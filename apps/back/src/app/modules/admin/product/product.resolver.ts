@@ -12,6 +12,7 @@ import {
 import {
   FileUse,
   PaginatedProduct,
+  PaginatedProductProperty,
   Product,
   ProductCategory,
   ProductColor,
@@ -26,6 +27,8 @@ import {
   CreateProductAdminInputsGQL,
   DeleteProductAdminInputsGQL,
   GetProductByIdAdminArgsGQL,
+  GetProductPropertiesAdminArgsGQL,
+  GetProductPropertyByIdAdminArgsGQL,
   GetProductsAdminArgsGQL,
   RemoveImageFromProductAdminInputsGQL,
   RemovePropertyFromProductAdminInputsGQL,
@@ -84,12 +87,32 @@ export class ProductResolver {
     return this.productService.getProducts(paginationArgs, args);
   }
 
+  @Query(() => PaginatedProductProperty, { nullable: false })
+  @UseGuards(ProductAdminGuard)
+  async getProductPropertiesAdmin(
+    @Args("paginationArgs") paginationArgs: PaginationArgsGQL,
+    @Args("getProductPropertiesAdminArgs")
+    args: GetProductPropertiesAdminArgsGQL
+  ) {
+    return this.productService.getProductProperties(paginationArgs, args);
+  }
+
   @Query(() => Product, { nullable: false })
   @UseGuards(ProductAdminGuard)
   async getProductByIdAdmin(
     @Args() getProductByIdAdminArgs: GetProductByIdAdminArgsGQL
   ) {
     return this.productService.getProductById(getProductByIdAdminArgs);
+  }
+
+  @Query(() => ProductProperty, { nullable: false })
+  @UseGuards(ProductAdminGuard)
+  async getProductPropertyByIdAdmin(
+    @Args() getProductPropertyByIdAdminArgs: GetProductPropertyByIdAdminArgsGQL
+  ) {
+    return this.productService.getProductPropertyById(
+      getProductPropertyByIdAdminArgs
+    );
   }
 
   /* -------------------------------------------------------------------------- */
@@ -122,30 +145,30 @@ export class ProductResolver {
   /*                                  Property                                  */
   /* -------------------------------------------------------------------------- */
 
-  @Mutation(() => Product)
+  @Mutation(() => ProductProperty)
   @UseGuards(ProductAdminGuard)
   async addPropertyToProductAdmin(
-    @Args("addPropertyToProductAdmin")
+    @Args("addPropertyToProductAdminInputs")
     inputs: AddPropertyToProductAdminInputsGQL
-  ): Promise<Product> {
+  ): Promise<ProductProperty> {
     return await this.productService.addPropertyToProduct(inputs);
   }
 
   @Mutation(() => Product)
   @UseGuards(ProductAdminGuard)
   async removePropertyFromProductAdmin(
-    @Args("removePropertyFromProductAdmin")
+    @Args("removePropertyFromProductAdminInputs")
     inputs: RemovePropertyFromProductAdminInputsGQL
   ): Promise<Product> {
     return await this.productService.removePropertyFromProduct(inputs);
   }
 
-  @Mutation(() => Product)
+  @Mutation(() => ProductProperty)
   @UseGuards(ProductAdminGuard)
   async updatePropertyOfProductAdmin(
-    @Args("updatePropertyOfProductAdmin")
+    @Args("updatePropertyOfProductAdminInputs")
     inputs: UpdatePropertyOfProductAdminInputsGQL
-  ): Promise<Product> {
+  ): Promise<ProductProperty> {
     return await this.productService.updatePropertyOfProduct(inputs);
   }
 

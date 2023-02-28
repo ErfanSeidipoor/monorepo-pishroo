@@ -32,7 +32,7 @@ export const TableCellAction: FC<{
         PaperProps={{
           sx: {
             p: 1,
-            width: 140,
+            width: 200,
             "& .MuiMenuItem-root": {
               px: 1,
               typography: "body2",

@@ -13,4 +13,5 @@ export * from "./auto-complete-multi-color";
 export * from "./auto-complete-multi-category";
 export * from "./auto-complete-multi-province";
 export * from "./auto-complete-user";
+export * from "./auto-complete-property";
 export * from "./auto-complete-multi-customer";

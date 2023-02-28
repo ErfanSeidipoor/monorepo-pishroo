@@ -15,6 +15,7 @@ import {
   CheckTwoTone as CheckTwoToneIcon,
   ReviewsTwoTone as ReviewsTwoToneIcon,
   EditTwoTone as EditTwoToneIcon,
+  HorizontalSplitTwoTone as HorizontalSplitTwoToneIcon,
 } from "@mui/icons-material";
 
 import { Button, Checkbox, TextField } from "@pishroo/admin-components";
@@ -44,6 +45,7 @@ export const ProductListPage: FC = () => {
     setActivationItem,
     onUpdateProductActivation,
     onReview,
+    onProperty,
   } = useData();
 
   const columns: ITableColumn<typeof rows[0]>[] = [
@@ -73,6 +75,11 @@ export const ProductListPage: FC = () => {
               label: TEXTS.PRODUCT_REVIEW,
               icon: <ReviewsTwoToneIcon />,
               onClick: () => onReview(item.id),
+            },
+            {
+              label: TEXTS.PRODUCT_PROPERTY,
+              icon: <HorizontalSplitTwoToneIcon />,
+              onClick: () => onProperty(item.id),
             },
             {
               label: item.isActive ? TEXTS.DEACTIVE : TEXTS.ACTIVE,

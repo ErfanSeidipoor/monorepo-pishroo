@@ -3,6 +3,7 @@ import BaseModel from "./baseModel.entity";
 import { Property } from "./property.entity";
 import { Product } from "./product.entity";
 import { Field, ObjectType } from "@nestjs/graphql";
+import { Paginated } from "@pishroo/models";
 
 @ObjectType()
 @Index("product_property_pkey", ["id"], { unique: true })
@@ -44,3 +45,6 @@ export class ProductProperty extends BaseModel {
   })
   product: Product;
 }
+
+@ObjectType()
+export class PaginatedProductProperty extends Paginated(ProductProperty) {}
