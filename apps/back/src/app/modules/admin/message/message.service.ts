@@ -160,8 +160,6 @@ export class MessageService {
       count: customerMessages.length,
     });
 
-    console.log({ message });
-
     /* --------------------------------- output --------------------------------- */
 
     await this.dataSource.transaction(async (manager) => {

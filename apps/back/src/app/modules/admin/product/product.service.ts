@@ -8,6 +8,8 @@ import {
   CreateProductAdminInputs,
   DeleteProductAdminInputs,
   GetProductByIdAdminArgs,
+  GetProductPropertiesAdminArgs,
+  GetProductPropertyByIdAdminArgs,
   GetProductsAdminArgs,
   PaginationArgs,
   RemoveImageFromProductAdminInputs,
@@ -231,6 +233,34 @@ export class ProductService {
     return paginate(queryBuilder, paginationArgs);
   }
 
+  async getProductProperties(
+    paginationArgs: PaginationArgs,
+    args: GetProductPropertiesAdminArgs
+  ) {
+    const { name, productId } = args;
+
+    const queryBuilder = this.productPropertyRepo
+      .createQueryBuilder("productProperty")
+      .andWhere("productProperty.productId = :productId", {
+        productId,
+      })
+      .leftJoinAndSelect("productProperty.property", "property");
+
+    /* --------------------------------- filters -------------------------------- */
+
+    if (name) {
+      queryBuilder.andWhere("property.name ilike :name", {
+        name: `%${name}%`,
+      });
+    }
+
+    /* ---------------------------------- Order --------------------------------- */
+
+    queryBuilder.addOrderBy("productProperty.createdAt", "DESC");
+
+    return paginate(queryBuilder, paginationArgs);
+  }
+
   async getProductById(args: GetProductByIdAdminArgs): Promise<Product> {
     const { productId } = args;
 
@@ -246,6 +276,26 @@ export class ProductService {
     }
 
     return product;
+  }
+
+  async getProductPropertyById(
+    args: GetProductPropertyByIdAdminArgs
+  ): Promise<ProductProperty> {
+    const { productPropertyId } = args;
+
+    const productProperty = await this.productPropertyRepo
+      .createQueryBuilder("productProperty")
+      .leftJoinAndSelect("productProperty.property", "property")
+      .andWhere("productProperty.id = :productPropertyId", {
+        productPropertyId,
+      })
+      .getOne();
+
+    if (!productProperty) {
+      throw new CustomError(PRODUCT_PROPERTY_NOT_FOUND);
+    }
+
+    return productProperty;
   }
 
   /* -------------------------------------------------------------------------- */
@@ -363,7 +413,7 @@ export class ProductService {
 
   async addPropertyToProduct(
     args: AddPropertyToProductAdminInputsGQL
-  ): Promise<Product> {
+  ): Promise<ProductProperty> {
     const { propertyId, value, productId } = args;
 
     /* -------------------------------- property -------------------------------- */
@@ -411,13 +461,13 @@ export class ProductService {
 
     /* ---------------------------------- save ---------------------------------- */
     await productProperty.save();
-
-    return product;
+    productProperty.property = property;
+    return productProperty;
   }
 
   async updatePropertyOfProduct(
     args: UpdatePropertyOfProductAdminInputsGQL
-  ): Promise<Product> {
+  ): Promise<ProductProperty> {
     const { productPropertyId, value } = args;
 
     /* ----------------------------- productProperty ---------------------------- */
@@ -426,7 +476,7 @@ export class ProductService {
       where: {
         id: productPropertyId,
       },
-      relations: ["product"],
+      relations: ["product", "property"],
     });
 
     if (!productProperty) {
@@ -441,7 +491,7 @@ export class ProductService {
 
     await productProperty.save();
 
-    return productProperty.product;
+    return productProperty;
   }
 
   async removePropertyFromProduct(

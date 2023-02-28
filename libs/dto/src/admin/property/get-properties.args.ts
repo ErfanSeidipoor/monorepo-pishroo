@@ -5,6 +5,7 @@ import {
   IsEnum,
   IsOptional,
   IsString,
+  IsUUID,
 } from "class-validator";
 
 export class GetPropertiesAdminArgs {
@@ -20,4 +21,9 @@ export class GetPropertiesAdminArgs {
   @IsOptional()
   @IsBoolean()
   isActive?: boolean;
+
+  @IsOptional()
+  @IsString()
+  @IsUUID()
+  propertyId?: string;
 }

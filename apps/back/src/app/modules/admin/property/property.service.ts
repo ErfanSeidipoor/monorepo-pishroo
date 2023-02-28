@@ -17,7 +17,7 @@ import {
   PROPERTY_WITH_THIS_NAME_ALREADY_EXIST,
 } from "@pishroo/http-exceptions";
 import * as utils from "@pishroo/utils";
-import { DataSource, Repository } from "typeorm";
+import { DataSource, Not, Repository } from "typeorm";
 
 @Injectable()
 export class PropertyService {
@@ -141,7 +141,7 @@ export class PropertyService {
     paginationArgs: PaginationArgs,
     args: GetPropertiesAdminArgs
   ) {
-    const { name, isActive, units } = args;
+    const { name, isActive, units, propertyId } = args;
 
     const queryBuilder = this.propertyRepo.createQueryBuilder("property");
 
@@ -160,6 +160,12 @@ export class PropertyService {
     if (typeof isActive !== "undefined") {
       queryBuilder.andWhere("property.isActive = :isActive", {
         isActive,
+      });
+    }
+
+    if (propertyId) {
+      queryBuilder.andWhere("property.id = :propertyId", {
+        propertyId,
       });
     }
 

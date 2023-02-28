@@ -68,6 +68,7 @@ export const DASHBOARD_PRODUCER_DETAILS =
   DASHBOARD_PRODUCER_ROUTE + "/:producerId";
 
 /* ----------------------------- producer agent ----------------------------- */
+
 export const DASHBOARD_PRODUCER_AGENT_ROUTE =
   DASHBOARD_ROUTE + "/producer-agent";
 export const DASHBOARD_PRODUCER_AGENT_NEW_PRODUCER_AGENT_ROUTE =
@@ -101,6 +102,15 @@ export const DASHBOARD_PRODUCT_REVIEW_NEW_PRODUCT_REVIEW_ROUTE =
 export const DASHBOARD_PRODUCT_REVIEW_DETAILS =
   DASHBOARD_PRODUCT_REVIEW_ROUTE + "/:productReviewId";
 
+/* ----------------------------- product property ----------------------------- */
+
+export const DASHBOARD_PRODUCT_PROPERTY_ROUTE =
+  DASHBOARD_ROUTE + "/product/:productId/product-property";
+export const DASHBOARD_PRODUCT_PROPERTY_NEW_PRODUCT_PROPERTY_ROUTE =
+  DASHBOARD_PRODUCT_PROPERTY_ROUTE + "/new";
+export const DASHBOARD_PRODUCT_PROPERTY_DETAILS =
+  DASHBOARD_PRODUCT_PROPERTY_ROUTE + "/:productPropertyId";
+
 /* -------------------------------- category -------------------------------- */
 
 export const DASHBOARD_CATEGORY_ROUTE = DASHBOARD_ROUTE + "/category";
@@ -109,10 +119,18 @@ export const DASHBOARD_CATEGORY_NEW_CATEGORY_ROUTE =
 export const DASHBOARD_CATEGORY_DETAILS =
   DASHBOARD_CATEGORY_ROUTE + "/:categoryId";
 
-/* -------------------------------- category -------------------------------- */
+/* -------------------------------- message -------------------------------- */
 
 export const DASHBOARD_MESSAGE_ROUTE = DASHBOARD_ROUTE + "/message";
 export const DASHBOARD_MESSAGE_NEW_MESSAGE_ROUTE =
   DASHBOARD_MESSAGE_ROUTE + "/new";
 export const DASHBOARD_MESSAGE_DETAILS =
   DASHBOARD_MESSAGE_ROUTE + "/:messageId";
+
+/* -------------------------------- property -------------------------------- */
+
+export const DASHBOARD_PROPERTY_ROUTE = DASHBOARD_ROUTE + "/property";
+export const DASHBOARD_PROPERTY_NEW_PROPERTY_ROUTE =
+  DASHBOARD_PROPERTY_ROUTE + "/new";
+export const DASHBOARD_PROPERTY_DETAILS =
+  DASHBOARD_PROPERTY_ROUTE + "/:propertyId";

@@ -13,4 +13,6 @@ export * from "./update-property-of-product.inputs";
 
 /* ---------------------------------- args ---------------------------------- */
 export * from "./get-products.args";
+export * from "./get-product-properties.args";
 export * from "./get-product-by-id.args";
+export * from "./get-product-property-by-id.args";
