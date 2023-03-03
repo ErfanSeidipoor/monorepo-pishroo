@@ -105,6 +105,7 @@
     "apollo-upload-client": "^17.0.0",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.13.2",
+    "classnames": "^2.3.2",
     "core-js": "^3.6.5",
     "env-cmd": "^10.1.0",
     "express-session": "^1.17.3",
@@ -131,6 +132,7 @@
     "rxjs": "^7.0.0",
     "simplebar-react": "^3.2.0",
     "styled-components": "^5.3.5",
+    "tailwindcss-rtl": "^0.9.0",
     "tslib": "^2.3.0",
     "typeorm": "^0.3.6",
     "uuid": "^9.0.0"
