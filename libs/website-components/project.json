@@ -25,7 +25,8 @@
         "uiFramework": "@storybook/react",
         "port": 4400,
         "config": {
-          "configFolder": "libs/website-components/.storybook"
+          "configFolder": "libs/website-components/.storybook",
+          "postcssConfig": "libs/website-components/postcss.config.js"
         }
       },
       "configurations": {
