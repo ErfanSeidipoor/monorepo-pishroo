@@ -10,7 +10,14 @@
       "options": {
         "root": "apps/website",
         "outputPath": "dist/apps/website",
-        "postcssConfig": "apps/website/postcss.config.js"
+        "postcssConfig": "apps/website/postcss.config.js",
+        "assets": [
+          {
+            "input": "libs/assets/src",
+            "glob": "**/*.{png,jpeg,jpg,svg,ttf,gif}",
+            "output": "/assets"
+          }
+        ]
       },
       "configurations": {
         "development": {},
