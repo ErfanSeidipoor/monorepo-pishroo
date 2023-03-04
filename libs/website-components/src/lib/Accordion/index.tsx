@@ -1,7 +1,6 @@
 import { FC, useState } from "react";
 import cls from "classnames";
 import "../tailwind-imports.css";
-import { border } from "@mui/system";
 
 export type IAccordion = {
   summary: string;
@@ -18,9 +17,10 @@ export const Accordion: FC<IAccordion> = ({ summary, description }) => {
         "rounded-lg",
         "shadow",
         "shadow-gray-600/10",
-        "shadow-gray-600/10",
+        "hover:shadow-gray-600/30",
         "overflow-hidden",
-        "cursor-pointer"
+        "cursor-pointer",
+        "transition-all"
       )}
       onClick={() => setIsCollapsed(!isCollapsed)}
     >
