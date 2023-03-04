@@ -19,6 +19,7 @@
   "devDependencies": {
     "@babel/core": "7.12.13",
     "@babel/preset-typescript": "7.12.13",
+    "@faker-js/faker": "^7.6.0",
     "@iconify/icons-eva": "^1.2.6",
     "@iconify/react": "^4.0.1",
     "@nestjs/schematics": "^8.0.0",
