@@ -17,3 +17,11 @@ Primary.args = {
   name: faker.commerce.productName(),
   description: faker.commerce.productDescription(),
 };
+
+export const Loading = Template.bind({});
+Loading.args = {
+  image: faker.image.food(),
+  name: faker.commerce.productName(),
+  description: faker.commerce.productDescription(),
+  loading: true,
+};

@@ -1,5 +1,7 @@
 import { FC } from "react";
 import cls from "classnames";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 import "../tailwind-imports.css";
 
@@ -7,21 +9,27 @@ export type IProductCard = {
   image?: string;
   name?: string;
   onClick?: () => void;
+  loading?: boolean;
 };
 
 export const ProductCard: FC<IProductCard> = ({
   name = "",
   image = "",
   onClick = () => ({}),
+  loading = false,
 }) => {
   const renderImage = () => {
     return (
       <div className={cls("bg-gray-200", "w-full", "h-48")}>
-        <img
-          className={cls("block", "w-full", "h-full", "object-cover")}
-          src={image}
-          alt={name}
-        />
+        {loading ? (
+          <Skeleton className={cls("block", "w-full", "h-full")} />
+        ) : (
+          <img
+            className={cls("block", "w-full", "h-full", "object-cover")}
+            src={image}
+            alt={name}
+          />
+        )}
       </div>
     );
   };
@@ -39,7 +47,11 @@ export const ProductCard: FC<IProductCard> = ({
           "h-20"
         )}
       >
-        <h3 className={cls("mb-2", "text-lg", "text-center")}>{name}</h3>
+        {loading ? (
+          <Skeleton width={200} />
+        ) : (
+          <h3 className={cls("mb-2", "text-lg", "text-center")}>{name}</h3>
+        )}
       </div>
     );
   };
