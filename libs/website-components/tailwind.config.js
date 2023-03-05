@@ -10,7 +10,12 @@ module.exports = {
     ...createGlobPatternsForDependencies(__dirname),
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        primary: "#FF8C32",
+        secondary: " #2B3159",
+      },
+    },
   },
   plugins: [require("tailwindcss-rtl")],
 };
