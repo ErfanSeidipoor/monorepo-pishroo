@@ -5366,6 +5366,13 @@
   "resolved" "https://registry.npmjs.org/@types/range-parser/-/range-parser-1.2.4.tgz"
   "version" "1.2.4"
 
+"@types/react-autocomplete@^1.8.6":
+  "integrity" "sha512-v3MOyT7gfMfu0K1Y6n9inGVO325evf96YY3Aw4i4WJs5f9+7Y/TVMPbNXoXRnbhlubgkqel19VnrCdBSodwOEg=="
+  "resolved" "https://registry.npmjs.org/@types/react-autocomplete/-/react-autocomplete-1.8.6.tgz"
+  "version" "1.8.6"
+  dependencies:
+    "@types/react" "*"
+
 "@types/react-dom@^18.0.0", "@types/react-dom@18.0.3":
   "integrity" "sha512-1RRW9kst+67gveJRYPxGmVy8eVJ05O43hg77G2j5m76/RFJtMbcfAs2viQ2UNsvvDg8F7OfQZx8qQcl6ymygaQ=="
   "resolved" "https://registry.npmjs.org/@types/react-dom/-/react-dom-18.0.3.tgz"
@@ -9251,6 +9258,11 @@
   dependencies:
     "@babel/runtime" "^7.8.7"
     "csstype" "^3.0.2"
+
+"dom-scroll-into-view@1.0.1":
+  "integrity" "sha512-1Dmy6uH1vRcm2+Lvggyrlc04cMh+mr+VA+qcgs085hAEZp+v+6NT/xhRjfc6vRc7965sCSDdQcw063VkG+eNmQ=="
+  "resolved" "https://registry.npmjs.org/dom-scroll-into-view/-/dom-scroll-into-view-1.0.1.tgz"
+  "version" "1.0.1"
 
 "dom-serializer@^1.0.1":
   "integrity" "sha512-VHwB3KfrcOOkelEG2ZOfxqLZdfkil8PtJi4P8N2MMXucZq2yLp75ClViUlOVwyoHEDjYU433Aq+5zWP61+RGag=="
@@ -16379,7 +16391,7 @@
   dependencies:
     "read" "^2.0.0"
 
-"prop-types@^15.0.0", "prop-types@^15.6.2", "prop-types@^15.7.2", "prop-types@^15.8.1":
+"prop-types@^15.0.0", "prop-types@^15.5.10", "prop-types@^15.6.2", "prop-types@^15.7.2", "prop-types@^15.8.1":
   "integrity" "sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg=="
   "resolved" "https://registry.npmjs.org/prop-types/-/prop-types-15.8.1.tgz"
   "version" "15.8.1"
@@ -16579,6 +16591,14 @@
   dependencies:
     "loader-utils" "^2.0.0"
     "schema-utils" "^3.0.0"
+
+"react-autocomplete@^1.8.1":
+  "integrity" "sha512-YQGVN5POdcI3G89wUVWnJhk9rLF6JeB6Ik6xnNpfvSMG4tJkksBzqOE4mkFNGqEz+2AaQw13xNmVXresg9E3zg=="
+  "resolved" "https://registry.npmjs.org/react-autocomplete/-/react-autocomplete-1.8.1.tgz"
+  "version" "1.8.1"
+  dependencies:
+    "dom-scroll-into-view" "1.0.1"
+    "prop-types" "^15.5.10"
 
 "react-docgen-typescript@^2.1.1":
   "integrity" "sha512-tvg2ZtOpOi6QDwsb3GZhOjDkkX0h8Z2gipvTg6OVMUyoYoURhEiRNePT8NZItTVCDh39JJHnLdfCOkzoLbFnTg=="
