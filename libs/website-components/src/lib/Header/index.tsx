@@ -1,5 +1,6 @@
 import { FC, useState } from "react";
 import cls from "classnames";
+import { Logo } from "../Logo";
 import "./index.css";
 import "../tailwind-imports.css";
 import { PhoneIcon } from "./icons";
@@ -11,11 +12,10 @@ export type IHeader = {
     selected?: boolean;
     icon?: React.ReactNode;
   }[];
-  logo: React.ReactNode;
   phone: string;
 };
 
-export const Header: FC<IHeader> = ({ links = [], logo = <></>, phone }) => {
+export const Header: FC<IHeader> = ({ links = [], phone }) => {
   const [open, setOpen] = useState(false);
 
   const renderLinks = () => {
@@ -69,7 +69,7 @@ export const Header: FC<IHeader> = ({ links = [], logo = <></>, phone }) => {
           style={{ width: "50px" }}
           className={cls("pt-2", "order-3", "md:order-1")}
         >
-          {logo}
+          <Logo />
         </div>
         <div className={cls("hidden", "md:flex", "order-2")}>
           {renderLinks()}
@@ -111,7 +111,7 @@ export const Header: FC<IHeader> = ({ links = [], logo = <></>, phone }) => {
             style={{ width: "70px" }}
             className={cls("mx-4", "pt-2", "self-center")}
           >
-            {logo}
+            <Logo />
           </div>
           {renderLinks()}
           <a
