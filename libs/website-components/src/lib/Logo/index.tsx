@@ -4,10 +4,10 @@ import { LogoIcon } from "./icons";
 import "../tailwind-imports.css";
 
 export type ILogo = {
-  width: string;
+  width?: string;
 };
 
-export const Logo: FC<ILogo> = ({ width }) => {
+export const Logo: FC<ILogo> = ({ width = "inherit" }) => {
   return (
     <div style={{ width }}>
       <LogoIcon />
