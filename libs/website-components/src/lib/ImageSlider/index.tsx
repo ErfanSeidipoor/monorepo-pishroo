@@ -24,6 +24,7 @@ export const ImageSlider: FC<IImageSlider> = ({ items = [] }) => {
       setSelectedIndex(selectedIndex + 1);
     }
   };
+
   const onClickRight = () => {
     if (selectedIndex === 0) {
       setSelectedIndex(items.length - 1);
