@@ -16,5 +16,5 @@ Primary.args = {
   email: faker.image.imageUrl(),
   instagram: faker.image.imageUrl(),
   telegram: "test",
-  whatsApp: faker.image.imageUrl(),
+  whatsapp: faker.image.imageUrl(),
 };

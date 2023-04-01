@@ -8,11 +8,11 @@ import {
   TelegramIcon,
 } from "./icons";
 
-import "../tailwind-imports.css";
+// import "../tailwind-imports.css";
 
 export type ISocialMedia = {
   instagram?: string;
-  whatsApp?: string;
+  whatsapp?: string;
   email?: string;
   telegram?: string;
   phone?: string;
@@ -20,7 +20,7 @@ export type ISocialMedia = {
 
 export const SocialMedia: FC<ISocialMedia> = ({
   instagram,
-  whatsApp,
+  whatsapp,
   email,
   telegram,
   phone,
@@ -28,11 +28,11 @@ export const SocialMedia: FC<ISocialMedia> = ({
   return (
     <div className={cls("inline-flex")}>
       <a
-        href={`whatsapp://send?abid:${whatsApp}&text=Hi`}
+        href={`whatsapp://send?abid:${whatsapp}&text=Hi`}
         className={cls(
           "rounded-md",
           "border-r-white",
-          "border-2",
+          "border",
           "p-2",
           "ml-1",
           "btn",
@@ -47,7 +47,7 @@ export const SocialMedia: FC<ISocialMedia> = ({
         className={cls(
           "rounded-md",
           "border-r-white",
-          "border-2",
+          "border",
           "p-2",
           "ml-1",
           "btn",
@@ -62,7 +62,7 @@ export const SocialMedia: FC<ISocialMedia> = ({
         className={cls(
           "rounded-md",
           "border-r-white",
-          "border-2",
+          "border",
           "p-2",
           "ml-1",
           "btn",
@@ -77,7 +77,7 @@ export const SocialMedia: FC<ISocialMedia> = ({
         className={cls(
           "rounded-md",
           "border-r-white",
-          "border-2",
+          "border",
           "p-2",
           "ml-1",
           "btn",
@@ -92,7 +92,7 @@ export const SocialMedia: FC<ISocialMedia> = ({
         className={cls(
           "rounded-md",
           "border-r-white",
-          "border-2",
+          "border",
           "p-2",
           "ml-1",
           "btn",
