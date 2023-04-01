@@ -51,9 +51,14 @@ const TEXTS = {
   REVIEWER: "Reviewer",
   CATEGORY: "Category",
   PROPERTY: "Property",
+  PARTNER: "Partner",
+  PARTNERS: "Partners",
+  CERTIFICATES: "Certificates",
   COLORS: "Colors",
   CATEGORIES: "Categories",
   MESSAGE: "Message",
+  ABOUT_US: "About Us",
+  CONTACT_US: "Contact Us",
   IS_SUBMITED: "Is Submited",
   DEACTIVE_WARNING_MESSAGE: "Are You Sure to Deactive ?",
   DELETE_WARNING_MESSAGE: "Are You Sure to Delete ?",
@@ -372,6 +377,51 @@ const TEXTS = {
   PAGE_MESSAGE_UPDATE__PAGE_TITLE: "Message Details | Pishroo",
   PAGE_MESSAGE_UPDATE__UPDATE_MESSAGE: "Update Message ",
   PAGE_MESSAGE_UPDATE__SUCCESS: "Message Updated Successfully!",
+
+  /* -------------------------------------------------------------------------- */
+  /*                                   Website                                  */
+  /* -------------------------------------------------------------------------- */
+
+  /* --------------------------------- layout --------------------------------- */
+
+  WEBSITE_PAGE__LAYOUT__PHONE: "+9893423",
+  WEBSITE_PAGE__LAYOUT__LINKS: "Links",
+  WEBSITE_PAGE__LAYOUT__SOCIAL_MEDIA: "SocialMedia",
+  WEBSITE_PAGE__LAYOUT__SLOGAN: "Beautiful City For All",
+  WEBSITE_PAGE__LAYOUT__COPYRIGHT: "©2023 Pishroo. All rights reserved.",
+  WEBSITE_PAGE__LAYOUT__INSTAGRAM: "@erfan.seidipoor",
+  WEBSITE_PAGE__LAYOUT__WHATSAPP: "+989366996916",
+  WEBSITE_PAGE__LAYOUT__EMAIL: "erfan.seidipoor@gmail.com",
+  WEBSITE_PAGE__LAYOUT__TELEGRAM: "+989366996916",
+
+  /* -------------------------------- home page ------------------------------- */
+
+  WEBSITE_PAGE__HOME__PAGE_TITLE: "Pishroo",
+
+  /* -------------------------------- about Us page ------------------------------- */
+
+  WEBSITE_PAGE__ABOUT_US__PAGE_TITLE: "About Us | Pishroo",
+  WEBSITE_PAGE__ABOUT_US__DESCRIPTIOIN__TITLE: "About Us",
+  WEBSITE_PAGE__ABOUT_US__DESCRIPTIOIN__DESCRIPTION:
+    "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur",
+  WEBSITE_PAGE__ABOUT_US__CEO__TITLE: "CEO",
+  WEBSITE_PAGE__ABOUT_US__CEO__NAME: "Erfan Seidipoor",
+  WEBSITE_PAGE__ABOUT_US__CEO__DESCRIPTION:
+    "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit",
+
+  WEBSITE_PAGE__ABOUT_US__FAQ__TITLE: "FAQ",
+  WEBSITE_PAGE__ABOUT_US__FAQ__ITEM_1_QUESTION:
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit?",
+  WEBSITE_PAGE__ABOUT_US__FAQ__ITEM_1_ANSWER:
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+  WEBSITE_PAGE__ABOUT_US__FAQ__ITEM_2_QUESTION:
+    "Dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam?",
+  WEBSITE_PAGE__ABOUT_US__FAQ__ITEM_2_ANSWER:
+    "Pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure.",
+  WEBSITE_PAGE__ABOUT_US__FAQ__ITEM_3_QUESTION:
+    "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium?",
+  WEBSITE_PAGE__ABOUT_US__FAQ__ITEM_3_ANSWER:
+    "They cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided. ",
 };
 
 export default TEXTS;

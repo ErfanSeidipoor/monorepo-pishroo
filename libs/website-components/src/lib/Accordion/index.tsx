@@ -1,6 +1,6 @@
 import { FC, useState } from "react";
 import cls from "classnames";
-import "../tailwind-imports.css";
+// import "../tailwind-imports.css";
 
 export type IAccordion = {
   summary: string;
@@ -8,12 +8,13 @@ export type IAccordion = {
 };
 
 export const Accordion: FC<IAccordion> = ({ summary, description }) => {
-  const [isCollapsed, setIsCollapsed] = useState(false);
+  const [isCollapsed, setIsCollapsed] = useState(true);
 
   return (
     <div
       className={cls(
         "p-1",
+        "bg-white",
         "rounded-lg",
         "shadow",
         "shadow-gray-600/10",

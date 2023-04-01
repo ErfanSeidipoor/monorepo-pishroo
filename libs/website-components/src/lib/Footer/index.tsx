@@ -1,8 +1,8 @@
 import cls from "classnames";
 import { FC } from "react";
 import { Logo } from "../Logo";
-import { SocialMedia } from "../SocialMedia";
-import "../tailwind-imports.css";
+import { SocialMedia, ISocialMedia } from "../SocialMedia";
+// import "../tailwind-imports.css";
 
 export type IFooter = {
   links: {
@@ -14,7 +14,7 @@ export type IFooter = {
   socialMediaText?: string;
   sloganText?: string;
   copyRightText?: string;
-};
+} & ISocialMedia;
 
 export const Footer: FC<IFooter> = ({
   links = [],
@@ -22,6 +22,11 @@ export const Footer: FC<IFooter> = ({
   socialMediaText = "SocialMedia",
   sloganText = "Slogan",
   copyRightText = "© 2023 Next Retail Ltd. All rights reserved.",
+  instagram,
+  whatsapp,
+  email,
+  telegram,
+  phone,
 }) => {
   const renderSocialMedia = () => {
     return (
@@ -29,7 +34,13 @@ export const Footer: FC<IFooter> = ({
         <p className={cls("text-base", "mb-2", "text-center", "md:text-right")}>
           {socialMediaText}
         </p>
-        <SocialMedia />
+        <SocialMedia
+          instagram={instagram}
+          whatsapp={whatsapp}
+          email={email}
+          telegram={telegram}
+          phone={phone}
+        />
       </div>
     );
   };
@@ -43,6 +54,7 @@ export const Footer: FC<IFooter> = ({
         <div className={cls("flex", "flex-wrap", "justify-center")}>
           {links.map(({ name, href, selected }) => (
             <a
+              key={name}
               href={href}
               className={cls("text-white", selected && "!text-primary")}
             >
@@ -56,7 +68,15 @@ export const Footer: FC<IFooter> = ({
 
   const renderLogo = () => {
     return (
-      <div className={cls("mt-4")}>
+      <div
+        className={cls(
+          "mt-4",
+          "flex",
+          "flex-col",
+          "items-center",
+          "md:items-end"
+        )}
+      >
         <Logo width="100px" />
         <p className={cls("text-base", "mt-2", "text-center", "md:text-right")}>
           {sloganText}
@@ -67,8 +87,8 @@ export const Footer: FC<IFooter> = ({
 
   return (
     <div
-      className={cls("bg-secondary", "pt-20")}
-      style={{ borderRadius: "50% 50% 0% 0%" }}
+      className={cls("bg-secondary", "pt-10")}
+      // style={{ borderRadius: "50% 50% 0% 0%" }}
     >
       <footer
         className={cls(

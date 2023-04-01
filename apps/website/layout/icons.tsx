@@ -1,5 +1,4 @@
 import { FC } from "react";
-// import "../tailwind-imports.css";
 
 export const AboutUsIcon: FC = () => {
   return (
@@ -18,8 +17,8 @@ export const AboutUsIcon: FC = () => {
         strokeLinejoin="round"
       />
       <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
+        fillRule="evenodd"
+        clipRule="evenodd"
         d="M11 14.1667C11 14.719 10.5523 15.1667 10 15.1667C9.44772 15.1667 9 14.719 9 14.1667V9.16675C9 8.61446 9.44772 8.16675 10 8.16675C10.5523 8.16675 11 8.61446 11 9.16675V14.1667ZM10 7.50008C9.53976 7.50008 9.16667 7.12698 9.16667 6.66675C9.16667 6.20651 9.53976 5.83342 10 5.83342C10.4602 5.83342 10.8333 6.20651 10.8333 6.66675C10.8333 7.12698 10.4602 7.50008 10 7.50008Z"
         fill="white"
       />

@@ -92,14 +92,14 @@ export const CloseIcon: FC = () => {
       <path
         d="M18 6L6 18"
         stroke="#1B1B1B"
-        stroke-width="1.5"
-        stroke-linecap="round"
+        strokeWidth="1.5"
+        strokeLinecap="round"
       />
       <path
         d="M18 18L6 6"
         stroke="#1B1B1B"
-        stroke-width="1.5"
-        stroke-linecap="round"
+        strokeWidth="1.5"
+        strokeLinecap="round"
       />
     </svg>
   );

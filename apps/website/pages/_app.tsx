@@ -1,16 +1,13 @@
 import { AppProps } from "next/app";
-import Head from "next/head";
+import LayoutProvider from "@website/layout";
 import "./styles.css";
 
 function CustomApp({ Component, pageProps }: AppProps) {
   return (
     <>
-      <Head>
-        <title>Welcome to website!</title>
-      </Head>
-      <main className="app">
+      <LayoutProvider>
         <Component {...pageProps} />
-      </main>
+      </LayoutProvider>
     </>
   );
 }

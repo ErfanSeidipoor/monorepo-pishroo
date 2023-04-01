@@ -1,8 +1,8 @@
 import { FC, useState } from "react";
 import cls from "classnames";
 import { Logo } from "../Logo";
-import "./index.css";
-import "../tailwind-imports.css";
+// import "./index.css";
+// import "../tailwind-imports.css";
 import { PhoneIcon } from "./icons";
 
 export type IHeader = {
@@ -21,6 +21,7 @@ export const Header: FC<IHeader> = ({ links = [], phone }) => {
   const renderLinks = () => {
     return links.map(({ name, href, selected, icon }) => (
       <a
+        key={name}
         href={href}
         className={cls(
           "md:text-black",
@@ -104,7 +105,8 @@ export const Header: FC<IHeader> = ({ links = [], phone }) => {
             "right-6",
             "drop-shadow-md",
             "flex",
-            open ? "flex" : "hidden"
+            open ? "flex" : "hidden",
+            "z-50"
           )}
         >
           <div

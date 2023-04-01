@@ -1,5 +1,5 @@
 import { FC } from "react";
-import "../tailwind-imports.css";
+// import "../tailwind-imports.css";
 
 export const LogoIcon: FC = () => {
   return (
@@ -11,7 +11,7 @@ export const LogoIcon: FC = () => {
       y="0px"
       width="100%"
       viewBox="0 0 78 75"
-      enable-background="new 0 0 78 75"
+      enableBackground="new 0 0 78 75"
     >
       <path
         fill="#FFFEFE"

@@ -1,6 +1,5 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { Header } from ".";
-import { Logo } from "../Logo";
 import {
   AboutUsIcon,
   CertificatesIcon,
@@ -21,7 +20,6 @@ const Template: ComponentStory<typeof Header> = (args) => {
 
 export const Primary = Template.bind({});
 Primary.args = {
-  logo: <Logo />,
   phone: "21129",
   links: [
     {
