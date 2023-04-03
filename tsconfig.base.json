@@ -29,7 +29,10 @@
       "@pishroo/models": ["libs/models/src/index.ts"],
       "@pishroo/texts": ["libs/texts/src/index.ts"],
       "@pishroo/utils": ["libs/utils/src/index.ts"],
-      "@pishroo/website-components": ["libs/website-components/src/index.ts"],
+      "@pishroo/website-components": ["libs/website-components/src/index"],
+      "@pishroo/website-components/lib/*": [
+        "libs/website-components/src/lib/*"
+      ],
       "typeRoots": ["types", "node_modules/@types"],
       "types": ["@emotion-types", "@window-types"]
     }

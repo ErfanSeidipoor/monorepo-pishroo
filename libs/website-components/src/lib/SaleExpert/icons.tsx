@@ -1,5 +1,4 @@
 import { FC } from "react";
-import "../tailwind-imports.css";
 
 export const WhatsAppIcon: FC = () => {
   return (

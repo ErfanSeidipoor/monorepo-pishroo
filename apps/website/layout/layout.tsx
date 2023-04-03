@@ -11,7 +11,7 @@ import {
   ProductIcon,
   ProjectIcon,
 } from "./icons";
-import { ABOUT_US_ROUTE } from "@website/constants";
+import { ABOUT_US_ROUTE, CONTACT_US_ROUTE } from "@website/constants";
 
 import TEXTS from "@pishroo/texts";
 
@@ -54,7 +54,7 @@ export const Layout: FC<{
     },
     {
       name: TEXTS.CONTACT_US,
-      href: "#",
+      href: CONTACT_US_ROUTE,
       selected: page === "Contact Us",
       icon: <PhoneIcon />,
     },

@@ -1,7 +1,7 @@
 import { FC } from "react";
 import cls from "classnames";
 
-import "../tailwind-imports.css";
+// import "../tailwind-imports.css";
 
 export type IContact = {
   title?: string;
@@ -28,11 +28,13 @@ export const Contact: FC<IContact> = ({ title = "", value = "", icon }) => {
           "p-2",
           "rounded-full",
           "bg-secondary",
-          "w-16",
-          "h-16",
           "mb-2",
-          "md:mb-0"
+          "md:mb-0",
+          "flex",
+          "items-center",
+          "justify-center"
         )}
+        style={{ width: "50px", height: "50px", minWidth: "50px" }}
       >
         {icon || ""}
       </div>
@@ -53,7 +55,8 @@ export const Contact: FC<IContact> = ({ title = "", value = "", icon }) => {
           "md:mb-0",
           "md:mr-2",
           "text-lg",
-          "text-gray-900"
+          "text-gray-900",
+          "text-center"
         )}
       >
         {value}

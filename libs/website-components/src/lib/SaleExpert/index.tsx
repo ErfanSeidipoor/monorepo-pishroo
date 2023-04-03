@@ -3,12 +3,9 @@ import cls from "classnames";
 
 import { WhatsAppIcon, PhoneIcon, MailIcon } from "./icons";
 
-import "../tailwind-imports.css";
-
 export type ISaleExpert = {
   name: string;
   image: string;
-  description: string;
   email: string;
   phone: string;
   provinces: string[];
@@ -150,7 +147,8 @@ export const SaleExpert: FC<ISaleExpert> = ({
         "flex-col",
         "justify-items-center",
         "items-center",
-        "md:flex-row"
+        "md:flex-row",
+        "bg-white"
       )}
     >
       {renderImage()}
