@@ -2,8 +2,6 @@ import { FC } from "react";
 import cls from "classnames";
 import { MapContainer, TileLayer } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
-import "../tailwind-imports.css";
-
 export type IMap = {
   position?: [number, number];
   width: string;
@@ -20,7 +18,15 @@ export const Map: FC<IMap> = ({
   return (
     <div
       style={{ width, height }}
-      className={cls("rounded-lg", "shadow", "shadow-gray-600/10")}
+      className={cls(
+        "rounded-lg",
+        "shadow",
+        "shadow-gray-600/10",
+        "rounded-lg",
+        "overflow-hidden",
+        "shadow",
+        "shadow-gray-600/30"
+      )}
     >
       <MapContainer
         style={{ width: "100%", height: "100%" }}

@@ -1,5 +1,4 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { faker } from "@faker-js/faker";
 import { Contact } from ".";
 
 export default {

@@ -398,7 +398,7 @@ const TEXTS = {
 
   WEBSITE_PAGE__HOME__PAGE_TITLE: "Pishroo",
 
-  /* -------------------------------- about Us page ------------------------------- */
+  /* -------------------------------- About Us page ------------------------------- */
 
   WEBSITE_PAGE__ABOUT_US__PAGE_TITLE: "About Us | Pishroo",
   WEBSITE_PAGE__ABOUT_US__DESCRIPTIOIN__TITLE: "About Us",
@@ -422,6 +422,29 @@ const TEXTS = {
     "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium?",
   WEBSITE_PAGE__ABOUT_US__FAQ__ITEM_3_ANSWER:
     "They cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided. ",
+
+  /* ------------------------------- Contact Us ------------------------------- */
+
+  WEBSITE_PAGE__CONTACT_US__PAGE_TITLE: "Contact Us | Pishroo",
+  WEBSITE_PAGE__CONTACT_US__DESCRIPTIOIN__TITLE: "Contact Us",
+  WEBSITE_PAGE__CONTACT_US__DESCRIPTIOIN__DESCRIPTION:
+    "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
+  WEBSITE_PAGE__CONTACT_US__SALEEXPERTS__TITLE: "Sale Experts",
+  WEBSITE_PAGE__CONTACT_US__CONTACT_INFO__PHONE_TITLE: "Phone Number:",
+  WEBSITE_PAGE__CONTACT_US__CONTACT_INFO__PHONE_VALUE: "1-983-443-9740 x192",
+  WEBSITE_PAGE__CONTACT_US__CONTACT_INFO__MANAGER_PHONE_TITLE:
+    "Manager Phone Number:",
+  WEBSITE_PAGE__CONTACT_US__CONTACT_INFO__MANAGER_PHONE_VALUE:
+    "1-983-443-9740 x192",
+  WEBSITE_PAGE__CONTACT_US__CONTACT_INFO__FAX_TITLE: "FAX:",
+  WEBSITE_PAGE__CONTACT_US__CONTACT_INFO__FAX_VALUE: "1-710-566-7008 x062",
+  WEBSITE_PAGE__CONTACT_US__CONTACT_INFO__EMAIL_TITLE: "Email:",
+  WEBSITE_PAGE__CONTACT_US__CONTACT_INFO__EMAIL_VALUE:
+    "erfan.seidipoor@gmail.com",
+  WEBSITE_PAGE__CONTACT_US__CONTACT_INFO__ADDRESS_TITLE: "Address:",
+  WEBSITE_PAGE__CONTACT_US__CONTACT_INFO__ADDRESS_VALUE:
+    "They cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through ",
+  WEBSITE_PAGE__CONTACT_US__CONTACT_INFO__LOCATION_TITLE: "Location:",
 };
 
 export default TEXTS;
