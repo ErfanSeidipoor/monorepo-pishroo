@@ -397,6 +397,20 @@ const TEXTS = {
   /* -------------------------------- home page ------------------------------- */
 
   WEBSITE_PAGE__HOME__PAGE_TITLE: "Pishroo",
+  WEBSITE_PAGE__HOME__DESCRIPTIOIN__TITLE: "Pishroo",
+  WEBSITE_PAGE__HOME__DESCRIPTIOIN__DESCRIPTION:
+    "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciuntr",
+  WEBSITE_PAGE__HOME__DESCRIPTIOIN__PRODUCT: "Product",
+  WEBSITE_PAGE__HOME__DESCRIPTIOIN__SEARCH: "Search",
+  WEBSITE_PAGE__HOME__SEARCHBOX__PLACEHOLDER: "Please Search",
+  WEBSITE_PAGE__HOME__PRODUCTS__TITLE: "Products",
+  WEBSITE_PAGE__HOME__PROJECTS__TITLE: "Projects",
+  WEBSITE_PAGE__HOME__PARTNERS__TITLE: "Partners",
+  WEBSITE_PAGE__HOME__CERTIFICATES__TITLE: "Certificates",
+  WEBSITE_PAGE__HOME__NEWSLETTER__DESCRIPTION:
+    "totam rem aperiam, eaque ipsa quae ab illo inventore",
+  WEBSITE_PAGE__HOME__NEWSLETTER__EMAIL_PLACEHOLDER: "Email",
+  WEBSITE_PAGE__HOME__NEWSLETTER__EMAIL_LET_ME_KNOW: "Let me know",
 
   /* -------------------------------- About Us page ------------------------------- */
 

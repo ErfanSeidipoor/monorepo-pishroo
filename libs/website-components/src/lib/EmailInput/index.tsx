@@ -1,10 +1,9 @@
 import { FC } from "react";
 import cls from "classnames";
-import "../tailwind-imports.css";
 
 export type IEmailInput = {
   value?: string;
-  title?: string;
+  buttonTitle?: string;
   placeholder?: string;
   onChange?: (value: string) => void;
   onClick?: () => void;
@@ -12,7 +11,7 @@ export type IEmailInput = {
 
 export const EmailInput: FC<IEmailInput> = ({
   value = "",
-  title = "Call Me",
+  buttonTitle = "Call Me",
   placeholder = "please enter your email",
   onChange = () => ({}),
   onClick = () => ({}),
@@ -20,11 +19,11 @@ export const EmailInput: FC<IEmailInput> = ({
   return (
     <div
       className={cls(
-        "border",
         "h-16",
         "rounded-lg",
         "overflow-hidden",
-        "relative"
+        "relative",
+        "bg-white"
       )}
     >
       <input
@@ -59,7 +58,7 @@ export const EmailInput: FC<IEmailInput> = ({
         )}
         onClick={onClick}
       >
-        {title}
+        {buttonTitle}
       </button>
     </div>
   );

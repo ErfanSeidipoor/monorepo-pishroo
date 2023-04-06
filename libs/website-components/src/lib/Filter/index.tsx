@@ -1,8 +1,6 @@
 import { FC } from "react";
 import cls from "classnames";
 
-import "../tailwind-imports.css";
-
 export type IFilter = {
   items: { label: string; onClick: () => void; selected: boolean }[];
 };
