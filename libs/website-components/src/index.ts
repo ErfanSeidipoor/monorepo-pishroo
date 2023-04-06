@@ -10,3 +10,4 @@ export * from "./lib/Filter";
 export * from "./lib/Partner";
 export * from "./lib/Certificate";
 export * from "./lib/EmailInput";
+export * from "./lib/Pagination";
