@@ -459,6 +459,18 @@ const TEXTS = {
   WEBSITE_PAGE__CONTACT_US__CONTACT_INFO__ADDRESS_VALUE:
     "They cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through ",
   WEBSITE_PAGE__CONTACT_US__CONTACT_INFO__LOCATION_TITLE: "Location:",
+
+  /* -------------------------------- product page ------------------------------- */
+
+  WEBSITE_PAGE__PRODUCT__PAGE_TITLE: "Product | Pishroo",
+  WEBSITE_PAGE__PRODUCT__DESCRIPTIOIN__SEARCH: "Search",
+  WEBSITE_PAGE__PRODUCT__SEARCHBOX__PLACEHOLDER: "Please Search",
+
+  /* -------------------------------- project page ------------------------------- */
+
+  WEBSITE_PAGE__PROJECT__PAGE_TITLE: "Project | Pishroo",
+  WEBSITE_PAGE__PROJECT__DESCRIPTIOIN__SEARCH: "Search",
+  WEBSITE_PAGE__PROJECT__SEARCHBOX__PLACEHOLDER: "Please Search",
 };
 
 export default TEXTS;

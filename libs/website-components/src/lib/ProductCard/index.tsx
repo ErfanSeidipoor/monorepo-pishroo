@@ -71,10 +71,12 @@ export const ProductCard: FC<IProductCard> = ({
         "items-center",
         "overflow-hidden",
         "md:max-w-xs",
-        responsive && "max-w-xs",
         "cursor-pointer",
         "hover:shadow-gray-800/70",
-        "transition-all"
+        "transition-all",
+        "border",
+        "w-full",
+        "md:w-64"
       )}
       onClick={onClick}
     >

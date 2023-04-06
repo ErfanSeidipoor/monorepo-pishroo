@@ -1,8 +1,6 @@
 import { FC, useEffect, useState } from "react";
 import cls from "classnames";
 
-import "../tailwind-imports.css";
-
 export type IPagination = {
   count?: number;
   page?: number;

@@ -64,12 +64,12 @@ export const Projects: FC = () => {
       <Slider
         items={ITEMS.map((props) => ({
           node: (
-            <div key={props.name} className={cls("my-4")}>
-              <ProductCard {...props} />
+            <div key={props.name} className={cls("my-4", "mr-3")}>
+              <ProductCard {...props} responsive={false} />
             </div>
           ),
           key: props.name,
-          width: 340,
+          width: 266,
         }))}
       />
     </div>

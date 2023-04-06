@@ -11,7 +11,12 @@ import {
   ProductIcon,
   ProjectIcon,
 } from "./icons";
-import { ABOUT_US_ROUTE, CONTACT_US_ROUTE } from "@website/constants";
+import {
+  ABOUT_US_ROUTE,
+  CONTACT_US_ROUTE,
+  PRODUCT_ROUTE,
+  PROJECT_ROUTE,
+} from "@website/constants";
 
 import TEXTS from "@pishroo/texts";
 
@@ -25,13 +30,13 @@ export const Layout: FC<{
   const links = [
     {
       name: TEXTS.PRODUCT,
-      href: "#",
+      href: PRODUCT_ROUTE,
       selected: page === "Product",
       icon: <ProductIcon />,
     },
     {
       name: TEXTS.PROJECT,
-      href: "#",
+      href: PROJECT_ROUTE,
       selected: page === "Project",
       icon: <ProjectIcon />,
     },
@@ -68,7 +73,14 @@ export const Layout: FC<{
       <div className={cls("flex", "flex-col", "min-h-screen", "bg-gray-50")}>
         <Header links={links} phone={TEXTS.WEBSITE_PAGE__LAYOUT__PHONE} />
         <div
-          className={cls("container", "mx-auto", "p-6", "flex-grow", "mb-48")}
+          className={cls(
+            "container",
+            "mx-auto",
+            "py-6",
+            "px-1",
+            "flex-grow",
+            "mb-48"
+          )}
         >
           {children}
         </div>
