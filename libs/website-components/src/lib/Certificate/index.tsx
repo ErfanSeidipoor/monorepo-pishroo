@@ -1,8 +1,6 @@
 import { FC } from "react";
 import cls from "classnames";
 
-import "../tailwind-imports.css";
-
 export type ICertificate = {
   image?: string;
   title?: string;
@@ -15,9 +13,12 @@ export const Certificate: FC<ICertificate> = ({
   onClick = () => ({}),
 }) => {
   return (
-    <div
-      onClick={onClick}
+    <a
+      target="_blank"
+      href={image}
+      rel="noreferrer"
       className={cls(
+        "block",
         "flex",
         "shadow",
         "shadow-gray-600/30",
@@ -45,7 +46,7 @@ export const Certificate: FC<ICertificate> = ({
         )}
         alt={title}
       />
-    </div>
+    </a>
   );
 };
 

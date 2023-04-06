@@ -1,8 +1,6 @@
 import { FC } from "react";
 import cls from "classnames";
 
-import "../tailwind-imports.css";
-
 export type IPartner = {
   title?: string;
   image?: string;
@@ -16,7 +14,7 @@ export const Partner: FC<IPartner> = ({ title = "", image = "" }) => {
         "shadow",
         "shadow-gray-600/30",
         "rounded-lg",
-        "h-16",
+        "h-14",
         "py-1",
         "px-3",
         "flex",

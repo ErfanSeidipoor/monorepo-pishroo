@@ -66,12 +66,13 @@ export const Header: FC<IHeader> = ({ links = [], phone }) => {
   const renderDesktop = () => {
     return (
       <div className={cls("flex", "items-center", "justify-between")}>
-        <div
+        <a
           style={{ width: "50px" }}
           className={cls("pt-2", "order-3", "md:order-1")}
+          href="/"
         >
           <Logo />
-        </div>
+        </a>
         <div className={cls("hidden", "md:flex", "order-2")}>
           {renderLinks()}
         </div>

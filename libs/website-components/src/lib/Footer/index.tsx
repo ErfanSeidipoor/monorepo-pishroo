@@ -68,7 +68,7 @@ export const Footer: FC<IFooter> = ({
 
   const renderLogo = () => {
     return (
-      <div
+      <a
         className={cls(
           "mt-4",
           "flex",
@@ -76,12 +76,13 @@ export const Footer: FC<IFooter> = ({
           "items-center",
           "md:items-end"
         )}
+        href="/"
       >
         <Logo width="100px" />
         <p className={cls("text-base", "mt-2", "text-center", "md:text-right")}>
           {sloganText}
         </p>
-      </div>
+      </a>
     );
   };
 

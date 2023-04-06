@@ -2,7 +2,7 @@ import cls from "classnames";
 import "leaflet/dist/leaflet.css";
 import { ReactNode, useRef, useState } from "react";
 import ReactAutoComplete from "react-autocomplete";
-import "../tailwind-imports.css";
+
 import { CloseIcon, EmptyIcon, SpinnerIcon } from "./icons";
 
 export type IAutoComplete<T extends {}> = {
@@ -45,6 +45,7 @@ export const AutoComplete = <T extends {}>({
         isFocused && "p-3",
         isFocused && "md:p-0",
         isFocused && "fixed",
+        "z-50",
         "box-border",
         "top-0",
         "left-0",

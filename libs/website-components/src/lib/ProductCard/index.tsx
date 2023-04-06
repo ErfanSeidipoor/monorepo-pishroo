@@ -1,15 +1,16 @@
 import { FC } from "react";
 import cls from "classnames";
 import Skeleton from "react-loading-skeleton";
-import "react-loading-skeleton/dist/skeleton.css";
+// import "react-loading-skeleton/dist/skeleton.css";
 
-import "../tailwind-imports.css";
+// import "../tailwind-imports.css";
 
 export type IProductCard = {
   image?: string;
   name?: string;
   onClick?: () => void;
   loading?: boolean;
+  responsive?: boolean;
 };
 
 export const ProductCard: FC<IProductCard> = ({
@@ -17,6 +18,7 @@ export const ProductCard: FC<IProductCard> = ({
   image = "",
   onClick = () => ({}),
   loading = false,
+  responsive = true,
 }) => {
   const renderImage = () => {
     return (
@@ -69,6 +71,7 @@ export const ProductCard: FC<IProductCard> = ({
         "items-center",
         "overflow-hidden",
         "md:max-w-xs",
+        responsive && "max-w-xs",
         "cursor-pointer",
         "hover:shadow-gray-800/70",
         "transition-all"

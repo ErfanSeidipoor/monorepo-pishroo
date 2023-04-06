@@ -37,13 +37,13 @@ export const Layout: FC<{
     },
     {
       name: TEXTS.PARTNERS,
-      href: "#",
+      href: "/#partners",
       selected: page === "Partners",
       icon: <PartnersIcon />,
     },
     {
       name: TEXTS.CERTIFICATES,
-      href: "#",
+      href: "/#certificates",
       icon: <CertificatesIcon />,
     },
     {
