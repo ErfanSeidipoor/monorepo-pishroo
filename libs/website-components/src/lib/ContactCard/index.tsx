@@ -2,8 +2,6 @@ import { FC } from "react";
 import cls from "classnames";
 
 import { PhoneIcon } from "./icons";
-import "../tailwind-imports.css";
-
 export type IContactCard = {
   image?: string;
   description?: string;
@@ -54,7 +52,7 @@ export const ContactCard: FC<IContactCard> = ({
         "bg-secondary",
         "text-white",
         "h-full",
-        "rounded-l-3xl",
+        "rounded-l-xl",
         "flex",
         "flex-col",
         "justify-between",

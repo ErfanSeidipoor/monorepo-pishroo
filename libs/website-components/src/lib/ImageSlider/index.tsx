@@ -4,8 +4,6 @@ import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { LeftIcon, RightIcon } from "./icons";
 
-import "../tailwind-imports.css";
-
 export type IImageSlider = {
   items: {
     src: string;
@@ -126,7 +124,9 @@ export const ImageSlider: FC<IImageSlider> = ({ items = [] }) => {
           "flex",
           "flex-wrap",
           "justify-center",
-          "z-50"
+          "z-50",
+          "top-0",
+          "left-0"
         )}
       >
         <div

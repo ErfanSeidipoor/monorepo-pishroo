@@ -1,8 +1,6 @@
 import { FC } from "react";
 import cls from "classnames";
 
-import "../tailwind-imports.css";
-
 export type IReview = {
   reviewer: string;
   image: string;
@@ -60,9 +58,7 @@ export const Review: FC<IReview> = ({
   };
 
   return (
-    <div
-      className={cls("p-1", "flex", "flex-row", "border-b", "border-gray-400")}
-    >
+    <div className={cls("p-1", "flex", "flex-row")}>
       {renderImage()}
       {renderInformations()}
     </div>

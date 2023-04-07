@@ -11,3 +11,8 @@ export * from "./lib/Partner";
 export * from "./lib/Certificate";
 export * from "./lib/EmailInput";
 export * from "./lib/Pagination";
+export * from "./lib/ImageSlider";
+export * from "./lib/ContactCard";
+export * from "./lib/Color";
+export * from "./lib/ProductProperty";
+export * from "./lib/Review";
