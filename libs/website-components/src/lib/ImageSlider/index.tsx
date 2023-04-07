@@ -37,6 +37,7 @@ export const ImageSlider: FC<IImageSlider> = ({ items = [] }) => {
         className={cls(
           "items-center",
           "flex",
+          "lg:justify-start",
           "justify-center",
           "pt-14",
           "pb-14"
