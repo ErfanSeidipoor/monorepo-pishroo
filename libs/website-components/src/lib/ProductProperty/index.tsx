@@ -1,8 +1,6 @@
 import { FC } from "react";
 import cls from "classnames";
 
-import "../tailwind-imports.css";
-
 export type IProductProperty = {
   title?: string;
   value?: string;
@@ -20,7 +18,7 @@ export const ProductProperty: FC<IProductProperty> = ({
         "p-1",
         "justify-center",
         "items-center",
-        "border-b-2",
+        "border-b",
         "border-b-secondary/30"
       )}
     >

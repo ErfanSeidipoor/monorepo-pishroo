@@ -3,7 +3,9 @@ import { createContext, Dispatch, SetStateAction } from "react";
 export type PAGE =
   | "Home"
   | "Product"
+  | "Product Details"
   | "Project"
+  | "Project Details"
   | "Partners"
   | "About Us"
   | "Contact Us";
