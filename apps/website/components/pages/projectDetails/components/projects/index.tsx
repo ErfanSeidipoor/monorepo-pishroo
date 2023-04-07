@@ -1,10 +1,10 @@
 import { FC } from "react";
 import { useRouter } from "next/router";
 import cls from "classnames";
-import { ProductCard, Slider, Filter } from "@pishroo/website-components";
+import { ProductCard, Slider } from "@pishroo/website-components";
 import TEXTS from "@pishroo/texts";
 import { url } from "@pishroo/utils";
-import { PRODUCT_DETAILS_ROUTE } from "@website/constants";
+import { PROJECT_DETAILS_ROUTE } from "@website/constants";
 
 const ITEMS = [
   {
@@ -49,36 +49,24 @@ const ITEMS = [
   },
 ];
 
-export const Products: FC = () => {
+export const Projects: FC = () => {
   const router = useRouter();
 
   return (
     <div className={cls("my-8")}>
-      <h1 className={cls("text-xl", "text-center", "mb-6")}>
-        {TEXTS.WEBSITE_PAGE__HOME__PRODUCTS__TITLE}
+      <h1 className={cls("text-xl", "text-center", "mb-6", "text-right")}>
+        {TEXTS.WEBSITE_PAGE__PROJECT_DETAILS__PROJECTS__TITLE}
       </h1>
-      <div className={cls("mb-6", "max-w-2xl", "m-auto")}>
-        <Filter
-          items={[
-            { label: "Plastic", selected: true, onClick: () => "" },
-            { label: "Electronic", selected: false, onClick: () => "" },
-            { label: "Fresh", selected: false, onClick: () => "" },
-            { label: "Incredible", selected: false, onClick: () => "" },
-            { label: "Luxurious", selected: false, onClick: () => "" },
-            { label: "Rubber", selected: false, onClick: () => "" },
-          ]}
-        />
-      </div>
       <Slider
         items={ITEMS.map((props) => ({
           node: (
-            <div key={props.name} className={cls("my-1", "mr-3")}>
+            <div key={props.name} className={cls("my-4", "mr-3")}>
               <ProductCard
                 {...props}
                 responsive={false}
                 onClick={() =>
                   router.push(
-                    url.generate(PRODUCT_DETAILS_ROUTE, {
+                    url.generate(PROJECT_DETAILS_ROUTE, {
                       slugProduct: props.name,
                     })
                   )

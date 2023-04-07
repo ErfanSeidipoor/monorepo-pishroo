@@ -54,21 +54,9 @@ export const Products: FC = () => {
 
   return (
     <div className={cls("my-8")}>
-      <h1 className={cls("text-xl", "text-center", "mb-6")}>
-        {TEXTS.WEBSITE_PAGE__HOME__PRODUCTS__TITLE}
+      <h1 className={cls("text-xl", "text-center", "mb-6", "text-right")}>
+        {TEXTS.WEBSITE_PAGE__PROJECT_DETAILS__PRODUCTS__TITLE}
       </h1>
-      <div className={cls("mb-6", "max-w-2xl", "m-auto")}>
-        <Filter
-          items={[
-            { label: "Plastic", selected: true, onClick: () => "" },
-            { label: "Electronic", selected: false, onClick: () => "" },
-            { label: "Fresh", selected: false, onClick: () => "" },
-            { label: "Incredible", selected: false, onClick: () => "" },
-            { label: "Luxurious", selected: false, onClick: () => "" },
-            { label: "Rubber", selected: false, onClick: () => "" },
-          ]}
-        />
-      </div>
       <Slider
         items={ITEMS.map((props) => ({
           node: (

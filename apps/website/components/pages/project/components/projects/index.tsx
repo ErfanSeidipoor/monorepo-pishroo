@@ -1,6 +1,9 @@
 import { FC } from "react";
+import { useRouter } from "next/router";
 import cls from "classnames";
+import { url } from "@pishroo/utils";
 import { ProductCard, Filter, Pagination } from "@pishroo/website-components";
+import { PROJECT_DETAILS_ROUTE } from "@website/constants";
 
 const ITEMS = [
   {
@@ -86,6 +89,8 @@ const ITEMS = [
 ];
 
 export const Projects: FC = () => {
+  const router = useRouter();
+
   return (
     <div className={cls("my-8")}>
       <div className={cls("mb-6", "max-w-4xl", "m-auto")}>
@@ -108,7 +113,17 @@ export const Projects: FC = () => {
             key={props.name}
             className={cls("my-4", "m-3", "w-full", "md:w-64")}
           >
-            <ProductCard {...props} responsive />
+            <ProductCard
+              {...props}
+              responsive
+              onClick={() =>
+                router.push(
+                  url.generate(PROJECT_DETAILS_ROUTE, {
+                    slugProduct: props.name,
+                  })
+                )
+              }
+            />
           </div>
         ))}
       </div>

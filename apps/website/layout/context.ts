@@ -8,6 +8,7 @@ export type PAGE =
   | "Project Details"
   | "Partners"
   | "About Us"
+  | "Not Found"
   | "Contact Us";
 
 export interface ILayoutContext {

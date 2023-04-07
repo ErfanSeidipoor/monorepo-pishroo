@@ -1,7 +1,12 @@
 import { FC } from "react";
+import { useRouter } from "next/router";
 import cls from "classnames";
-import { ProductCard, Slider, Filter } from "@pishroo/website-components";
 import TEXTS from "@pishroo/texts";
+import { url } from "@pishroo/utils";
+
+import { ProductCard, Slider, Filter } from "@pishroo/website-components";
+
+import { PROJECT_DETAILS_ROUTE } from "@website/constants";
 
 const ITEMS = [
   {
@@ -47,6 +52,8 @@ const ITEMS = [
 ];
 
 export const Projects: FC = () => {
+  const router = useRouter();
+
   return (
     <div className={cls("my-8")}>
       <h1 className={cls("text-xl", "text-center", "mb-6")}>
@@ -65,7 +72,17 @@ export const Projects: FC = () => {
         items={ITEMS.map((props) => ({
           node: (
             <div key={props.name} className={cls("my-4", "mr-3")}>
-              <ProductCard {...props} responsive={false} />
+              <ProductCard
+                {...props}
+                responsive={false}
+                onClick={() =>
+                  router.push(
+                    url.generate(PROJECT_DETAILS_ROUTE, {
+                      slugProduct: props.name,
+                    })
+                  )
+                }
+              />
             </div>
           ),
           key: props.name,
