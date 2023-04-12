@@ -10,6 +10,7 @@ export enum FileUseTypeEnum {
   event_action = "event_action",
   customer_action = "customer_action",
   call = "call",
+  user = "user",
 }
 
 export enum FileUseStatusEnum {

@@ -9,39 +9,27 @@ import {
 } from "@pishroo/website-components";
 
 import TEXTS from "@pishroo/texts";
+
+import { GetProductByIdPublicProductPageQuery } from "@website/gql/graphql";
+
 import assets from "./assets";
 
-export const General: FC = () => {
+export const General: FC<{
+  data: GetProductByIdPublicProductPageQuery;
+}> = ({
+  data: {
+    getProductByIdPublic: { fileUses, name, productColors, productProperties },
+  },
+}) => {
   const renderImages = () => {
     return (
       <div className={cls("w-full", "md:w-1/2", "lg:w-1/3", "mb-4")}>
         <ImageSlider
-          items={[
-            {
-              src: "https://loremflickr.com/640/480/food",
-              alt: "Gorgeous Plastic Chips",
-            },
-            {
-              src: "https://loremflickr.com/640/480/animals",
-              alt: "Electronic Bronze Car",
-            },
-            {
-              src: "https://loremflickr.com/640/480/business",
-              alt: "Tasty Wooden Table",
-            },
-            {
-              src: "https://loremflickr.com/640/480/people",
-              alt: "Unbranded Fresh Mouse",
-            },
-            {
-              src: "https://loremflickr.com/640/480/city",
-              alt: "Awesome Rubber Mouse",
-            },
-            {
-              src: "https://loremflickr.com/640/480/fashion",
-              alt: "Luxurious Steel Table",
-            },
-          ]}
+          items={fileUses.map((fileUse) => ({
+            src:
+              process.env["NX_BACK_URL"] + "/api/file/" + fileUse.file.filename,
+            alt: name,
+          }))}
         />
       </div>
     );
@@ -50,34 +38,29 @@ export const General: FC = () => {
   const renderDetails = () => {
     return (
       <div className={cls("flex-grow", "px-5", "mb-4")}>
-        <h1 className={cls("text-4xl", "mt-3")}>{"Tasty Rubber Gloves"}</h1>
+        <h1 className={cls("text-4xl", "mt-3")}>{name}</h1>
         <h3 className={cls("text-lg", "mt-5")}>
           {TEXTS.WEBSITE_PAGE__PRODUCT_DETAILS__GENERAL__COLOR}
         </h3>
         <div>
-          <Color value="#050605" />
-          <Color value="#B8BDC5" />
-          <Color value="#D9D9D9" />
+          {productColors.map(({ color }) => (
+            <Color key={color.id} value={"#" + color.value} />
+          ))}
         </div>
         <h3 className={cls("text-lg", "mt-5")}>
           {TEXTS.WEBSITE_PAGE__PRODUCT_DETAILS__GENERAL__DETAILS}
         </h3>
         <div>
-          <div>
-            <ProductProperty title="Refined" value="Fresh" />
-          </div>
-          <div>
-            <ProductProperty title="Recycled" value="Rubber" />
-          </div>
-          <div>
-            <ProductProperty title="Electronic" value="Metal" />
-          </div>
-          <div>
-            <ProductProperty title="Elegant" value="Fresh" />
-          </div>
-          <div>
-            <ProductProperty title="Rustic" value="Bronze" />
-          </div>
+          {productProperties.slice(0, 6).map((productProperty) => (
+            <div key={productProperty.id}>
+              <ProductProperty
+                title={productProperty.property.name}
+                value={
+                  productProperty.value + " " + productProperty.property.unit
+                }
+              />
+            </div>
+          ))}
         </div>
       </div>
     );

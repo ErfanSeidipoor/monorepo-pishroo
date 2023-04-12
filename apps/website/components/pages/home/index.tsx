@@ -2,19 +2,19 @@ import { FC } from "react";
 
 import {
   Main,
-  Searchbox,
   Products,
   Projects,
   Partners,
   Certificates,
   NewsLetter,
 } from "./components";
+import { ProductSearchbox } from "@website/components/searchbox-product";
 
 export const HomePage: FC = () => {
   return (
     <>
       <Main />
-      <Searchbox />
+      <ProductSearchbox />
       <Products />
       <Projects />
       <Partners />

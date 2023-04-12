@@ -24,6 +24,12 @@ import { CustomerModuleAdmin } from "./modules/admin/customer/customer.module";
 import { MessageModuleAdmin } from "./modules/admin/message/message.module";
 import { CustomerMessageModuleAdmin } from "./modules/admin/customerMessage/customerMessage.module";
 
+// public
+import { UserModulePublic } from "./modules/public/user/user.module";
+import { ProductModulePublic } from "./modules/public/product/product.module";
+import { CategoryModulePublic } from "./modules/public/category/category.module";
+import { ProjectModulePublic } from "./modules/public/project/project.module";
+
 import { FileModule } from "./modules/file/file.module";
 import { entities } from "@pishroo/entities";
 import { TypeOrmModule } from "@nestjs/typeorm";
@@ -43,7 +49,7 @@ import { CurrentUserMiddleware } from "./middlewares";
       },
       cors: {
         credentials: true,
-        origin: [process.env.NX_ADMIN_URL],
+        origin: [process.env.NX_ADMIN_URL, process.env.NX_WEBSITE_URL],
       },
     }),
     TypeOrmModule.forFeature(entities),
@@ -80,6 +86,10 @@ import { CurrentUserMiddleware } from "./middlewares";
     MessageModuleAdmin,
     CustomerMessageModuleAdmin,
     FileModule,
+    UserModulePublic,
+    ProductModulePublic,
+    CategoryModulePublic,
+    ProjectModulePublic,
   ],
   controllers: [],
   providers: [],

@@ -1,125 +1,63 @@
 import { FC } from "react";
 import { useRouter } from "next/router";
 import cls from "classnames";
+
 import { ProductCard, Filter, Pagination } from "@pishroo/website-components";
 import { url } from "@pishroo/utils";
+
 import { PRODUCT_DETAILS_ROUTE } from "@website/constants";
 
-const ITEMS = [
-  {
-    image: "https://loremflickr.com/640/480/food",
-    name: "Gorgeous Plastic Chips",
-  },
-  {
-    image: "https://loremflickr.com/640/480/animals",
-    name: "Electronic Bronze Car",
-  },
-  {
-    image: "https://loremflickr.com/640/480/business",
-    name: "Tasty Wooden Table",
-  },
-  {
-    image: "https://loremflickr.com/640/480/people",
-    name: "Unbranded Fresh Mouse",
-  },
-  {
-    image: "https://loremflickr.com/640/480/city",
-    name: "Awesome Rubber Mouse",
-  },
-  {
-    image: "https://loremflickr.com/640/480/fashion",
-    name: "Luxurious Steel Table",
-  },
-  {
-    image: "https://loremflickr.com/640/480/nightlife",
-    name: "Generic Fresh Tuna",
-  },
-  {
-    image: "https://loremflickr.com/640/480/sports",
-    name: "Incredible Frozen Tuna",
-  },
-  {
-    image: "https://loremflickr.com/640/480/technics",
-    name: "Unbranded Frozen Computer",
-  },
-  {
-    image: "https://loremflickr.com/640/480/transport",
-    name: "Electronic Fresh Gloves",
-  },
-  {
-    image: "https://loremflickr.com/640/480/food",
-    name: "Gorgeous Plastic Chips",
-  },
-  {
-    image: "https://loremflickr.com/640/480/animals",
-    name: "Electronic Bronze Car 9",
-  },
-  {
-    image: "https://loremflickr.com/640/480/business",
-    name: "Tasty Wooden Table 8",
-  },
-  {
-    image: "https://loremflickr.com/640/480/people",
-    name: "Unbranded Fresh Mouse 7",
-  },
-  {
-    image: "https://loremflickr.com/640/480/city",
-    name: "Awesome Rubber Mouse 6",
-  },
-  {
-    image: "https://loremflickr.com/640/480/fashion",
-    name: "Luxurious Steel Table 5",
-  },
-  {
-    image: "https://loremflickr.com/640/480/nightlife",
-    name: "Generic Fresh Tuna 4",
-  },
-  {
-    image: "https://loremflickr.com/640/480/sports",
-    name: "Incredible Frozen Tuna 3",
-  },
-  {
-    image: "https://loremflickr.com/640/480/technics",
-    name: "Unbranded Frozen Computer 2",
-  },
-  {
-    image: "https://loremflickr.com/640/480/transport",
-    name: "Electronic Fresh Gloves 1",
-  },
-];
+import useData from "./useDate";
+import assets from "./assets";
 
 export const Products: FC = () => {
   const router = useRouter();
+  const {
+    products,
+    loading,
+    catergories,
+    queryArgs,
+    onSubmitFilter,
+    pageInfo,
+    onPageSelect,
+  } = useData();
 
-  return (
-    <div className={cls("my-8")}>
-      <div className={cls("mb-6", "max-w-4xl", "m-auto")}>
-        <Filter
-          items={[
-            { label: "Frozen", selected: true, onClick: () => "" },
-            { label: "Tuna", selected: false, onClick: () => "" },
-            { label: "Electronic", selected: false, onClick: () => "" },
-            { label: "Table", selected: false, onClick: () => "" },
-            { label: "Computer", selected: false, onClick: () => "" },
-            { label: "Fresh", selected: false, onClick: () => "" },
-          ]}
-        />
-      </div>
+  const renderLoading = () => {
+    return (
       <div
         className={cls("flex", "justify-center", "items-center", "flex-wrap")}
       >
-        {ITEMS.map((props) => (
-          <div
-            key={props.name}
-            className={cls("my-4", "m-3", "w-full", "md:w-64")}
-          >
+        {[1, 2, 3, 4, 5, 6, 7].map((item) => (
+          <div key={item} className={cls("my-4", "m-3", "w-full", "md:w-64")}>
+            <ProductCard responsive loading />
+          </div>
+        ))}
+      </div>
+    );
+  };
+
+  const renderItems = () => {
+    return (
+      <div
+        className={cls("flex", "justify-center", "items-center", "flex-wrap")}
+      >
+        {products.map(({ id, name, slug, fileUses }) => (
+          <div key={id} className={cls("my-4", "m-3", "w-full", "md:w-64")}>
             <ProductCard
-              {...props}
+              name={name}
               responsive
+              image={
+                (fileUses &&
+                  fileUses.length &&
+                  process.env["NX_BACK_URL"] +
+                    "/api/file/" +
+                    fileUses[0].file.filename) ||
+                assets.images.placeholder.src
+              }
               onClick={() =>
                 router.push(
                   url.generate(PRODUCT_DETAILS_ROUTE, {
-                    slugProduct: props.name,
+                    slugProduct: slug,
                   })
                 )
               }
@@ -127,9 +65,42 @@ export const Products: FC = () => {
           </div>
         ))}
       </div>
-      <div className={cls("inline-block", "flex", "justify-center", "my-4")}>
-        <Pagination />
-      </div>
+    );
+  };
+
+  const renderFilters = () => {
+    if (catergories.length)
+      return (
+        <div className={cls("mb-6", "max-w-4xl", "m-auto")}>
+          <Filter
+            items={catergories.map(({ name }) => ({
+              label: name,
+              selected: queryArgs && name === queryArgs.categoryIdentity,
+              onClick: () => onSubmitFilter({ categoryIdentity: name }),
+            }))}
+          />
+        </div>
+      );
+  };
+
+  const renderPagination = () => {
+    if (!loading)
+      return (
+        <div className={cls("inline-block", "flex", "justify-center", "my-4")}>
+          <Pagination
+            page={pageInfo?.currentPage}
+            count={pageInfo?.totalPages}
+            onClick={onPageSelect}
+          />
+        </div>
+      );
+  };
+
+  return (
+    <div className={cls("my-8")}>
+      {renderFilters()}
+      {loading ? renderLoading() : renderItems()}
+      {renderPagination()}
     </div>
   );
 };

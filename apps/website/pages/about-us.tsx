@@ -5,7 +5,7 @@ import TEXTS from "@pishroo/texts";
 
 import { AboutUsPage } from "@website/components/pages/aboutUs";
 
-export function AboutUs() {
+export function AboutUs(props) {
   const { setPageTitle, setPage } = useLayout();
 
   useEffect(() => {

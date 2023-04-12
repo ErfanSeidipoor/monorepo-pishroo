@@ -59,15 +59,6 @@ export const Projects: FC = () => {
       <h1 className={cls("text-xl", "text-center", "mb-6")}>
         {TEXTS.WEBSITE_PAGE__HOME__PROJECTS__TITLE}
       </h1>
-      <div className={cls("mb-6", "max-w-2xl", "m-auto")}>
-        <Filter
-          items={[
-            { label: "Frozen", selected: true, onClick: () => "" },
-            { label: "Tuna", selected: false, onClick: () => "" },
-            { label: "Electronic", selected: false, onClick: () => "" },
-          ]}
-        />
-      </div>
       <Slider
         items={ITEMS.map((props) => ({
           node: (

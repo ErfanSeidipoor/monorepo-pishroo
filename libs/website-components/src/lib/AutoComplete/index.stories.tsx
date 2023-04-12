@@ -8,7 +8,7 @@ export default {
 } as ComponentMeta<typeof AutoComplete>;
 
 type Item = { title: string; year: number };
-const getLabel = (item: Item) => item.title;
+const getLabel = (item: Item) => item.title + "*";
 const getValue = (item: Item) => item.title;
 
 const items: Item[] = [
@@ -64,29 +64,30 @@ const items: Item[] = [
 const Template: ComponentStory<typeof AutoComplete<Item>> = (args) => {
   const [filteredItem, setFilteredItem] = useState<Item[]>(items);
   const [selectedItem, setSelectedItem] = useState<Item>();
+  const [loading, setLoading] = useState(false);
 
   return (
     <div style={{ padding: "30px" }}>
       <AutoComplete
         {...args}
         onChangeInput={async (inputvalue) => {
-          return new Promise((resolve) =>
-            setTimeout(() => {
-              setFilteredItem(
-                items.filter(
-                  (item) =>
-                    getValue(item)
-                      .toLowerCase()
-                      .indexOf(inputvalue.toLowerCase()) !== -1
-                )
-              );
-              resolve();
-            }, 500)
-          );
+          setLoading(true);
+          setTimeout(() => {
+            setFilteredItem(
+              items.filter(
+                (item) =>
+                  getValue(item)
+                    .toLowerCase()
+                    .indexOf(inputvalue.toLowerCase()) !== -1
+              )
+            );
+            setLoading(false);
+          }, 500);
         }}
         selectedItem={selectedItem}
         onSelectItem={(selectedItem) => setSelectedItem(selectedItem)}
         items={filteredItem}
+        loading={loading}
       />
     </div>
   );

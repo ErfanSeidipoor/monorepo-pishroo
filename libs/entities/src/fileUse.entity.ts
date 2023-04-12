@@ -21,6 +21,7 @@ import { Project } from "./project.entity";
 import { ProjectReview } from "./projectReview.entity";
 import { Transporter } from "./transporter.entity";
 import { TransporterAction } from "./transporterAction.entity";
+import { User } from "./user.entity";
 @ObjectType()
 @Index("file_use_pkey", ["id"], { unique: true })
 @Entity("file_use", { schema: "public" })
@@ -188,4 +189,15 @@ export class FileUse extends BaseModel {
     referencedColumnName: "id",
   })
   call?: Call;
+
+  @Field({ nullable: true })
+  @Column({ type: "uuid", name: "user_id", nullable: true })
+  userId: string;
+
+  @ManyToOne(() => User, (user) => user.fileUses)
+  @JoinColumn({
+    name: "user_id",
+    referencedColumnName: "id",
+  })
+  user?: User;
 }
