@@ -15,6 +15,7 @@ export type IAutoComplete<T extends {}> = {
   selectedItem?: T;
   placeholder?: string;
   disabled?: boolean;
+  loading?: boolean;
   renderItem?: (t: T, isHighlighted: boolean) => ReactNode;
   notFoundLabel?: string;
   searchLabel?: string;
@@ -29,13 +30,13 @@ export const AutoComplete = <T extends {}>({
   onClick,
   selectedItem,
   disabled,
+  loading,
   renderItem,
   notFoundLabel = "Not Found!",
   placeholder = "Search",
   searchLabel = "Search",
 }: IAutoComplete<T>) => {
   const [inputValue, setInputValue] = useState("");
-  const [loading, setLoading] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
   const inputRef = useRef<ReactAutoComplete>(null);
 
@@ -74,7 +75,7 @@ export const AutoComplete = <T extends {}>({
           isFocused
             ? inputValue
             : selectedItem
-            ? getValue(selectedItem)
+            ? getLabel(selectedItem)
             : inputValue
         }
         inputProps={{
@@ -166,10 +167,8 @@ export const AutoComplete = <T extends {}>({
         items={items}
         getItemValue={getValue}
         onChange={async (event, inputValue) => {
-          setLoading(true);
           setInputValue(inputValue);
           await onChangeInput(inputValue);
-          setLoading(false);
         }}
         onSelect={(value) => {
           inputRef.current?.blur();
@@ -223,7 +222,7 @@ export const AutoComplete = <T extends {}>({
                 "text-base",
                 "h-16",
                 "bg-white",
-                isHighlighted && "bg-gray-100",
+                isHighlighted && "bg-gray-400",
                 "flex",
                 "items-center",
                 "my-2",

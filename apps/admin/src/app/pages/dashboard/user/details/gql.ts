@@ -14,6 +14,14 @@ export const QUERY_GET_USER_BY_ID_ADMIN = gql`
       roles
       isActive
 
+      fileUses {
+        file {
+          filename
+          id
+        }
+        id
+      }
+
       provinceUsers {
         id
         provinceId

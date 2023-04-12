@@ -163,6 +163,7 @@ export class file1655233059732 implements MigrationInterface {
               "event_action",
               "customer_action",
               "call",
+              "user",
             ],
             isNullable: false,
           },
@@ -235,6 +236,12 @@ export class file1655233059732 implements MigrationInterface {
           },
           {
             name: "call_id",
+            type: "uuid",
+            isUnique: false,
+            isNullable: true,
+          },
+          {
+            name: "user_id",
             type: "uuid",
             isUnique: false,
             isNullable: true,
@@ -347,6 +354,15 @@ export class file1655233059732 implements MigrationInterface {
       new TableForeignKey({
         columnNames: ["call_id"],
         referencedTableName: "call",
+        referencedColumnNames: ["id"],
+        onDelete: "CASCADE",
+      })
+    );
+    await queryRunner.createForeignKey(
+      "file_use",
+      new TableForeignKey({
+        columnNames: ["user_id"],
+        referencedTableName: "user",
         referencedColumnNames: ["id"],
         onDelete: "CASCADE",
       })

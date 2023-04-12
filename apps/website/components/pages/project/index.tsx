@@ -1,11 +1,12 @@
 import { FC } from "react";
 
-import { Searchbox, Projects } from "./components";
+import { Projects } from "./components";
+import { ProjectSearchbox } from "@website/components/searchbox-project";
 
 export const ProjectPage: FC = () => {
   return (
     <>
-      <Searchbox />
+      <ProjectSearchbox />
       <Projects />
     </>
   );

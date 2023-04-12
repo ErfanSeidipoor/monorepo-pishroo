@@ -7,6 +7,8 @@ export * from "./auth/update-user.inputs";
 export * from "./auth/get-User-by-id.args";
 export * from "./auth/get-users.args";
 export * from "./auth/update-user-provinces.inputs";
+export * from "./auth/add-image-to-user.inputs";
+export * from "./auth/remove-image-from-user.inputs";
 
 /* -------------------------------- products -------------------------------- */
 

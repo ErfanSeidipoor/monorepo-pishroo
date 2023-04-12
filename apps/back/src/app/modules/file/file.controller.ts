@@ -9,7 +9,6 @@ export class FileController {
   constructor(private fileService: FileService) {}
 
   @Get("/:filename")
-  @UseGuards(AdminGuard)
   async getUserPhoto(
     @Param("filename") filename: string,
     @Res() response: Response,

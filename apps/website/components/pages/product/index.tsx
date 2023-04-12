@@ -1,11 +1,12 @@
 import { FC } from "react";
 
-import { Searchbox, Products } from "./components";
+import { Products } from "./components";
+import { ProductSearchbox } from "@website/components/searchbox-product";
 
 export const ProductPage: FC = () => {
   return (
     <>
-      <Searchbox />
+      <ProductSearchbox />
       <Products />
     </>
   );

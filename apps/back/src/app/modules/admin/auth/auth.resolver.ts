@@ -12,14 +12,16 @@ import {
   ResolveField,
   Resolver,
 } from "@nestjs/graphql";
-import { PaginatedUser, ProvinceUser, User } from "@pishroo/entities";
+import { FileUse, PaginatedUser, ProvinceUser, User } from "@pishroo/entities";
 import { AuthService } from "./auth.service";
 // dto
 import {
+  AddImageToUserAdminInputsGQL,
   CreateUserAdminInputsGQL,
   GetUserByIdAdminArgsGQL,
   GetUsersAdminArgsGQL,
   LoginAdminInputsGQL,
+  RemoveImageFromUserAdminInputsGQL,
   UpdateUserActivationAdminInputsGQL,
   UpdateUserAdminInputsGQL,
   UpdateUserProvincesAdminInputsGQL,
@@ -104,8 +106,36 @@ export class AuthResolver {
   }
 
   /* -------------------------------------------------------------------------- */
+  /*                                    Image                                   */
+  /* -------------------------------------------------------------------------- */
+
+  @Mutation(() => User)
+  @UseGuards(SuperAdminGuard)
+  async addImageToUserAdmin(
+    @Args("addImageToUserAdminInputs")
+    inputs: AddImageToUserAdminInputsGQL
+  ): Promise<User> {
+    return await this.authService.addImageToUser(inputs);
+  }
+
+  @Mutation(() => User)
+  @UseGuards(SuperAdminGuard)
+  async removeImageFromUserAdmin(
+    @Args("removeImageFromUserAdminInputs")
+    inputs: RemoveImageFromUserAdminInputsGQL
+  ): Promise<User> {
+    return await this.authService.removeImageFromUser(inputs);
+  }
+
+  /* -------------------------------------------------------------------------- */
   /*                                ResolveField                                */
   /* -------------------------------------------------------------------------- */
+
+  @ResolveField(() => [FileUse], { nullable: false })
+  @UseGuards(SuperAdminGuard)
+  async fileUses(@Parent() user: User) {
+    return this.authService.fileUses(user.id);
+  }
 
   @ResolveField(() => [ProvinceUser], { nullable: false })
   @UseGuards(SuperAdminGuard)

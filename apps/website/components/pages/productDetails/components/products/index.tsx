@@ -5,6 +5,7 @@ import { ProductCard, Slider } from "@pishroo/website-components";
 import TEXTS from "@pishroo/texts";
 import { url } from "@pishroo/utils";
 import { PRODUCT_DETAILS_ROUTE } from "@website/constants";
+import { GetProductByIdPublicProductPageQuery } from "@website/gql/graphql";
 
 const ITEMS = [
   {
@@ -49,7 +50,9 @@ const ITEMS = [
   },
 ];
 
-export const Products: FC = () => {
+export const Products: FC<{
+  data: GetProductByIdPublicProductPageQuery;
+}> = () => {
   const router = useRouter();
 
   return (

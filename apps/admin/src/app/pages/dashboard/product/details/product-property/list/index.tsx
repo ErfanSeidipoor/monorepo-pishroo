@@ -54,6 +54,11 @@ export const ProductPropertyListPage: FC = () => {
       label: TEXTS.NAME,
     },
     {
+      name: "value",
+      cell: (item) => <p>{item.value}</p>,
+      label: TEXTS.VALUE,
+    },
+    {
       name: "unit",
       cell: (item) => <p>{item.property.unit}</p>,
       label: TEXTS.UNIT,

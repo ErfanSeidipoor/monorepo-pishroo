@@ -219,10 +219,8 @@ export class ProjectService {
       queryBuilder.andWhere(
         `(
           (LOWER(project.name) ilike LOWER(:search)) OR
-          (LOWER(project.phone) ilike LOWER(:search)) OR
-          (LOWER(project.email) ilike LOWER(:search)) OR
-          (LOWER(project.description) ilike LOWER(:search)) OR
-          (LOWER(project.address) ilike LOWER(:search))
+          (LOWER(project.slug) ilike LOWER(:search)) OR
+          (LOWER(project.description) ilike LOWER(:search)) 
         )`,
         {
           search: `%${search}%`,

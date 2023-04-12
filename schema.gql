@@ -405,6 +405,7 @@ type FileUse {
   eventActionId: String
   customerActionId: String
   callId: String
+  userId: String
 }
 
 enum FileUseStatusEnum {
@@ -425,6 +426,7 @@ enum FileUseTypeEnum {
   event_action
   customer_action
   call
+  user
 }
 
 type User {
@@ -439,6 +441,7 @@ type User {
   phone: String
   roles: [UserRoleEnum!]!
   isActive: Boolean
+  fileUses: [FileUse!]!
   provinceUsers: [ProvinceUser!]!
 }
 
@@ -498,6 +501,12 @@ type Query {
   getMessagesAdmin(paginationArgs: PaginationArgsGQL!, getMessagesAdminArgs: GetMessagesAdminArgsGQL!): PaginatedMessage!
   getMessageByIdAdmin(messageId: String!): Message
   getFileByIdAdmin(fileId: String!): File
+  getUsersPublic(paginationArgs: PaginationArgsGQL!, getUsersPublicArgs: GetUsersPublicArgsGQL!): PaginatedUser!
+  getProductsPublic(paginationArgs: PaginationArgsGQL!, getProductsPublicArgs: GetProductsPublicArgsGQL!): PaginatedProduct!
+  getProductByIdPublic(identity: String!): Product!
+  getCategoriesPublic(paginationArgs: PaginationArgsGQL!, getCategoriesPublicArgs: GetCategoriesPublicArgsGQL!): PaginatedCategory!
+  getProjectsPublic(paginationArgs: PaginationArgsGQL!, getProjectsPublicArgs: GetProjectsPublicArgsGQL!): PaginatedProject!
+  getProjectByIdPublic(identity: String!): Project
 }
 
 input LoginAdminInputsGQL {
@@ -621,11 +630,30 @@ input GetMessagesAdminArgsGQL {
   customerId: [String!]
 }
 
+input GetUsersPublicArgsGQL {
+  search: String = ""
+}
+
+input GetProductsPublicArgsGQL {
+  search: String = ""
+  categoryIdentity: String
+}
+
+input GetCategoriesPublicArgsGQL {
+  search: String = ""
+}
+
+input GetProjectsPublicArgsGQL {
+  search: String = ""
+}
+
 type Mutation {
   createUserAdmin(createUserAdminInputs: CreateUserAdminInputsGQL!): User!
   updateUserActivationAdmin(updateUserActivationAdmin: UpdateUserActivationAdminInputsGQL!): User!
   updateUserAdmin(updateUserAdminInputs: UpdateUserAdminInputsGQL!): User!
   updateUserProvincesAdmin(updateUserProvincesAdminInputs: UpdateUserProvincesAdminInputsGQL!): User!
+  addImageToUserAdmin(addImageToUserAdminInputs: AddImageToUserAdminInputsGQL!): User!
+  removeImageFromUserAdmin(removeImageFromUserAdminInputs: RemoveImageFromUserAdminInputsGQL!): User!
   createProductAdmin(createProductAdminInputs: CreateProductAdminInputsGQL!): Product!
   updateProductAdmin(updateProductAdminInputs: UpdateProductAdminInputsGQL!): Product!
   updateProductActivationAdmin(updateProductActivationAdmin: UpdateProductActivationAdminInputsGQL!): Product!
@@ -729,6 +757,15 @@ input UpdateUserAdminInputsGQL {
 input UpdateUserProvincesAdminInputsGQL {
   userId: String!
   provinceIds: [String!]!
+}
+
+input AddImageToUserAdminInputsGQL {
+  fileId: String!
+  userId: String!
+}
+
+input RemoveImageFromUserAdminInputsGQL {
+  fileUseId: String!
 }
 
 input CreateProductAdminInputsGQL {

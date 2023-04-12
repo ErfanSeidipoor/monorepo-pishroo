@@ -1,22 +1,26 @@
-import { UserRoleEnum } from "@back/enums";
+import { FileUseStatusEnum, FileUseTypeEnum, UserRoleEnum } from "@back/enums";
 import { paginate } from "@back/helpers/paginate";
 import { generateHashPassword, verifyPassword } from "@back/helpers/password";
 import { Ctx } from "@back/types/context.type";
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import {
+  AddImageToUserAdminInputs,
   CreateUserAdminInputs,
   GetUserByIdAdminArgs,
   GetUsersAdminArgs,
   LoginAdminInputs,
   PaginationArgs,
+  RemoveImageFromUserAdminInputs,
   UpdateUserActivationAdminInputs,
   UpdateUserAdminInputs,
   UpdateUserProvincesAdminInputs,
 } from "@pishroo/dto";
-import { Province, ProvinceUser, User } from "@pishroo/entities";
+import { File, FileUse, Province, ProvinceUser, User } from "@pishroo/entities";
 import {
   CustomError,
+  FILE_NOT_FOUND,
+  FILE_USE_NOT_FOUND,
   INVALID_USERNAME_OR_PASSWORD,
   PROVINCE_NOT_FOUND,
   USER_NOT_FOUND,
@@ -34,7 +38,9 @@ export class AuthService {
     @InjectRepository(User) private userRepo: Repository<User>,
     @InjectRepository(Province) private provinceRepo: Repository<Province>,
     @InjectRepository(ProvinceUser)
-    private provinceUserRepo: Repository<ProvinceUser>
+    private provinceUserRepo: Repository<ProvinceUser>,
+    @InjectRepository(File) private fileRepo: Repository<File>,
+    @InjectRepository(FileUse) private fileUseRepo: Repository<FileUse>
   ) {}
 
   async login(context: Ctx, loginAdminInputs: LoginAdminInputs): Promise<User> {
@@ -362,8 +368,93 @@ export class AuthService {
   }
 
   /* -------------------------------------------------------------------------- */
+  /*                                    Image                                   */
+  /* -------------------------------------------------------------------------- */
+
+  async removeImageFromUser(args: RemoveImageFromUserAdminInputs) {
+    const { fileUseId } = args;
+
+    /* ---------------------------------- file ---------------------------------- */
+
+    const fileUse = await this.fileUseRepo.findOne({
+      where: {
+        id: fileUseId,
+        type: FileUseTypeEnum.user,
+      },
+      relations: ["file", "user"],
+    });
+
+    if (!fileUse) {
+      throw new CustomError(FILE_USE_NOT_FOUND);
+    }
+
+    /* --------------------------------- saving --------------------------------- */
+
+    await this.dataSource.transaction(async (manager) => {
+      await manager.softRemove(fileUse.file);
+      await manager.softRemove(fileUse);
+    });
+
+    return fileUse.user;
+  }
+
+  async addImageToUser(args: AddImageToUserAdminInputs): Promise<User> {
+    const { fileId, userId } = args;
+
+    /* ---------------------------------- file ---------------------------------- */
+    const file = await this.fileRepo.findOne({
+      where: {
+        id: fileId,
+        isUsed: false,
+      },
+    });
+
+    if (!file) {
+      throw new CustomError(FILE_NOT_FOUND);
+    }
+
+    file.isUsed = true;
+    /* --------------------------------- user -------------------------------- */
+    const user = await this.userRepo.findOne({
+      where: {
+        id: userId,
+      },
+    });
+
+    if (!user) {
+      throw new CustomError(USER_NOT_FOUND);
+    }
+
+    /* --------------------------------- saving --------------------------------- */
+
+    const fileUse = this.fileUseRepo.create({
+      file,
+      user,
+      type: FileUseTypeEnum.user,
+      status: FileUseStatusEnum.accepted,
+    });
+
+    await this.dataSource.transaction(async (manager) => {
+      await manager.save(file);
+      await manager.save(fileUse);
+    });
+
+    return user;
+  }
+
+  /* -------------------------------------------------------------------------- */
   /*                                ResolveField                                */
   /* -------------------------------------------------------------------------- */
+
+  async fileUses(userId: string): Promise<FileUse[]> {
+    return await this.fileUseRepo
+      .createQueryBuilder("fileUse")
+      .andWhere("fileUse.userId = :userId", {
+        userId,
+      })
+      .leftJoinAndSelect("fileUse.file", "file")
+      .getMany();
+  }
 
   async provinceUsers(userId: string): Promise<ProvinceUser[]> {
     return await this.provinceUserRepo

@@ -1,6 +1,7 @@
 import { FC } from "react";
 
 import Details from "./components/details";
+import Images from "./components/images";
 import Provinces from "./components/provinces";
 import Context from "./context";
 import useData from "./useDate";
@@ -18,6 +19,7 @@ export const UserUpdatePage: FC = () => {
       }}
     >
       <Details />
+      <Images />
       <Provinces />
     </Context.Provider>
   );

@@ -13,7 +13,7 @@ export class AddCategoriesToProductAdminInputs {
   @IsString({ each: true })
   @IsUUID("4", { each: true })
   @IsArray()
-  @ArrayMaxSize(5)
+  @ArrayMaxSize(50)
   @ArrayMinSize(0)
   categoryIds: string[];
 }
