@@ -49,6 +49,7 @@ const useData = () => {
     GetMessageByIdAdminQuery,
     GetMessageByIdAdminQueryVariables
   >(QUERY_GET_MESSAGE_BY_ID_ADMIN, {
+    fetchPolicy: "no-cache",
     variables: {
       messageId: messageId!,
     },

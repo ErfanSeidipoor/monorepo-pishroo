@@ -19,6 +19,7 @@ export const Filter: FC<IFilter> = ({ items = [] }) => {
     >
       {items.map(({ label, onClick, selected }) => (
         <button
+          key={label}
           onClick={onClick}
           className={cls(
             "border-transparent",

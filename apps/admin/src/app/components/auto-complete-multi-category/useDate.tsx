@@ -19,6 +19,7 @@ const useData = () => {
     GetCategoriesAdminAutoCompleteMultiQuery,
     GetCategoriesAdminAutoCompleteMultiQueryVariables
   >(GET_CATEGORIES_ADMIN_AUTO_COMPLETE_MULTI, {
+    fetchPolicy: "no-cache",
     variables: { getCategoriesAdminArgs: {} },
     onError: (error) => {
       setErrorQuery(error.message);

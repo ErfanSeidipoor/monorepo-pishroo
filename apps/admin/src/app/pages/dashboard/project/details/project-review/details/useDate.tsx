@@ -65,6 +65,7 @@ const useData = () => {
     GetProjectReviewByIdAdminQuery,
     GetProjectReviewByIdAdminQueryVariables
   >(QUERY_GET_PROJECT_REVIEW_BY_ID_ADMIN, {
+    fetchPolicy: "no-cache",
     variables: {
       projectReviewId: projectReviewId!,
     },

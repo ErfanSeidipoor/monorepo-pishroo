@@ -28,6 +28,7 @@ const useData = (propertyId: string) => {
     GetPropertiesAdminAutoCompleteQuery,
     GetPropertiesAdminAutoCompleteQueryVariables
   >(GET_PROPERTIES_ADMIN_AUTO_COMPLETE, {
+    fetchPolicy: "no-cache",
     variables: {
       getPropertiesAdminArgs: queryArgs,
     },

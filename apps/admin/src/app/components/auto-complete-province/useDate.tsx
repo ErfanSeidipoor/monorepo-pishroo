@@ -28,6 +28,7 @@ const useData = (provinceId: string) => {
     GetProvincesAdminAutoCompleteQuery,
     GetProvincesAdminAutoCompleteQueryVariables
   >(GET_PROVINCES_ADMIN_AUTO_COMPLETE, {
+    fetchPolicy: "no-cache",
     variables: {
       getProvincesAdminArgs: queryArgs,
     },

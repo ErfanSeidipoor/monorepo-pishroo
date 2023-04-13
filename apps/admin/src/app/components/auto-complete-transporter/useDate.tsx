@@ -28,6 +28,7 @@ const useData = (transporterId: string) => {
     GetTransportersAdminAutoCompleteQuery,
     GetTransportersAdminAutoCompleteQueryVariables
   >(GET_TRANSPORTERS_ADMIN_AUTO_COMPLETE, {
+    fetchPolicy: "no-cache",
     variables: {
       getTransportersAdminArgs: queryArgs,
     },

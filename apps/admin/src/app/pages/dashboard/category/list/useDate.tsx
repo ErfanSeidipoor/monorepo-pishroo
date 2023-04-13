@@ -78,6 +78,7 @@ const useData = () => {
     GetCategoriesAdminQuery,
     GetCategoriesAdminQueryVariables
   >(QUERY_GET_CATEGORIES_ADMIN, {
+    fetchPolicy: "no-cache",
     variables: {
       getCategoriesAdminArgs: queryArgs,
       paginationArgs: paginationArgs,

@@ -37,7 +37,7 @@ export class ProductService {
     paginationArgs: PaginationArgs,
     args: GetProductsPublicArgs
   ) {
-    const { search, categoryIdentity } = args;
+    const { search, categoryIdentity, orderRandom } = args;
 
     const queryBuilder = this.productRepo.createQueryBuilder("product");
 
@@ -70,7 +70,11 @@ export class ProductService {
 
     /* ---------------------------------- Order --------------------------------- */
 
-    queryBuilder.addOrderBy("product.createdAt", "DESC");
+    if (orderRandom) {
+      queryBuilder.addOrderBy("RANDOM()");
+    } else {
+      queryBuilder.addOrderBy("product.createdAt", "DESC");
+    }
 
     return paginate(queryBuilder, paginationArgs);
   }
@@ -89,6 +93,10 @@ export class ProductService {
         identity,
       });
     }
+
+    queryBuilder.andWhere("product.isActive = :isActive", {
+      isActive: true,
+    });
 
     const product = await queryBuilder.getOne();
 

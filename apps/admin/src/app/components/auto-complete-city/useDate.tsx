@@ -28,6 +28,7 @@ const useData = (cityId: string) => {
     GetCitiesAdminAutoCompleteQuery,
     GetCitiesAdminAutoCompleteQueryVariables
   >(GET_CITIES_ADMIN_AUTO_COMPLETE, {
+    fetchPolicy: "no-cache",
     variables: {
       getCitiesAdminArgs: queryArgs,
     },

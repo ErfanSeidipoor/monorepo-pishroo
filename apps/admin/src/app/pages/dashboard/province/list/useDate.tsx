@@ -67,6 +67,7 @@ const useData = () => {
     GetProvincesAdminQuery,
     GetProvincesAdminQueryVariables
   >(QUERY_GET_PROVINCES_ADMIN, {
+    fetchPolicy: "no-cache",
     variables: {
       getProvincesAdminArgs: queryArgs,
       paginationArgs: paginationArgs,

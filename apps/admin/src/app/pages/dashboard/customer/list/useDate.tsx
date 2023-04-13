@@ -82,6 +82,7 @@ const useData = () => {
     GetCustomersAdminQuery,
     GetCustomersAdminQueryVariables
   >(QUERY_GET_CUSTOMERS_ADMIN, {
+    fetchPolicy: "no-cache",
     variables: {
       getCustomersAdminArgs: queryArgs,
       paginationArgs: paginationArgs,

@@ -1,4 +1,4 @@
-import { IsOptional, IsString } from "class-validator";
+import { IsBoolean, IsOptional, IsString } from "class-validator";
 
 export class GetProductsPublicArgs {
   @IsOptional()
@@ -8,4 +8,8 @@ export class GetProductsPublicArgs {
   @IsOptional()
   @IsString()
   categoryIdentity?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  orderRandom?: boolean;
 }

@@ -50,7 +50,7 @@ export const Projects: FC = () => {
               onClick={() =>
                 router.push(
                   url.generate(PROJECT_DETAILS_ROUTE, {
-                    slugProduct: slug,
+                    slugProject: slug,
                   })
                 )
               }

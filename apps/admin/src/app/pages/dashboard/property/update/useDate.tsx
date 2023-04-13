@@ -49,6 +49,7 @@ const useData = () => {
     GetPropertyByIdAdminQuery,
     GetPropertyByIdAdminQueryVariables
   >(QUERY_GET_PROPERTY_BY_ID_ADMIN, {
+    fetchPolicy: "no-cache",
     variables: {
       propertyId: propertyId!,
     },

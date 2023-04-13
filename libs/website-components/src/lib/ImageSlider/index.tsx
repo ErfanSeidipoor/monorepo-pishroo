@@ -139,7 +139,9 @@ export const ImageSlider: FC<IImageSlider> = ({ items = [] }) => {
             "flex",
             "justify-center",
             "bg-slate-200",
-            "opacity-95"
+            "opacity-95",
+            "border",
+            "border-red-700"
           )}
           onClick={() => setShowDialog(false)}
         />

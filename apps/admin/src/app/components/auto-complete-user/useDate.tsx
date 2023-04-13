@@ -28,6 +28,7 @@ const useData = (userId: string) => {
     GetUsersAdminAutoCompleteQuery,
     GetUsersAdminAutoCompleteQueryVariables
   >(GET_USERS_ADMIN_AUTO_COMPLETE, {
+    fetchPolicy: "no-cache",
     variables: {
       getUsersAdminArgs: queryArgs,
     },

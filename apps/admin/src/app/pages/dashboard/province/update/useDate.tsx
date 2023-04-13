@@ -42,6 +42,7 @@ const useData = () => {
   } = useQuery<GetProvinceByIdAdminQuery, GetProvinceByIdAdminQueryVariables>(
     QUERY_GET_PROVINCE_BY_ID_ADMIN,
     {
+      fetchPolicy: "no-cache",
       variables: {
         provinceId: provinceId!,
       },

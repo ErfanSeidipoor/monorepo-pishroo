@@ -42,6 +42,7 @@ const useData = () => {
   } = useQuery<GetUserByIdAdminQuery, GetUserByIdAdminQueryVariables>(
     QUERY_GET_USER_BY_ID_ADMIN,
     {
+      fetchPolicy: "no-cache",
       variables: {
         userId: userId!,
       },

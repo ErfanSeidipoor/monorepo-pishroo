@@ -83,6 +83,7 @@ const useData = () => {
     GetProjectsAdminQuery,
     GetProjectsAdminQueryVariables
   >(QUERY_GET_PROJECTS_ADMIN, {
+    fetchPolicy: "no-cache",
     variables: {
       getProjectsAdminArgs: queryArgs,
       paginationArgs: paginationArgs,

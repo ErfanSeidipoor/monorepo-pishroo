@@ -26,6 +26,7 @@ const useData = (customerIds: string[]) => {
     GetCustomersAdminAutoCompleteMultiQuery,
     GetCustomersAdminAutoCompleteMultiQueryVariables
   >(GET_PROVINCES_ADMIN_AUTO_COMPLETE_MULTI, {
+    fetchPolicy: "no-cache",
     variables: { getCustomersAdminArgs: {} },
     onError: (error) => {
       setErrorQuery(error.message);

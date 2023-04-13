@@ -2,44 +2,31 @@ import { FC } from "react";
 import cls from "classnames";
 
 import { ImageSlider, ContactCard } from "@pishroo/website-components";
-
 import TEXTS from "@pishroo/texts";
+
+import { GetProjectByIdPublicProjectPageQuery } from "@website/gql/graphql";
+
 import assets from "./assets";
 
-export const General: FC = () => {
+export const General: FC<{
+  data: GetProjectByIdPublicProjectPageQuery;
+}> = ({
+  data: {
+    getProjectByIdPublic: { name, fileUses },
+  },
+}) => {
   const renderImages = () => {
     return (
-      <div className={cls("w-full", "md:flex-grow", "mb-4")}>
+      <div className={cls("w-full", "md:flex-grow", "mb-4", "md:mr-4")}>
         <h1 className={cls("text-4xl", "m-3", "text-center", "lg:text-right")}>
-          {"Tasty Rubber Gloves"}
+          {name}
         </h1>
         <ImageSlider
-          items={[
-            {
-              src: "https://loremflickr.com/640/480/food",
-              alt: "Gorgeous Plastic Chips",
-            },
-            {
-              src: "https://loremflickr.com/640/480/animals",
-              alt: "Electronic Bronze Car",
-            },
-            {
-              src: "https://loremflickr.com/640/480/business",
-              alt: "Tasty Wooden Table",
-            },
-            {
-              src: "https://loremflickr.com/640/480/people",
-              alt: "Unbranded Fresh Mouse",
-            },
-            {
-              src: "https://loremflickr.com/640/480/city",
-              alt: "Awesome Rubber Mouse",
-            },
-            {
-              src: "https://loremflickr.com/640/480/fashion",
-              alt: "Luxurious Steel Table",
-            },
-          ]}
+          items={fileUses.map((fileUse) => ({
+            src:
+              process.env["NX_BACK_URL"] + "/api/file/" + fileUse.file.filename,
+            alt: name,
+          }))}
         />
       </div>
     );

@@ -69,6 +69,7 @@ const useData = () => {
     GetCitiesAdminQuery,
     GetCitiesAdminQueryVariables
   >(QUERY_GET_CITIES_ADMIN, {
+    fetchPolicy: "no-cache",
     variables: {
       getCitiesAdminArgs: queryArgs,
       paginationArgs: paginationArgs,

@@ -5,4 +5,7 @@ import { GetProjectsPublicArgs } from "@pishroo/dto";
 export class GetProjectsPublicArgsGQL extends GetProjectsPublicArgs {
   @Field(() => String, { nullable: true })
   search?: string = "";
+
+  @Field(() => Boolean, { nullable: true })
+  orderRandom?: boolean;
 }
