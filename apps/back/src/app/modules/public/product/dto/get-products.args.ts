@@ -8,4 +8,7 @@ export class GetProductsPublicArgsGQL extends GetProductsPublicArgs {
 
   @Field(() => String, { nullable: true })
   categoryIdentity?: string;
+
+  @Field(() => Boolean, { nullable: true })
+  orderRandom?: boolean;
 }

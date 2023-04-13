@@ -65,6 +65,7 @@ const useData = () => {
     GetProductReviewByIdAdminQuery,
     GetProductReviewByIdAdminQueryVariables
   >(QUERY_GET_PRODUCT_REVIEW_BY_ID_ADMIN, {
+    fetchPolicy: "no-cache",
     variables: {
       productReviewId: productReviewId!,
     },

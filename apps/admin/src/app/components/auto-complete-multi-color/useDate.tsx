@@ -19,6 +19,7 @@ const useData = () => {
     GetColorsAdminAutoCompleteMultiQuery,
     GetColorsAdminAutoCompleteMultiQueryVariables
   >(GET_COLORS_ADMIN_AUTO_COMPLETE_MULTI, {
+    fetchPolicy: "no-cache",
     variables: { getColorsAdminArgs: {} },
     onError: (error) => {
       setErrorQuery(error.message);

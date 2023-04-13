@@ -82,6 +82,7 @@ const useData = () => {
     GetTransportersAdminQuery,
     GetTransportersAdminQueryVariables
   >(QUERY_GET_TRANSPORTERS_ADMIN, {
+    fetchPolicy: "no-cache",
     variables: {
       getTransportersAdminArgs: queryArgs,
       paginationArgs: paginationArgs,

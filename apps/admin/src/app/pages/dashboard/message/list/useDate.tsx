@@ -84,6 +84,7 @@ const useData = () => {
     GetMessagesAdminQuery,
     GetMessagesAdminQueryVariables
   >(QUERY_GET_MESSAGES_ADMIN, {
+    fetchPolicy: "no-cache",
     variables: {
       getMessagesAdminArgs: queryArgs,
       paginationArgs: paginationArgs,

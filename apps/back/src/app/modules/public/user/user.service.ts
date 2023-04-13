@@ -23,17 +23,9 @@ export class UserService {
     /*                                   filters                                  */
     /* -------------------------------------------------------------------------- */
 
-    // if (roles && roles.length) {
-    //   queryBuilder.andWhere("user.roles <:roles", {
-    //     roles: [UserRoleEnum.admin_content, UserRoleEnum.supper_admin],
-    //   });
-    // }
-
-    // if (typeof isActive !== "undefined") {
-    //   queryBuilder.andWhere("user.isActive = :isActive", {
-    //     isActive,
-    //   });
-    // }
+    queryBuilder.andWhere("user.isActive = :isActive", {
+      isActive: true,
+    });
 
     /* -------------------------------------------------------------------------- */
     /*                                    Order                                   */

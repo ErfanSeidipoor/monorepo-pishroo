@@ -82,6 +82,7 @@ const useData = () => {
   const { loading } = useQuery<GetUsersAdminQuery, GetUsersAdminQueryVariables>(
     QUERY_GET_USERS_ADMIN,
     {
+      fetchPolicy: "no-cache",
       variables: {
         getUsersAdminArgs: queryArgs,
         paginationArgs: paginationArgs,

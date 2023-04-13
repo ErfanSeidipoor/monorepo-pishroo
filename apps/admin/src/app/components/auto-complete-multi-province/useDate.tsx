@@ -19,6 +19,7 @@ const useData = () => {
     GetProvincesAdminAutoCompleteQuery,
     GetProvincesAdminAutoCompleteQueryVariables
   >(GET_PROVINCES_ADMIN_AUTO_COMPLETE_MULTI, {
+    fetchPolicy: "no-cache",
     variables: { getProvincesAdminArgs: {} },
     onError: (error) => {
       setErrorQuery(error.message);

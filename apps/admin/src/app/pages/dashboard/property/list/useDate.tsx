@@ -81,6 +81,7 @@ const useData = () => {
     GetPropertiesAdminQuery,
     GetPropertiesAdminQueryVariables
   >(QUERY_GET_PROPERTIES_ADMIN, {
+    fetchPolicy: "no-cache",
     variables: {
       getPropertiesAdminArgs: queryArgs,
       paginationArgs: paginationArgs,

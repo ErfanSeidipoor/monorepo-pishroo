@@ -25,11 +25,10 @@ export class ProjectService {
     paginationArgs: PaginationArgs,
     args: GetProjectsPublicArgs
   ) {
-    const { search } = args;
+    const { search, orderRandom } = args;
 
-    const queryBuilder = this.projectRepo
-      .createQueryBuilder("project")
-      .leftJoinAndSelect("project.city", "city");
+    const queryBuilder = this.projectRepo.createQueryBuilder("project");
+    // .leftJoinAndSelect("project.city", "city");
 
     /* --------------------------------- filters -------------------------------- */
 
@@ -46,9 +45,17 @@ export class ProjectService {
       );
     }
 
+    queryBuilder.andWhere("project.isActive = :isActive", {
+      isActive: true,
+    });
+
     /* ---------------------------------- Order --------------------------------- */
 
-    queryBuilder.addOrderBy("project.createdAt", "DESC");
+    if (orderRandom) {
+      queryBuilder.addOrderBy(" RANDOM() ");
+    } else {
+      queryBuilder.addOrderBy("project.createdAt", "DESC");
+    }
 
     return paginate(queryBuilder, paginationArgs);
   }
@@ -59,14 +66,18 @@ export class ProjectService {
     const queryBuilder = this.projectRepo.createQueryBuilder("project");
 
     if (isUUID(identity)) {
-      queryBuilder.andWhere("product.id = :identity", {
+      queryBuilder.andWhere("project.id = :identity", {
         identity,
       });
     } else {
-      queryBuilder.andWhere("product.slug = :identity", {
+      queryBuilder.andWhere("project.slug = :identity", {
         identity,
       });
     }
+
+    queryBuilder.andWhere("project.isActive = :isActive", {
+      isActive: true,
+    });
 
     const project = await queryBuilder.getOne();
 

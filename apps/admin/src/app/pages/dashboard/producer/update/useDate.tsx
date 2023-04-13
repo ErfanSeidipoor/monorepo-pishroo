@@ -43,6 +43,7 @@ const useData = () => {
     GetProducerByIdAdminQuery,
     GetProducerByIdAdminQueryVariables
   >(QUERY_GET_PRODUCER_BY_ID_ADMIN, {
+    fetchPolicy: "no-cache",
     variables: {
       producerId: producerId!,
     },

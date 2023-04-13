@@ -15,6 +15,7 @@ import {
   GetProductByIdPublicProductPageQuery,
   GetProductByIdPublicProductPageQueryVariables,
 } from "@website/gql/graphql";
+
 import { QUERY_GET_PRODUCT_BY_ID } from "../productDetails/gql";
 
 export const ProductDetailsPage: FC = () => {
@@ -29,8 +30,6 @@ export const ProductDetailsPage: FC = () => {
       identity: `${slug}`,
     },
   });
-
-  console.log({ error, data });
 
   return (
     <>

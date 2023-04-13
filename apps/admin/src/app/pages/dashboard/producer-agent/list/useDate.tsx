@@ -82,6 +82,7 @@ const useData = () => {
     GetProducerAgentsAdminQuery,
     GetProducerAgentsAdminQueryVariables
   >(QUERY_GET_PRODUCER_AGENTS_ADMIN, {
+    fetchPolicy: "no-cache",
     variables: {
       getProducerAgentsAdminArgs: queryArgs,
       paginationArgs: paginationArgs,

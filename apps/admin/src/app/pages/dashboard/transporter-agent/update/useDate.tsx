@@ -49,6 +49,7 @@ const useData = () => {
     GetTransporterAgentByIdAdminQuery,
     GetTransporterAgentByIdAdminQueryVariables
   >(QUERY_GET_TRANSPORTER_AGENT_BY_ID_ADMIN, {
+    fetchPolicy: "no-cache",
     variables: {
       transporterAgentId: transporterAgentId!,
     },

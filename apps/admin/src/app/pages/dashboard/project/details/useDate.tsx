@@ -20,6 +20,7 @@ const useData = () => {
   } = useQuery<GetProjectByIdAdminQuery, GetProjectByIdAdminQueryVariables>(
     QUERY_GET_PROJECT_BY_ID_ADMIN,
     {
+      fetchPolicy: "no-cache",
       variables: {
         projectId: projectId!,
       },

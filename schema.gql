@@ -637,6 +637,7 @@ input GetUsersPublicArgsGQL {
 input GetProductsPublicArgsGQL {
   search: String = ""
   categoryIdentity: String
+  orderRandom: Boolean
 }
 
 input GetCategoriesPublicArgsGQL {
@@ -645,6 +646,7 @@ input GetCategoriesPublicArgsGQL {
 
 input GetProjectsPublicArgsGQL {
   search: String = ""
+  orderRandom: Boolean
 }
 
 type Mutation {

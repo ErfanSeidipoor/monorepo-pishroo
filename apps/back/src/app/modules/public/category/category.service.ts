@@ -19,11 +19,9 @@ export class CategoryService {
 
     /* --------------------------------- filters -------------------------------- */
 
-    // if (typeof isActive !== "undefined") {
-    //   queryBuilder.andWhere("category.isActive = :isActive", {
-    //     isActive,
-    //   });
-    // }
+    queryBuilder.andWhere("category.isActive = :isActive", {
+      isActive: true,
+    });
 
     /* ---------------------------------- Order --------------------------------- */
 

@@ -20,6 +20,7 @@ const useData = () => {
   } = useQuery<GetProductByIdAdminQuery, GetProductByIdAdminQueryVariables>(
     QUERY_GET_PRODUCT_BY_ID_ADMIN,
     {
+      fetchPolicy: "no-cache",
       variables: {
         productId: productId!,
       },

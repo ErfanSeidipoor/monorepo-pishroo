@@ -28,6 +28,7 @@ const useData = (producerId: string) => {
     GetProducersAdminAutoCompleteQuery,
     GetProducersAdminAutoCompleteQueryVariables
   >(GET_PRODUCERS_ADMIN_AUTO_COMPLETE, {
+    fetchPolicy: "no-cache",
     variables: {
       getProducersAdminArgs: queryArgs,
     },
