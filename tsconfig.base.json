@@ -17,7 +17,7 @@
     "baseUrl": ".",
     "paths": {
       "@admin/*": ["apps/admin/src/app/*"],
-      "@website/*": ["apps/website/*"],
+      "@app/*": ["apps/app/*"],
       "@back/*": ["apps/back/src/app/*"],
       "@pishroo/admin-components": ["libs/admin-components/src/index.ts"],
       "@pishroo/assets": ["libs/assets/src/index.ts"],
@@ -33,6 +33,7 @@
       "@pishroo/website-components/lib/*": [
         "libs/website-components/src/lib/*"
       ],
+      "@website/*": ["apps/website/*"],
       "typeRoots": ["types", "node_modules/@types"],
       "types": ["@emotion-types", "@window-types"]
     }

@@ -6,6 +6,7 @@
     "admin-components": "libs/admin-components",
     "admin-components-e2e": "apps/admin-components-e2e",
     "assets": "libs/assets",
+    "app": "apps/app",
     "back": "apps/back",
     "dto": "libs/dto",
     "entities": "libs/entities",
