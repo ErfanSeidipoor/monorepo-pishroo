@@ -25,6 +25,7 @@ const TEXTS = {
   CREATE: "Create",
   UPDATE: "Update",
   VALUE: "Value",
+  MORE: "More",
   IS_ACTIVE: "Is Active",
   ROLE: "Role",
   ACTIONS: "Actions",
