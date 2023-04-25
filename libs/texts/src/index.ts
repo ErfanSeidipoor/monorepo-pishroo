@@ -67,7 +67,7 @@ const TEXTS = {
   /* ----------------------------- image compoent ----------------------------- */
   COMPONENT_IMAGE_REMOVED_SUCCESS: "Image removed Succesfully!",
 
-  /* ---------------------------------- lohin --------------------------------- */
+  /* ---------------------------------- login --------------------------------- */
   PAGE_LOGIN__PAGE_TTTLE: "Login | Pishroo ",
   PAGE_LOGIN__WELCOME_BACK: "Hi, Welcome Back",
   PAGE_LOGIN__SIGN_IN: "Sign in to Pishroo",
@@ -466,7 +466,7 @@ const TEXTS = {
   WEBSITE_PAGE__PRODUCT__DESCRIPTIOIN__SEARCH: "Search",
   WEBSITE_PAGE__PRODUCT__SEARCHBOX__PLACEHOLDER: "Please Search",
 
-  /* -------------------------------- product details page ------------------------------- */
+  /* -------------------------- product details page -------------------------- */
 
   WEBSITE_PAGE__PRODUCT_DETAILS__PAGE_TITLE: "Product | Pishroo",
   WEBSITE_PAGE__PRODUCT_DETAILS__GENERAL__COLOR: "Color:",
@@ -481,13 +481,13 @@ const TEXTS = {
   WEBSITE_PAGE__PRODUCT_DETAILS__PROJECTS__TITLE: "Projects",
   WEBSITE_PAGE__PRODUCT_DETAILS__MORE__TITLE: "Search Product",
 
-  /* -------------------------------- project page ------------------------------- */
+  /* ------------------------------ project page ------------------------------ */
 
   WEBSITE_PAGE__PROJECT__PAGE_TITLE: "Project | Pishroo",
   WEBSITE_PAGE__PROJECT__DESCRIPTIOIN__SEARCH: "Search",
   WEBSITE_PAGE__PROJECT__SEARCHBOX__PLACEHOLDER: "Please Search",
 
-  /* -------------------------------- product details page ------------------------------- */
+  /* -------------------------- product details page -------------------------- */
 
   WEBSITE_PAGE__PROJECT_DETAILS__GENERAL__CONTACT_DESCRIPTION:
     "Call for price and availability",
@@ -499,11 +499,25 @@ const TEXTS = {
   WEBSITE_PAGE__PROJECT_DETAILS__PRODUCTS__TITLE: "Products",
   WEBSITE_PAGE__PROJECT_DETAILS__PROJECTS__TITLE: "Similar Project",
 
-  /* -------------------------------- Not Found page ------------------------------- */
+  /* -------------------------------- Not Found page -------------------------- */
 
   WEBSITE_PAGE__NOT_FOUND__PAGE_TITLE: "404 | Pishroo",
   WEBSITE_PAGE__NOT_FOUND__MAIN_TITLE: "Not Found",
   WEBSITE_PAGE__NOT_FOUND__MAIN_HOME: "Home",
+
+  /* -------------------------------- App Login ------------------------------- */
+
+  APP_SCREEN_LOGIN_LOGIN: "Login",
+  APP_SCREEN_LOGIN__SUCCESS: "Welcome!",
+  APP_SCREEN_LOGIN__LOGIN: "Login",
+
+  /* ---------------------------------- App Logout ---------------------------- */
+
+  APP_SCREEN_LOGOUT__CONFIRMATION: "Are You Sure Want to Logout?",
+  APP_SCREEN_LOGOUT__LOGOUT: "Logout",
+  APP_SCREEN_LOGOUT__SUCCESS: "Logout Successfully!",
+
+  /* ------------------------------- App Profile ------------------------------ */
 };
 
 export default TEXTS;

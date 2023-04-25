@@ -14,6 +14,7 @@
     "migration:show": "npm run typeorm:cli -- migration:show",
     "start:api:production": "npm run migration:run && node dist/apps/api/main.js",
     "codegen-admin": "env-cmd graphql-codegen -c ./apps/admin/src/codegen.ts --watch",
+    "codegen-app": "env-cmd graphql-codegen -c ./apps/app/src/codegen.ts --watch",
     "codegen-webiste": "env-cmd graphql-codegen -c ./apps/website/codegen.ts --watch"
   },
   "private": true,

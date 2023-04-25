@@ -17,7 +17,7 @@
     "baseUrl": ".",
     "paths": {
       "@admin/*": ["apps/admin/src/app/*"],
-      "@app/*": ["apps/app/*"],
+      "@app/*": ["apps/app/src/*"],
       "@back/*": ["apps/back/src/app/*"],
       "@pishroo/admin-components": ["libs/admin-components/src/index.ts"],
       "@pishroo/assets": ["libs/assets/src/index.ts"],
