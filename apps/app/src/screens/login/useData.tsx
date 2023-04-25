@@ -1,36 +1,18 @@
-import { useContext } from "react";
-import { useForm, SubmitHandler } from "react-hook-form";
-// import { useSnackbar } from "notistack";
-import { classValidatorResolver } from "@hookform/resolvers/class-validator";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { useQuery } from "@apollo/client";
+import { classValidatorResolver } from "@hookform/resolvers/class-validator";
 import { Alert } from "react-native";
 
 import { LoginAdminInputs } from "libs/dto/src/admin";
 import TEXTS from "libs/texts/src";
+
 import { LoginAdminQuery } from "@app/gql/graphql";
 import { useUser } from "@app/hooks";
 
-import { NavigationContext } from "@react-navigation/native";
-
-// import {
-//   signInFailed,
-//   signInStart,
-//   signInSuccess,
-// } from "@admin/store/user/user.action";
-// import { selectIsLoading } from "@admin/store/user/user.selector";
-import { PRODUCT_ROUTE } from "@app/constants";
-
 import { QUERY_LOGIN_ADMIN } from "./gql";
-// import { useNavigate } from "react-router-dom";
 
 const useData = () => {
-  const { isLoading, loginFailed, loginSuccess } = useUser();
-  // const { enqueueSnackbar } = useSnackbar();
-  // const dispatch = useDispatch();
-  // const navigate = useNavigate();
-  // const isLoading = useSelector(selectIsLoading);
-
-  const navigation = useContext(NavigationContext);
+  const { loginFailed, loginSuccess } = useUser();
 
   const {
     handleSubmit,
@@ -40,34 +22,27 @@ const useData = () => {
     resolver: classValidatorResolver(LoginAdminInputs),
     mode: "onChange",
     defaultValues: {
-      username: "",
-      password: "",
+      username: "superadmin",
+      password: "1234",
     },
   });
 
-  const { refetch } = useQuery<LoginAdminQuery>(QUERY_LOGIN_ADMIN, {
+  const { loading, refetch } = useQuery<LoginAdminQuery>(QUERY_LOGIN_ADMIN, {
     fetchPolicy: "standby",
-    errorPolicy: "all",
     notifyOnNetworkStatusChange: true,
     onError: (error) => {
+      console.log({ error });
       Alert.alert(error.message);
-      console.log({ "error.clientErrors": error.clientErrors });
-
       loginFailed(error);
-      // enqueueSnackbar(error.message, { variant: "error" });
-      // dispatch(signInFailed(error));
     },
     onCompleted: ({ loginAdmin }) => {
-      Alert.alert(TEXTS.PAGE_LOGIN__WELCOME);
-      // enqueueSnackbar(TEXTS.PAGE_LOGIN__WELCOME, { variant: "success" });
-      // dispatch(signInSuccess(loginAdmin));
-      navigation.navigate(PRODUCT_ROUTE);
+      console.log({ loginAdmin });
+      Alert.alert(TEXTS.APP_SCREEN_LOGIN__SUCCESS);
       loginSuccess(loginAdmin);
     },
   });
 
   const onSubmit: SubmitHandler<LoginAdminInputs> = (loginAdminInputs) => {
-    // dispatch(signInStart());
     refetch({ loginAdminInputs });
   };
 
@@ -77,7 +52,7 @@ const useData = () => {
     errors,
     handleSubmit,
     onSubmit,
-    isLoading,
+    loading,
   };
 };
 

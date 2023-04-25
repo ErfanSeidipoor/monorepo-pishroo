@@ -2,6 +2,10 @@
 
 export const LOGIN_ROUTE = "login";
 
+/* --------------------------------- profile -------------------------------- */
+
+export const PROFILE_ROUTE = "profile";
+
 /* --------------------------------- product -------------------------------- */
 
 export const PRODUCT_ROUTE = "product";
@@ -62,3 +66,7 @@ export const MESSAGE_DETAILS_ROUTE = "message_details";
 /* ------------------------------ phoneNumber ------------------------------- */
 
 export const PHONENUMBER_ROUTE = "phonenumber";
+
+/* --------------------------------- logout --------------------------------- */
+
+export const LOGOUT_ROUTE = "logout";

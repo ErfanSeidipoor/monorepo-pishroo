@@ -11,37 +11,41 @@ interface IUserProvider {
 }
 
 export const UserProvider: React.FC<IUserProvider> = ({ children }) => {
-  const [token, setToken] = useState("");
-  const [isLogin, setIsLogin] = useState(!!token);
-  const [isLoading, setIsLoading] = useState(!token);
+  // const [token, setToken] = useState("");
+  const [isLogin, setIsLogin] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [currentUser, setCurrentUser] = useState<Partial<User> | null>();
   const [error, setError] = useState<Error>();
 
-  useEffect(() => {
-    const getToken = async () => {
-      setToken(await AsyncStorage.getItem("TOKEN"));
-    };
-    getToken();
-  }, [setToken]);
+  // useEffect(() => {
+  //   console.log("useEffect getToken");
+
+  //   const getToken = async () => {
+  //     setToken(await AsyncStorage.getItem("TOKEN"));
+  //   };
+  //   getToken();
+  // }, [setToken]);
 
   const logout = async () => {
-    ("");
+    setIsLogin(false);
+    setCurrentUser(null);
   };
 
   const { loading } = useQuery<MeAdminQuery>(QUERY_ME_ADMIN, {
     notifyOnNetworkStatusChange: true,
+    errorPolicy: "all",
     onError: (error) => {
       loginFailed(error);
-      console.log({ error });
+      console.log("MeAdminQuery", { error });
     },
     onCompleted: ({ meAdmin }) => {
-      console.log({ error });
+      console.log("MeAdminQuery onCompleted", { meAdmin });
       loginSuccess(meAdmin);
     },
   });
 
   const loginSuccess = (user: Partial<User>) => {
-    setIsLogin(false);
+    setIsLogin(true);
     setCurrentUser(user);
   };
 

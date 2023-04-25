@@ -12,6 +12,8 @@ import {
   PRODUCER_ROUTE,
   MESSAGE_ROUTE,
   PHONENUMBER_ROUTE,
+  LOGOUT_ROUTE,
+  PROFILE_ROUTE,
 } from "@app/constants/index";
 
 import { useUser } from "@app/hooks";
@@ -23,6 +25,8 @@ import TransporterScreen from "./transporter";
 import ProducerScreen from "./producer";
 import MessageScreen from "./message";
 import PhonenumberScreen from "./phonenumber";
+import LogoutScreen from "./logout";
+import ProfileScreen from "./profile";
 
 const Drawer = createDrawerNavigator();
 const Stack = createNativeStackNavigator();
@@ -33,7 +37,12 @@ export const Navigation: FC = () => {
   return (
     <NavigationContainer>
       {isLogin ? (
-        <Drawer.Navigator initialRouteName={PRODUCT_ROUTE}>
+        <Drawer.Navigator initialRouteName={PROFILE_ROUTE}>
+          <Drawer.Screen
+            options={{ title: "profile" }}
+            name={PROFILE_ROUTE}
+            component={ProfileScreen}
+          />
           <Drawer.Screen
             options={{ title: "product", headerShown: false }}
             name={PRODUCT_ROUTE}
@@ -63,6 +72,11 @@ export const Navigation: FC = () => {
             options={{ title: "new Phonenumber" }}
             name={PHONENUMBER_ROUTE}
             component={PhonenumberScreen}
+          />
+          <Drawer.Screen
+            options={{ title: "logout" }}
+            name={LOGOUT_ROUTE}
+            component={LogoutScreen}
           />
         </Drawer.Navigator>
       ) : (

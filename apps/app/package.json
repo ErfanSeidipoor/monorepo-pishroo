@@ -12,7 +12,7 @@
     "release:android": "cd android && ./gradlew assembleRelease"
   },
   "dependencies": {
-    "@apollo/client": "^3.7.12",
+    "@apollo/client": "^3.5.10",
     "@react-native-async-storage/async-storage": "^1.18.1",
     "@react-navigation/drawer": "^6.6.2",
     "@react-navigation/native": "^6.1.6",
