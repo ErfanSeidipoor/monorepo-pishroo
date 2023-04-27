@@ -10,7 +10,7 @@ import ProductListScreen from "./list";
 
 const Stack = createNativeStackNavigator();
 
-export const ProductScreen: FC = () => {
+export const TransporterScreen: FC = () => {
   return (
     <Stack.Navigator initialRouteName={TRANSPORTER_LIST_ROUTE}>
       <Stack.Screen
@@ -27,4 +27,4 @@ export const ProductScreen: FC = () => {
   );
 };
 
-export default ProductScreen;
+export default TransporterScreen;

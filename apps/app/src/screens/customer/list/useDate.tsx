@@ -1,6 +1,7 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import { classValidatorResolver } from "@hookform/resolvers/class-validator";
 import { GetCustomersAdminArgs } from "libs/dto/src/admin";
+import { Alert } from "react-native";
 import {
   GetCustomersAdminArgsGql,
   GetCustomersAdminQuery,
@@ -23,6 +24,7 @@ const useData = () => {
   const [queryArgs, setQueryArgs] = useState<GetCustomersAdminArgsGql>({
     customerIds: [],
     cityIds: [],
+    provinceIds: [],
     isActive: true,
     search: "",
   });
@@ -57,11 +59,9 @@ const useData = () => {
       paginationArgs: paginationArgs,
     },
     onError: (error) => {
-      console.log("error: ", { error });
+      Alert.alert(error.message);
     },
     onCompleted: ({ getCustomersAdmin }) => {
-      console.log("onCompleted: ", { getCustomersAdmin });
-
       if (getCustomersAdmin?.pageInfo.currentPage === 1) {
         setRows(getCustomersAdmin.edges);
       } else {
@@ -74,7 +74,6 @@ const useData = () => {
   const onSubmitFilter: SubmitHandler<GetCustomersAdminArgs> = (
     getCustomersAdminArgs
   ) => {
-    console.log(getCustomersAdminArgs);
     setPaginationArgs((paginationArgs) => ({
       ...paginationArgs,
       page: 1,
@@ -84,8 +83,6 @@ const useData = () => {
   };
 
   const onEndReached = () => {
-    console.log("onEndReached");
-
     if (pageInfo && pageInfo.totalPages > pageInfo.currentPage) {
       setPaginationArgs((paginationArgs) => ({
         ...paginationArgs,
