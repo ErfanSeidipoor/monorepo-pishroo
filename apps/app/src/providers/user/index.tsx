@@ -12,7 +12,7 @@ interface IUserProvider {
 
 export const UserProvider: React.FC<IUserProvider> = ({ children }) => {
   // const [token, setToken] = useState("");
-  const [isLogin, setIsLogin] = useState(true);
+  const [isLogin, setIsLogin] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [currentUser, setCurrentUser] = useState<Partial<User> | null>();
   const [error, setError] = useState<Error>();

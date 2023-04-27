@@ -4,10 +4,12 @@ module.exports = {
     "@babel/preset-typescript",
   ],
   plugins: [
-    "@babel/plugin-proposal-export-namespace-from", // This line.
+    "react-native-reanimated/plugin",
+    ["@babel/plugin-transform-flow-strip-types", { loose: true }],
+    ["@babel/plugin-proposal-class-properties", { loose: true }],
+    ["@babel/plugin-proposal-private-methods", { loose: true }],
+    "@babel/plugin-proposal-export-namespace-from",
     ["module:react-native-dotenv", { path: "../../.env", moduleName: "@env" }],
     ["@babel/plugin-proposal-decorators", { version: "legacy" }],
-    "@babel/plugin-proposal-class-properties",
-    "react-native-reanimated/plugin",
   ],
 };

@@ -1,33 +1,35 @@
 import { FC } from "react";
 import {
   StyleSheet,
-  Text,
   SafeAreaView,
   Button,
   View,
   TextInput,
-  FlatList,
   ActivityIndicator,
+  SectionList,
 } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import { Controller } from "react-hook-form";
 
 import TEXTS from "libs/texts/src";
 
-import useData from "./useDate";
-import { CardDetails } from "@app/components";
+import { CardDetails, AutoCompleteProvince } from "@app/components";
 import { CUSTOMER_DETAILS_ROUTE } from "@app/constants";
 
-export const CustomersScreen: FC<{ navigation }> = ({ navigation }) => {
+import useData from "./useDate";
+
+export const CustomersScreen: FC = () => {
   const {
     isValid,
     control,
-    errors,
     handleSubmitFilter,
     onSubmitFilter,
     loading,
     rows,
     onEndReached,
   } = useData();
+
+  const { navigate } = useNavigation();
 
   const renderFilter = () => {
     return (
@@ -47,6 +49,22 @@ export const CustomersScreen: FC<{ navigation }> = ({ navigation }) => {
             />
           )}
           name="search"
+        />
+        <Controller
+          control={control}
+          rules={{
+            required: true,
+          }}
+          render={({ field: { onChange, onBlur, value } }) => (
+            <AutoCompleteProvince
+              onChange={(provinceId) =>
+                onChange(provinceId ? [provinceId] : undefined)
+              }
+              provinceId={value ? value[0] : ""}
+              placeholder={TEXTS.PROVINCE}
+            />
+          )}
+          name="provinceIds"
         />
 
         <View style={styles.button}>
@@ -68,6 +86,7 @@ export const CustomersScreen: FC<{ navigation }> = ({ navigation }) => {
     phone,
     officePhone,
     city,
+    id,
   }: (typeof rows)[0]) => (
     <CardDetails
       properties={[
@@ -77,25 +96,29 @@ export const CustomersScreen: FC<{ navigation }> = ({ navigation }) => {
         { label: TEXTS.PHONE, value: officePhone + " " + phone },
         { label: TEXTS.CITY, value: city.province.name + " " + city.name },
       ]}
-      onClick={() => navigation.navigate(CUSTOMER_DETAILS_ROUTE)}
+      onClick={() => navigate(CUSTOMER_DETAILS_ROUTE, { customerId: id })}
     />
   );
 
   const renderItems = () => (
-    <FlatList
-      data={rows}
+    <SectionList
+      sections={[{ titile: "", data: rows }]}
+      keyExtractor={(item, index) => item.id + index}
       renderItem={({ item }) => renderItem(item)}
-      keyExtractor={(item) => item.id}
       onEndReached={onEndReached}
-      ListFooterComponent={loading && <ActivityIndicator size={"small"} />}
       onEndReachedThreshold={0.8}
     />
   );
+
+  const renderLoading = () => {
+    if (loading) return <ActivityIndicator size={"small"} />;
+  };
 
   return (
     <SafeAreaView style={styles.container}>
       {renderFilter()}
       {renderItems()}
+      {renderLoading()}
     </SafeAreaView>
   );
 };

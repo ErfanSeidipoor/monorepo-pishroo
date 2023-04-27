@@ -6,6 +6,8 @@ import {
   Button,
   TextInput,
   View,
+  Alert,
+  TouchableOpacity,
 } from "react-native";
 import { Controller } from "react-hook-form";
 
@@ -19,7 +21,9 @@ export const LoginScreen: FC<{ navigation }> = ({ navigation }) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.label}>{TEXTS.USERNAME} </Text>
+      <Text style={styles.label}>
+        {TEXTS.USERNAME + JSON.stringify(new Date())}{" "}
+      </Text>
       <Controller
         control={control}
         rules={{
@@ -71,6 +75,7 @@ const styles = StyleSheet.create({
     marginTop: 40,
     height: 40,
   },
+
   container: {
     flex: 1,
     padding: 8,

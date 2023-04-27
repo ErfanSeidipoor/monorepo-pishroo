@@ -13,7 +13,9 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  * Therefore it is highly recommended to use the babel-plugin for production.
  */
 const documents = {
+    "\n  query getProvincesAdminAutoComplete(\n    $getProvincesAdminArgs: GetProvincesAdminArgsGQL!\n  ) {\n    getProvincesAdmin(\n      getProvincesAdminArgs: $getProvincesAdminArgs\n      paginationArgs: { limit: 30, page: 1 }\n    ) {\n      edges {\n        id\n        name\n      }\n    }\n  }\n": types.GetProvincesAdminAutoCompleteDocument,
     "\n  query meAdmin {\n    meAdmin {\n      id\n      lastName\n      firstName\n      createdAt\n      roles\n      username\n    }\n  }\n": types.MeAdminDocument,
+    "\n  query getCustomerByIdAdmin($customerId: String!) {\n    getCustomerByIdAdmin(customerId: $customerId) {\n      id\n      firstName\n      lastName\n      email\n      jobTitle\n      phone\n      officePhone\n      isActive\n      cityId\n      city {\n        name\n        id\n        province {\n          id\n          name\n        }\n      }\n    }\n  }\n": types.GetCustomerByIdAdminDocument,
     "\n  query getCustomersAdmin(\n    $getCustomersAdminArgs: GetCustomersAdminArgsGQL!\n    $paginationArgs: PaginationArgsGQL!\n  ) {\n    getCustomersAdmin(\n      getCustomersAdminArgs: $getCustomersAdminArgs\n      paginationArgs: $paginationArgs\n    ) {\n      pageInfo {\n        totalEdges\n        edgeCount\n        edgesPerPage\n        currentPage\n        totalPages\n      }\n      edges {\n        id\n        firstName\n        lastName\n        email\n        jobTitle\n        phone\n        officePhone\n        isActive\n        cityId\n        city {\n          id\n          name\n          province {\n            name\n            id\n          }\n        }\n      }\n    }\n  }\n": types.GetCustomersAdminDocument,
     "\n  query loginAdmin($loginAdminInputs: LoginAdminInputsGQL!) {\n    loginAdmin(loginAdminInputs: $loginAdminInputs) {\n      id\n      lastName\n      firstName\n      createdAt\n      roles\n      username\n    }\n  }\n": types.LoginAdminDocument,
     "\n  query logoutAdmin {\n    logoutAdmin {\n      id\n    }\n  }\n": types.LogoutAdminDocument,
@@ -36,7 +38,15 @@ export function graphql(source: string): unknown;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
+export function graphql(source: "\n  query getProvincesAdminAutoComplete(\n    $getProvincesAdminArgs: GetProvincesAdminArgsGQL!\n  ) {\n    getProvincesAdmin(\n      getProvincesAdminArgs: $getProvincesAdminArgs\n      paginationArgs: { limit: 30, page: 1 }\n    ) {\n      edges {\n        id\n        name\n      }\n    }\n  }\n"): (typeof documents)["\n  query getProvincesAdminAutoComplete(\n    $getProvincesAdminArgs: GetProvincesAdminArgsGQL!\n  ) {\n    getProvincesAdmin(\n      getProvincesAdminArgs: $getProvincesAdminArgs\n      paginationArgs: { limit: 30, page: 1 }\n    ) {\n      edges {\n        id\n        name\n      }\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
 export function graphql(source: "\n  query meAdmin {\n    meAdmin {\n      id\n      lastName\n      firstName\n      createdAt\n      roles\n      username\n    }\n  }\n"): (typeof documents)["\n  query meAdmin {\n    meAdmin {\n      id\n      lastName\n      firstName\n      createdAt\n      roles\n      username\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  query getCustomerByIdAdmin($customerId: String!) {\n    getCustomerByIdAdmin(customerId: $customerId) {\n      id\n      firstName\n      lastName\n      email\n      jobTitle\n      phone\n      officePhone\n      isActive\n      cityId\n      city {\n        name\n        id\n        province {\n          id\n          name\n        }\n      }\n    }\n  }\n"): (typeof documents)["\n  query getCustomerByIdAdmin($customerId: String!) {\n    getCustomerByIdAdmin(customerId: $customerId) {\n      id\n      firstName\n      lastName\n      email\n      jobTitle\n      phone\n      officePhone\n      isActive\n      cityId\n      city {\n        name\n        id\n        province {\n          id\n          name\n        }\n      }\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

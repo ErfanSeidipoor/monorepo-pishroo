@@ -1,13 +1,5 @@
 import { FC } from "react";
-import {
-  StyleSheet,
-  Text,
-  SafeAreaView,
-  Button,
-  TextInput,
-  View,
-} from "react-native";
-import { Controller } from "react-hook-form";
+import { StyleSheet, Text, SafeAreaView, Button, View } from "react-native";
 
 import TEXTS from "libs/texts/src";
 
