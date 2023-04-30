@@ -28,6 +28,21 @@ export type AddColorsToProductAdminInputsGql = {
   productId: Scalars['String'];
 };
 
+export type AddFileToCustomerActionAdminInputsGql = {
+  customerActionId: Scalars['String'];
+  fileId: Scalars['String'];
+};
+
+export type AddFileToProducerActionAdminInputsGql = {
+  fileId: Scalars['String'];
+  producerActionId: Scalars['String'];
+};
+
+export type AddFileToTransporterActionAdminInputsGql = {
+  fileId: Scalars['String'];
+  transporterActionId: Scalars['String'];
+};
+
 export type AddImageToProducerAdminInputsGql = {
   fileId: Scalars['String'];
   producerId: Scalars['String'];
@@ -105,6 +120,11 @@ export type CreateColorAdminInputsGql = {
   value: Scalars['String'];
 };
 
+export type CreateCustomerActionAdminInputsGql = {
+  customerId: Scalars['String'];
+  text: Scalars['String'];
+};
+
 export type CreateCustomerAdminInputsGql = {
   cityId?: InputMaybe<Scalars['String']>;
   email?: InputMaybe<Scalars['String']>;
@@ -126,6 +146,11 @@ export type CreateMessageAdminInputsGql = {
   isActive: Scalars['Boolean'];
   text: Scalars['String'];
   userId: Scalars['String'];
+};
+
+export type CreateProducerActionAdminInputsGql = {
+  producerId: Scalars['String'];
+  text: Scalars['String'];
 };
 
 export type CreateProducerAdminInputsGql = {
@@ -191,6 +216,11 @@ export type CreateProvinceAdminInputsGql = {
   name: Scalars['String'];
 };
 
+export type CreateTransporterActionAdminInputsGql = {
+  text: Scalars['String'];
+  transporterId: Scalars['String'];
+};
+
 export type CreateTransporterAdminInputsGql = {
   address: Scalars['String'];
   cityId?: InputMaybe<Scalars['String']>;
@@ -237,6 +267,20 @@ export type Customer = {
   officePhone?: Maybe<Scalars['String']>;
   phone?: Maybe<Scalars['String']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+export type CustomerAction = {
+  __typename?: 'CustomerAction';
+  createdAt: Scalars['DateTime'];
+  customer: Customer;
+  customerId: Scalars['String'];
+  deletedAt?: Maybe<Scalars['DateTime']>;
+  fileUses?: Maybe<Array<FileUse>>;
+  id: Scalars['String'];
+  text: Scalars['String'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  user: User;
+  userId: Scalars['String'];
 };
 
 export type CustomerMessage = {
@@ -398,6 +442,11 @@ export type GetColorsAdminArgsGql = {
   value?: InputMaybe<Scalars['String']>;
 };
 
+export type GetCustomerActionsAdminArgsGql = {
+  customerId: Scalars['String'];
+  search?: InputMaybe<Scalars['String']>;
+};
+
 export type GetCustomersAdminArgsGql = {
   cityIds?: InputMaybe<Array<Scalars['String']>>;
   customerIds?: InputMaybe<Array<Scalars['String']>>;
@@ -412,6 +461,11 @@ export type GetMessagesAdminArgsGql = {
   isSubmitted?: InputMaybe<Scalars['Boolean']>;
   search?: InputMaybe<Scalars['String']>;
   userId?: InputMaybe<Scalars['String']>;
+};
+
+export type GetProducerActionsAdminArgsGql = {
+  producerId: Scalars['String'];
+  search?: InputMaybe<Scalars['String']>;
 };
 
 export type GetProducerAgentsAdminArgsGql = {
@@ -447,6 +501,7 @@ export type GetProductsAdminArgsGql = {
 
 export type GetProductsPublicArgsGql = {
   categoryIdentity?: InputMaybe<Scalars['String']>;
+  orderRandom?: InputMaybe<Scalars['Boolean']>;
   search?: InputMaybe<Scalars['String']>;
 };
 
@@ -464,6 +519,7 @@ export type GetProjectsAdminArgsGql = {
 };
 
 export type GetProjectsPublicArgsGql = {
+  orderRandom?: InputMaybe<Scalars['Boolean']>;
   search?: InputMaybe<Scalars['String']>;
 };
 
@@ -477,6 +533,11 @@ export type GetPropertiesAdminArgsGql = {
 export type GetProvincesAdminArgsGql = {
   name?: InputMaybe<Scalars['String']>;
   provinceId?: InputMaybe<Scalars['String']>;
+};
+
+export type GetTransporterActionsAdminArgsGql = {
+  search?: InputMaybe<Scalars['String']>;
+  transporterId: Scalars['String'];
 };
 
 export type GetTransporterAgentsAdminArgsGql = {
@@ -530,6 +591,9 @@ export type Mutation = {
   __typename?: 'Mutation';
   addCategoriesToProductAdmin: Product;
   addColorsToProductAdmin: Product;
+  addFileToCustomerActionAdmin: CustomerAction;
+  addFileToProducerActionAdmin: ProducerAction;
+  addFileToTransporterActionAdmin: TransporterAction;
   addImageToProducerAdmin: Producer;
   addImageToProductAdmin: Product;
   addImageToProjectAdmin: Project;
@@ -539,9 +603,11 @@ export type Mutation = {
   createCategoryAdmin: Category;
   createCityAdmin: City;
   createColorAdmin: Color;
+  createCustomerActionAdmin: CustomerAction;
   createCustomerAdmin: Customer;
   createCustomerMessageAdmin: CustomerMessage;
   createMessageAdmin: Message;
+  createProducerActionAdmin: ProducerAction;
   createProducerAdmin: Producer;
   createProducerAgentAdmin: ProducerAgent;
   createProductAdmin: Product;
@@ -550,6 +616,7 @@ export type Mutation = {
   createProjectReviewAdmin: ProjectReview;
   createPropertyAdmin: Property;
   createProvinceAdmin: Province;
+  createTransporterActionAdmin: TransporterAction;
   createTransporterAdmin: Transporter;
   createTransporterAgentAdmin: TransporterAgent;
   createUserAdmin: User;
@@ -580,10 +647,12 @@ export type Mutation = {
   updateCategoryAdmin: Category;
   updateCityAdmin: City;
   updateColorAdmin: Color;
+  updateCustomerActionAdmin: CustomerAction;
   updateCustomerActivationAdmin: Customer;
   updateCustomerAdmin: Customer;
   updateMessageActivationAdmin: Message;
   updateMessageAdmin: Message;
+  updateProducerActionAdmin: ProducerAction;
   updateProducerActivationAdmin: Producer;
   updateProducerAdmin: Producer;
   updateProducerAgentActivationAdmin: ProducerAgent;
@@ -598,6 +667,7 @@ export type Mutation = {
   updatePropertyAdmin: Property;
   updatePropertyOfProductAdmin: ProductProperty;
   updateProvinceAdmin: Province;
+  updateTransporterActionAdmin: TransporterAction;
   updateTransporterActivationAdmin: Transporter;
   updateTransporterAdmin: Transporter;
   updateTransporterAgentActivationAdmin: TransporterAgent;
@@ -616,6 +686,21 @@ export type MutationAddCategoriesToProductAdminArgs = {
 
 export type MutationAddColorsToProductAdminArgs = {
   addColorsToProductAdminInputs: AddColorsToProductAdminInputsGql;
+};
+
+
+export type MutationAddFileToCustomerActionAdminArgs = {
+  addFileToCustomerActionAdmin: AddFileToCustomerActionAdminInputsGql;
+};
+
+
+export type MutationAddFileToProducerActionAdminArgs = {
+  addFileToProducerActionAdmin: AddFileToProducerActionAdminInputsGql;
+};
+
+
+export type MutationAddFileToTransporterActionAdminArgs = {
+  addFileToTransporterActionAdmin: AddFileToTransporterActionAdminInputsGql;
 };
 
 
@@ -664,6 +749,11 @@ export type MutationCreateColorAdminArgs = {
 };
 
 
+export type MutationCreateCustomerActionAdminArgs = {
+  createCustomerActionAdminInputs: CreateCustomerActionAdminInputsGql;
+};
+
+
 export type MutationCreateCustomerAdminArgs = {
   createCustomerAdminInputs: CreateCustomerAdminInputsGql;
 };
@@ -676,6 +766,11 @@ export type MutationCreateCustomerMessageAdminArgs = {
 
 export type MutationCreateMessageAdminArgs = {
   createMessageAdminInputs: CreateMessageAdminInputsGql;
+};
+
+
+export type MutationCreateProducerActionAdminArgs = {
+  createProducerActionAdminInputs: CreateProducerActionAdminInputsGql;
 };
 
 
@@ -716,6 +811,11 @@ export type MutationCreatePropertyAdminArgs = {
 
 export type MutationCreateProvinceAdminArgs = {
   createProvinceAdminInputs: CreateProvinceAdminInputsGql;
+};
+
+
+export type MutationCreateTransporterActionAdminArgs = {
+  createTransporterActionAdminInputs: CreateTransporterActionAdminInputsGql;
 };
 
 
@@ -869,6 +969,11 @@ export type MutationUpdateColorAdminArgs = {
 };
 
 
+export type MutationUpdateCustomerActionAdminArgs = {
+  updateCustomerActionAdminInputs: UpdateCustomerActionAdminInputsGql;
+};
+
+
 export type MutationUpdateCustomerActivationAdminArgs = {
   updateCustomerActivationAdmin: UpdateCustomerActivationAdminInputsGql;
 };
@@ -886,6 +991,11 @@ export type MutationUpdateMessageActivationAdminArgs = {
 
 export type MutationUpdateMessageAdminArgs = {
   updateMessageAdminInputs: UpdateMessageAdminInputsGql;
+};
+
+
+export type MutationUpdateProducerActionAdminArgs = {
+  updateProducerActionAdminInputs: UpdateProducerActionAdminInputsGql;
 };
 
 
@@ -956,6 +1066,11 @@ export type MutationUpdatePropertyOfProductAdminArgs = {
 
 export type MutationUpdateProvinceAdminArgs = {
   updateProvinceAdminInputs: UpdateProvinceAdminInputsGql;
+};
+
+
+export type MutationUpdateTransporterActionAdminArgs = {
+  updateTransporterActionAdminInputs: UpdateTransporterActionAdminInputsGql;
 };
 
 
@@ -1031,6 +1146,12 @@ export type PaginatedCustomer = {
   pageInfo: PageInfo;
 };
 
+export type PaginatedCustomerAction = {
+  __typename?: 'PaginatedCustomerAction';
+  edges: Array<CustomerAction>;
+  pageInfo: PageInfo;
+};
+
 export type PaginatedMessage = {
   __typename?: 'PaginatedMessage';
   edges: Array<Message>;
@@ -1040,6 +1161,12 @@ export type PaginatedMessage = {
 export type PaginatedProducer = {
   __typename?: 'PaginatedProducer';
   edges: Array<Producer>;
+  pageInfo: PageInfo;
+};
+
+export type PaginatedProducerAction = {
+  __typename?: 'PaginatedProducerAction';
+  edges: Array<ProducerAction>;
   pageInfo: PageInfo;
 };
 
@@ -1097,6 +1224,12 @@ export type PaginatedTransporter = {
   pageInfo: PageInfo;
 };
 
+export type PaginatedTransporterAction = {
+  __typename?: 'PaginatedTransporterAction';
+  edges: Array<TransporterAction>;
+  pageInfo: PageInfo;
+};
+
 export type PaginatedTransporterAgent = {
   __typename?: 'PaginatedTransporterAgent';
   edges: Array<TransporterAgent>;
@@ -1129,6 +1262,20 @@ export type Producer = {
   name?: Maybe<Scalars['String']>;
   phone?: Maybe<Scalars['String']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+export type ProducerAction = {
+  __typename?: 'ProducerAction';
+  createdAt: Scalars['DateTime'];
+  deletedAt?: Maybe<Scalars['DateTime']>;
+  fileUses?: Maybe<Array<FileUse>>;
+  id: Scalars['String'];
+  producer: Producer;
+  producerId: Scalars['String'];
+  text: Scalars['String'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  user: User;
+  userId: Scalars['String'];
 };
 
 export type ProducerAgent = {
@@ -1302,11 +1449,15 @@ export type Query = {
   getCityByIdAdmin?: Maybe<City>;
   getColorByIdAdmin?: Maybe<Color>;
   getColorsAdmin: PaginatedColor;
+  getCustomerActionByIdAdmin: CustomerAction;
+  getCustomerActionsAdmin: PaginatedCustomerAction;
   getCustomerByIdAdmin?: Maybe<Customer>;
   getCustomersAdmin: PaginatedCustomer;
   getFileByIdAdmin?: Maybe<File>;
   getMessageByIdAdmin?: Maybe<Message>;
   getMessagesAdmin: PaginatedMessage;
+  getProducerActionByIdAdmin: ProducerAction;
+  getProducerActionsAdmin: PaginatedProducerAction;
   getProducerAgentByIdAdmin?: Maybe<ProducerAgent>;
   getProducerAgentsAdmin: PaginatedProducerAgent;
   getProducerByIdAdmin?: Maybe<Producer>;
@@ -1329,6 +1480,8 @@ export type Query = {
   getPropertyByIdAdmin?: Maybe<Property>;
   getProvinceByIdAdmin?: Maybe<Province>;
   getProvincesAdmin: PaginatedProvince;
+  getTransporterActionByIdAdmin: TransporterAction;
+  getTransporterActionsAdmin: PaginatedTransporterAction;
   getTransporterAgentByIdAdmin?: Maybe<TransporterAgent>;
   getTransporterAgentsAdmin: PaginatedTransporterAgent;
   getTransporterByIdAdmin?: Maybe<Transporter>;
@@ -1381,6 +1534,17 @@ export type QueryGetColorsAdminArgs = {
 };
 
 
+export type QueryGetCustomerActionByIdAdminArgs = {
+  customerActionId: Scalars['String'];
+};
+
+
+export type QueryGetCustomerActionsAdminArgs = {
+  getCustomerActionsAdminArgs: GetCustomerActionsAdminArgsGql;
+  paginationArgs: PaginationArgsGql;
+};
+
+
 export type QueryGetCustomerByIdAdminArgs = {
   customerId: Scalars['String'];
 };
@@ -1404,6 +1568,17 @@ export type QueryGetMessageByIdAdminArgs = {
 
 export type QueryGetMessagesAdminArgs = {
   getMessagesAdminArgs: GetMessagesAdminArgsGql;
+  paginationArgs: PaginationArgsGql;
+};
+
+
+export type QueryGetProducerActionByIdAdminArgs = {
+  producerActionId: Scalars['String'];
+};
+
+
+export type QueryGetProducerActionsAdminArgs = {
+  getProducerActionsAdminArgs: GetProducerActionsAdminArgsGql;
   paginationArgs: PaginationArgsGql;
 };
 
@@ -1525,6 +1700,17 @@ export type QueryGetProvinceByIdAdminArgs = {
 
 export type QueryGetProvincesAdminArgs = {
   getProvincesAdminArgs: GetProvincesAdminArgsGql;
+  paginationArgs: PaginationArgsGql;
+};
+
+
+export type QueryGetTransporterActionByIdAdminArgs = {
+  transporterActionId: Scalars['String'];
+};
+
+
+export type QueryGetTransporterActionsAdminArgs = {
+  getTransporterActionsAdminArgs: GetTransporterActionsAdminArgsGql;
   paginationArgs: PaginationArgsGql;
 };
 
@@ -1664,6 +1850,11 @@ export type UpdateColorAdminInputsGql = {
   value: Scalars['String'];
 };
 
+export type UpdateCustomerActionAdminInputsGql = {
+  customerActionId: Scalars['String'];
+  text: Scalars['String'];
+};
+
 export type UpdateCustomerActivationAdminInputsGql = {
   customerId: Scalars['String'];
   isActive: Scalars['Boolean'];
@@ -1692,6 +1883,11 @@ export type UpdateMessageAdminInputsGql = {
   messageId: Scalars['String'];
   text: Scalars['String'];
   userId: Scalars['String'];
+};
+
+export type UpdateProducerActionAdminInputsGql = {
+  producerActionId: Scalars['String'];
+  text: Scalars['String'];
 };
 
 export type UpdateProducerActivationAdminInputsGql = {
@@ -1794,6 +1990,11 @@ export type UpdateProvinceAdminInputsGql = {
   provinceId: Scalars['String'];
 };
 
+export type UpdateTransporterActionAdminInputsGql = {
+  text: Scalars['String'];
+  transporterActionId: Scalars['String'];
+};
+
 export type UpdateTransporterActivationAdminInputsGql = {
   isActive: Scalars['Boolean'];
   transporterId: Scalars['String'];
@@ -1873,6 +2074,21 @@ export enum UserRoleEnum {
   Employee = 'employee',
   SupperAdmin = 'supper_admin'
 }
+
+export type TransporterAction = {
+  __typename?: 'transporterAction';
+  createdAt: Scalars['DateTime'];
+  deletedAt?: Maybe<Scalars['DateTime']>;
+  fileUses?: Maybe<Array<FileUse>>;
+  id: Scalars['String'];
+  text: Scalars['String'];
+  transporter: Transporter;
+  transporterAgent?: Maybe<TransporterAgent>;
+  transporterId: Scalars['String'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  user: User;
+  userId: Scalars['String'];
+};
 
 export type GetCitiesAdminAutoCompleteQueryVariables = Exact<{
   getCitiesAdminArgs: GetCitiesAdminArgsGql;
@@ -2035,6 +2251,56 @@ export type GetCityByIdAdminQueryVariables = Exact<{
 
 export type GetCityByIdAdminQuery = { __typename?: 'Query', getCityByIdAdmin?: { __typename?: 'City', id: string, name: string, provinceId: string, province: { __typename?: 'Province', name: string, id: string } } | null };
 
+export type UpdateCustomerActionAdminInputsMutationVariables = Exact<{
+  updateCustomerActionAdminInputs: UpdateCustomerActionAdminInputsGql;
+}>;
+
+
+export type UpdateCustomerActionAdminInputsMutation = { __typename?: 'Mutation', updateCustomerActionAdmin: { __typename?: 'CustomerAction', id: string, text: string, customerId: string, userId: string } };
+
+export type AddFileToCustomerActionAdminMutationVariables = Exact<{
+  addFileToCustomerActionAdmin: AddFileToCustomerActionAdminInputsGql;
+}>;
+
+
+export type AddFileToCustomerActionAdminMutation = { __typename?: 'Mutation', addFileToCustomerActionAdmin: { __typename?: 'CustomerAction', id: string } };
+
+export type GetCustomerActionByIdAdminQueryVariables = Exact<{
+  customerActionId: Scalars['String'];
+}>;
+
+
+export type GetCustomerActionByIdAdminQuery = { __typename?: 'Query', getCustomerActionByIdAdmin: { __typename?: 'CustomerAction', id: string, text: string, customerId: string, userId: string, customer: { __typename?: 'Customer', email?: string | null, jobTitle?: string | null, phone?: string | null, officePhone?: string | null }, user: { __typename?: 'User', id: string, firstName?: string | null, username: string }, fileUses?: Array<{ __typename?: 'FileUse', id: string, file: { __typename?: 'File', id: string, filename: string } }> | null } };
+
+export type GetCustomerActionsAdminQueryVariables = Exact<{
+  getCustomerActionsAdminArgs: GetCustomerActionsAdminArgsGql;
+  paginationArgs: PaginationArgsGql;
+}>;
+
+
+export type GetCustomerActionsAdminQuery = { __typename?: 'Query', getCustomerActionsAdmin: { __typename?: 'PaginatedCustomerAction', pageInfo: { __typename?: 'PageInfo', totalEdges: number, edgeCount?: number | null, edgesPerPage: number, currentPage: number, totalPages: number }, edges: Array<{ __typename?: 'CustomerAction', id: string, text: string, userId: string, customer: { __typename?: 'Customer', email?: string | null, jobTitle?: string | null, phone?: string | null, officePhone?: string | null }, user: { __typename?: 'User', id: string, firstName?: string | null, lastName?: string | null, username: string } }> } };
+
+export type CreateCustomerActionAdminInputsMutationVariables = Exact<{
+  createCustomerActionAdminInputs: CreateCustomerActionAdminInputsGql;
+}>;
+
+
+export type CreateCustomerActionAdminInputsMutation = { __typename?: 'Mutation', createCustomerActionAdmin: { __typename?: 'CustomerAction', id: string, text: string, customerId: string, userId: string } };
+
+export type GetCustomerByIdAdminQueryVariables = Exact<{
+  customerId: Scalars['String'];
+}>;
+
+
+export type GetCustomerByIdAdminQuery = { __typename?: 'Query', getCustomerByIdAdmin?: { __typename?: 'Customer', id: string, firstName: string, lastName?: string | null, email?: string | null, jobTitle?: string | null, phone?: string | null, officePhone?: string | null, isActive?: boolean | null, cityId?: string | null, city: { __typename?: 'City', name: string, id: string, province: { __typename?: 'Province', id: string, name: string } } } | null };
+
+export type UpdateCustomerAdminMutationVariables = Exact<{
+  updateCustomerAdminInputs: UpdateCustomerAdminInputsGql;
+}>;
+
+
+export type UpdateCustomerAdminMutation = { __typename?: 'Mutation', updateCustomerAdmin: { __typename?: 'Customer', id: string, firstName: string, lastName?: string | null, email?: string | null, jobTitle?: string | null, phone?: string | null, officePhone?: string | null, isActive?: boolean | null, cityId?: string | null, city: { __typename?: 'City', name: string, id: string, province: { __typename?: 'Province', id: string, name: string } } } };
+
 export type GetCustomersAdminQueryVariables = Exact<{
   getCustomersAdminArgs: GetCustomersAdminArgsGql;
   paginationArgs: PaginationArgsGql;
@@ -2056,20 +2322,6 @@ export type CreateCustomerAdminMutationVariables = Exact<{
 
 
 export type CreateCustomerAdminMutation = { __typename?: 'Mutation', createCustomerAdmin: { __typename?: 'Customer', id: string, firstName: string, lastName?: string | null, email?: string | null, jobTitle?: string | null, phone?: string | null, officePhone?: string | null, isActive?: boolean | null } };
-
-export type UpdateCustomerAdminMutationVariables = Exact<{
-  updateCustomerAdminInputs: UpdateCustomerAdminInputsGql;
-}>;
-
-
-export type UpdateCustomerAdminMutation = { __typename?: 'Mutation', updateCustomerAdmin: { __typename?: 'Customer', id: string, firstName: string, lastName?: string | null, email?: string | null, jobTitle?: string | null, phone?: string | null, officePhone?: string | null, isActive?: boolean | null, cityId?: string | null, city: { __typename?: 'City', name: string, id: string, province: { __typename?: 'Province', id: string, name: string } } } };
-
-export type GetCustomerByIdAdminQueryVariables = Exact<{
-  customerId: Scalars['String'];
-}>;
-
-
-export type GetCustomerByIdAdminQuery = { __typename?: 'Query', getCustomerByIdAdmin?: { __typename?: 'Customer', id: string, firstName: string, lastName?: string | null, email?: string | null, jobTitle?: string | null, phone?: string | null, officePhone?: string | null, isActive?: boolean | null, cityId?: string | null, city: { __typename?: 'City', name: string, id: string, province: { __typename?: 'Province', id: string, name: string } } } | null };
 
 export type GetMessagesAdminQueryVariables = Exact<{
   getMessagesAdminArgs: GetMessagesAdminArgsGql;
@@ -2143,6 +2395,56 @@ export type GetProducerAgentByIdAdminQueryVariables = Exact<{
 
 export type GetProducerAgentByIdAdminQuery = { __typename?: 'Query', getProducerAgentByIdAdmin?: { __typename?: 'ProducerAgent', id: string, createdAt: any, firstName?: string | null, lastName?: string | null, email?: string | null, phone?: string | null, description?: string | null, isActive?: boolean | null, producer: { __typename?: 'Producer', id: string, name?: string | null, phone?: string | null, email?: string | null, cityId?: string | null, city: { __typename?: 'City', id: string, name: string, province: { __typename?: 'Province', id: string, name: string } } } } | null };
 
+export type UpdateProducerActionAdminInputsMutationVariables = Exact<{
+  updateProducerActionAdminInputs: UpdateProducerActionAdminInputsGql;
+}>;
+
+
+export type UpdateProducerActionAdminInputsMutation = { __typename?: 'Mutation', updateProducerActionAdmin: { __typename?: 'ProducerAction', id: string, text: string, producerId: string, userId: string } };
+
+export type AddFileToProducerActionAdminMutationVariables = Exact<{
+  addFileToProducerActionAdmin: AddFileToProducerActionAdminInputsGql;
+}>;
+
+
+export type AddFileToProducerActionAdminMutation = { __typename?: 'Mutation', addFileToProducerActionAdmin: { __typename?: 'ProducerAction', id: string } };
+
+export type GetProducerActionByIdAdminQueryVariables = Exact<{
+  producerActionId: Scalars['String'];
+}>;
+
+
+export type GetProducerActionByIdAdminQuery = { __typename?: 'Query', getProducerActionByIdAdmin: { __typename?: 'ProducerAction', id: string, text: string, producerId: string, userId: string, producer: { __typename?: 'Producer', id: string, name?: string | null, phone?: string | null, email?: string | null, description?: string | null, address?: string | null, isActive?: boolean | null }, user: { __typename?: 'User', id: string, firstName?: string | null, username: string, email?: string | null, lastName?: string | null }, fileUses?: Array<{ __typename?: 'FileUse', id: string, file: { __typename?: 'File', id: string, filename: string, path: string, isUsed: boolean, size: number } }> | null } };
+
+export type GetProducerActionsAdminQueryVariables = Exact<{
+  getProducerActionsAdminArgs: GetProducerActionsAdminArgsGql;
+  paginationArgs: PaginationArgsGql;
+}>;
+
+
+export type GetProducerActionsAdminQuery = { __typename?: 'Query', getProducerActionsAdmin: { __typename?: 'PaginatedProducerAction', pageInfo: { __typename?: 'PageInfo', totalEdges: number, edgeCount?: number | null, edgesPerPage: number, currentPage: number, totalPages: number }, edges: Array<{ __typename?: 'ProducerAction', id: string, text: string, userId: string, producer: { __typename?: 'Producer', id: string, name?: string | null, phone?: string | null, email?: string | null, description?: string | null, address?: string | null }, user: { __typename?: 'User', id: string, firstName?: string | null, username: string, lastName?: string | null } }> } };
+
+export type CreateProducerActionAdminInputsMutationVariables = Exact<{
+  createProducerActionAdminInputs: CreateProducerActionAdminInputsGql;
+}>;
+
+
+export type CreateProducerActionAdminInputsMutation = { __typename?: 'Mutation', createProducerActionAdmin: { __typename?: 'ProducerAction', id: string, text: string, producerId: string, userId: string } };
+
+export type GetProducerByIdAdminQueryVariables = Exact<{
+  producerId: Scalars['String'];
+}>;
+
+
+export type GetProducerByIdAdminQuery = { __typename?: 'Query', getProducerByIdAdmin?: { __typename?: 'Producer', id: string, name?: string | null, phone?: string | null, email?: string | null, description?: string | null, address?: string | null, isActive?: boolean | null, cityId?: string | null, city: { __typename?: 'City', id: string, name: string, province: { __typename?: 'Province', name: string, id: string } } } | null };
+
+export type UpdateProducerAdminMutationVariables = Exact<{
+  updateProducerAdminInputs: UpdateProducerAdminInputsGql;
+}>;
+
+
+export type UpdateProducerAdminMutation = { __typename?: 'Mutation', updateProducerAdmin: { __typename?: 'Producer', id: string, name?: string | null, phone?: string | null, email?: string | null, description?: string | null, address?: string | null, isActive?: boolean | null, cityId?: string | null, city: { __typename?: 'City', id: string, name: string, province: { __typename?: 'Province', name: string, id: string } } } };
+
 export type GetProducersAdminQueryVariables = Exact<{
   getProducersAdminArgs: GetProducersAdminArgsGql;
   paginationArgs: PaginationArgsGql;
@@ -2164,20 +2466,6 @@ export type CreateProducerAdminMutationVariables = Exact<{
 
 
 export type CreateProducerAdminMutation = { __typename?: 'Mutation', createProducerAdmin: { __typename?: 'Producer', id: string, name?: string | null, phone?: string | null, email?: string | null, description?: string | null, address?: string | null, isActive?: boolean | null, cityId?: string | null, city: { __typename?: 'City', id: string, name: string, province: { __typename?: 'Province', name: string, id: string } } } };
-
-export type UpdateProducerAdminMutationVariables = Exact<{
-  updateProducerAdminInputs: UpdateProducerAdminInputsGql;
-}>;
-
-
-export type UpdateProducerAdminMutation = { __typename?: 'Mutation', updateProducerAdmin: { __typename?: 'Producer', id: string, name?: string | null, phone?: string | null, email?: string | null, description?: string | null, address?: string | null, isActive?: boolean | null, cityId?: string | null, city: { __typename?: 'City', id: string, name: string, province: { __typename?: 'Province', name: string, id: string } } } };
-
-export type GetProducerByIdAdminQueryVariables = Exact<{
-  producerId: Scalars['String'];
-}>;
-
-
-export type GetProducerByIdAdminQuery = { __typename?: 'Query', getProducerByIdAdmin?: { __typename?: 'Producer', id: string, name?: string | null, phone?: string | null, email?: string | null, description?: string | null, address?: string | null, isActive?: boolean | null, cityId?: string | null, city: { __typename?: 'City', id: string, name: string, province: { __typename?: 'Province', name: string, id: string } } } | null };
 
 export type GetProductByIdAdminQueryVariables = Exact<{
   productId: Scalars['String'];
@@ -2488,6 +2776,56 @@ export type GetTransporterAgentByIdAdminQueryVariables = Exact<{
 
 export type GetTransporterAgentByIdAdminQuery = { __typename?: 'Query', getTransporterAgentByIdAdmin?: { __typename?: 'TransporterAgent', id: string, createdAt: any, firstName?: string | null, lastName?: string | null, email?: string | null, phone?: string | null, description?: string | null, isActive?: boolean | null, transporter: { __typename?: 'Transporter', id: string, name: string, phone?: string | null, email?: string | null, cityId?: string | null, city: { __typename?: 'City', id: string, name: string, province: { __typename?: 'Province', id: string, name: string } } } } | null };
 
+export type UpdateTransporterActionAdminInputsMutationVariables = Exact<{
+  updateTransporterActionAdminInputs: UpdateTransporterActionAdminInputsGql;
+}>;
+
+
+export type UpdateTransporterActionAdminInputsMutation = { __typename?: 'Mutation', updateTransporterActionAdmin: { __typename?: 'transporterAction', id: string, text: string, transporterId: string, userId: string } };
+
+export type AddFileToTransporterActionAdminMutationVariables = Exact<{
+  addFileToTransporterActionAdmin: AddFileToTransporterActionAdminInputsGql;
+}>;
+
+
+export type AddFileToTransporterActionAdminMutation = { __typename?: 'Mutation', addFileToTransporterActionAdmin: { __typename?: 'transporterAction', id: string } };
+
+export type GetTransporterActionByIdAdminQueryVariables = Exact<{
+  transporterActionId: Scalars['String'];
+}>;
+
+
+export type GetTransporterActionByIdAdminQuery = { __typename?: 'Query', getTransporterActionByIdAdmin: { __typename?: 'transporterAction', id: string, text: string, transporterId: string, userId: string, transporter: { __typename?: 'Transporter', id: string, name: string, phone?: string | null, email?: string | null, description: string, address?: string | null, isActive?: boolean | null }, user: { __typename?: 'User', id: string, firstName?: string | null, username: string, email?: string | null, lastName?: string | null }, fileUses?: Array<{ __typename?: 'FileUse', id: string, file: { __typename?: 'File', id: string, filename: string, path: string, isUsed: boolean, size: number } }> | null } };
+
+export type GetTransporterActionsAdminQueryVariables = Exact<{
+  getTransporterActionsAdminArgs: GetTransporterActionsAdminArgsGql;
+  paginationArgs: PaginationArgsGql;
+}>;
+
+
+export type GetTransporterActionsAdminQuery = { __typename?: 'Query', getTransporterActionsAdmin: { __typename?: 'PaginatedTransporterAction', pageInfo: { __typename?: 'PageInfo', totalEdges: number, edgeCount?: number | null, edgesPerPage: number, currentPage: number, totalPages: number }, edges: Array<{ __typename?: 'transporterAction', id: string, text: string, userId: string, transporter: { __typename?: 'Transporter', id: string, name: string, phone?: string | null, email?: string | null, description: string, address?: string | null }, user: { __typename?: 'User', id: string, firstName?: string | null, username: string, lastName?: string | null } }> } };
+
+export type CreateTransporterActionAdminInputsMutationVariables = Exact<{
+  createTransporterActionAdminInputs: CreateTransporterActionAdminInputsGql;
+}>;
+
+
+export type CreateTransporterActionAdminInputsMutation = { __typename?: 'Mutation', createTransporterActionAdmin: { __typename?: 'transporterAction', id: string, text: string, transporterId: string, userId: string } };
+
+export type GetTransporterByIdAdminQueryVariables = Exact<{
+  transporterId: Scalars['String'];
+}>;
+
+
+export type GetTransporterByIdAdminQuery = { __typename?: 'Query', getTransporterByIdAdmin?: { __typename?: 'Transporter', id: string, name: string, phone?: string | null, email?: string | null, description: string, address?: string | null, isActive?: boolean | null, cityId?: string | null, city: { __typename?: 'City', id: string, name: string, province: { __typename?: 'Province', name: string, id: string } } } | null };
+
+export type UpdateTransporterAdminMutationVariables = Exact<{
+  updateTransporterAdminInputs: UpdateTransporterAdminInputsGql;
+}>;
+
+
+export type UpdateTransporterAdminMutation = { __typename?: 'Mutation', updateTransporterAdmin: { __typename?: 'Transporter', id: string, name: string, phone?: string | null, email?: string | null, description: string, address?: string | null, isActive?: boolean | null, cityId?: string | null, city: { __typename?: 'City', id: string, name: string, province: { __typename?: 'Province', name: string, id: string } } } };
+
 export type GetTransportersAdminQueryVariables = Exact<{
   getTransportersAdminArgs: GetTransportersAdminArgsGql;
   paginationArgs: PaginationArgsGql;
@@ -2509,20 +2847,6 @@ export type CreateTransporterAdminMutationVariables = Exact<{
 
 
 export type CreateTransporterAdminMutation = { __typename?: 'Mutation', createTransporterAdmin: { __typename?: 'Transporter', id: string, name: string, phone?: string | null, email?: string | null, description: string, address?: string | null, isActive?: boolean | null, cityId?: string | null, city: { __typename?: 'City', id: string, name: string, province: { __typename?: 'Province', name: string, id: string } } } };
-
-export type UpdateTransporterAdminMutationVariables = Exact<{
-  updateTransporterAdminInputs: UpdateTransporterAdminInputsGql;
-}>;
-
-
-export type UpdateTransporterAdminMutation = { __typename?: 'Mutation', updateTransporterAdmin: { __typename?: 'Transporter', id: string, name: string, phone?: string | null, email?: string | null, description: string, address?: string | null, isActive?: boolean | null, cityId?: string | null, city: { __typename?: 'City', id: string, name: string, province: { __typename?: 'Province', name: string, id: string } } } };
-
-export type GetTransporterByIdAdminQueryVariables = Exact<{
-  transporterId: Scalars['String'];
-}>;
-
-
-export type GetTransporterByIdAdminQuery = { __typename?: 'Query', getTransporterByIdAdmin?: { __typename?: 'Transporter', id: string, name: string, phone?: string | null, email?: string | null, description: string, address?: string | null, isActive?: boolean | null, cityId?: string | null, city: { __typename?: 'City', id: string, name: string, province: { __typename?: 'Province', name: string, id: string } } } | null };
 
 export type UpdateUserAdminMutationVariables = Exact<{
   updateUserAdminInputs: UpdateUserAdminInputsGql;
@@ -2610,11 +2934,16 @@ export const GetCitiesAdminDocument = {"kind":"Document","definitions":[{"kind":
 export const CreateCityAdminDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"createCityAdmin"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"createCityAdminInputs"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"CreateCityAdminInputsGQL"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createCityAdmin"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"createCityAdminInputs"},"value":{"kind":"Variable","name":{"kind":"Name","value":"createCityAdminInputs"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"province"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}}]} as unknown as DocumentNode<CreateCityAdminMutation, CreateCityAdminMutationVariables>;
 export const UpdateCityAdminDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"updateCityAdmin"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"updateCityAdminInputs"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"UpdateCityAdminInputsGQL"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"updateCityAdmin"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"updateCityAdminInputs"},"value":{"kind":"Variable","name":{"kind":"Name","value":"updateCityAdminInputs"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"provinceId"}},{"kind":"Field","name":{"kind":"Name","value":"province"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]}}]} as unknown as DocumentNode<UpdateCityAdminMutation, UpdateCityAdminMutationVariables>;
 export const GetCityByIdAdminDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getCityByIdAdmin"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"cityId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getCityByIdAdmin"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"cityId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"cityId"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"provinceId"}},{"kind":"Field","name":{"kind":"Name","value":"province"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]}}]} as unknown as DocumentNode<GetCityByIdAdminQuery, GetCityByIdAdminQueryVariables>;
+export const UpdateCustomerActionAdminInputsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"updateCustomerActionAdminInputs"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"updateCustomerActionAdminInputs"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"UpdateCustomerActionAdminInputsGQL"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"updateCustomerActionAdmin"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"updateCustomerActionAdminInputs"},"value":{"kind":"Variable","name":{"kind":"Name","value":"updateCustomerActionAdminInputs"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"text"}},{"kind":"Field","name":{"kind":"Name","value":"customerId"}},{"kind":"Field","name":{"kind":"Name","value":"userId"}}]}}]}}]} as unknown as DocumentNode<UpdateCustomerActionAdminInputsMutation, UpdateCustomerActionAdminInputsMutationVariables>;
+export const AddFileToCustomerActionAdminDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"addFileToCustomerActionAdmin"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"addFileToCustomerActionAdmin"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"AddFileToCustomerActionAdminInputsGQL"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"addFileToCustomerActionAdmin"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"addFileToCustomerActionAdmin"},"value":{"kind":"Variable","name":{"kind":"Name","value":"addFileToCustomerActionAdmin"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]} as unknown as DocumentNode<AddFileToCustomerActionAdminMutation, AddFileToCustomerActionAdminMutationVariables>;
+export const GetCustomerActionByIdAdminDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getCustomerActionByIdAdmin"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"customerActionId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getCustomerActionByIdAdmin"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"customerActionId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"customerActionId"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"text"}},{"kind":"Field","name":{"kind":"Name","value":"customerId"}},{"kind":"Field","name":{"kind":"Name","value":"customer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"jobTitle"}},{"kind":"Field","name":{"kind":"Name","value":"phone"}},{"kind":"Field","name":{"kind":"Name","value":"officePhone"}}]}},{"kind":"Field","name":{"kind":"Name","value":"userId"}},{"kind":"Field","name":{"kind":"Name","value":"user"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"firstName"}},{"kind":"Field","name":{"kind":"Name","value":"username"}}]}},{"kind":"Field","name":{"kind":"Name","value":"fileUses"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"file"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"filename"}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetCustomerActionByIdAdminQuery, GetCustomerActionByIdAdminQueryVariables>;
+export const GetCustomerActionsAdminDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getCustomerActionsAdmin"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"getCustomerActionsAdminArgs"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"GetCustomerActionsAdminArgsGQL"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"paginationArgs"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"PaginationArgsGQL"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getCustomerActionsAdmin"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"getCustomerActionsAdminArgs"},"value":{"kind":"Variable","name":{"kind":"Name","value":"getCustomerActionsAdminArgs"}}},{"kind":"Argument","name":{"kind":"Name","value":"paginationArgs"},"value":{"kind":"Variable","name":{"kind":"Name","value":"paginationArgs"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"pageInfo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"totalEdges"}},{"kind":"Field","name":{"kind":"Name","value":"edgeCount"}},{"kind":"Field","name":{"kind":"Name","value":"edgesPerPage"}},{"kind":"Field","name":{"kind":"Name","value":"currentPage"}},{"kind":"Field","name":{"kind":"Name","value":"totalPages"}}]}},{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"text"}},{"kind":"Field","name":{"kind":"Name","value":"customer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"jobTitle"}},{"kind":"Field","name":{"kind":"Name","value":"phone"}},{"kind":"Field","name":{"kind":"Name","value":"officePhone"}}]}},{"kind":"Field","name":{"kind":"Name","value":"userId"}},{"kind":"Field","name":{"kind":"Name","value":"user"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"firstName"}},{"kind":"Field","name":{"kind":"Name","value":"lastName"}},{"kind":"Field","name":{"kind":"Name","value":"username"}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetCustomerActionsAdminQuery, GetCustomerActionsAdminQueryVariables>;
+export const CreateCustomerActionAdminInputsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"createCustomerActionAdminInputs"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"createCustomerActionAdminInputs"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"CreateCustomerActionAdminInputsGQL"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createCustomerActionAdmin"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"createCustomerActionAdminInputs"},"value":{"kind":"Variable","name":{"kind":"Name","value":"createCustomerActionAdminInputs"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"text"}},{"kind":"Field","name":{"kind":"Name","value":"customerId"}},{"kind":"Field","name":{"kind":"Name","value":"userId"}}]}}]}}]} as unknown as DocumentNode<CreateCustomerActionAdminInputsMutation, CreateCustomerActionAdminInputsMutationVariables>;
+export const GetCustomerByIdAdminDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getCustomerByIdAdmin"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"customerId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getCustomerByIdAdmin"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"customerId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"customerId"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"firstName"}},{"kind":"Field","name":{"kind":"Name","value":"lastName"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"jobTitle"}},{"kind":"Field","name":{"kind":"Name","value":"phone"}},{"kind":"Field","name":{"kind":"Name","value":"officePhone"}},{"kind":"Field","name":{"kind":"Name","value":"isActive"}},{"kind":"Field","name":{"kind":"Name","value":"cityId"}},{"kind":"Field","name":{"kind":"Name","value":"city"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"province"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetCustomerByIdAdminQuery, GetCustomerByIdAdminQueryVariables>;
+export const UpdateCustomerAdminDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"updateCustomerAdmin"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"updateCustomerAdminInputs"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"UpdateCustomerAdminInputsGQL"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"updateCustomerAdmin"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"updateCustomerAdminInputs"},"value":{"kind":"Variable","name":{"kind":"Name","value":"updateCustomerAdminInputs"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"firstName"}},{"kind":"Field","name":{"kind":"Name","value":"lastName"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"jobTitle"}},{"kind":"Field","name":{"kind":"Name","value":"phone"}},{"kind":"Field","name":{"kind":"Name","value":"officePhone"}},{"kind":"Field","name":{"kind":"Name","value":"isActive"}},{"kind":"Field","name":{"kind":"Name","value":"cityId"}},{"kind":"Field","name":{"kind":"Name","value":"city"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"province"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}}]}}]} as unknown as DocumentNode<UpdateCustomerAdminMutation, UpdateCustomerAdminMutationVariables>;
 export const GetCustomersAdminDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getCustomersAdmin"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"getCustomersAdminArgs"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"GetCustomersAdminArgsGQL"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"paginationArgs"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"PaginationArgsGQL"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getCustomersAdmin"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"getCustomersAdminArgs"},"value":{"kind":"Variable","name":{"kind":"Name","value":"getCustomersAdminArgs"}}},{"kind":"Argument","name":{"kind":"Name","value":"paginationArgs"},"value":{"kind":"Variable","name":{"kind":"Name","value":"paginationArgs"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"pageInfo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"totalEdges"}},{"kind":"Field","name":{"kind":"Name","value":"edgeCount"}},{"kind":"Field","name":{"kind":"Name","value":"edgesPerPage"}},{"kind":"Field","name":{"kind":"Name","value":"currentPage"}},{"kind":"Field","name":{"kind":"Name","value":"totalPages"}}]}},{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"firstName"}},{"kind":"Field","name":{"kind":"Name","value":"lastName"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"jobTitle"}},{"kind":"Field","name":{"kind":"Name","value":"phone"}},{"kind":"Field","name":{"kind":"Name","value":"officePhone"}},{"kind":"Field","name":{"kind":"Name","value":"isActive"}},{"kind":"Field","name":{"kind":"Name","value":"cityId"}},{"kind":"Field","name":{"kind":"Name","value":"city"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"province"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetCustomersAdminQuery, GetCustomersAdminQueryVariables>;
 export const UpdateCustomerActivationAdminDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"updateCustomerActivationAdmin"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"updateCustomerActivationAdmin"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"UpdateCustomerActivationAdminInputsGQL"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"updateCustomerActivationAdmin"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"updateCustomerActivationAdmin"},"value":{"kind":"Variable","name":{"kind":"Name","value":"updateCustomerActivationAdmin"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"isActive"}}]}}]}}]} as unknown as DocumentNode<UpdateCustomerActivationAdminMutation, UpdateCustomerActivationAdminMutationVariables>;
 export const CreateCustomerAdminDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"createCustomerAdmin"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"createCustomerAdminInputs"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"CreateCustomerAdminInputsGQL"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createCustomerAdmin"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"createCustomerAdminInputs"},"value":{"kind":"Variable","name":{"kind":"Name","value":"createCustomerAdminInputs"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"firstName"}},{"kind":"Field","name":{"kind":"Name","value":"lastName"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"jobTitle"}},{"kind":"Field","name":{"kind":"Name","value":"phone"}},{"kind":"Field","name":{"kind":"Name","value":"officePhone"}},{"kind":"Field","name":{"kind":"Name","value":"isActive"}}]}}]}}]} as unknown as DocumentNode<CreateCustomerAdminMutation, CreateCustomerAdminMutationVariables>;
-export const UpdateCustomerAdminDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"updateCustomerAdmin"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"updateCustomerAdminInputs"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"UpdateCustomerAdminInputsGQL"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"updateCustomerAdmin"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"updateCustomerAdminInputs"},"value":{"kind":"Variable","name":{"kind":"Name","value":"updateCustomerAdminInputs"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"firstName"}},{"kind":"Field","name":{"kind":"Name","value":"lastName"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"jobTitle"}},{"kind":"Field","name":{"kind":"Name","value":"phone"}},{"kind":"Field","name":{"kind":"Name","value":"officePhone"}},{"kind":"Field","name":{"kind":"Name","value":"isActive"}},{"kind":"Field","name":{"kind":"Name","value":"cityId"}},{"kind":"Field","name":{"kind":"Name","value":"city"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"province"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}}]}}]} as unknown as DocumentNode<UpdateCustomerAdminMutation, UpdateCustomerAdminMutationVariables>;
-export const GetCustomerByIdAdminDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getCustomerByIdAdmin"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"customerId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getCustomerByIdAdmin"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"customerId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"customerId"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"firstName"}},{"kind":"Field","name":{"kind":"Name","value":"lastName"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"jobTitle"}},{"kind":"Field","name":{"kind":"Name","value":"phone"}},{"kind":"Field","name":{"kind":"Name","value":"officePhone"}},{"kind":"Field","name":{"kind":"Name","value":"isActive"}},{"kind":"Field","name":{"kind":"Name","value":"cityId"}},{"kind":"Field","name":{"kind":"Name","value":"city"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"province"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetCustomerByIdAdminQuery, GetCustomerByIdAdminQueryVariables>;
 export const GetMessagesAdminDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getMessagesAdmin"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"getMessagesAdminArgs"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"GetMessagesAdminArgsGQL"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"paginationArgs"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"PaginationArgsGQL"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getMessagesAdmin"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"getMessagesAdminArgs"},"value":{"kind":"Variable","name":{"kind":"Name","value":"getMessagesAdminArgs"}}},{"kind":"Argument","name":{"kind":"Name","value":"paginationArgs"},"value":{"kind":"Variable","name":{"kind":"Name","value":"paginationArgs"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"pageInfo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"totalEdges"}},{"kind":"Field","name":{"kind":"Name","value":"edgeCount"}},{"kind":"Field","name":{"kind":"Name","value":"edgesPerPage"}},{"kind":"Field","name":{"kind":"Name","value":"currentPage"}},{"kind":"Field","name":{"kind":"Name","value":"totalPages"}}]}},{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"text"}},{"kind":"Field","name":{"kind":"Name","value":"count"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}},{"kind":"Field","name":{"kind":"Name","value":"deletedAt"}},{"kind":"Field","name":{"kind":"Name","value":"isActive"}},{"kind":"Field","name":{"kind":"Name","value":"isSubmited"}},{"kind":"Field","name":{"kind":"Name","value":"userId"}},{"kind":"Field","name":{"kind":"Name","value":"user"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"firstName"}},{"kind":"Field","name":{"kind":"Name","value":"lastName"}}]}},{"kind":"Field","name":{"kind":"Name","value":"customerMessages"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"customer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"jobTitle"}},{"kind":"Field","name":{"kind":"Name","value":"firstName"}},{"kind":"Field","name":{"kind":"Name","value":"lastName"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"phone"}},{"kind":"Field","name":{"kind":"Name","value":"officePhone"}},{"kind":"Field","name":{"kind":"Name","value":"isActive"}},{"kind":"Field","name":{"kind":"Name","value":"city"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"province"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetMessagesAdminQuery, GetMessagesAdminQueryVariables>;
 export const UpdateMessageActivationAdminDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"updateMessageActivationAdmin"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"updateMessageActivationAdminInputs"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"UpdateMessageActivationAdminInputsGQL"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"updateMessageActivationAdmin"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"updateMessageActivationAdminInputs"},"value":{"kind":"Variable","name":{"kind":"Name","value":"updateMessageActivationAdminInputs"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"isActive"}}]}}]}}]} as unknown as DocumentNode<UpdateMessageActivationAdminMutation, UpdateMessageActivationAdminMutationVariables>;
 export const CreateMessageAdminDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"createMessageAdmin"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"createMessageAdminInputs"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"CreateMessageAdminInputsGQL"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createMessageAdmin"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"createMessageAdminInputs"},"value":{"kind":"Variable","name":{"kind":"Name","value":"createMessageAdminInputs"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"text"}},{"kind":"Field","name":{"kind":"Name","value":"count"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}},{"kind":"Field","name":{"kind":"Name","value":"deletedAt"}},{"kind":"Field","name":{"kind":"Name","value":"isActive"}},{"kind":"Field","name":{"kind":"Name","value":"isSubmited"}},{"kind":"Field","name":{"kind":"Name","value":"userId"}},{"kind":"Field","name":{"kind":"Name","value":"user"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"firstName"}},{"kind":"Field","name":{"kind":"Name","value":"lastName"}}]}},{"kind":"Field","name":{"kind":"Name","value":"customerMessages"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"customer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"jobTitle"}},{"kind":"Field","name":{"kind":"Name","value":"firstName"}},{"kind":"Field","name":{"kind":"Name","value":"lastName"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"phone"}},{"kind":"Field","name":{"kind":"Name","value":"officePhone"}},{"kind":"Field","name":{"kind":"Name","value":"isActive"}},{"kind":"Field","name":{"kind":"Name","value":"city"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"province"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<CreateMessageAdminMutation, CreateMessageAdminMutationVariables>;
@@ -2625,11 +2954,16 @@ export const UpdateProducerAgentActivationAdminDocument = {"kind":"Document","de
 export const CreateProducerAgentAdminDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"createProducerAgentAdmin"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"createProducerAgentAdminInputs"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"CreateProducerAgentAdminInputsGQL"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createProducerAgentAdmin"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"createProducerAgentAdminInputs"},"value":{"kind":"Variable","name":{"kind":"Name","value":"createProducerAgentAdminInputs"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"firstName"}},{"kind":"Field","name":{"kind":"Name","value":"lastName"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"phone"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"isActive"}},{"kind":"Field","name":{"kind":"Name","value":"producer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"phone"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"cityId"}},{"kind":"Field","name":{"kind":"Name","value":"city"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"province"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<CreateProducerAgentAdminMutation, CreateProducerAgentAdminMutationVariables>;
 export const UpdateProducerAgentAdminDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"updateProducerAgentAdmin"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"updateProducerAgentAdminInputs"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"UpdateProducerAgentAdminInputsGQL"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"updateProducerAgentAdmin"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"updateProducerAgentAdminInputs"},"value":{"kind":"Variable","name":{"kind":"Name","value":"updateProducerAgentAdminInputs"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"firstName"}},{"kind":"Field","name":{"kind":"Name","value":"lastName"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"phone"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"isActive"}},{"kind":"Field","name":{"kind":"Name","value":"producer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"phone"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"cityId"}},{"kind":"Field","name":{"kind":"Name","value":"city"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"province"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<UpdateProducerAgentAdminMutation, UpdateProducerAgentAdminMutationVariables>;
 export const GetProducerAgentByIdAdminDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getProducerAgentByIdAdmin"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"producerAgentId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getProducerAgentByIdAdmin"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"producerAgentId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"producerAgentId"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"firstName"}},{"kind":"Field","name":{"kind":"Name","value":"lastName"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"phone"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"isActive"}},{"kind":"Field","name":{"kind":"Name","value":"producer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"phone"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"cityId"}},{"kind":"Field","name":{"kind":"Name","value":"city"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"province"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetProducerAgentByIdAdminQuery, GetProducerAgentByIdAdminQueryVariables>;
+export const UpdateProducerActionAdminInputsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"updateProducerActionAdminInputs"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"updateProducerActionAdminInputs"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"UpdateProducerActionAdminInputsGQL"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"updateProducerActionAdmin"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"updateProducerActionAdminInputs"},"value":{"kind":"Variable","name":{"kind":"Name","value":"updateProducerActionAdminInputs"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"text"}},{"kind":"Field","name":{"kind":"Name","value":"producerId"}},{"kind":"Field","name":{"kind":"Name","value":"userId"}}]}}]}}]} as unknown as DocumentNode<UpdateProducerActionAdminInputsMutation, UpdateProducerActionAdminInputsMutationVariables>;
+export const AddFileToProducerActionAdminDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"addFileToProducerActionAdmin"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"addFileToProducerActionAdmin"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"AddFileToProducerActionAdminInputsGQL"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"addFileToProducerActionAdmin"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"addFileToProducerActionAdmin"},"value":{"kind":"Variable","name":{"kind":"Name","value":"addFileToProducerActionAdmin"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]} as unknown as DocumentNode<AddFileToProducerActionAdminMutation, AddFileToProducerActionAdminMutationVariables>;
+export const GetProducerActionByIdAdminDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getProducerActionByIdAdmin"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"producerActionId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getProducerActionByIdAdmin"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"producerActionId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"producerActionId"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"text"}},{"kind":"Field","name":{"kind":"Name","value":"producerId"}},{"kind":"Field","name":{"kind":"Name","value":"producer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"phone"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"address"}},{"kind":"Field","name":{"kind":"Name","value":"isActive"}}]}},{"kind":"Field","name":{"kind":"Name","value":"userId"}},{"kind":"Field","name":{"kind":"Name","value":"user"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"firstName"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"lastName"}}]}},{"kind":"Field","name":{"kind":"Name","value":"fileUses"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"file"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"filename"}},{"kind":"Field","name":{"kind":"Name","value":"path"}},{"kind":"Field","name":{"kind":"Name","value":"isUsed"}},{"kind":"Field","name":{"kind":"Name","value":"size"}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetProducerActionByIdAdminQuery, GetProducerActionByIdAdminQueryVariables>;
+export const GetProducerActionsAdminDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getProducerActionsAdmin"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"getProducerActionsAdminArgs"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"GetProducerActionsAdminArgsGQL"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"paginationArgs"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"PaginationArgsGQL"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getProducerActionsAdmin"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"getProducerActionsAdminArgs"},"value":{"kind":"Variable","name":{"kind":"Name","value":"getProducerActionsAdminArgs"}}},{"kind":"Argument","name":{"kind":"Name","value":"paginationArgs"},"value":{"kind":"Variable","name":{"kind":"Name","value":"paginationArgs"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"pageInfo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"totalEdges"}},{"kind":"Field","name":{"kind":"Name","value":"edgeCount"}},{"kind":"Field","name":{"kind":"Name","value":"edgesPerPage"}},{"kind":"Field","name":{"kind":"Name","value":"currentPage"}},{"kind":"Field","name":{"kind":"Name","value":"totalPages"}}]}},{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"text"}},{"kind":"Field","name":{"kind":"Name","value":"producer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"phone"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"address"}}]}},{"kind":"Field","name":{"kind":"Name","value":"userId"}},{"kind":"Field","name":{"kind":"Name","value":"user"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"firstName"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"lastName"}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetProducerActionsAdminQuery, GetProducerActionsAdminQueryVariables>;
+export const CreateProducerActionAdminInputsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"createProducerActionAdminInputs"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"createProducerActionAdminInputs"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"CreateProducerActionAdminInputsGQL"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createProducerActionAdmin"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"createProducerActionAdminInputs"},"value":{"kind":"Variable","name":{"kind":"Name","value":"createProducerActionAdminInputs"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"text"}},{"kind":"Field","name":{"kind":"Name","value":"producerId"}},{"kind":"Field","name":{"kind":"Name","value":"userId"}}]}}]}}]} as unknown as DocumentNode<CreateProducerActionAdminInputsMutation, CreateProducerActionAdminInputsMutationVariables>;
+export const GetProducerByIdAdminDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getProducerByIdAdmin"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"producerId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getProducerByIdAdmin"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"producerId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"producerId"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"phone"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"address"}},{"kind":"Field","name":{"kind":"Name","value":"isActive"}},{"kind":"Field","name":{"kind":"Name","value":"cityId"}},{"kind":"Field","name":{"kind":"Name","value":"city"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"province"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetProducerByIdAdminQuery, GetProducerByIdAdminQueryVariables>;
+export const UpdateProducerAdminDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"updateProducerAdmin"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"updateProducerAdminInputs"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"UpdateProducerAdminInputsGQL"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"updateProducerAdmin"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"updateProducerAdminInputs"},"value":{"kind":"Variable","name":{"kind":"Name","value":"updateProducerAdminInputs"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"phone"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"address"}},{"kind":"Field","name":{"kind":"Name","value":"isActive"}},{"kind":"Field","name":{"kind":"Name","value":"cityId"}},{"kind":"Field","name":{"kind":"Name","value":"city"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"province"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]}}]}}]} as unknown as DocumentNode<UpdateProducerAdminMutation, UpdateProducerAdminMutationVariables>;
 export const GetProducersAdminDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getProducersAdmin"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"getProducersAdminArgs"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"GetProducersAdminArgsGQL"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"paginationArgs"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"PaginationArgsGQL"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getProducersAdmin"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"getProducersAdminArgs"},"value":{"kind":"Variable","name":{"kind":"Name","value":"getProducersAdminArgs"}}},{"kind":"Argument","name":{"kind":"Name","value":"paginationArgs"},"value":{"kind":"Variable","name":{"kind":"Name","value":"paginationArgs"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"pageInfo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"totalEdges"}},{"kind":"Field","name":{"kind":"Name","value":"edgeCount"}},{"kind":"Field","name":{"kind":"Name","value":"edgesPerPage"}},{"kind":"Field","name":{"kind":"Name","value":"currentPage"}},{"kind":"Field","name":{"kind":"Name","value":"totalPages"}}]}},{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"address"}},{"kind":"Field","name":{"kind":"Name","value":"phone"}},{"kind":"Field","name":{"kind":"Name","value":"isActive"}},{"kind":"Field","name":{"kind":"Name","value":"cityId"}},{"kind":"Field","name":{"kind":"Name","value":"city"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"province"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetProducersAdminQuery, GetProducersAdminQueryVariables>;
 export const UpdateProducerActivationAdminDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"updateProducerActivationAdmin"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"updateProducerActivationAdmin"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"UpdateProducerActivationAdminInputsGQL"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"updateProducerActivationAdmin"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"updateProducerActivationAdminInputs"},"value":{"kind":"Variable","name":{"kind":"Name","value":"updateProducerActivationAdmin"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"isActive"}}]}}]}}]} as unknown as DocumentNode<UpdateProducerActivationAdminMutation, UpdateProducerActivationAdminMutationVariables>;
 export const CreateProducerAdminDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"createProducerAdmin"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"createProducerAdminInputs"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"CreateProducerAdminInputsGQL"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createProducerAdmin"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"createProducerAdminInputs"},"value":{"kind":"Variable","name":{"kind":"Name","value":"createProducerAdminInputs"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"phone"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"address"}},{"kind":"Field","name":{"kind":"Name","value":"isActive"}},{"kind":"Field","name":{"kind":"Name","value":"cityId"}},{"kind":"Field","name":{"kind":"Name","value":"city"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"province"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]}}]}}]} as unknown as DocumentNode<CreateProducerAdminMutation, CreateProducerAdminMutationVariables>;
-export const UpdateProducerAdminDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"updateProducerAdmin"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"updateProducerAdminInputs"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"UpdateProducerAdminInputsGQL"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"updateProducerAdmin"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"updateProducerAdminInputs"},"value":{"kind":"Variable","name":{"kind":"Name","value":"updateProducerAdminInputs"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"phone"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"address"}},{"kind":"Field","name":{"kind":"Name","value":"isActive"}},{"kind":"Field","name":{"kind":"Name","value":"cityId"}},{"kind":"Field","name":{"kind":"Name","value":"city"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"province"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]}}]}}]} as unknown as DocumentNode<UpdateProducerAdminMutation, UpdateProducerAdminMutationVariables>;
-export const GetProducerByIdAdminDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getProducerByIdAdmin"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"producerId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getProducerByIdAdmin"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"producerId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"producerId"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"phone"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"address"}},{"kind":"Field","name":{"kind":"Name","value":"isActive"}},{"kind":"Field","name":{"kind":"Name","value":"cityId"}},{"kind":"Field","name":{"kind":"Name","value":"city"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"province"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetProducerByIdAdminQuery, GetProducerByIdAdminQueryVariables>;
 export const GetProductByIdAdminDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getProductByIdAdmin"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"productId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getProductByIdAdmin"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"productId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"productId"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"isActive"}},{"kind":"Field","name":{"kind":"Name","value":"text"}},{"kind":"Field","name":{"kind":"Name","value":"productColors"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"colorId"}},{"kind":"Field","name":{"kind":"Name","value":"color"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"value"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"productCategories"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"categoryId"}},{"kind":"Field","name":{"kind":"Name","value":"category"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"fileUses"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"file"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"filename"}},{"kind":"Field","name":{"kind":"Name","value":"path"}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetProductByIdAdminQuery, GetProductByIdAdminQueryVariables>;
 export const AddCategoriesToProductAdminDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"addCategoriesToProductAdmin"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"addCategoriesToProductAdminInputs"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"AddCategoriesToProductAdminInputsGQL"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"addCategoriesToProductAdmin"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"addCategoriesToProductAdminInputs"},"value":{"kind":"Variable","name":{"kind":"Name","value":"addCategoriesToProductAdminInputs"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"productCategories"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"categoryId"}},{"kind":"Field","name":{"kind":"Name","value":"category"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}}]}}]} as unknown as DocumentNode<AddCategoriesToProductAdminMutation, AddCategoriesToProductAdminMutationVariables>;
 export const AddColorsToProductAdminDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"addColorsToProductAdmin"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"addColorsToProductAdminInputs"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"AddColorsToProductAdminInputsGQL"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"addColorsToProductAdmin"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"addColorsToProductAdminInputs"},"value":{"kind":"Variable","name":{"kind":"Name","value":"addColorsToProductAdminInputs"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"productColors"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"colorId"}},{"kind":"Field","name":{"kind":"Name","value":"color"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"value"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}}]}}]} as unknown as DocumentNode<AddColorsToProductAdminMutation, AddColorsToProductAdminMutationVariables>;
@@ -2673,11 +3007,16 @@ export const UpdateTransporterAgentActivationAdminDocument = {"kind":"Document",
 export const CreateTransporterAgentAdminDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"createTransporterAgentAdmin"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"createTransporterAgentAdminInputs"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"CreateTransporterAgentAdminInputsGQL"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createTransporterAgentAdmin"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"createTransporterAgentAdminInputs"},"value":{"kind":"Variable","name":{"kind":"Name","value":"createTransporterAgentAdminInputs"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"firstName"}},{"kind":"Field","name":{"kind":"Name","value":"lastName"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"phone"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"isActive"}},{"kind":"Field","name":{"kind":"Name","value":"transporter"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"phone"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"cityId"}},{"kind":"Field","name":{"kind":"Name","value":"city"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"province"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<CreateTransporterAgentAdminMutation, CreateTransporterAgentAdminMutationVariables>;
 export const UpdateTransporterAgentAdminDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"updateTransporterAgentAdmin"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"updateTransporterAgentAdminInputs"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"UpdateTransporterAgentAdminInputsGQL"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"updateTransporterAgentAdmin"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"updateTransporterAgentAdminInputs"},"value":{"kind":"Variable","name":{"kind":"Name","value":"updateTransporterAgentAdminInputs"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"firstName"}},{"kind":"Field","name":{"kind":"Name","value":"lastName"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"phone"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"isActive"}},{"kind":"Field","name":{"kind":"Name","value":"transporter"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"phone"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"cityId"}},{"kind":"Field","name":{"kind":"Name","value":"city"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"province"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<UpdateTransporterAgentAdminMutation, UpdateTransporterAgentAdminMutationVariables>;
 export const GetTransporterAgentByIdAdminDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getTransporterAgentByIdAdmin"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"transporterAgentId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getTransporterAgentByIdAdmin"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"transporterAgentId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"transporterAgentId"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"firstName"}},{"kind":"Field","name":{"kind":"Name","value":"lastName"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"phone"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"isActive"}},{"kind":"Field","name":{"kind":"Name","value":"transporter"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"phone"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"cityId"}},{"kind":"Field","name":{"kind":"Name","value":"city"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"province"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetTransporterAgentByIdAdminQuery, GetTransporterAgentByIdAdminQueryVariables>;
+export const UpdateTransporterActionAdminInputsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"updateTransporterActionAdminInputs"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"updateTransporterActionAdminInputs"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"UpdateTransporterActionAdminInputsGQL"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"updateTransporterActionAdmin"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"updateTransporterActionAdminInputs"},"value":{"kind":"Variable","name":{"kind":"Name","value":"updateTransporterActionAdminInputs"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"text"}},{"kind":"Field","name":{"kind":"Name","value":"transporterId"}},{"kind":"Field","name":{"kind":"Name","value":"userId"}}]}}]}}]} as unknown as DocumentNode<UpdateTransporterActionAdminInputsMutation, UpdateTransporterActionAdminInputsMutationVariables>;
+export const AddFileToTransporterActionAdminDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"addFileToTransporterActionAdmin"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"addFileToTransporterActionAdmin"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"AddFileToTransporterActionAdminInputsGQL"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"addFileToTransporterActionAdmin"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"addFileToTransporterActionAdmin"},"value":{"kind":"Variable","name":{"kind":"Name","value":"addFileToTransporterActionAdmin"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]} as unknown as DocumentNode<AddFileToTransporterActionAdminMutation, AddFileToTransporterActionAdminMutationVariables>;
+export const GetTransporterActionByIdAdminDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getTransporterActionByIdAdmin"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"transporterActionId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getTransporterActionByIdAdmin"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"transporterActionId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"transporterActionId"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"text"}},{"kind":"Field","name":{"kind":"Name","value":"transporterId"}},{"kind":"Field","name":{"kind":"Name","value":"transporter"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"phone"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"address"}},{"kind":"Field","name":{"kind":"Name","value":"isActive"}}]}},{"kind":"Field","name":{"kind":"Name","value":"userId"}},{"kind":"Field","name":{"kind":"Name","value":"user"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"firstName"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"lastName"}}]}},{"kind":"Field","name":{"kind":"Name","value":"fileUses"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"file"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"filename"}},{"kind":"Field","name":{"kind":"Name","value":"path"}},{"kind":"Field","name":{"kind":"Name","value":"isUsed"}},{"kind":"Field","name":{"kind":"Name","value":"size"}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetTransporterActionByIdAdminQuery, GetTransporterActionByIdAdminQueryVariables>;
+export const GetTransporterActionsAdminDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getTransporterActionsAdmin"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"getTransporterActionsAdminArgs"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"GetTransporterActionsAdminArgsGQL"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"paginationArgs"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"PaginationArgsGQL"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getTransporterActionsAdmin"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"getTransporterActionsAdminArgs"},"value":{"kind":"Variable","name":{"kind":"Name","value":"getTransporterActionsAdminArgs"}}},{"kind":"Argument","name":{"kind":"Name","value":"paginationArgs"},"value":{"kind":"Variable","name":{"kind":"Name","value":"paginationArgs"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"pageInfo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"totalEdges"}},{"kind":"Field","name":{"kind":"Name","value":"edgeCount"}},{"kind":"Field","name":{"kind":"Name","value":"edgesPerPage"}},{"kind":"Field","name":{"kind":"Name","value":"currentPage"}},{"kind":"Field","name":{"kind":"Name","value":"totalPages"}}]}},{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"text"}},{"kind":"Field","name":{"kind":"Name","value":"transporter"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"phone"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"address"}}]}},{"kind":"Field","name":{"kind":"Name","value":"userId"}},{"kind":"Field","name":{"kind":"Name","value":"user"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"firstName"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"lastName"}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetTransporterActionsAdminQuery, GetTransporterActionsAdminQueryVariables>;
+export const CreateTransporterActionAdminInputsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"createTransporterActionAdminInputs"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"createTransporterActionAdminInputs"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"CreateTransporterActionAdminInputsGQL"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createTransporterActionAdmin"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"createTransporterActionAdminInputs"},"value":{"kind":"Variable","name":{"kind":"Name","value":"createTransporterActionAdminInputs"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"text"}},{"kind":"Field","name":{"kind":"Name","value":"transporterId"}},{"kind":"Field","name":{"kind":"Name","value":"userId"}}]}}]}}]} as unknown as DocumentNode<CreateTransporterActionAdminInputsMutation, CreateTransporterActionAdminInputsMutationVariables>;
+export const GetTransporterByIdAdminDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getTransporterByIdAdmin"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"transporterId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getTransporterByIdAdmin"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"transporterId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"transporterId"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"phone"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"address"}},{"kind":"Field","name":{"kind":"Name","value":"isActive"}},{"kind":"Field","name":{"kind":"Name","value":"cityId"}},{"kind":"Field","name":{"kind":"Name","value":"city"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"province"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetTransporterByIdAdminQuery, GetTransporterByIdAdminQueryVariables>;
+export const UpdateTransporterAdminDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"updateTransporterAdmin"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"updateTransporterAdminInputs"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"UpdateTransporterAdminInputsGQL"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"updateTransporterAdmin"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"updateTransporterAdminInputs"},"value":{"kind":"Variable","name":{"kind":"Name","value":"updateTransporterAdminInputs"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"phone"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"address"}},{"kind":"Field","name":{"kind":"Name","value":"isActive"}},{"kind":"Field","name":{"kind":"Name","value":"cityId"}},{"kind":"Field","name":{"kind":"Name","value":"city"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"province"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]}}]}}]} as unknown as DocumentNode<UpdateTransporterAdminMutation, UpdateTransporterAdminMutationVariables>;
 export const GetTransportersAdminDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getTransportersAdmin"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"getTransportersAdminArgs"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"GetTransportersAdminArgsGQL"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"paginationArgs"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"PaginationArgsGQL"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getTransportersAdmin"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"getTransportersAdminArgs"},"value":{"kind":"Variable","name":{"kind":"Name","value":"getTransportersAdminArgs"}}},{"kind":"Argument","name":{"kind":"Name","value":"paginationArgs"},"value":{"kind":"Variable","name":{"kind":"Name","value":"paginationArgs"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"pageInfo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"totalEdges"}},{"kind":"Field","name":{"kind":"Name","value":"edgeCount"}},{"kind":"Field","name":{"kind":"Name","value":"edgesPerPage"}},{"kind":"Field","name":{"kind":"Name","value":"currentPage"}},{"kind":"Field","name":{"kind":"Name","value":"totalPages"}}]}},{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"address"}},{"kind":"Field","name":{"kind":"Name","value":"phone"}},{"kind":"Field","name":{"kind":"Name","value":"isActive"}},{"kind":"Field","name":{"kind":"Name","value":"cityId"}},{"kind":"Field","name":{"kind":"Name","value":"city"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"province"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetTransportersAdminQuery, GetTransportersAdminQueryVariables>;
 export const UpdateTransporterActivationAdminDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"updateTransporterActivationAdmin"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"updateTransporterActivationAdmin"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"UpdateTransporterActivationAdminInputsGQL"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"updateTransporterActivationAdmin"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"updateTransporterActivationAdminInputs"},"value":{"kind":"Variable","name":{"kind":"Name","value":"updateTransporterActivationAdmin"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"isActive"}}]}}]}}]} as unknown as DocumentNode<UpdateTransporterActivationAdminMutation, UpdateTransporterActivationAdminMutationVariables>;
 export const CreateTransporterAdminDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"createTransporterAdmin"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"createTransporterAdminInputs"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"CreateTransporterAdminInputsGQL"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createTransporterAdmin"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"createTransporterAdminInputs"},"value":{"kind":"Variable","name":{"kind":"Name","value":"createTransporterAdminInputs"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"phone"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"address"}},{"kind":"Field","name":{"kind":"Name","value":"isActive"}},{"kind":"Field","name":{"kind":"Name","value":"cityId"}},{"kind":"Field","name":{"kind":"Name","value":"city"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"province"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]}}]}}]} as unknown as DocumentNode<CreateTransporterAdminMutation, CreateTransporterAdminMutationVariables>;
-export const UpdateTransporterAdminDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"updateTransporterAdmin"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"updateTransporterAdminInputs"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"UpdateTransporterAdminInputsGQL"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"updateTransporterAdmin"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"updateTransporterAdminInputs"},"value":{"kind":"Variable","name":{"kind":"Name","value":"updateTransporterAdminInputs"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"phone"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"address"}},{"kind":"Field","name":{"kind":"Name","value":"isActive"}},{"kind":"Field","name":{"kind":"Name","value":"cityId"}},{"kind":"Field","name":{"kind":"Name","value":"city"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"province"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]}}]}}]} as unknown as DocumentNode<UpdateTransporterAdminMutation, UpdateTransporterAdminMutationVariables>;
-export const GetTransporterByIdAdminDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getTransporterByIdAdmin"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"transporterId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getTransporterByIdAdmin"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"transporterId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"transporterId"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"phone"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"address"}},{"kind":"Field","name":{"kind":"Name","value":"isActive"}},{"kind":"Field","name":{"kind":"Name","value":"cityId"}},{"kind":"Field","name":{"kind":"Name","value":"city"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"province"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetTransporterByIdAdminQuery, GetTransporterByIdAdminQueryVariables>;
 export const UpdateUserAdminDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"updateUserAdmin"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"updateUserAdminInputs"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"UpdateUserAdminInputsGQL"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"updateUserAdmin"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"updateUserAdminInputs"},"value":{"kind":"Variable","name":{"kind":"Name","value":"updateUserAdminInputs"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"firstName"}},{"kind":"Field","name":{"kind":"Name","value":"lastName"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"phone"}},{"kind":"Field","name":{"kind":"Name","value":"roles"}},{"kind":"Field","name":{"kind":"Name","value":"isActive"}}]}}]}}]} as unknown as DocumentNode<UpdateUserAdminMutation, UpdateUserAdminMutationVariables>;
 export const AddImageToUserAdminDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"addImageToUserAdmin"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"addImageToUserAdminInputs"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"AddImageToUserAdminInputsGQL"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"addImageToUserAdmin"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"addImageToUserAdminInputs"},"value":{"kind":"Variable","name":{"kind":"Name","value":"addImageToUserAdminInputs"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]} as unknown as DocumentNode<AddImageToUserAdminMutation, AddImageToUserAdminMutationVariables>;
 export const UpdateUserProvincesAdminDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"updateUserProvincesAdmin"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"updateUserProvincesAdminInputs"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"UpdateUserProvincesAdminInputsGQL"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"updateUserProvincesAdmin"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"updateUserProvincesAdminInputs"},"value":{"kind":"Variable","name":{"kind":"Name","value":"updateUserProvincesAdminInputs"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"provinceUsers"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"provinceId"}},{"kind":"Field","name":{"kind":"Name","value":"province"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}}]}}]} as unknown as DocumentNode<UpdateUserProvincesAdminMutation, UpdateUserProvincesAdminMutationVariables>;

@@ -11,6 +11,7 @@ import { GetCustomersAdminArgs } from "@pishroo/dto";
 import { url } from "@pishroo/utils";
 
 import {
+  DASHBOARD_CUSTOMER_ACTION_ROUTE,
   DASHBOARD_CUSTOMER_DETAILS,
   DASHBOARD_CUSTOMER_ROUTE,
   DASHBOARD_ROUTE,
@@ -38,7 +39,7 @@ const useData = () => {
     GetCustomersAdminQuery["getCustomersAdmin"]["edges"]
   >([]);
 
-  const [activationItem, setActivationItem] = useState<typeof rows[0]>();
+  const [activationItem, setActivationItem] = useState<(typeof rows)[0]>();
 
   const convertSearchParamsToArgs = (searchParams: URLSearchParams) => {
     return {
@@ -168,6 +169,11 @@ const useData = () => {
         },
       });
   };
+
+  const onActions = (customerId: string) => {
+    navigate(url.generate(DASHBOARD_CUSTOMER_ACTION_ROUTE, { customerId }));
+  };
+
   return {
     pageInfo,
     rows,
@@ -182,6 +188,7 @@ const useData = () => {
     isValid,
     onPageSelect,
     onEdit,
+    onActions,
     activationItem,
     setActivationItem,
     updateCustomerActivaitonLoading,

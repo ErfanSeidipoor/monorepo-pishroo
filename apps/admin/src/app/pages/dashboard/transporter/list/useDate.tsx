@@ -14,6 +14,7 @@ import {
   DASHBOARD_TRANSPORTER_DETAILS,
   DASHBOARD_TRANSPORTER_ROUTE,
   DASHBOARD_ROUTE,
+  DASHBOARD_TRANSPORTER_ACTION_ROUTE,
 } from "@admin/constants";
 import {
   GetTransportersAdminArgsGql,
@@ -38,7 +39,7 @@ const useData = () => {
     GetTransportersAdminQuery["getTransportersAdmin"]["edges"]
   >([]);
 
-  const [activationItem, setActivationItem] = useState<typeof rows[0]>();
+  const [activationItem, setActivationItem] = useState<(typeof rows)[0]>();
 
   const convertSearchParamsToArgs = (searchParams: URLSearchParams) => {
     return {
@@ -170,6 +171,13 @@ const useData = () => {
         },
       });
   };
+
+  const onActions = (transporterId: string) => {
+    navigate(
+      url.generate(DASHBOARD_TRANSPORTER_ACTION_ROUTE, { transporterId })
+    );
+  };
+
   return {
     pageInfo,
     rows,
@@ -188,6 +196,7 @@ const useData = () => {
     setActivationItem,
     updateTransporterActivaitonLoading,
     onUpdateTransporterActivation,
+    onActions,
   };
 };
 

@@ -11,6 +11,7 @@ import { GetProducersAdminArgs } from "@pishroo/dto";
 import { url } from "@pishroo/utils";
 
 import {
+  DASHBOARD_PRODUCER_ACTION_ROUTE,
   DASHBOARD_PRODUCER_DETAILS,
   DASHBOARD_PRODUCER_ROUTE,
   DASHBOARD_ROUTE,
@@ -38,7 +39,7 @@ const useData = () => {
     GetProducersAdminQuery["getProducersAdmin"]["edges"]
   >([]);
 
-  const [activationItem, setActivationItem] = useState<typeof rows[0]>();
+  const [activationItem, setActivationItem] = useState<(typeof rows)[0]>();
 
   const convertSearchParamsToArgs = (searchParams: URLSearchParams) => {
     return {
@@ -168,6 +169,11 @@ const useData = () => {
         },
       });
   };
+
+  const onActions = (producerId: string) => {
+    navigate(url.generate(DASHBOARD_PRODUCER_ACTION_ROUTE, { producerId }));
+  };
+
   return {
     pageInfo,
     rows,
@@ -186,6 +192,7 @@ const useData = () => {
     setActivationItem,
     updateProducerActivaitonLoading,
     onUpdateProducerActivation,
+    onActions,
   };
 };
 

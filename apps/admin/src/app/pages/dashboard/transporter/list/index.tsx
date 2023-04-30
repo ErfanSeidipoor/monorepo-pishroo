@@ -14,6 +14,7 @@ import { Controller } from "react-hook-form";
 import {
   CheckTwoTone as CheckTwoToneIcon,
   EditTwoTone as EditTwoToneIcon,
+  HorizontalSplitTwoTone as HorizontalSplitTwoToneIcon,
 } from "@mui/icons-material";
 
 import { Button, Checkbox, TextField } from "@pishroo/admin-components";
@@ -46,9 +47,10 @@ export const TransporterListPage: FC = () => {
     activationItem,
     setActivationItem,
     onUpdateTransporterActivation,
+    onActions,
   } = useData();
 
-  const columns: ITableColumn<typeof rows[0]>[] = [
+  const columns: ITableColumn<(typeof rows)[0]>[] = [
     {
       name: "name",
       cell: (item) => <p>{item.name}</p>,
@@ -99,6 +101,11 @@ export const TransporterListPage: FC = () => {
               label: TEXTS.UPDATE,
               icon: <EditTwoToneIcon />,
               onClick: () => onEdit(item.id),
+            },
+            {
+              label: TEXTS.TRANSPORTER_ACTIONS,
+              icon: <HorizontalSplitTwoToneIcon />,
+              onClick: () => onActions(item.id),
             },
             {
               label: item.isActive ? TEXTS.DEACTIVE : TEXTS.ACTIVE,

@@ -56,6 +56,24 @@ type ProvinceUser {
   province: Province!
 }
 
+type CustomerAction {
+  id: String!
+  createdAt: DateTime!
+  updatedAt: DateTime
+  deletedAt: DateTime
+  text: String!
+  customer: Customer!
+  customerId: String!
+  user: User!
+  userId: String!
+  fileUses: [FileUse!]
+}
+
+type PaginatedCustomerAction {
+  edges: [CustomerAction!]!
+  pageInfo: PageInfo!
+}
+
 type Message {
   id: String!
   createdAt: DateTime!
@@ -138,6 +156,24 @@ type ProducerAgent {
 
 type PaginatedProducerAgent {
   edges: [ProducerAgent!]!
+  pageInfo: PageInfo!
+}
+
+type ProducerAction {
+  id: String!
+  createdAt: DateTime!
+  updatedAt: DateTime
+  deletedAt: DateTime
+  text: String!
+  producer: Producer!
+  producerId: String!
+  userId: String!
+  user: User!
+  fileUses: [FileUse!]
+}
+
+type PaginatedProducerAction {
+  edges: [ProducerAction!]!
   pageInfo: PageInfo!
 }
 
@@ -429,6 +465,25 @@ enum FileUseTypeEnum {
   user
 }
 
+type transporterAction {
+  id: String!
+  createdAt: DateTime!
+  updatedAt: DateTime
+  deletedAt: DateTime
+  text: String!
+  transporter: Transporter!
+  transporterId: String!
+  userId: String!
+  transporterAgent: TransporterAgent
+  user: User!
+  fileUses: [FileUse!]
+}
+
+type PaginatedTransporterAction {
+  edges: [transporterAction!]!
+  pageInfo: PageInfo!
+}
+
 type User {
   id: String!
   createdAt: DateTime!
@@ -486,6 +541,8 @@ type Query {
   getTransporterByIdAdmin(transporterId: String!): Transporter
   getTransporterAgentsAdmin(paginationArgs: PaginationArgsGQL!, getTransporterAgentsAdminArgs: GetTransporterAgentsAdminArgsGQL!): PaginatedTransporterAgent!
   getTransporterAgentByIdAdmin(transporterAgentId: String!): TransporterAgent
+  getTransporterActionsAdmin(paginationArgs: PaginationArgsGQL!, getTransporterActionsAdminArgs: GetTransporterActionsAdminArgsGQL!): PaginatedTransporterAction!
+  getTransporterActionByIdAdmin(transporterActionId: String!): transporterAction!
   getProducersAdmin(paginationArgs: PaginationArgsGQL!, getProducersAdminArgs: GetProducersAdminArgsGQL!): PaginatedProducer!
   getProducerByIdAdmin(producerId: String!): Producer
   getProducerAgentsAdmin(paginationArgs: PaginationArgsGQL!, getProducerAgentsAdminArgs: GetProducerAgentsAdminArgsGQL!): PaginatedProducerAgent!
@@ -498,6 +555,8 @@ type Query {
   getProjectReviewByIdAdmin(projectReviewId: String!): ProjectReview
   getCustomersAdmin(paginationArgs: PaginationArgsGQL!, getCustomersAdminArgs: GetCustomersAdminArgsGQL!): PaginatedCustomer!
   getCustomerByIdAdmin(customerId: String!): Customer
+  getCustomerActionsAdmin(paginationArgs: PaginationArgsGQL!, getCustomerActionsAdminArgs: GetCustomerActionsAdminArgsGQL!): PaginatedCustomerAction!
+  getCustomerActionByIdAdmin(customerActionId: String!): CustomerAction!
   getMessagesAdmin(paginationArgs: PaginationArgsGQL!, getMessagesAdminArgs: GetMessagesAdminArgsGQL!): PaginatedMessage!
   getMessageByIdAdmin(messageId: String!): Message
   getFileByIdAdmin(fileId: String!): File
@@ -507,6 +566,8 @@ type Query {
   getCategoriesPublic(paginationArgs: PaginationArgsGQL!, getCategoriesPublicArgs: GetCategoriesPublicArgsGQL!): PaginatedCategory!
   getProjectsPublic(paginationArgs: PaginationArgsGQL!, getProjectsPublicArgs: GetProjectsPublicArgsGQL!): PaginatedProject!
   getProjectByIdPublic(identity: String!): Project
+  getProducerActionsAdmin(paginationArgs: PaginationArgsGQL!, getProducerActionsAdminArgs: GetProducerActionsAdminArgsGQL!): PaginatedProducerAction!
+  getProducerActionByIdAdmin(producerActionId: String!): ProducerAction!
 }
 
 input LoginAdminInputsGQL {
@@ -581,6 +642,11 @@ input GetTransporterAgentsAdminArgsGQL {
   transporterId: String
 }
 
+input GetTransporterActionsAdminArgsGQL {
+  search: String = ""
+  transporterId: String!
+}
+
 input GetProducersAdminArgsGQL {
   search: String = ""
   isActive: Boolean
@@ -622,6 +688,11 @@ input GetCustomersAdminArgsGQL {
   customerIds: [String!]
 }
 
+input GetCustomerActionsAdminArgsGQL {
+  search: String = ""
+  customerId: String!
+}
+
 input GetMessagesAdminArgsGQL {
   search: String = ""
   isActive: Boolean
@@ -647,6 +718,11 @@ input GetCategoriesPublicArgsGQL {
 input GetProjectsPublicArgsGQL {
   search: String = ""
   orderRandom: Boolean
+}
+
+input GetProducerActionsAdminArgsGQL {
+  search: String = ""
+  producerId: String!
 }
 
 type Mutation {
@@ -694,6 +770,9 @@ type Mutation {
   updateTransporterAgentAdmin(updateTransporterAgentAdminInputs: UpdateTransporterAgentAdminInputsGQL!): TransporterAgent!
   updateTransporterAgentActivationAdmin(updateTransporterAgentActivationAdminInputs: UpdateTransporterAgentActivationAdminInputsGQL!): TransporterAgent!
   deleteTransporterAgentAdmin(deleteTransporterAgentAdmin: DeleteTransporterAgentAdminInputsGQL!): TransporterAgent!
+  createTransporterActionAdmin(createTransporterActionAdminInputs: CreateTransporterActionAdminInputsGQL!): transporterAction!
+  updateTransporterActionAdmin(updateTransporterActionAdminInputs: UpdateTransporterActionAdminInputsGQL!): transporterAction!
+  addFileToTransporterActionAdmin(addFileToTransporterActionAdmin: AddFileToTransporterActionAdminInputsGQL!): transporterAction!
   createProducerAdmin(createProducerAdminInputs: CreateProducerAdminInputsGQL!): Producer!
   updateProducerAdmin(updateProducerAdminInputs: UpdateProducerAdminInputsGQL!): Producer!
   updateProducerActivationAdmin(updateProducerActivationAdminInputs: UpdateProducerActivationAdminInputsGQL!): Producer!
@@ -720,6 +799,9 @@ type Mutation {
   updateCustomerAdmin(updateCustomerAdminInputs: UpdateCustomerAdminInputsGQL!): Customer!
   updateCustomerActivationAdmin(updateCustomerActivationAdmin: UpdateCustomerActivationAdminInputsGQL!): Customer!
   deleteCustomerAdmin(deleteCustomerAdmin: DeleteCustomerAdminInputsGQL!): Customer!
+  createCustomerActionAdmin(createCustomerActionAdminInputs: CreateCustomerActionAdminInputsGQL!): CustomerAction!
+  updateCustomerActionAdmin(updateCustomerActionAdminInputs: UpdateCustomerActionAdminInputsGQL!): CustomerAction!
+  addFileToCustomerActionAdmin(addFileToCustomerActionAdmin: AddFileToCustomerActionAdminInputsGQL!): CustomerAction!
   createMessageAdmin(createMessageAdminInputs: CreateMessageAdminInputsGQL!): Message!
   updateMessageAdmin(updateMessageAdminInputs: UpdateMessageAdminInputsGQL!): Message!
   updateMessageActivationAdmin(updateMessageActivationAdminInputs: UpdateMessageActivationAdminInputsGQL!): Message!
@@ -728,6 +810,9 @@ type Mutation {
   deleteCustomerMessageAdmin(deleteCustomerMessageAdmin: DeleteCustomerMessageAdminInputsGQL!): CustomerMessage!
   removeImageAdmin(removeImageAdmin: RemoveImageAdminInputsGQL!): File!
   uploadFile(file: Upload!): File!
+  createProducerActionAdmin(createProducerActionAdminInputs: CreateProducerActionAdminInputsGQL!): ProducerAction!
+  updateProducerActionAdmin(updateProducerActionAdminInputs: UpdateProducerActionAdminInputsGQL!): ProducerAction!
+  addFileToProducerActionAdmin(addFileToProducerActionAdmin: AddFileToProducerActionAdminInputsGQL!): ProducerAction!
 }
 
 input CreateUserAdminInputsGQL {
@@ -987,6 +1072,21 @@ input DeleteTransporterAgentAdminInputsGQL {
   transporterAgentId: String!
 }
 
+input CreateTransporterActionAdminInputsGQL {
+  text: String!
+  transporterId: String!
+}
+
+input UpdateTransporterActionAdminInputsGQL {
+  text: String!
+  transporterActionId: String!
+}
+
+input AddFileToTransporterActionAdminInputsGQL {
+  fileId: String!
+  transporterActionId: String!
+}
+
 input CreateProducerAdminInputsGQL {
   name: String!
   phone: String
@@ -1162,6 +1262,21 @@ input DeleteCustomerAdminInputsGQL {
   customerId: String!
 }
 
+input CreateCustomerActionAdminInputsGQL {
+  text: String!
+  customerId: String!
+}
+
+input UpdateCustomerActionAdminInputsGQL {
+  text: String!
+  customerActionId: String!
+}
+
+input AddFileToCustomerActionAdminInputsGQL {
+  fileId: String!
+  customerActionId: String!
+}
+
 input CreateMessageAdminInputsGQL {
   text: String!
   userId: String!
@@ -1201,3 +1316,18 @@ input RemoveImageAdminInputsGQL {
 
 """The `Upload` scalar type represents a file upload."""
 scalar Upload
+
+input CreateProducerActionAdminInputsGQL {
+  text: String!
+  producerId: String!
+}
+
+input UpdateProducerActionAdminInputsGQL {
+  text: String!
+  producerActionId: String!
+}
+
+input AddFileToProducerActionAdminInputsGQL {
+  fileId: String!
+  producerActionId: String!
+}

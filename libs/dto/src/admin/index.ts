@@ -159,3 +159,27 @@ export * from "./message/update-message-acivation.inputs";
 
 export * from "./customerMessage/create-customer-message.inputs";
 export * from "./customerMessage/delete-customer-message.inputs";
+
+/* ---------------------------- customer action ----------------------------- */
+
+export * from "./customerAction/create-customer-action.inputs";
+export * from "./customerAction/get-customer-action-by-id.args";
+export * from "./customerAction/get-customer-actions.args";
+export * from "./customerAction/update-customer-action.inputs";
+export * from "./customerAction/add-file-to-customer-action.inputs";
+
+/* ---------------------------- transporter action ----------------------------- */
+
+export * from "./transporterAction/create-transporter-action.inputs";
+export * from "./transporterAction/get-transporter-action-by-id.args";
+export * from "./transporterAction/get-transporter-actions.args";
+export * from "./transporterAction/update-transporter-action.inputs";
+export * from "./transporterAction/add-file-to-transporter-action.inputs";
+
+/* ---------------------------- producer action ----------------------------- */
+
+export * from "./producerAction/create-producer-action.inputs";
+export * from "./producerAction/get-producer-action-by-id.args";
+export * from "./producerAction/get-producer-actions.args";
+export * from "./producerAction/update-producer-action.inputs";
+export * from "./producerAction/add-file-to-producer-action.inputs";

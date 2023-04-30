@@ -21,6 +21,7 @@ export const CUSTOMER_DETAILS_ROUTE = "customer_details";
 
 export const CUSTOMER_DETAILS_MAIN_ROUTE = "customer_details_main";
 export const CUSTOMER_ACTIONS_ROUTE = "customer_actions";
+export const CUSTOMER_ACTION_DETAILS_ROUTE = "customer_action_details";
 export const CUSTOMER_CREATE_ACTION_ROUTE = "customer_create_action";
 
 /* ------------------------------- transporter ------------------------------ */

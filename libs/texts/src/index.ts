@@ -37,16 +37,20 @@ const TEXTS = {
   CANCEL: "Cancel",
   BACK: "Back",
   IMAGES: "Images",
+  FILES: "Files",
   PROVINCE: "Province",
   PROVINCES: "Provinces",
   CITY: "City",
   SEARCH: "Search",
   JOB_TITLE: "Job Title",
   CUSTOMER: "Customer",
+  CUSTOMER_ACTION: "Customer Action",
   TRANSPORTER: "Transporter",
   TRANSPORTER_AGENT: "Transporter Agent",
+  TRANSPORTER_ACTIONS: "Transporter ACTIONS",
   PRODUCER: "Producer",
   PRODUCER_AGENT: "Producer Agent",
+  PRODUCER_ACTIONS: "Producer Actions",
   PROJECT: "Project",
   PROJECT_REVIEW: "Project Review",
   PRODUCT_REVIEW: "Product Review",
@@ -176,6 +180,24 @@ const TEXTS = {
   PAGE_CUSTOMER_UPDATE__UPDATE_CUSTOMER: "Update Customer",
   PAGE_CUSTOMER_UPDATE__SUCCESS: "Customer Updated Successfully!",
 
+  /* ------------------------- customer action update ------------------------- */
+
+  PAGE_CUSTOMER_ACTION_UPDATE__PAGE_TITLE: "Customer Action Details | Pishroo",
+  PAGE_CUSTOMER_ACTION_UPDATE__UPDATE_CUSTOMER_ACTION: "Update Customer Action",
+  PAGE_CUSTOMER_ACTION_UPDATE__SUCCESS: "update Customer Action Successfully!",
+
+  /* --------------------------- customer action --------------------------- */
+
+  PAGE_CUSTOMER_ACTION__PAGE_TITLE: "customer Action | Pishroo",
+  PAGE_CUSTOMER_ACTION__CUSTOMER_ACTION: "customer Action ",
+  PAGE_CUSTOMER_ACTION__NEW_CUSTOMER_ACTION: "New customer Action ",
+
+  /* -------------------------- new customer action ------------------------- */
+
+  PAGE_NEW_CUSTOMER_ACTION__PAGE_TITLE: "New customer Action  | Pishroo",
+  PAGE_NEW_CUSTOMER_ACTION__NEW_CUSTOMER_ACTION: "New customer Action ",
+  PAGE_NEW_CUSTOMER_ACTION__SUCCESS: "customer Action  Created Successfully!",
+
   /* ------------------------------- transporter ------------------------------ */
 
   PAGE_TRANSPORTER__PAGE_TITLE: "Transporter | Pishroo",
@@ -216,6 +238,29 @@ const TEXTS = {
   PAGE_TRANSPORTER_AGENT_UPDATE__SUCCESS:
     "Transporter Agent Updated Successfully!",
 
+  /* ------------------------- transporter action update ----------------------- */
+
+  PAGE_TRANSPORTER_ACTION_UPDATE__PAGE_TITLE:
+    "Transporter Action Details | Pishroo",
+  PAGE_TRANSPORTER_ACTION_UPDATE__UPDATE_TRANSPORTER_ACTION:
+    "Update Transporter Action",
+  PAGE_TRANSPORTER_ACTION_UPDATE__SUCCESS:
+    "update Transporter Action Successfully!",
+
+  /* --------------------------- transporter action --------------------------- */
+
+  PAGE_TRANSPORTER_ACTION__PAGE_TITLE: "Transporter Action | Pishroo",
+  PAGE_TRANSPORTER_ACTION__TRANSPORTER_ACTION: "Transporter Action ",
+  PAGE_TRANSPORTER_ACTION__NEW_TRANSPORTER_ACTION: "New Transporter Action ",
+
+  /* -------------------------- new transporter action ------------------------ */
+
+  PAGE_NEW_TRANSPORTER_ACTION__PAGE_TITLE: "New Transporter Action  | Pishroo",
+  PAGE_NEW_TRANSPORTER_ACTION__NEW_TRANSPORTER_ACTION:
+    "New Transporter Action ",
+  PAGE_NEW_TRANSPORTER_ACTION__SUCCESS:
+    "Transporter Action Created Successfully!",
+
   /* -------------------------------- producer -------------------------------- */
 
   PAGE_PRODUCER__PAGE_TITLE: "Producer | Pishroo",
@@ -251,6 +296,24 @@ const TEXTS = {
   PAGE_PRODUCER_AGENT_UPDATE__PAGE_TITLE: "Producer Agent Details | Pishroo",
   PAGE_PRODUCER_AGENT_UPDATE__UPDATE_PRODUCER_AGENT: "Update Producer Agent",
   PAGE_PRODUCER_AGENT_UPDATE__SUCCESS: "Producer Agent Updated Successfully!",
+
+  /* ------------------------- producer action update ----------------------- */
+
+  PAGE_PRODUCER_ACTION_UPDATE__PAGE_TITLE: "Producer Action Details | Pishroo",
+  PAGE_PRODUCER_ACTION_UPDATE__UPDATE_PRODUCER_ACTION: "Update Producer Action",
+  PAGE_PRODUCER_ACTION_UPDATE__SUCCESS: "update Producer Action Successfully!",
+
+  /* --------------------------- producer action --------------------------- */
+
+  PAGE_PRODUCER_ACTION__PAGE_TITLE: "Producer Action | Pishroo",
+  PAGE_PRODUCER_ACTION__PRODUCER_ACTION: "Producer Action ",
+  PAGE_PRODUCER_ACTION__NEW_PRODUCER_ACTION: "New Producer Action ",
+
+  /* -------------------------- new producer action ------------------------ */
+
+  PAGE_NEW_PRODUCER_ACTION__PAGE_TITLE: "New Producer Action  | Pishroo",
+  PAGE_NEW_PRODUCER_ACTION__NEW_PRODUCER_ACTION: "New Producer Action ",
+  PAGE_NEW_PRODUCER_ACTION__SUCCESS: "Producer Action Created Successfully!",
 
   /* --------------------------------- project -------------------------------- */
 

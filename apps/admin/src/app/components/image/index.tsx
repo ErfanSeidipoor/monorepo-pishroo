@@ -1,6 +1,7 @@
 import { FC } from "react";
 import DeleteSweepTwoToneIcon from "@mui/icons-material/DeleteSweepTwoTone";
 import OpenWithOutlinedIcon from "@mui/icons-material/OpenWithOutlined";
+import DownloadIcon from "@mui/icons-material/Download";
 import {
   Box,
   Card,
@@ -66,6 +67,15 @@ export const Image: FC<
 
           <IconButton onClick={() => setOpenDialog(true)} disabled={loading}>
             <OpenWithOutlinedIcon color="primary" />
+          </IconButton>
+
+          <IconButton
+            href={process.env["NX_BACK_URL"] + "/api/file/" + filename}
+            disabled={loading}
+            LinkComponent={"a"}
+            target="_blank"
+          >
+            <DownloadIcon color="primary" />
           </IconButton>
 
           {loading && <CircularProgress size={20} />}

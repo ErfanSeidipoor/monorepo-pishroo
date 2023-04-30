@@ -14,6 +14,7 @@ import { Controller } from "react-hook-form";
 import {
   CheckTwoTone as CheckTwoToneIcon,
   EditTwoTone as EditTwoToneIcon,
+  HorizontalSplitTwoTone as HorizontalSplitTwoToneIcon,
 } from "@mui/icons-material";
 
 import { Button, Checkbox, TextField } from "@pishroo/admin-components";
@@ -46,9 +47,10 @@ export const ProducerListPage: FC = () => {
     activationItem,
     setActivationItem,
     onUpdateProducerActivation,
+    onActions,
   } = useData();
 
-  const columns: ITableColumn<typeof rows[0]>[] = [
+  const columns: ITableColumn<(typeof rows)[0]>[] = [
     {
       name: "name",
       cell: (item) => <p>{item.name}</p>,
@@ -101,6 +103,11 @@ export const ProducerListPage: FC = () => {
               onClick: () => onEdit(item.id),
             },
             {
+              label: TEXTS.PRODUCER_ACTIONS,
+              icon: <HorizontalSplitTwoToneIcon />,
+              onClick: () => onActions(item.id),
+            },
+            {
               label: item.isActive ? TEXTS.DEACTIVE : TEXTS.ACTIVE,
               icon: (
                 <CheckTwoToneIcon color={item.isActive ? "error" : "success"} />
@@ -128,9 +135,7 @@ export const ProducerListPage: FC = () => {
           justifyContent="center"
           spacing={2}
         >
-          <Typography variant="h4">
-            {TEXTS.PAGE_PRODUCER__PRODUCER}
-          </Typography>
+          <Typography variant="h4">{TEXTS.PAGE_PRODUCER__PRODUCER}</Typography>
           {renderFilterSidebar()}
         </Stack>
         <Button
@@ -245,10 +250,7 @@ export const ProducerListPage: FC = () => {
             label={TEXTS.CANCEL}
             color="inherit"
           />
-          <Button
-            onClick={onUpdateProducerActivation}
-            label={TEXTS.CONFIRM}
-          />
+          <Button onClick={onUpdateProducerActivation} label={TEXTS.CONFIRM} />
         </DialogActions>
       </Dialog>
     );

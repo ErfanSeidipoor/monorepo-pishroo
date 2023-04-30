@@ -14,6 +14,7 @@ import { Controller } from "react-hook-form";
 import {
   CheckTwoTone as CheckTwoToneIcon,
   EditTwoTone as EditTwoToneIcon,
+  HorizontalSplitTwoTone as HorizontalSplitTwoToneIcon,
 } from "@mui/icons-material";
 
 import { Button, Checkbox, TextField } from "@pishroo/admin-components";
@@ -43,12 +44,13 @@ export const CustomerListPage: FC = () => {
     isValid,
     onPageSelect,
     onEdit,
+    onActions,
     activationItem,
     setActivationItem,
     onUpdateCustomerActivation,
   } = useData();
 
-  const columns: ITableColumn<typeof rows[0]>[] = [
+  const columns: ITableColumn<(typeof rows)[0]>[] = [
     {
       name: "name",
       cell: (item) => (
@@ -105,6 +107,11 @@ export const CustomerListPage: FC = () => {
               label: TEXTS.UPDATE,
               icon: <EditTwoToneIcon />,
               onClick: () => onEdit(item.id),
+            },
+            {
+              label: TEXTS.CUSTOMER_ACTION,
+              icon: <HorizontalSplitTwoToneIcon />,
+              onClick: () => onActions(item.id),
             },
             {
               label: item.isActive ? TEXTS.DEACTIVE : TEXTS.ACTIVE,
