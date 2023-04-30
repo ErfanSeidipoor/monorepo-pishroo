@@ -235,6 +235,21 @@ export const CUSTOMER_NOT_FOUND: ICustomError = {
   description: "Customer Not Found",
 };
 
+export const CUSTOMER_ACTION_NOT_FOUND: ICustomError = {
+  status: HttpStatus.NOT_FOUND,
+  description: "Customer Action Not Found",
+};
+
+export const TRANSPORTER_ACTION_NOT_FOUND: ICustomError = {
+  status: HttpStatus.NOT_FOUND,
+  description: "Transporter Action Not Found",
+};
+
+export const PRODUCER_ACTION_NOT_FOUND: ICustomError = {
+  status: HttpStatus.NOT_FOUND,
+  description: "producer Action Not Found",
+};
+
 export const MESSAGE_NOT_FOUND: ICustomError = {
   status: HttpStatus.NOT_FOUND,
   description: "Message Not Found",

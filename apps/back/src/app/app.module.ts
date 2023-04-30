@@ -21,8 +21,11 @@ import { CityModuleAdmin } from "./modules/admin/city/city.module";
 import { ProjectModuleAdmin } from "./modules/admin/project/project.module";
 import { ProjectReviewModuleAdmin } from "./modules/admin/projectReview/projectReview.module";
 import { CustomerModuleAdmin } from "./modules/admin/customer/customer.module";
+import { CustomerActionModuleAdmin } from "./modules/admin/customerAction/customerMessage.module";
 import { MessageModuleAdmin } from "./modules/admin/message/message.module";
 import { CustomerMessageModuleAdmin } from "./modules/admin/customerMessage/customerMessage.module";
+import { TransporterActionModuleAdmin } from "./modules/admin/transporterAction/transporterAction.module";
+import { ProducerActionModuleAdmin } from "./modules/admin/producerAction/producerAction.module";
 
 // public
 import { UserModulePublic } from "./modules/public/user/user.module";
@@ -77,12 +80,14 @@ import { CurrentUserMiddleware } from "./middlewares";
     ProvinceModuleAdmin,
     TransporterModuleAdmin,
     TransporterAgentModuleAdmin,
+    TransporterActionModuleAdmin,
     ProducerModuleAdmin,
     ProducerAgentModuleAdmin,
     CityModuleAdmin,
     ProjectModuleAdmin,
     ProjectReviewModuleAdmin,
     CustomerModuleAdmin,
+    CustomerActionModuleAdmin,
     MessageModuleAdmin,
     CustomerMessageModuleAdmin,
     FileModule,
@@ -90,6 +95,7 @@ import { CurrentUserMiddleware } from "./middlewares";
     ProductModulePublic,
     CategoryModulePublic,
     ProjectModulePublic,
+    ProducerActionModuleAdmin,
   ],
   controllers: [],
   providers: [],

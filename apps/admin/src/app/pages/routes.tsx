@@ -55,6 +55,15 @@ import {
   DASHBOARD_PRODUCT_PROPERTY_ROUTE,
   DASHBOARD_PRODUCT_PROPERTY_NEW_PRODUCT_PROPERTY_ROUTE,
   DASHBOARD_PRODUCT_PROPERTY_DETAILS,
+  DASHBOARD_CUSTOMER_ACTION_ROUTE,
+  DASHBOARD_CUSTOMER_ACTION_NEW_CUSTOMER_ACTION_ROUTE,
+  DASHBOARD_CUSTOMER_ACTION_DETAILS,
+  DASHBOARD_TRANSPORTER_ACTION_ROUTE,
+  DASHBOARD_TRANSPORTER_ACTION_NEW_TRANSPORTER_ACTION_ROUTE,
+  DASHBOARD_TRANSPORTER_ACTION_DETAILS,
+  DASHBOARD_PRODUCER_ACTION_ROUTE,
+  DASHBOARD_PRODUCER_ACTION_NEW_PRODUCER_ACTION_ROUTE,
+  DASHBOARD_PRODUCER_ACTION_DETAILS,
 } from "@admin/constants";
 
 /* --------------------------------- Routes --------------------------------- */
@@ -161,7 +170,6 @@ export const Routes = () =>
             },
           ],
         },
-
         {
           path: DASHBOARD_USER_ROUTE,
           element: <UserProvider />,
@@ -226,7 +234,31 @@ export const Routes = () =>
             },
             {
               path: DASHBOARD_CUSTOMER_DETAILS,
-              element: <CustomerUpdatePage />,
+              element: <CustomerDetailsProvider />,
+              children: [
+                {
+                  path: DASHBOARD_CUSTOMER_ACTION_ROUTE,
+                  element: <CustomerActionProvider />,
+                  children: [
+                    {
+                      path: DASHBOARD_CUSTOMER_ACTION_NEW_CUSTOMER_ACTION_ROUTE,
+                      element: <CustomerActionNewPage />,
+                    },
+                    {
+                      path: DASHBOARD_CUSTOMER_ACTION_DETAILS,
+                      element: <CustomerActionUpdatePage />,
+                    },
+                    {
+                      path: DASHBOARD_CUSTOMER_ACTION_ROUTE,
+                      element: <CustomerActionListPage />,
+                    },
+                  ],
+                },
+                {
+                  path: DASHBOARD_CUSTOMER_DETAILS,
+                  element: <CustomerDetailsPage />,
+                },
+              ],
             },
             {
               path: DASHBOARD_CUSTOMER_ROUTE,
@@ -244,7 +276,31 @@ export const Routes = () =>
             },
             {
               path: DASHBOARD_TRANSPORTER_DETAILS,
-              element: <TransporterUpdatePage />,
+              element: <TransporterDetailsProvider />,
+              children: [
+                {
+                  path: DASHBOARD_TRANSPORTER_ACTION_ROUTE,
+                  element: <TransporterActionProvider />,
+                  children: [
+                    {
+                      path: DASHBOARD_TRANSPORTER_ACTION_NEW_TRANSPORTER_ACTION_ROUTE,
+                      element: <TransporterActionNewPage />,
+                    },
+                    {
+                      path: DASHBOARD_TRANSPORTER_ACTION_DETAILS,
+                      element: <TransporterActionUpdatePage />,
+                    },
+                    {
+                      path: DASHBOARD_TRANSPORTER_ACTION_ROUTE,
+                      element: <TransporterActionListPage />,
+                    },
+                  ],
+                },
+                {
+                  path: DASHBOARD_TRANSPORTER_DETAILS,
+                  element: <TransporterDetailsPage />,
+                },
+              ],
             },
             {
               path: DASHBOARD_TRANSPORTER_ROUTE,
@@ -280,7 +336,31 @@ export const Routes = () =>
             },
             {
               path: DASHBOARD_PRODUCER_DETAILS,
-              element: <ProducerUpdatePage />,
+              element: <ProducerDetailsProvider />,
+              children: [
+                {
+                  path: DASHBOARD_PRODUCER_ACTION_ROUTE,
+                  element: <ProducerActionProvider />,
+                  children: [
+                    {
+                      path: DASHBOARD_PRODUCER_ACTION_NEW_PRODUCER_ACTION_ROUTE,
+                      element: <ProducerActionNewPage />,
+                    },
+                    {
+                      path: DASHBOARD_PRODUCER_ACTION_DETAILS,
+                      element: <ProducerActionUpdatePage />,
+                    },
+                    {
+                      path: DASHBOARD_PRODUCER_ACTION_ROUTE,
+                      element: <ProducerActionListPage />,
+                    },
+                  ],
+                },
+                {
+                  path: DASHBOARD_PRODUCER_DETAILS,
+                  element: <ProducerDetailsPage />,
+                },
+              ],
             },
             {
               path: DASHBOARD_PRODUCER_ROUTE,
@@ -502,8 +582,27 @@ const CustomerListPage = Loadable(
 const CustomerNewPage = Loadable(
   lazy(() => import("./dashboard/customer/new-customer"))
 );
-const CustomerUpdatePage = Loadable(
-  lazy(() => import("./dashboard/customer/update"))
+const CustomerDetailsPage = Loadable(
+  lazy(() => import("./dashboard/customer/details/main"))
+);
+
+const CustomerDetailsProvider = Loadable(
+  lazy(() => import("./dashboard/customer/details"))
+);
+
+/* ------------------------ dashboard customer actions ---------------------- */
+
+const CustomerActionProvider = Loadable(
+  lazy(() => import("./dashboard/customer/details/actions"))
+);
+const CustomerActionListPage = Loadable(
+  lazy(() => import("./dashboard/customer/details/actions/list"))
+);
+const CustomerActionNewPage = Loadable(
+  lazy(() => import("./dashboard/customer/details/actions/new"))
+);
+const CustomerActionUpdatePage = Loadable(
+  lazy(() => import("./dashboard/customer/details/actions/details"))
 );
 
 /* -------------------------- dashboard transporter ------------------------- */
@@ -517,8 +616,28 @@ const TransporterListPage = Loadable(
 const TransporterNewPage = Loadable(
   lazy(() => import("./dashboard/transporter/new-transporter"))
 );
-const TransporterUpdatePage = Loadable(
-  lazy(() => import("./dashboard/transporter/update"))
+
+const TransporterDetailsPage = Loadable(
+  lazy(() => import("./dashboard/transporter/details/main"))
+);
+
+const TransporterDetailsProvider = Loadable(
+  lazy(() => import("./dashboard/transporter/details"))
+);
+
+/* ------------------------ dashboard transporter actions -------------------- */
+
+const TransporterActionProvider = Loadable(
+  lazy(() => import("./dashboard/transporter/details/actions"))
+);
+const TransporterActionListPage = Loadable(
+  lazy(() => import("./dashboard/transporter/details/actions/list"))
+);
+const TransporterActionNewPage = Loadable(
+  lazy(() => import("./dashboard/transporter/details/actions/new"))
+);
+const TransporterActionUpdatePage = Loadable(
+  lazy(() => import("./dashboard/transporter/details/actions/details"))
 );
 
 /* ----------------------- dashboard transporter agent ---------------------- */
@@ -545,8 +664,8 @@ const ProducerListPage = Loadable(
 const ProducerNewPage = Loadable(
   lazy(() => import("./dashboard/producer/new-producer"))
 );
-const ProducerUpdatePage = Loadable(
-  lazy(() => import("./dashboard/producer/update"))
+const ProducerDetailsPage = Loadable(
+  lazy(() => import("./dashboard/producer/details/main"))
 );
 
 /* ----------------------- dashboard producer agent ---------------------- */
@@ -562,6 +681,24 @@ const ProducerAgentNewPage = Loadable(
 );
 const ProducerAgentUpdatePage = Loadable(
   lazy(() => import("./dashboard/producer-agent/update"))
+);
+const ProducerDetailsProvider = Loadable(
+  lazy(() => import("./dashboard/producer/details"))
+);
+
+/* ------------------------ dashboard producer actions -------------------- */
+
+const ProducerActionProvider = Loadable(
+  lazy(() => import("./dashboard/producer/details/actions"))
+);
+const ProducerActionListPage = Loadable(
+  lazy(() => import("./dashboard/producer/details/actions/list"))
+);
+const ProducerActionNewPage = Loadable(
+  lazy(() => import("./dashboard/producer/details/actions/new"))
+);
+const ProducerActionUpdatePage = Loadable(
+  lazy(() => import("./dashboard/producer/details/actions/details"))
 );
 
 /* ---------------------------- dashboard project --------------------------- */

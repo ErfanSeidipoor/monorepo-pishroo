@@ -22,7 +22,8 @@ import { ProjectReview } from "./projectReview.entity";
 import { Transporter } from "./transporter.entity";
 import { TransporterAction } from "./transporterAction.entity";
 import { User } from "./user.entity";
-@ObjectType()
+
+@ObjectType("FileUse")
 @Index("file_use_pkey", ["id"], { unique: true })
 @Entity("file_use", { schema: "public" })
 export class FileUse extends BaseModel {

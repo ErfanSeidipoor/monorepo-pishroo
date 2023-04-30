@@ -44,6 +44,15 @@ export const DASHBOARD_CUSTOMER_NEW_CUSTOMER_ROUTE =
 export const DASHBOARD_CUSTOMER_DETAILS =
   DASHBOARD_CUSTOMER_ROUTE + "/:customerId";
 
+/* ----------------------------- customer action ----------------------------- */
+
+export const DASHBOARD_CUSTOMER_ACTION_ROUTE =
+  DASHBOARD_ROUTE + "/customer/:customerId/customer-action";
+export const DASHBOARD_CUSTOMER_ACTION_NEW_CUSTOMER_ACTION_ROUTE =
+  DASHBOARD_CUSTOMER_ACTION_ROUTE + "/new";
+export const DASHBOARD_CUSTOMER_ACTION_DETAILS =
+  DASHBOARD_CUSTOMER_ACTION_ROUTE + "/:customerActionId";
+
 /* ------------------------------- transporter ------------------------------ */
 export const DASHBOARD_TRANSPORTER_ROUTE = DASHBOARD_ROUTE + "/transporter";
 export const DASHBOARD_TRANSPORTER_NEW_TRANSPORTER_ROUTE =
@@ -58,6 +67,15 @@ export const DASHBOARD_TRANSPORTER_AGENT_NEW_TRANSPORTER_AGENT_ROUTE =
   DASHBOARD_TRANSPORTER_AGENT_ROUTE + "/new";
 export const DASHBOARD_TRANSPORTER_AGENT_DETAILS =
   DASHBOARD_TRANSPORTER_AGENT_ROUTE + "/:transporterAgentId";
+
+/* ----------------------------- transporter action ----------------------------- */
+
+export const DASHBOARD_TRANSPORTER_ACTION_ROUTE =
+  DASHBOARD_ROUTE + "/transporter/:transporterId/transporter-action";
+export const DASHBOARD_TRANSPORTER_ACTION_NEW_TRANSPORTER_ACTION_ROUTE =
+  DASHBOARD_TRANSPORTER_ACTION_ROUTE + "/new";
+export const DASHBOARD_TRANSPORTER_ACTION_DETAILS =
+  DASHBOARD_TRANSPORTER_ACTION_ROUTE + "/:transporterActionId";
 
 /* -------------------------------- producer -------------------------------- */
 
@@ -75,6 +93,15 @@ export const DASHBOARD_PRODUCER_AGENT_NEW_PRODUCER_AGENT_ROUTE =
   DASHBOARD_PRODUCER_AGENT_ROUTE + "/new";
 export const DASHBOARD_PRODUCER_AGENT_DETAILS =
   DASHBOARD_PRODUCER_AGENT_ROUTE + "/:producerAgentId";
+
+/* ----------------------------- producer action ----------------------------- */
+
+export const DASHBOARD_PRODUCER_ACTION_ROUTE =
+  DASHBOARD_ROUTE + "/producer/:producerId/producer-action";
+export const DASHBOARD_PRODUCER_ACTION_NEW_PRODUCER_ACTION_ROUTE =
+  DASHBOARD_PRODUCER_ACTION_ROUTE + "/new";
+export const DASHBOARD_PRODUCER_ACTION_DETAILS =
+  DASHBOARD_PRODUCER_ACTION_ROUTE + "/:producerActionId";
 
 /* --------------------------------- project -------------------------------- */
 
