@@ -6,8 +6,6 @@ import {
   Button,
   TextInput,
   View,
-  Alert,
-  TouchableOpacity,
 } from "react-native";
 import { Controller } from "react-hook-form";
 
@@ -73,7 +71,6 @@ const styles = StyleSheet.create({
     marginTop: 40,
     height: 40,
   },
-
   container: {
     flex: 1,
     padding: 8,
