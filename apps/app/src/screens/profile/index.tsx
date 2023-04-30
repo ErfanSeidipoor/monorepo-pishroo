@@ -1,11 +1,26 @@
 import { FC } from "react";
-import { SafeAreaView, StyleSheet, Text } from "react-native";
+import { SafeAreaView, StyleSheet, Text, Button } from "react-native";
+import DocumentPicker from "react-native-document-picker";
 
 import TEXTS from "libs/texts/src";
 import { useUser } from "@app/hooks";
+import { Image } from "@app/components";
 
 export const ProfileScreen: FC<{ navigation }> = ({ navigation }) => {
   const { currentUser } = useUser();
+
+  const onPressUpload = async () => {
+    try {
+      const doc = await DocumentPicker.pickSingle();
+      console.log({ doc });
+    } catch (error) {
+      if (DocumentPicker.isCancel(error)) {
+        console.log("picker canceled by user");
+      } else {
+        console.log({ error });
+      }
+    }
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -15,6 +30,7 @@ export const ProfileScreen: FC<{ navigation }> = ({ navigation }) => {
       <Text style={styles.value}>{currentUser && currentUser.lastName}</Text>
       <Text style={styles.label}>{TEXTS.USERNAME}</Text>
       <Text style={styles.value}>{currentUser && currentUser.username}</Text>
+      <Button title="Upload Document" onPress={onPressUpload} />
     </SafeAreaView>
   );
 };

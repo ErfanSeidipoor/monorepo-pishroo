@@ -14,8 +14,10 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  */
 const documents = {
     "\n  query getProvincesAdminAutoComplete(\n    $getProvincesAdminArgs: GetProvincesAdminArgsGQL!\n  ) {\n    getProvincesAdmin(\n      getProvincesAdminArgs: $getProvincesAdminArgs\n      paginationArgs: { limit: 30, page: 1 }\n    ) {\n      edges {\n        id\n        name\n      }\n    }\n  }\n": types.GetProvincesAdminAutoCompleteDocument,
+    "\n  mutation removeImageAdmin($removeImageAdmin: RemoveImageAdminInputsGQL!) {\n    removeImageAdmin(removeImageAdmin: $removeImageAdmin) {\n      id\n      filename\n    }\n  }\n": types.RemoveImageAdminDocument,
     "\n  query meAdmin {\n    meAdmin {\n      id\n      lastName\n      firstName\n      createdAt\n      roles\n      username\n    }\n  }\n": types.MeAdminDocument,
     "\n  mutation updateCustomerActionAdminInputs(\n    $updateCustomerActionAdminInputs: UpdateCustomerActionAdminInputsGQL!\n  ) {\n    updateCustomerActionAdmin(\n      updateCustomerActionAdminInputs: $updateCustomerActionAdminInputs\n    ) {\n      id\n      text\n      customerId\n      userId\n    }\n  }\n": types.UpdateCustomerActionAdminInputsDocument,
+    "\n  mutation addFileToCustomerActionAdmin(\n    $addFileToCustomerActionAdmin: AddFileToCustomerActionAdminInputsGQL!\n  ) {\n    addFileToCustomerActionAdmin(\n      addFileToCustomerActionAdmin: $addFileToCustomerActionAdmin\n    ) {\n      id\n    }\n  }\n": types.AddFileToCustomerActionAdminDocument,
     "\n  query getCustomerActionByIdAdmin($customerActionId: String!) {\n    getCustomerActionByIdAdmin(customerActionId: $customerActionId) {\n      id\n      text\n      customerId\n      customer {\n        email\n        jobTitle\n        phone\n        officePhone\n      }\n      userId\n      user {\n        id\n        firstName\n        username\n      }\n      fileUses {\n        id\n        file {\n          id\n          filename\n        }\n      }\n    }\n  }\n": types.GetCustomerActionByIdAdminDocument,
     "\n  query getCustomerActionsAdmin(\n    $getCustomerActionsAdminArgs: GetCustomerActionsAdminArgsGQL!\n    $paginationArgs: PaginationArgsGQL!\n  ) {\n    getCustomerActionsAdmin(\n      getCustomerActionsAdminArgs: $getCustomerActionsAdminArgs\n      paginationArgs: $paginationArgs\n    ) {\n      pageInfo {\n        totalEdges\n        edgeCount\n        edgesPerPage\n        currentPage\n        totalPages\n      }\n      edges {\n        id\n        text\n        customer {\n          email\n          jobTitle\n          phone\n          officePhone\n        }\n        userId\n        user {\n          id\n          firstName\n          lastName\n          username\n        }\n        fileUses {\n          id\n          file {\n            id\n            filename\n          }\n        }\n      }\n    }\n  }\n": types.GetCustomerActionsAdminDocument,
     "\n  query getCustomerByIdAdmin($customerId: String!) {\n    getCustomerByIdAdmin(customerId: $customerId) {\n      id\n      firstName\n      lastName\n      email\n      jobTitle\n      phone\n      officePhone\n      isActive\n      cityId\n      city {\n        name\n        id\n        province {\n          id\n          name\n        }\n      }\n    }\n  }\n": types.GetCustomerByIdAdminDocument,
@@ -45,11 +47,19 @@ export function graphql(source: "\n  query getProvincesAdminAutoComplete(\n    $
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
+export function graphql(source: "\n  mutation removeImageAdmin($removeImageAdmin: RemoveImageAdminInputsGQL!) {\n    removeImageAdmin(removeImageAdmin: $removeImageAdmin) {\n      id\n      filename\n    }\n  }\n"): (typeof documents)["\n  mutation removeImageAdmin($removeImageAdmin: RemoveImageAdminInputsGQL!) {\n    removeImageAdmin(removeImageAdmin: $removeImageAdmin) {\n      id\n      filename\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
 export function graphql(source: "\n  query meAdmin {\n    meAdmin {\n      id\n      lastName\n      firstName\n      createdAt\n      roles\n      username\n    }\n  }\n"): (typeof documents)["\n  query meAdmin {\n    meAdmin {\n      id\n      lastName\n      firstName\n      createdAt\n      roles\n      username\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "\n  mutation updateCustomerActionAdminInputs(\n    $updateCustomerActionAdminInputs: UpdateCustomerActionAdminInputsGQL!\n  ) {\n    updateCustomerActionAdmin(\n      updateCustomerActionAdminInputs: $updateCustomerActionAdminInputs\n    ) {\n      id\n      text\n      customerId\n      userId\n    }\n  }\n"): (typeof documents)["\n  mutation updateCustomerActionAdminInputs(\n    $updateCustomerActionAdminInputs: UpdateCustomerActionAdminInputsGQL!\n  ) {\n    updateCustomerActionAdmin(\n      updateCustomerActionAdminInputs: $updateCustomerActionAdminInputs\n    ) {\n      id\n      text\n      customerId\n      userId\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  mutation addFileToCustomerActionAdmin(\n    $addFileToCustomerActionAdmin: AddFileToCustomerActionAdminInputsGQL!\n  ) {\n    addFileToCustomerActionAdmin(\n      addFileToCustomerActionAdmin: $addFileToCustomerActionAdmin\n    ) {\n      id\n    }\n  }\n"): (typeof documents)["\n  mutation addFileToCustomerActionAdmin(\n    $addFileToCustomerActionAdmin: AddFileToCustomerActionAdminInputsGQL!\n  ) {\n    addFileToCustomerActionAdmin(\n      addFileToCustomerActionAdmin: $addFileToCustomerActionAdmin\n    ) {\n      id\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

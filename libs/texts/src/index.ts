@@ -6,6 +6,8 @@ const TEXTS = {
   PASSWORD: "Password",
   PRODUCT: "Product",
   DASHBOARD: "Dashboard",
+  EXPAND: "Expand",
+  DOWNLOAD: "Download",
   USER: "User",
   NAME: "Name",
   UNIT: "Unit",
