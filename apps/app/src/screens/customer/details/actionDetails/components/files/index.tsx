@@ -1,11 +1,25 @@
 import { FC } from "react";
-import { StyleSheet, Text, SafeAreaView } from "react-native";
+import { StyleSheet, View, SafeAreaView, ScrollView } from "react-native";
+import useData from "./useDate";
+import { Image } from "@app/components";
 
 export const CustomerActionFiles: FC = () => {
+  const { loading, onSubmit, customerAction, refetch } = useData();
+
   return (
-    <SafeAreaView style={styles.container}>
-      <Text style={styles.text}>CustomerActionFiles</Text>
-    </SafeAreaView>
+    <ScrollView style={styles.container}>
+      <View>
+        {customerAction?.fileUses?.map(({ file }) => (
+          <View key={file.id}>
+            <Image
+              filename={file.filename}
+              fileId={file.id}
+              onRemoveComplete={refetch}
+            />
+          </View>
+        ))}
+      </View>
+    </ScrollView>
   );
 };
 
