@@ -6,22 +6,19 @@ import {
   Button,
   TextInput,
   View,
-  Alert,
-  TouchableOpacity,
 } from "react-native";
 import { Controller } from "react-hook-form";
 
-import TEXTS from "libs/texts/src";
+import TEXTS from "@pishroo/texts";
+import useData from "./useDate";
 
-import useData from "./useData";
-
-export const LoginScreen: FC<{ navigation }> = ({ navigation }) => {
+export const CustomerActionDetails: FC = () => {
   const { isValid, control, errors, handleSubmit, onSubmit, loading } =
     useData();
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.label}>{TEXTS.USERNAME}</Text>
+      <Text style={styles.text}>CustomerActionDetails</Text>
       <Controller
         control={control}
         rules={{
@@ -33,30 +30,14 @@ export const LoginScreen: FC<{ navigation }> = ({ navigation }) => {
             onBlur={onBlur}
             onChangeText={onChange}
             value={value}
+            placeholder={TEXTS.TEXT}
           />
         )}
-        name="username"
-      />
-      <Text style={styles.label}>{TEXTS.PASSWORD}</Text>
-      {errors.username && <Text>This is required.</Text>}
-      <Controller
-        control={control}
-        rules={{
-          maxLength: 100,
-        }}
-        render={({ field: { onChange, onBlur, value } }) => (
-          <TextInput
-            style={styles.input}
-            onBlur={onBlur}
-            onChangeText={onChange}
-            value={value}
-          />
-        )}
-        name="password"
+        name="text"
       />
       <View style={styles.button}>
         <Button
-          title={TEXTS.APP_SCREEN_LOGIN__LOGIN}
+          title={TEXTS.UPDATE}
           onPress={handleSubmit(onSubmit)}
           disabled={!isValid || loading}
         />
@@ -66,22 +47,19 @@ export const LoginScreen: FC<{ navigation }> = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
-  label: {
-    marginTop: 30,
-  },
-  button: {
-    marginTop: 40,
-    height: 40,
-  },
-
-  container: {
-    flex: 1,
-    padding: 8,
+  container: {},
+  text: {
+    fontSize: 25,
+    fontWeight: "500",
   },
   input: {
     backgroundColor: "white",
     borderColor: "black",
   },
+  button: {
+    marginTop: 40,
+    height: 40,
+  },
 });
 
-export default LoginScreen;
+export default CustomerActionDetails;

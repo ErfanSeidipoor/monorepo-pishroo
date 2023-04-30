@@ -44,7 +44,7 @@ const TEXTS = {
   SEARCH: "Search",
   JOB_TITLE: "Job Title",
   CUSTOMER: "Customer",
-  CUSTOMER_ACTION: "Customer Action",
+  CUSTOMER_ACTIONS: "Customer Actions",
   TRANSPORTER: "Transporter",
   TRANSPORTER_AGENT: "Transporter Agent",
   TRANSPORTER_ACTIONS: "Transporter ACTIONS",
@@ -583,7 +583,8 @@ const TEXTS = {
   APP_SCREEN_LOGOUT__LOGOUT: "Logout",
   APP_SCREEN_LOGOUT__SUCCESS: "Logout Successfully!",
 
-  /* ------------------------------- App Profile ------------------------------ */
+  /* ------------------------------- App Customer ------------------------------ */
+  APP_SCREEN_CUSTOMER__CREATE_ACTION: "New Customer Action",
 };
 
 export default TEXTS;

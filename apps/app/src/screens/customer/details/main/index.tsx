@@ -63,13 +63,12 @@ export const CustomerDeatilsScreen: FC = () => {
     <SafeAreaView style={styles.container}>
       {renderDetails()}
       {renderLoading()}
-      <Text style={styles.text}>CustomerDeatilsScreen</Text>
       <Button
-        title="Go to Customer Actions"
+        title={TEXTS.CUSTOMER_ACTIONS}
         onPress={() => navigate(CUSTOMER_ACTIONS_ROUTE)}
       />
       <Button
-        title="Go to Create Action"
+        title={TEXTS.APP_SCREEN_CUSTOMER__CREATE_ACTION}
         onPress={() => navigate(CUSTOMER_CREATE_ACTION_ROUTE)}
       />
     </SafeAreaView>

@@ -4,11 +4,13 @@ import {
   CUSTOMER_DETAILS_MAIN_ROUTE,
   CUSTOMER_ACTIONS_ROUTE,
   CUSTOMER_CREATE_ACTION_ROUTE,
+  CUSTOMER_ACTION_DETAILS_ROUTE,
 } from "@app/constants/index";
 
 import CustomerDetailsScreen from "./main";
 import CustomerActionsScreen from "./actions";
 import CustomerCreateActionScreen from "./createAction";
+import CustomeActionDetailsScreen from "./actionDetails";
 import Context from "./context";
 import useData from "./useDate";
 
@@ -31,6 +33,11 @@ export const CustomerScreen: FC = () => {
           options={{ title: "Customer Details" }}
           name={CUSTOMER_DETAILS_MAIN_ROUTE}
           component={CustomerDetailsScreen}
+        />
+        <Stack.Screen
+          options={{ title: "Customer Action details" }}
+          name={CUSTOMER_ACTION_DETAILS_ROUTE}
+          component={CustomeActionDetailsScreen}
         />
         <Stack.Screen
           options={{ title: "Customer Actions" }}

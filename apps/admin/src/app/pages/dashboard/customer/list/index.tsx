@@ -109,7 +109,7 @@ export const CustomerListPage: FC = () => {
               onClick: () => onEdit(item.id),
             },
             {
-              label: TEXTS.CUSTOMER_ACTION,
+              label: TEXTS.CUSTOMER_ACTIONS,
               icon: <HorizontalSplitTwoToneIcon />,
               onClick: () => onActions(item.id),
             },
