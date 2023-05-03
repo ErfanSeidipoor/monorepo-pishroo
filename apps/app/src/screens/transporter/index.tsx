@@ -1,12 +1,12 @@
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { FC } from "react";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import {
-  TRANSPORTER_DETAILS_ROUTE,
   TRANSPORTER_LIST_ROUTE,
+  TRANSPORTER_DETAILS_ROUTE,
 } from "@app/constants/index";
-import ProductDetailsScreen from "./details";
-import ProductListScreen from "./list";
+import TransporterDetailsScreen from "./details";
+import TransporterListScreen from "./list";
 
 const Stack = createNativeStackNavigator();
 
@@ -14,14 +14,14 @@ export const TransporterScreen: FC = () => {
   return (
     <Stack.Navigator initialRouteName={TRANSPORTER_LIST_ROUTE}>
       <Stack.Screen
-        options={{ title: "transporter details", headerShown: false }}
+        options={{ title: "Transporter Details", headerShown: false }}
         name={TRANSPORTER_DETAILS_ROUTE}
-        component={ProductDetailsScreen}
+        component={TransporterDetailsScreen}
       />
       <Stack.Screen
-        options={{ title: "transporter list" }}
+        options={{ title: "transporters" }}
         name={TRANSPORTER_LIST_ROUTE}
-        component={ProductListScreen}
+        component={TransporterListScreen}
       />
     </Stack.Navigator>
   );

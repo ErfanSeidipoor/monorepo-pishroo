@@ -20,6 +20,9 @@ const TEXTS = {
   USERNMAE: "Username",
   SLUG: "Slug",
   TEXT: "Text",
+  COUNT: "Count",
+  YES: "Yes",
+  NO: "No",
   ADDRESS: "Address",
   DESCRIPTION: "Description",
   LATITUDE: "Latitude",
@@ -590,6 +593,14 @@ const TEXTS = {
 
   /* ------------------------------- App Customer ------------------------------ */
   APP_SCREEN_CUSTOMER__CREATE_ACTION: "New Customer Action",
+
+  /* ------------------------------- App Producer ------------------------------ */
+  APP_SCREEN_PRODUCER__CREATE_ACTION: "New Producer Action",
+  APP_SCREEN_PRODUCER__AGENTS: "New Producer Agents",
+
+  /* ----------------------------- App Transporter ----------------------------- */
+  APP_SCREEN_TRANSPORTER__CREATE_ACTION: "New Transporter Action",
+  APP_SCREEN_TRANSPORTER__AGENTS: "New Transporter Agents",
 };
 
 export default TEXTS;

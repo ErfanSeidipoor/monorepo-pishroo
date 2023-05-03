@@ -32,8 +32,8 @@ export const TRANSPORTER_LIST_ROUTE = "transporter_list";
 export const TRANSPORTER_DETAILS_ROUTE = "transporter_details";
 
 export const TRANSPORTER_DETAILS_MAIN_ROUTE = "transporter_details_main";
-
 export const TRANSPORTER_ACTIONS_ROUTE = "transporter_actions";
+export const TRANSPORTER_ACTION_DETAILS_ROUTE = "transporter_action_details";
 export const TRANSPORTER_CREATE_ACTION_ROUTE = "transporter_create_action";
 
 export const TRANSPORTER_AGENT_ROUTE = "transporter_agent";
@@ -49,8 +49,8 @@ export const PRODUCER_LIST_ROUTE = "producer_list";
 export const PRODUCER_DETAILS_ROUTE = "producer_details";
 
 export const PRODUCER_DETAILS_MAIN_ROUTE = "producer_details_main";
-
 export const PRODUCER_ACTIONS_ROUTE = "producer_actions";
+export const PRODUCER_ACTION_DETAILS_ROUTE = "producer_action_details";
 export const PRODUCER_CREATE_ACTION_ROUTE = "producer_create_action";
 
 export const PRODUCER_AGENT_ROUTE = "producer_agent";

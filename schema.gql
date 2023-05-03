@@ -151,6 +151,7 @@ type ProducerAgent {
   phone: String
   description: String
   isActive: Boolean
+  producerId: String!
   producer: Producer!
 }
 
@@ -698,7 +699,7 @@ input GetMessagesAdminArgsGQL {
   isActive: Boolean
   isSubmitted: Boolean
   userId: String
-  customerId: [String!]
+  customerId: String
 }
 
 input GetUsersPublicArgsGQL {

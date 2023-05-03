@@ -7,20 +7,6 @@ import { useUser } from "@app/hooks";
 
 export const ProfileScreen: FC<{ navigation }> = ({ navigation }) => {
   const { currentUser } = useUser();
-
-  const onPressUpload = async () => {
-    try {
-      const doc = await DocumentPicker.pickSingle();
-      console.log({ doc });
-    } catch (error) {
-      if (DocumentPicker.isCancel(error)) {
-        console.log("picker canceled by user");
-      } else {
-        console.log({ error });
-      }
-    }
-  };
-
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.label}>{TEXTS.FIRSTNAME}</Text>
@@ -29,7 +15,6 @@ export const ProfileScreen: FC<{ navigation }> = ({ navigation }) => {
       <Text style={styles.value}>{currentUser && currentUser.lastName}</Text>
       <Text style={styles.label}>{TEXTS.USERNAME}</Text>
       <Text style={styles.value}>{currentUser && currentUser.username}</Text>
-      <Button title="Upload Document" onPress={onPressUpload} />
     </SafeAreaView>
   );
 };

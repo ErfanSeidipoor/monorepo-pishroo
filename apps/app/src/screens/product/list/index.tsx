@@ -18,7 +18,7 @@ import { PRODUCT_DETAILS_ROUTE } from "@app/constants";
 
 import useData from "./useDate";
 
-export const CustomersScreen: FC = () => {
+export const ProductsScreen: FC = () => {
   const {
     isValid,
     control,
@@ -140,4 +140,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CustomersScreen;
+export default ProductsScreen;

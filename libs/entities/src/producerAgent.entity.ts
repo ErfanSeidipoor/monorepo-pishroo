@@ -49,6 +49,10 @@ export class ProducerAgent extends BaseModel {
   })
   producer: Producer;
 
+  @Field({ nullable: false })
+  @Column({ type: "uuid", name: "producer_id", nullable: false })
+  producerId: string;
+
   @OneToMany(
     () => ProducerAction,
     (producerAction) => producerAction.producerAgent,
