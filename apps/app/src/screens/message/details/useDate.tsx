@@ -1,12 +1,17 @@
 import { Alert } from "react-native";
 import { useRoute } from "@react-navigation/native";
-import { useQuery } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import {
   GetMessageByIdAdminQuery,
   GetMessageByIdAdminQueryVariables,
+  UpdateMessageSubmitAdminMutation,
+  UpdateMessageSubmitAdminMutationVariables,
 } from "@app/gql/graphql";
 
-import { QUERY_GET_MESSAGE_BY_ID_ADMIN } from "./gql";
+import {
+  MUTATION_UPDATE_MESSAGE_SUBMIT_ADMIN,
+  QUERY_GET_MESSAGE_BY_ID_ADMIN,
+} from "./gql";
 
 const useData = () => {
   const route = useRoute<{ params: { messageId: string } }>();
@@ -29,11 +34,38 @@ const useData = () => {
     }
   );
 
+  const [
+    updateMessageSubmitAdmin,
+    { loading: updateMessageActivaitonLoading },
+  ] = useMutation<
+    UpdateMessageSubmitAdminMutation,
+    UpdateMessageSubmitAdminMutationVariables
+  >(MUTATION_UPDATE_MESSAGE_SUBMIT_ADMIN, {
+    onError: (error) => {
+      Alert.alert(error.message);
+    },
+    onCompleted: (res) => {
+      ("");
+    },
+  });
+
+  const onUpdateMessageSubmit = () => {
+    updateMessageSubmitAdmin({
+      variables: {
+        updateMessageSubmitAdminInputs: {
+          isSubmited: true,
+          messageId,
+        },
+      },
+    });
+  };
+
   return {
     message: message?.getMessageByIdAdmin,
     getMessageLoading,
     messageId: messageId!,
     refetch,
+    onUpdateMessageSubmit,
   };
 };
 

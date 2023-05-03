@@ -6,30 +6,39 @@ import {
   View,
   Button,
   Text,
-  PermissionsAndroid,
-  NativeModules,
+  Alert,
 } from "react-native";
-
+import SendSMS from "react-native-sms";
 import useDate from "./useDate";
 import TEXTS from "@pishroo/texts";
 
 export const MessageDeatilsScreen: FC = () => {
-  const DirectSms = NativeModules.DirectSms;
-  const { getMessageLoading, message } = useDate();
+  // const DirectSms = NativeModules.DirectSms;
+  const { getMessageLoading, message, onUpdateMessageSubmit } = useDate();
   const renderLoading = () => {
     if (getMessageLoading) return <ActivityIndicator size={"small"} />;
   };
 
   const onClick = async () => {
-    const granted = await PermissionsAndroid.request(
-      PermissionsAndroid.PERMISSIONS["SEND_SMS"],
-      { title: "string", message: "string", buttonPositive: "string" }
-    );
-    console.log({ granted });
+    SendSMS.send(
+      {
+        body: "The default body of the SMS!",
+        recipients: ["0123456789", "9876543210"],
+        successTypes: ["sent", "sent"],
+        allowAndroidSendWithoutReadPermission: true,
+      },
+      (completed, cancelled, error) => {
+        onUpdateMessageSubmit();
+        console.log({ completed, cancelled, error });
 
-    if (granted === PermissionsAndroid.RESULTS["GRANTED"]) {
-      DirectSms.sendDirectSms("9189557540", "Hi, there");
-    }
+        if (completed) {
+          Alert.alert(TEXTS.APP_SCREEN_MESSAGE__SENT_SUCCESSFULLY);
+        }
+        if (cancelled || error) {
+          Alert.alert(TEXTS.APP_SCREEN_MESSAGE__CANCELLED);
+        }
+      }
+    );
   };
 
   const renderDetails = () => {
@@ -66,12 +75,22 @@ export const MessageDeatilsScreen: FC = () => {
       );
   };
 
+  const renderSubmitButton = () => {
+    if (!getMessageLoading && message)
+      return (
+        <Button
+          title="Send SMS"
+          onPress={onClick}
+          disabled={message.isSubmited}
+        />
+      );
+  };
   return (
     <SafeAreaView style={styles.container}>
       {renderDetails()}
       {renderProductProperties()}
+      {renderSubmitButton()}
       {renderLoading()}
-      <Button title="Send SMS" onPress={onClick} />
     </SafeAreaView>
   );
 };

@@ -154,6 +154,7 @@ export * from "./message/get-messages.args";
 export * from "./message/get-message-by-id.args";
 export * from "./message/update-message.inputs";
 export * from "./message/update-message-acivation.inputs";
+export * from "./message/update-message-submit.inputs";
 
 /* ---------------------------- customer message ---------------------------- */
 

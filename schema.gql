@@ -806,6 +806,7 @@ type Mutation {
   createMessageAdmin(createMessageAdminInputs: CreateMessageAdminInputsGQL!): Message!
   updateMessageAdmin(updateMessageAdminInputs: UpdateMessageAdminInputsGQL!): Message!
   updateMessageActivationAdmin(updateMessageActivationAdminInputs: UpdateMessageActivationAdminInputsGQL!): Message!
+  updateMessageSubmitAdmin(updateMessageSubmitAdminInputs: UpdateMessageSubmitAdminInputsGQL!): Message!
   deleteMessageAdmin(deleteMessageAdminInputs: DeleteMessageAdminInputsGQL!): Message!
   createCustomerMessageAdmin(createCustomerMessageAdmin: CreateCustomerMessageAdminInputsGQL!): CustomerMessage!
   deleteCustomerMessageAdmin(deleteCustomerMessageAdmin: DeleteCustomerMessageAdminInputsGQL!): CustomerMessage!
@@ -1296,6 +1297,11 @@ input UpdateMessageAdminInputsGQL {
 input UpdateMessageActivationAdminInputsGQL {
   messageId: String!
   isActive: Boolean!
+}
+
+input UpdateMessageSubmitAdminInputsGQL {
+  messageId: String!
+  isSubmited: Boolean!
 }
 
 input DeleteMessageAdminInputsGQL {

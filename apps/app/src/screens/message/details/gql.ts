@@ -43,3 +43,16 @@ export const QUERY_GET_MESSAGE_BY_ID_ADMIN = gql`
     }
   }
 `;
+
+export const MUTATION_UPDATE_MESSAGE_SUBMIT_ADMIN = gql`
+  mutation updateMessageSubmitAdmin(
+    $updateMessageSubmitAdminInputs: UpdateMessageSubmitAdminInputsGQL!
+  ) {
+    updateMessageSubmitAdmin(
+      updateMessageSubmitAdminInputs: $updateMessageSubmitAdminInputs
+    ) {
+      id
+      isActive
+    }
+  }
+`;

@@ -601,6 +601,10 @@ const TEXTS = {
   /* ----------------------------- App Transporter ----------------------------- */
   APP_SCREEN_TRANSPORTER__CREATE_ACTION: "New Transporter Action",
   APP_SCREEN_TRANSPORTER__AGENTS: "New Transporter Agents",
+
+  /* ------------------------------- App Message -------------------------------- */
+  APP_SCREEN_MESSAGE__SENT_SUCCESSFULLY: "Message has been Successfully Sent!",
+  APP_SCREEN_MESSAGE__CANCELLED: "Message has been Cancelled!",
 };
 
 export default TEXTS;

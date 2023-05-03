@@ -9,6 +9,7 @@ import {
   PaginationArgs,
   UpdateMessageActivationAdminInputs,
   UpdateMessageAdminInputs,
+  UpdateMessageSubmitAdminInputs,
 } from "@pishroo/dto";
 import {
   City,
@@ -212,6 +213,26 @@ export class MessageService {
     }
 
     message.isActive = isActive;
+
+    return await message.save();
+  }
+
+  async updateMessageSubmit(
+    inputs: UpdateMessageSubmitAdminInputs
+  ): Promise<Message> {
+    const { isSubmited, messageId } = inputs;
+
+    const message = await this.messageRepo.findOne({
+      where: {
+        id: messageId,
+      },
+    });
+
+    if (!message) {
+      throw new CustomError(MESSAGE_NOT_FOUND);
+    }
+
+    message.isSubmited = isSubmited;
 
     return await message.save();
   }
