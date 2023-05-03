@@ -4,7 +4,6 @@ import DocumentPicker from "react-native-document-picker";
 
 import TEXTS from "libs/texts/src";
 import { useUser } from "@app/hooks";
-import { Image } from "@app/components";
 
 export const ProfileScreen: FC<{ navigation }> = ({ navigation }) => {
   const { currentUser } = useUser();

@@ -86,6 +86,7 @@ const styles = StyleSheet.create({
   detail: {
     display: "flex",
     flexDirection: "row",
+    marginBottom: 5,
   },
   label: {
     marginRight: 10,

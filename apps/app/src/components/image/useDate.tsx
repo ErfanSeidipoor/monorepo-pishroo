@@ -1,5 +1,5 @@
 import { useMutation } from "@apollo/client";
-import { Alert, Linking } from "react-native";
+import { Alert } from "react-native";
 
 import TEXTS from "@pishroo/texts";
 

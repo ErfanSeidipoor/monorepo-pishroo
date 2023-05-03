@@ -1,6 +1,7 @@
 const TEXTS = {
   /* --------------------------------- general -------------------------------- */
   USERNAME: "Username",
+  COPY: "Copy",
   FIRSTNAME: "First name",
   LASTNAME: "Last name",
   PASSWORD: "Password",
@@ -10,6 +11,8 @@ const TEXTS = {
   DOWNLOAD: "Download",
   USER: "User",
   NAME: "Name",
+  ADD_FILE: "Add File",
+  UPLOAD: "Upload",
   UNIT: "Unit",
   EMAIL: "Email",
   PHONE: "Phone",
