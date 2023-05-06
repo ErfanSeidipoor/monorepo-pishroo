@@ -10,7 +10,7 @@ import {
 } from "@app/gql/graphql";
 import { useCustomerDetails, useCustomerActionDetails } from "@app/hooks";
 
-import { UpdateCustomerActionAdminInputs } from "libs/dto/src/admin";
+import { UpdateCustomerActionAdminInputs } from "libs/dto/src/admin/customerAction/update-customer-action.inputs";
 import TEXTS from "libs/texts/src";
 
 import { MUTATION_UPDATE_CUSTOMER_ACTION_ADMIN } from "./gql";

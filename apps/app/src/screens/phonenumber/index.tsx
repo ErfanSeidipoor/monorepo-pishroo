@@ -1,10 +1,14 @@
+import TEXTS from "@pishroo/texts";
 import { FC } from "react";
-import { SafeAreaView, StyleSheet, Text } from "react-native";
+import { SafeAreaView, StyleSheet, Button } from "react-native";
+import useDate from "./useDate";
 
 export const PhonenumberScreen: FC<{ navigation }> = ({ navigation }) => {
+  const { onSyncCallLogs } = useDate();
+
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.text}>Phonenumber page</Text>
+      <Button title={TEXTS.SYNC} onPress={onSyncCallLogs} />
     </SafeAreaView>
   );
 };

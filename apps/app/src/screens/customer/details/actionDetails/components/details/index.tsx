@@ -1,7 +1,6 @@
 import { FC } from "react";
 import {
   StyleSheet,
-  Text,
   SafeAreaView,
   Button,
   TextInput,
@@ -13,12 +12,10 @@ import TEXTS from "@pishroo/texts";
 import useData from "./useDate";
 
 export const CustomerActionDetails: FC = () => {
-  const { isValid, control, errors, handleSubmit, onSubmit, loading } =
-    useData();
+  const { isValid, control, handleSubmit, onSubmit, loading } = useData();
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.text}>CustomerActionDetails</Text>
       <Controller
         control={control}
         rules={{
@@ -47,7 +44,9 @@ export const CustomerActionDetails: FC = () => {
 };
 
 const styles = StyleSheet.create({
-  container: {},
+  container: {
+    paddingTop: 20,
+  },
   text: {
     fontSize: 25,
     fontWeight: "500",

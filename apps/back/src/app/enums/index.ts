@@ -5,7 +5,12 @@ import {
   PropertyUnitEnum,
   FileUseStatusEnum,
   FileUseTypeEnum,
+  CallTypeEnum,
 } from "@pishroo/enums";
+
+registerEnumType(CallTypeEnum, {
+  name: "CallTypeEnum",
+});
 
 registerEnumType(UserRoleEnum, {
   name: "UserRoleEnum",

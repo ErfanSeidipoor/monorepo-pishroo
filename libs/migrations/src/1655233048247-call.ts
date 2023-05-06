@@ -3,60 +3,60 @@ import {
   QueryRunner,
   Table,
   TableForeignKey,
-} from 'typeorm';
+} from "typeorm";
 
 export class call1655233048247 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'call',
+        name: "call",
         columns: [
           {
-            name: 'id',
-            type: 'uuid',
+            name: "id",
+            type: "uuid",
             isPrimary: true,
-            generationStrategy: 'uuid',
-            default: 'uuid_generate_v4()',
+            generationStrategy: "uuid",
+            default: "uuid_generate_v4()",
           },
           {
-            name: 'created_at',
-            type: 'timestamptz',
-            default: 'now()',
+            name: "created_at",
+            type: "timestamptz",
+            default: "now()",
           },
           {
-            name: 'updated_at',
-            type: 'timestamptz',
-            default: 'now()',
+            name: "updated_at",
+            type: "timestamptz",
+            default: "now()",
           },
           {
-            name: 'deleted_at',
-            type: 'timestamptz',
+            name: "deleted_at",
+            type: "timestamptz",
             isNullable: true,
             default: null,
           },
           {
-            name: 'description',
-            type: 'text',
+            name: "description",
+            type: "text",
             isUnique: false,
             isNullable: true,
           },
           {
-            name: 'new_phone',
-            type: 'varchar',
-            length: '15',
+            name: "new_phone",
+            type: "varchar",
+            length: "15",
             isUnique: false,
             isNullable: false,
           },
           // references
           {
-            name: 'user_id',
-            type: 'uuid',
+            name: "user_id",
+            type: "uuid",
             isUnique: false,
             isNullable: true,
           },
           {
-            name: 'customer_id',
-            type: 'uuid',
+            name: "customer_id",
+            type: "uuid",
             isUnique: false,
             isNullable: true,
           },
@@ -66,27 +66,27 @@ export class call1655233048247 implements MigrationInterface {
     );
 
     await queryRunner.createForeignKey(
-      'call',
+      "call",
       new TableForeignKey({
-        columnNames: ['customer_id'],
-        referencedTableName: 'customer',
-        referencedColumnNames: ['id'],
-        onDelete: 'CASCADE',
+        columnNames: ["customer_id"],
+        referencedTableName: "customer",
+        referencedColumnNames: ["id"],
+        onDelete: "CASCADE",
       })
     );
 
     await queryRunner.createForeignKey(
-      'call',
+      "call",
       new TableForeignKey({
-        columnNames: ['user_id'],
-        referencedTableName: 'user',
-        referencedColumnNames: ['id'],
-        onDelete: 'CASCADE',
+        columnNames: ["user_id"],
+        referencedTableName: "user",
+        referencedColumnNames: ["id"],
+        onDelete: "CASCADE",
       })
     );
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('call');
+    await queryRunner.dropTable("call");
   }
 }

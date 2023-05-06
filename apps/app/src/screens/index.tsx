@@ -14,6 +14,7 @@ import {
   PHONENUMBER_ROUTE,
   LOGOUT_ROUTE,
   PROFILE_ROUTE,
+  CALL_ROUTE,
 } from "@app/constants/index";
 
 import { useUser } from "@app/hooks";
@@ -27,6 +28,7 @@ import MessageScreen from "./message";
 import PhonenumberScreen from "./phonenumber";
 import LogoutScreen from "./logout";
 import ProfileScreen from "./profile";
+import CallScreen from "./call";
 
 const Drawer = createDrawerNavigator();
 const Stack = createNativeStackNavigator();
@@ -72,6 +74,11 @@ export const Navigation: FC = () => {
             options={{ title: "new Phonenumber" }}
             name={PHONENUMBER_ROUTE}
             component={PhonenumberScreen}
+          />
+          <Drawer.Screen
+            options={{ title: "call", headerShown: false }}
+            name={CALL_ROUTE}
+            component={CallScreen}
           />
           <Drawer.Screen
             options={{ title: "logout" }}

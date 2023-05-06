@@ -16,3 +16,5 @@ npm install
 
 sudo npx react-native start
 rm .git/index.lock
+
+$ cd android && ./gradlew clean

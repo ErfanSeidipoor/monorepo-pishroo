@@ -15,6 +15,6 @@ export class GetMessagesAdminArgsGQL extends GetMessagesAdminArgs {
   @Field(() => String, { nullable: true })
   userId?: string;
 
-  @Field(() => [String], { nullable: true })
+  @Field(() => String, { nullable: true })
   customerId?: string;
 }

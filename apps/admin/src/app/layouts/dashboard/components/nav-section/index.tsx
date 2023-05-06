@@ -15,9 +15,11 @@ import AccountTreeTwoToneIcon from "@mui/icons-material/AccountTreeTwoTone";
 import CategoryTwoToneIcon from "@mui/icons-material/CategoryTwoTone";
 import EmailTwoToneIcon from "@mui/icons-material/EmailTwoTone";
 import HorizontalSplitTwoToneIcon from "@mui/icons-material/HorizontalSplitTwoTone";
+import HeadphonesTwoToneIcon from "@mui/icons-material/HeadphonesTwoTone";
 
 import TEXTS from "@pishroo/texts";
 import {
+  DASHBOARD_CALL_ROUTE,
   DASHBOARD_CATEGORY_ROUTE,
   DASHBOARD_CITY_ROUTE,
   DASHBOARD_CUSTOMER_ROUTE,
@@ -104,6 +106,11 @@ export const NavSection: FC = () => {
       title: TEXTS.CATEGORY,
       path: DASHBOARD_CATEGORY_ROUTE,
       icon: <CategoryTwoToneIcon />,
+    },
+    {
+      title: TEXTS.CALL,
+      path: DASHBOARD_CALL_ROUTE,
+      icon: <HeadphonesTwoToneIcon />,
     },
     {
       title: TEXTS.MESSAGE,

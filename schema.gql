@@ -126,18 +126,45 @@ type PaginatedCustomer {
   pageInfo: PageInfo!
 }
 
-type File {
+type TransporterAgent {
   id: String!
   createdAt: DateTime!
   updatedAt: DateTime
   deletedAt: DateTime
-  encoding: String!
-  mimetype: String!
-  destination: String!
-  filename: String!
-  path: String!
-  size: Float!
-  isUsed: Boolean!
+  firstName: String
+  lastName: String
+  email: String
+  phone: String
+  description: String
+  isActive: Boolean
+  transporterId: String
+  transporter: Transporter!
+}
+
+type PaginatedTransporterAgent {
+  edges: [TransporterAgent!]!
+  pageInfo: PageInfo!
+}
+
+type Transporter {
+  id: String!
+  createdAt: DateTime!
+  updatedAt: DateTime
+  deletedAt: DateTime
+  name: String!
+  phone: String
+  email: String
+  description: String!
+  address: String
+  isActive: Boolean
+  cityId: String
+  city: City!
+  fileUses: [FileUse!]!
+}
+
+type PaginatedTransporter {
+  edges: [Transporter!]!
+  pageInfo: PageInfo!
 }
 
 type ProducerAgent {
@@ -151,6 +178,7 @@ type ProducerAgent {
   phone: String
   description: String
   isActive: Boolean
+  producerId: String!
   producer: Producer!
 }
 
@@ -196,6 +224,51 @@ type Producer {
 type PaginatedProducer {
   edges: [Producer!]!
   pageInfo: PageInfo!
+}
+
+type Call {
+  id: String!
+  createdAt: DateTime!
+  updatedAt: DateTime
+  deletedAt: DateTime
+  description: String
+  timestamp: String
+  newPhone: String
+  userId: String!
+  customerId: String
+  transporterId: String
+  producerId: String
+  type: CallTypeEnum!
+  transporter: Transporter
+  producer: Producer
+  customer: Customer
+  user: User
+}
+
+enum CallTypeEnum {
+  transporter
+  producer
+  customer
+  unknow
+}
+
+type PaginatedCall {
+  edges: [Call!]!
+  pageInfo: PageInfo!
+}
+
+type File {
+  id: String!
+  createdAt: DateTime!
+  updatedAt: DateTime
+  deletedAt: DateTime
+  encoding: String!
+  mimetype: String!
+  destination: String!
+  filename: String!
+  path: String!
+  size: Float!
+  isUsed: Boolean!
 }
 
 type Category {
@@ -378,47 +451,6 @@ type PaginatedProduct {
   pageInfo: PageInfo!
 }
 
-type TransporterAgent {
-  id: String!
-  createdAt: DateTime!
-  updatedAt: DateTime
-  deletedAt: DateTime
-  firstName: String
-  lastName: String
-  email: String
-  phone: String
-  description: String
-  isActive: Boolean
-  transporterId: String
-  transporter: Transporter!
-}
-
-type PaginatedTransporterAgent {
-  edges: [TransporterAgent!]!
-  pageInfo: PageInfo!
-}
-
-type Transporter {
-  id: String!
-  createdAt: DateTime!
-  updatedAt: DateTime
-  deletedAt: DateTime
-  name: String!
-  phone: String
-  email: String
-  description: String!
-  address: String
-  isActive: Boolean
-  cityId: String
-  city: City!
-  fileUses: [FileUse!]!
-}
-
-type PaginatedTransporter {
-  edges: [Transporter!]!
-  pageInfo: PageInfo!
-}
-
 type FileUse {
   id: String!
   createdAt: DateTime!
@@ -568,6 +600,8 @@ type Query {
   getProjectByIdPublic(identity: String!): Project
   getProducerActionsAdmin(paginationArgs: PaginationArgsGQL!, getProducerActionsAdminArgs: GetProducerActionsAdminArgsGQL!): PaginatedProducerAction!
   getProducerActionByIdAdmin(producerActionId: String!): ProducerAction!
+  getCallsAdmin(paginationArgs: PaginationArgsGQL!, getCallsAdminArgs: GetCallsAdminArgsGQL!): PaginatedCall!
+  getCallByIdAdmin(callId: String!): Call
 }
 
 input LoginAdminInputsGQL {
@@ -698,7 +732,7 @@ input GetMessagesAdminArgsGQL {
   isActive: Boolean
   isSubmitted: Boolean
   userId: String
-  customerId: [String!]
+  customerId: String
 }
 
 input GetUsersPublicArgsGQL {
@@ -723,6 +757,11 @@ input GetProjectsPublicArgsGQL {
 input GetProducerActionsAdminArgsGQL {
   search: String = ""
   producerId: String!
+}
+
+input GetCallsAdminArgsGQL {
+  search: String
+  userId: String
 }
 
 type Mutation {
@@ -805,6 +844,7 @@ type Mutation {
   createMessageAdmin(createMessageAdminInputs: CreateMessageAdminInputsGQL!): Message!
   updateMessageAdmin(updateMessageAdminInputs: UpdateMessageAdminInputsGQL!): Message!
   updateMessageActivationAdmin(updateMessageActivationAdminInputs: UpdateMessageActivationAdminInputsGQL!): Message!
+  updateMessageSubmitAdmin(updateMessageSubmitAdminInputs: UpdateMessageSubmitAdminInputsGQL!): Message!
   deleteMessageAdmin(deleteMessageAdminInputs: DeleteMessageAdminInputsGQL!): Message!
   createCustomerMessageAdmin(createCustomerMessageAdmin: CreateCustomerMessageAdminInputsGQL!): CustomerMessage!
   deleteCustomerMessageAdmin(deleteCustomerMessageAdmin: DeleteCustomerMessageAdminInputsGQL!): CustomerMessage!
@@ -813,6 +853,10 @@ type Mutation {
   createProducerActionAdmin(createProducerActionAdminInputs: CreateProducerActionAdminInputsGQL!): ProducerAction!
   updateProducerActionAdmin(updateProducerActionAdminInputs: UpdateProducerActionAdminInputsGQL!): ProducerAction!
   addFileToProducerActionAdmin(addFileToProducerActionAdmin: AddFileToProducerActionAdminInputsGQL!): ProducerAction!
+  insertDailyCalls(insertDailyCallsAdminInputs: InsertDailyCallsAdminInputsGQL!): [Call!]!
+  createCallAdmin(createCallAdminInputs: CreateCallAdminInputsGQL!): Call!
+  updateCallAdmin(updateCallAdminInputs: UpdateCallAdminInputsGQL!): Call!
+  deleteCallAdmin(deleteCallAdminInputs: DeleteCallAdminInputsGQL!): Call!
 }
 
 input CreateUserAdminInputsGQL {
@@ -1297,6 +1341,11 @@ input UpdateMessageActivationAdminInputsGQL {
   isActive: Boolean!
 }
 
+input UpdateMessageSubmitAdminInputsGQL {
+  messageId: String!
+  isSubmited: Boolean!
+}
+
 input DeleteMessageAdminInputsGQL {
   messageId: String!
 }
@@ -1330,4 +1379,28 @@ input UpdateProducerActionAdminInputsGQL {
 input AddFileToProducerActionAdminInputsGQL {
   fileId: String!
   producerActionId: String!
+}
+
+input InsertDailyCallsAdminInputsGQL {
+  calls: [CallItem!]!
+}
+
+input CallItem {
+  timestamp: String!
+  newPhone: String!
+}
+
+input CreateCallAdminInputsGQL {
+  description: String!
+  newPhone: String!
+}
+
+input UpdateCallAdminInputsGQL {
+  callId: String!
+  description: String!
+  newPhone: String!
+}
+
+input DeleteCallAdminInputsGQL {
+  callId: String!
 }

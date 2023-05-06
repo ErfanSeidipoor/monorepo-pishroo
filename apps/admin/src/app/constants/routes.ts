@@ -146,6 +146,12 @@ export const DASHBOARD_CATEGORY_NEW_CATEGORY_ROUTE =
 export const DASHBOARD_CATEGORY_DETAILS =
   DASHBOARD_CATEGORY_ROUTE + "/:categoryId";
 
+/* --------------------------------- call --------------------------------- */
+
+export const DASHBOARD_CALL_ROUTE = DASHBOARD_ROUTE + "/call";
+export const DASHBOARD_CALL_NEW_CALL_ROUTE = DASHBOARD_CALL_ROUTE + "/new";
+export const DASHBOARD_CALL_DETAILS = DASHBOARD_CALL_ROUTE + "/:callId";
+
 /* -------------------------------- message -------------------------------- */
 
 export const DASHBOARD_MESSAGE_ROUTE = DASHBOARD_ROUTE + "/message";

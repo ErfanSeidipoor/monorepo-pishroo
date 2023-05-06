@@ -38,7 +38,6 @@ const styles = StyleSheet.create({
   },
   property: {
     display: "flex",
-    flexDirection: "row",
   },
   label: {
     marginRight: 10,

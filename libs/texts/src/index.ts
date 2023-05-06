@@ -1,6 +1,8 @@
 const TEXTS = {
   /* --------------------------------- general -------------------------------- */
   USERNAME: "Username",
+  COPY: "Copy",
+  SYNC: "Sync",
   FIRSTNAME: "First name",
   LASTNAME: "Last name",
   PASSWORD: "Password",
@@ -9,7 +11,10 @@ const TEXTS = {
   EXPAND: "Expand",
   DOWNLOAD: "Download",
   USER: "User",
+  TYPE: "Type",
   NAME: "Name",
+  ADD_FILE: "Add File",
+  UPLOAD: "Upload",
   UNIT: "Unit",
   EMAIL: "Email",
   PHONE: "Phone",
@@ -17,6 +22,9 @@ const TEXTS = {
   USERNMAE: "Username",
   SLUG: "Slug",
   TEXT: "Text",
+  COUNT: "Count",
+  YES: "Yes",
+  NO: "No",
   ADDRESS: "Address",
   DESCRIPTION: "Description",
   LATITUDE: "Latitude",
@@ -59,6 +67,7 @@ const TEXTS = {
   PRODUCT_PROPERTY: "Product property",
   REVIEWER: "Reviewer",
   CATEGORY: "Category",
+  CALL: "Call",
   PROPERTY: "Property",
   PARTNER: "Partner",
   PARTNERS: "Partners",
@@ -410,6 +419,29 @@ const TEXTS = {
   PAGE_CATEGORY_UPDATE__UPDATE_CATEGORY: "Update Category ",
   PAGE_CATEGORY_UPDATE__SUCCESS: "Category Updated Successfully!",
 
+  /* --------------------------------   call   -------------------------------- */
+
+  PAGE_CALL__PAGE_TITLE: "Call | Pishroo",
+  PAGE_CALL__CALL: "Call ",
+  PAGE_CALL__NEW_CALL: "New Call ",
+
+  /* ------------------------------  new  call   ------------------------------ */
+
+  PAGE_NEW_CALL__PAGE_TITLE: "New Call | Pishroo",
+  PAGE_NEW_CALL__NEW_CALL: "New Call ",
+  PAGE_NEW_CALL__SUCCESS: "Call  Created Successfully!",
+
+  /* ---------------------------- new phone number ---------------------------- */
+
+  PAGE_NEW_PHONENUMBER__SUCCESS: "Phone Calls Synced Successfully!",
+  PAGE_NEW_PHONENUMBER__PERMISSION_DENY: "Permission Denied!",
+
+  /* ----------------------------   call  details  ---------------------------- */
+
+  PAGE_CALL_UPDATE__PAGE_TITLE: "Call Details | Pishroo",
+  PAGE_CALL_UPDATE__UPDATE_CALL: "Update Call ",
+  PAGE_CALL_UPDATE__SUCCESS: "Call Updated Successfully!",
+
   /* -------------------------------- property -------------------------------- */
 
   PAGE_PROPERTY__PAGE_TITLE: "Property | Pishroo",
@@ -587,6 +619,21 @@ const TEXTS = {
 
   /* ------------------------------- App Customer ------------------------------ */
   APP_SCREEN_CUSTOMER__CREATE_ACTION: "New Customer Action",
+
+  /* ------------------------------- App Producer ------------------------------ */
+  APP_SCREEN_PRODUCER__CREATE_ACTION: "New Producer Action",
+  APP_SCREEN_PRODUCER__AGENTS: "New Producer Agents",
+
+  /* ----------------------------- App Transporter ----------------------------- */
+  APP_SCREEN_TRANSPORTER__CREATE_ACTION: "New Transporter Action",
+  APP_SCREEN_TRANSPORTER__AGENTS: "New Transporter Agents",
+
+  /* ------------------------------- App Message -------------------------------- */
+  APP_SCREEN_MESSAGE__SENT_SUCCESSFULLY: "Message has been Successfully Sent!",
+  APP_SCREEN_MESSAGE__CANCELLED: "Message has been Cancelled!",
+
+  /* ------------------------------- App Producer ------------------------------ */
+  APP_SCREEN_CALL__CREATE_CALL: "New CALL",
 };
 
 export default TEXTS;

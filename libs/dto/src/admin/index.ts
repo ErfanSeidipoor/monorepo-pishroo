@@ -37,6 +37,15 @@ export * from "./category/update-category-acivation.inputs";
 export * from "./category/get-category-by-id.args";
 export * from "./category/get-categories.args";
 
+/* -------------------------------- categories -------------------------------- */
+
+export * from "./call/create-call.inputs";
+export * from "./call/update-call.inputs";
+export * from "./call/delete-call.inputs";
+export * from "./call/get-call-by-id.args";
+export * from "./call/get-calls.args";
+export * from "./call/insert-daily-calls.inputs";
+
 /* -------------------------------- property -------------------------------- */
 
 export * from "./property/create-property.inputs";
@@ -154,6 +163,7 @@ export * from "./message/get-messages.args";
 export * from "./message/get-message-by-id.args";
 export * from "./message/update-message.inputs";
 export * from "./message/update-message-acivation.inputs";
+export * from "./message/update-message-submit.inputs";
 
 /* ---------------------------- customer message ---------------------------- */
 

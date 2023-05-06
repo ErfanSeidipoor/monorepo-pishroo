@@ -22,6 +22,7 @@ import {
   GetMessagesAdminArgsGQL,
   UpdateMessageActivationAdminInputsGQL,
   UpdateMessageAdminInputsGQL,
+  UpdateMessageSubmitAdminInputsGQL,
 } from "./dto";
 import { MessageService } from "./message.service";
 
@@ -54,6 +55,14 @@ export class MessageResolver {
     inputs: UpdateMessageActivationAdminInputsGQL
   ): Promise<Message> {
     return await this.messageService.updateMessageActivation(inputs);
+  }
+  @Mutation(() => Message)
+  @UseGuards(MessageAdminGuard)
+  async updateMessageSubmitAdmin(
+    @Args("updateMessageSubmitAdminInputs")
+    inputs: UpdateMessageSubmitAdminInputsGQL
+  ): Promise<Message> {
+    return await this.messageService.updateMessageSubmit(inputs);
   }
 
   @Mutation(() => Message)
