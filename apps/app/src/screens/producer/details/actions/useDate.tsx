@@ -4,7 +4,7 @@ import { classValidatorResolver } from "@hookform/resolvers/class-validator";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Alert } from "react-native";
-import { GetProducerActionsAdminArgs } from "libs/dto/src/admin";
+import { GetProducerActionsAdminArgs } from "libs/dto/src/admin/producerAction/get-producer-actions.args";
 
 import {
   GetProducerActionsAdminArgsGql,

@@ -26,6 +26,7 @@ import { MessageModuleAdmin } from "./modules/admin/message/message.module";
 import { CustomerMessageModuleAdmin } from "./modules/admin/customerMessage/customerMessage.module";
 import { TransporterActionModuleAdmin } from "./modules/admin/transporterAction/transporterAction.module";
 import { ProducerActionModuleAdmin } from "./modules/admin/producerAction/producerAction.module";
+import { CallModuleAdmin } from "./modules/admin/call/call.module";
 
 // public
 import { UserModulePublic } from "./modules/public/user/user.module";
@@ -96,6 +97,7 @@ import { CurrentUserMiddleware } from "./middlewares";
     CategoryModulePublic,
     ProjectModulePublic,
     ProducerActionModuleAdmin,
+    CallModuleAdmin,
   ],
   controllers: [],
   providers: [],

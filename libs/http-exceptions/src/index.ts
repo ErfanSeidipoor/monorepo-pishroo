@@ -75,6 +75,11 @@ export const CATEGORY_NOT_FOUND: ICustomError = {
   description: "Category Not Found",
 };
 
+export const CALL_NOT_FOUND: ICustomError = {
+  status: HttpStatus.NOT_FOUND,
+  description: "Call Not Found",
+};
+
 export const CATEGORY_WITH_THIS_NAME_ALREADY_EXIST: ICustomError = {
   status: HttpStatus.BAD_REQUEST,
   description: "Category With This name already exist",

@@ -13,7 +13,7 @@ import {
   CreateCustomerActionAdminInputsMutationVariables,
 } from "@app/gql/graphql";
 
-import { CreateCustomerActionAdminInputs } from "libs/dto/src/admin";
+import { CreateCustomerActionAdminInputs } from "libs/dto/src/admin/customerAction/create-customer-action.inputs";
 
 import { MUTATION_CREATE_CUSTOMER_ACTION_ADMIN } from "./gql";
 

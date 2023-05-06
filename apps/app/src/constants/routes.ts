@@ -64,6 +64,13 @@ export const MESSAGE_ROUTE = "message";
 export const MESSAGE_LIST_ROUTE = "message_list";
 export const MESSAGE_DETAILS_ROUTE = "message_details";
 
+/* ----------------------------------  call --------------------------------- */
+
+export const CALL_ROUTE = "call";
+export const CALL_LIST_ROUTE = "call_list";
+export const CALL_DETAILS_ROUTE = "call_details";
+export const CALL_CREATE_ROUTE = "call_create";
+
 /* ------------------------------ phoneNumber ------------------------------- */
 
 export const PHONENUMBER_ROUTE = "phonenumber";

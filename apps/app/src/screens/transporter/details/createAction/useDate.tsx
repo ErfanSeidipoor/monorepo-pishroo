@@ -13,7 +13,7 @@ import {
   CreateTransporterActionAdminInputsMutationVariables,
 } from "@app/gql/graphql";
 
-import { CreateTransporterActionAdminInputs } from "libs/dto/src/admin";
+import { CreateTransporterActionAdminInputs } from "libs/dto/src/admin/transporterAction/create-transporter-action.inputs";
 
 import { MUTATION_CREATE_TRANSPORTER_ACTION_ADMIN } from "./gql";
 

@@ -38,7 +38,7 @@ const useData = () => {
     GetMessagesAdminQuery["getMessagesAdmin"]["edges"]
   >([]);
 
-  const [activationItem, setActivationItem] = useState<typeof rows[0]>();
+  const [activationItem, setActivationItem] = useState<(typeof rows)[0]>();
 
   const convertSearchParamsToArgs = (searchParams: URLSearchParams) => {
     return {

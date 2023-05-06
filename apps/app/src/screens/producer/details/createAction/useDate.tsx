@@ -13,7 +13,7 @@ import {
   CreateProducerActionAdminInputsMutationVariables,
 } from "@app/gql/graphql";
 
-import { CreateProducerActionAdminInputs } from "libs/dto/src/admin";
+import { CreateProducerActionAdminInputs } from "libs/dto/src/admin/producerAction/create-producer-action.inputs";
 
 import { MUTATION_CREATE_PRODUCER_ACTION_ADMIN } from "./gql";
 

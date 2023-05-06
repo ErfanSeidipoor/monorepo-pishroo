@@ -74,6 +74,38 @@ export type AddPropertyToProductAdminInputsGql = {
   value: Scalars['String'];
 };
 
+export type Call = {
+  __typename?: 'Call';
+  createdAt: Scalars['DateTime'];
+  customer?: Maybe<Customer>;
+  customerId?: Maybe<Scalars['String']>;
+  deletedAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['String']>;
+  id: Scalars['String'];
+  newPhone?: Maybe<Scalars['String']>;
+  producer?: Maybe<Producer>;
+  producerId?: Maybe<Scalars['String']>;
+  timestamp?: Maybe<Scalars['String']>;
+  transporter?: Maybe<Transporter>;
+  transporterId?: Maybe<Scalars['String']>;
+  type: CallTypeEnum;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  user?: Maybe<User>;
+  userId: Scalars['String'];
+};
+
+export type CallItem = {
+  newPhone: Scalars['String'];
+  timestamp: Scalars['String'];
+};
+
+export enum CallTypeEnum {
+  Customer = 'customer',
+  Producer = 'producer',
+  Transporter = 'transporter',
+  Unknow = 'unknow'
+}
+
 export type Category = {
   __typename?: 'Category';
   createdAt: Scalars['DateTime'];
@@ -103,6 +135,11 @@ export type Color = {
   name: Scalars['String'];
   updatedAt?: Maybe<Scalars['DateTime']>;
   value: Scalars['String'];
+};
+
+export type CreateCallAdminInputsGql = {
+  description: Scalars['String'];
+  newPhone: Scalars['String'];
 };
 
 export type CreateCategoryAdminInputsGql = {
@@ -296,6 +333,10 @@ export type CustomerMessage = {
   updatedAt?: Maybe<Scalars['DateTime']>;
 };
 
+export type DeleteCallAdminInputsGql = {
+  callId: Scalars['String'];
+};
+
 export type DeleteCategoryAdminInputsGql = {
   categoryId: Scalars['String'];
 };
@@ -422,6 +463,11 @@ export enum FileUseTypeEnum {
   User = 'user'
 }
 
+export type GetCallsAdminArgsGql = {
+  search?: InputMaybe<Scalars['String']>;
+  userId?: InputMaybe<Scalars['String']>;
+};
+
 export type GetCategoriesAdminArgsGql = {
   isActive?: InputMaybe<Scalars['Boolean']>;
   name?: InputMaybe<Scalars['String']>;
@@ -456,7 +502,7 @@ export type GetCustomersAdminArgsGql = {
 };
 
 export type GetMessagesAdminArgsGql = {
-  customerId?: InputMaybe<Array<Scalars['String']>>;
+  customerId?: InputMaybe<Scalars['String']>;
   isActive?: InputMaybe<Scalars['Boolean']>;
   isSubmitted?: InputMaybe<Scalars['Boolean']>;
   search?: InputMaybe<Scalars['String']>;
@@ -567,6 +613,10 @@ export type GetUsersPublicArgsGql = {
   search?: InputMaybe<Scalars['String']>;
 };
 
+export type InsertDailyCallsAdminInputsGql = {
+  calls: Array<CallItem>;
+};
+
 export type LoginAdminInputsGql = {
   password: Scalars['String'];
   username: Scalars['String'];
@@ -600,6 +650,7 @@ export type Mutation = {
   addImageToTransporterAdmin: Transporter;
   addImageToUserAdmin: User;
   addPropertyToProductAdmin: ProductProperty;
+  createCallAdmin: Call;
   createCategoryAdmin: Category;
   createCityAdmin: City;
   createColorAdmin: Color;
@@ -620,6 +671,7 @@ export type Mutation = {
   createTransporterAdmin: Transporter;
   createTransporterAgentAdmin: TransporterAgent;
   createUserAdmin: User;
+  deleteCallAdmin: Call;
   deleteCategoryAdmin: Category;
   deleteCityAdmin: City;
   deleteColorAdmin: Color;
@@ -636,6 +688,7 @@ export type Mutation = {
   deleteProvinceAdmin: Province;
   deleteTransporterAdmin: Transporter;
   deleteTransporterAgentAdmin: TransporterAgent;
+  insertDailyCalls: Array<Call>;
   removeImageAdmin: File;
   removeImageFromProducerAdmin: Producer;
   removeImageFromProductAdmin: Product;
@@ -643,6 +696,7 @@ export type Mutation = {
   removeImageFromTransporterAdmin: Transporter;
   removeImageFromUserAdmin: User;
   removePropertyFromProductAdmin: Product;
+  updateCallAdmin: Call;
   updateCategoryActivationAdmin: Category;
   updateCategoryAdmin: Category;
   updateCityAdmin: City;
@@ -652,6 +706,7 @@ export type Mutation = {
   updateCustomerAdmin: Customer;
   updateMessageActivationAdmin: Message;
   updateMessageAdmin: Message;
+  updateMessageSubmitAdmin: Message;
   updateProducerActionAdmin: ProducerAction;
   updateProducerActivationAdmin: Producer;
   updateProducerAdmin: Producer;
@@ -731,6 +786,11 @@ export type MutationAddImageToUserAdminArgs = {
 
 export type MutationAddPropertyToProductAdminArgs = {
   addPropertyToProductAdminInputs: AddPropertyToProductAdminInputsGql;
+};
+
+
+export type MutationCreateCallAdminArgs = {
+  createCallAdminInputs: CreateCallAdminInputsGql;
 };
 
 
@@ -834,6 +894,11 @@ export type MutationCreateUserAdminArgs = {
 };
 
 
+export type MutationDeleteCallAdminArgs = {
+  deleteCallAdminInputs: DeleteCallAdminInputsGql;
+};
+
+
 export type MutationDeleteCategoryAdminArgs = {
   deleteCategoryAdminInputs: DeleteCategoryAdminInputsGql;
 };
@@ -914,6 +979,11 @@ export type MutationDeleteTransporterAgentAdminArgs = {
 };
 
 
+export type MutationInsertDailyCallsArgs = {
+  insertDailyCallsAdminInputs: InsertDailyCallsAdminInputsGql;
+};
+
+
 export type MutationRemoveImageAdminArgs = {
   removeImageAdmin: RemoveImageAdminInputsGql;
 };
@@ -946,6 +1016,11 @@ export type MutationRemoveImageFromUserAdminArgs = {
 
 export type MutationRemovePropertyFromProductAdminArgs = {
   removePropertyFromProductAdminInputs: RemovePropertyFromProductAdminInputsGql;
+};
+
+
+export type MutationUpdateCallAdminArgs = {
+  updateCallAdminInputs: UpdateCallAdminInputsGql;
 };
 
 
@@ -991,6 +1066,11 @@ export type MutationUpdateMessageActivationAdminArgs = {
 
 export type MutationUpdateMessageAdminArgs = {
   updateMessageAdminInputs: UpdateMessageAdminInputsGql;
+};
+
+
+export type MutationUpdateMessageSubmitAdminArgs = {
+  updateMessageSubmitAdminInputs: UpdateMessageSubmitAdminInputsGql;
 };
 
 
@@ -1120,6 +1200,12 @@ export type PageInfo = {
   edgesPerPage: Scalars['Float'];
   totalEdges: Scalars['Float'];
   totalPages: Scalars['Float'];
+};
+
+export type PaginatedCall = {
+  __typename?: 'PaginatedCall';
+  edges: Array<Call>;
+  pageInfo: PageInfo;
 };
 
 export type PaginatedCategory = {
@@ -1290,6 +1376,7 @@ export type ProducerAgent = {
   lastName?: Maybe<Scalars['String']>;
   phone?: Maybe<Scalars['String']>;
   producer: Producer;
+  producerId: Scalars['String'];
   updatedAt?: Maybe<Scalars['DateTime']>;
 };
 
@@ -1442,6 +1529,8 @@ export type ProvinceUser = {
 
 export type Query = {
   __typename?: 'Query';
+  getCallByIdAdmin?: Maybe<Call>;
+  getCallsAdmin: PaginatedCall;
   getCategoriesAdmin: PaginatedCategory;
   getCategoriesPublic: PaginatedCategory;
   getCategoryByIdAdmin?: Maybe<Category>;
@@ -1492,6 +1581,17 @@ export type Query = {
   loginAdmin: User;
   logoutAdmin?: Maybe<User>;
   meAdmin?: Maybe<User>;
+};
+
+
+export type QueryGetCallByIdAdminArgs = {
+  callId: Scalars['String'];
+};
+
+
+export type QueryGetCallsAdminArgs = {
+  getCallsAdminArgs: GetCallsAdminArgsGql;
+  paginationArgs: PaginationArgsGql;
 };
 
 
@@ -1827,6 +1927,12 @@ export type TransporterAgent = {
   updatedAt?: Maybe<Scalars['DateTime']>;
 };
 
+export type UpdateCallAdminInputsGql = {
+  callId: Scalars['String'];
+  description: Scalars['String'];
+  newPhone: Scalars['String'];
+};
+
 export type UpdateCategoryActivationAdminInputsGql = {
   categoryId: Scalars['String'];
   isActive: Scalars['Boolean'];
@@ -1883,6 +1989,11 @@ export type UpdateMessageAdminInputsGql = {
   messageId: Scalars['String'];
   text: Scalars['String'];
   userId: Scalars['String'];
+};
+
+export type UpdateMessageSubmitAdminInputsGql = {
+  isSubmited: Scalars['Boolean'];
+  messageId: Scalars['String'];
 };
 
 export type UpdateProducerActionAdminInputsGql = {
@@ -2185,6 +2296,42 @@ export type LogoutAdminQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type LogoutAdminQuery = { __typename?: 'Query', logoutAdmin?: { __typename?: 'User', id: string } | null };
+
+export type GetCallsAdminQueryVariables = Exact<{
+  getCallsAdminArgs: GetCallsAdminArgsGql;
+  paginationArgs: PaginationArgsGql;
+}>;
+
+
+export type GetCallsAdminQuery = { __typename?: 'Query', getCallsAdmin: { __typename?: 'PaginatedCall', pageInfo: { __typename?: 'PageInfo', totalEdges: number, edgeCount?: number | null, edgesPerPage: number, currentPage: number, totalPages: number }, edges: Array<{ __typename?: 'Call', id: string, description?: string | null, createdAt: any, timestamp?: string | null, newPhone?: string | null, userId: string, customerId?: string | null, transporterId?: string | null, producerId?: string | null, type: CallTypeEnum, user?: { __typename?: 'User', username: string, id: string, firstName?: string | null, lastName?: string | null } | null, customer?: { __typename?: 'Customer', id: string, firstName: string, lastName?: string | null, jobTitle?: string | null, city: { __typename?: 'City', id: string, name: string, province: { __typename?: 'Province', id: string, name: string } } } | null, transporter?: { __typename?: 'Transporter', id: string, name: string, phone?: string | null, email?: string | null, city: { __typename?: 'City', id: string, name: string, province: { __typename?: 'Province', id: string, name: string } } } | null, producer?: { __typename?: 'Producer', id: string, name?: string | null, phone?: string | null, email?: string | null, city: { __typename?: 'City', id: string, name: string, province: { __typename?: 'Province', id: string, name: string } } } | null }> } };
+
+export type DeleteCallAdminMutationVariables = Exact<{
+  deleteCallAdminInputs: DeleteCallAdminInputsGql;
+}>;
+
+
+export type DeleteCallAdminMutation = { __typename?: 'Mutation', deleteCallAdmin: { __typename?: 'Call', id: string, newPhone?: string | null, userId: string } };
+
+export type CreateCallAdminMutationVariables = Exact<{
+  createCallAdminInputs: CreateCallAdminInputsGql;
+}>;
+
+
+export type CreateCallAdminMutation = { __typename?: 'Mutation', createCallAdmin: { __typename?: 'Call', id: string, description?: string | null, createdAt: any, timestamp?: string | null, newPhone?: string | null, userId: string, customerId?: string | null, transporterId?: string | null, producerId?: string | null, type: CallTypeEnum, user?: { __typename?: 'User', username: string, id: string, firstName?: string | null, lastName?: string | null } | null, customer?: { __typename?: 'Customer', id: string, firstName: string, lastName?: string | null, jobTitle?: string | null, city: { __typename?: 'City', id: string, name: string, province: { __typename?: 'Province', id: string, name: string } } } | null, transporter?: { __typename?: 'Transporter', id: string, name: string, phone?: string | null, email?: string | null, city: { __typename?: 'City', id: string, name: string, province: { __typename?: 'Province', id: string, name: string } } } | null, producer?: { __typename?: 'Producer', id: string, name?: string | null, phone?: string | null, email?: string | null, city: { __typename?: 'City', id: string, name: string, province: { __typename?: 'Province', id: string, name: string } } } | null } };
+
+export type UpdateCallAdminMutationVariables = Exact<{
+  updateCallAdminInputs: UpdateCallAdminInputsGql;
+}>;
+
+
+export type UpdateCallAdminMutation = { __typename?: 'Mutation', updateCallAdmin: { __typename?: 'Call', id: string, description?: string | null, createdAt: any, timestamp?: string | null, newPhone?: string | null, userId: string, customerId?: string | null, transporterId?: string | null, producerId?: string | null, type: CallTypeEnum, user?: { __typename?: 'User', username: string, id: string, firstName?: string | null, lastName?: string | null } | null, customer?: { __typename?: 'Customer', id: string, firstName: string, lastName?: string | null, jobTitle?: string | null, city: { __typename?: 'City', id: string, name: string, province: { __typename?: 'Province', id: string, name: string } } } | null, transporter?: { __typename?: 'Transporter', id: string, name: string, phone?: string | null, email?: string | null, city: { __typename?: 'City', id: string, name: string, province: { __typename?: 'Province', id: string, name: string } } } | null, producer?: { __typename?: 'Producer', id: string, name?: string | null, phone?: string | null, email?: string | null, city: { __typename?: 'City', id: string, name: string, province: { __typename?: 'Province', id: string, name: string } } } | null } };
+
+export type GetCallByIdAdminQueryVariables = Exact<{
+  callId: Scalars['String'];
+}>;
+
+
+export type GetCallByIdAdminQuery = { __typename?: 'Query', getCallByIdAdmin?: { __typename?: 'Call', id: string, description?: string | null, createdAt: any, timestamp?: string | null, newPhone?: string | null, userId: string, customerId?: string | null, transporterId?: string | null, producerId?: string | null, type: CallTypeEnum, user?: { __typename?: 'User', username: string, id: string, firstName?: string | null, lastName?: string | null } | null, customer?: { __typename?: 'Customer', id: string, firstName: string, lastName?: string | null, jobTitle?: string | null, city: { __typename?: 'City', id: string, name: string, province: { __typename?: 'Province', id: string, name: string } } } | null, transporter?: { __typename?: 'Transporter', id: string, name: string, phone?: string | null, email?: string | null, city: { __typename?: 'City', id: string, name: string, province: { __typename?: 'Province', id: string, name: string } } } | null, producer?: { __typename?: 'Producer', id: string, name?: string | null, phone?: string | null, email?: string | null, city: { __typename?: 'City', id: string, name: string, province: { __typename?: 'Province', id: string, name: string } } } | null } | null };
 
 export type GetCategoriesAdminQueryVariables = Exact<{
   getCategoriesAdminArgs: GetCategoriesAdminArgsGql;
@@ -2925,6 +3072,11 @@ export const RemoveImageAdminDocument = {"kind":"Document","definitions":[{"kind
 export const UploadFileDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"uploadFile"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"file"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Upload"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"uploadFile"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"file"},"value":{"kind":"Variable","name":{"kind":"Name","value":"file"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"path"}},{"kind":"Field","name":{"kind":"Name","value":"filename"}}]}}]}}]} as unknown as DocumentNode<UploadFileMutation, UploadFileMutationVariables>;
 export const GetFileByIdAdminDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getFileByIdAdmin"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"fileId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getFileByIdAdmin"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"fileId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"fileId"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"filename"}}]}}]}}]} as unknown as DocumentNode<GetFileByIdAdminQuery, GetFileByIdAdminQueryVariables>;
 export const LogoutAdminDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"logoutAdmin"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"logoutAdmin"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]} as unknown as DocumentNode<LogoutAdminQuery, LogoutAdminQueryVariables>;
+export const GetCallsAdminDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getCallsAdmin"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"getCallsAdminArgs"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"GetCallsAdminArgsGQL"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"paginationArgs"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"PaginationArgsGQL"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getCallsAdmin"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"getCallsAdminArgs"},"value":{"kind":"Variable","name":{"kind":"Name","value":"getCallsAdminArgs"}}},{"kind":"Argument","name":{"kind":"Name","value":"paginationArgs"},"value":{"kind":"Variable","name":{"kind":"Name","value":"paginationArgs"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"pageInfo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"totalEdges"}},{"kind":"Field","name":{"kind":"Name","value":"edgeCount"}},{"kind":"Field","name":{"kind":"Name","value":"edgesPerPage"}},{"kind":"Field","name":{"kind":"Name","value":"currentPage"}},{"kind":"Field","name":{"kind":"Name","value":"totalPages"}}]}},{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"timestamp"}},{"kind":"Field","name":{"kind":"Name","value":"newPhone"}},{"kind":"Field","name":{"kind":"Name","value":"userId"}},{"kind":"Field","name":{"kind":"Name","value":"user"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"firstName"}},{"kind":"Field","name":{"kind":"Name","value":"lastName"}}]}},{"kind":"Field","name":{"kind":"Name","value":"customer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"firstName"}},{"kind":"Field","name":{"kind":"Name","value":"lastName"}},{"kind":"Field","name":{"kind":"Name","value":"jobTitle"}},{"kind":"Field","name":{"kind":"Name","value":"city"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"province"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"transporter"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"phone"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"city"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"province"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"producer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"phone"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"city"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"province"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"customerId"}},{"kind":"Field","name":{"kind":"Name","value":"transporterId"}},{"kind":"Field","name":{"kind":"Name","value":"producerId"}},{"kind":"Field","name":{"kind":"Name","value":"type"}}]}}]}}]}}]} as unknown as DocumentNode<GetCallsAdminQuery, GetCallsAdminQueryVariables>;
+export const DeleteCallAdminDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"deleteCallAdmin"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"deleteCallAdminInputs"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"DeleteCallAdminInputsGQL"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"deleteCallAdmin"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"deleteCallAdminInputs"},"value":{"kind":"Variable","name":{"kind":"Name","value":"deleteCallAdminInputs"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"newPhone"}},{"kind":"Field","name":{"kind":"Name","value":"userId"}}]}}]}}]} as unknown as DocumentNode<DeleteCallAdminMutation, DeleteCallAdminMutationVariables>;
+export const CreateCallAdminDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"createCallAdmin"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"createCallAdminInputs"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"CreateCallAdminInputsGQL"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createCallAdmin"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"createCallAdminInputs"},"value":{"kind":"Variable","name":{"kind":"Name","value":"createCallAdminInputs"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"timestamp"}},{"kind":"Field","name":{"kind":"Name","value":"newPhone"}},{"kind":"Field","name":{"kind":"Name","value":"userId"}},{"kind":"Field","name":{"kind":"Name","value":"user"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"firstName"}},{"kind":"Field","name":{"kind":"Name","value":"lastName"}}]}},{"kind":"Field","name":{"kind":"Name","value":"customer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"firstName"}},{"kind":"Field","name":{"kind":"Name","value":"lastName"}},{"kind":"Field","name":{"kind":"Name","value":"jobTitle"}},{"kind":"Field","name":{"kind":"Name","value":"city"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"province"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"transporter"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"phone"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"city"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"province"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"producer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"phone"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"city"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"province"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"customerId"}},{"kind":"Field","name":{"kind":"Name","value":"transporterId"}},{"kind":"Field","name":{"kind":"Name","value":"producerId"}},{"kind":"Field","name":{"kind":"Name","value":"type"}}]}}]}}]} as unknown as DocumentNode<CreateCallAdminMutation, CreateCallAdminMutationVariables>;
+export const UpdateCallAdminDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"updateCallAdmin"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"updateCallAdminInputs"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"UpdateCallAdminInputsGQL"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"updateCallAdmin"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"updateCallAdminInputs"},"value":{"kind":"Variable","name":{"kind":"Name","value":"updateCallAdminInputs"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"timestamp"}},{"kind":"Field","name":{"kind":"Name","value":"newPhone"}},{"kind":"Field","name":{"kind":"Name","value":"userId"}},{"kind":"Field","name":{"kind":"Name","value":"user"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"firstName"}},{"kind":"Field","name":{"kind":"Name","value":"lastName"}}]}},{"kind":"Field","name":{"kind":"Name","value":"customer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"firstName"}},{"kind":"Field","name":{"kind":"Name","value":"lastName"}},{"kind":"Field","name":{"kind":"Name","value":"jobTitle"}},{"kind":"Field","name":{"kind":"Name","value":"city"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"province"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"transporter"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"phone"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"city"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"province"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"producer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"phone"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"city"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"province"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"customerId"}},{"kind":"Field","name":{"kind":"Name","value":"transporterId"}},{"kind":"Field","name":{"kind":"Name","value":"producerId"}},{"kind":"Field","name":{"kind":"Name","value":"type"}}]}}]}}]} as unknown as DocumentNode<UpdateCallAdminMutation, UpdateCallAdminMutationVariables>;
+export const GetCallByIdAdminDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getCallByIdAdmin"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"callId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getCallByIdAdmin"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"callId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"callId"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"timestamp"}},{"kind":"Field","name":{"kind":"Name","value":"newPhone"}},{"kind":"Field","name":{"kind":"Name","value":"userId"}},{"kind":"Field","name":{"kind":"Name","value":"user"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"firstName"}},{"kind":"Field","name":{"kind":"Name","value":"lastName"}}]}},{"kind":"Field","name":{"kind":"Name","value":"customer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"firstName"}},{"kind":"Field","name":{"kind":"Name","value":"lastName"}},{"kind":"Field","name":{"kind":"Name","value":"jobTitle"}},{"kind":"Field","name":{"kind":"Name","value":"city"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"province"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"transporter"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"phone"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"city"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"province"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"producer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"phone"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"city"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"province"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"customerId"}},{"kind":"Field","name":{"kind":"Name","value":"transporterId"}},{"kind":"Field","name":{"kind":"Name","value":"producerId"}},{"kind":"Field","name":{"kind":"Name","value":"type"}}]}}]}}]} as unknown as DocumentNode<GetCallByIdAdminQuery, GetCallByIdAdminQueryVariables>;
 export const GetCategoriesAdminDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getCategoriesAdmin"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"getCategoriesAdminArgs"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"GetCategoriesAdminArgsGQL"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"paginationArgs"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"PaginationArgsGQL"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getCategoriesAdmin"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"getCategoriesAdminArgs"},"value":{"kind":"Variable","name":{"kind":"Name","value":"getCategoriesAdminArgs"}}},{"kind":"Argument","name":{"kind":"Name","value":"paginationArgs"},"value":{"kind":"Variable","name":{"kind":"Name","value":"paginationArgs"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"pageInfo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"totalEdges"}},{"kind":"Field","name":{"kind":"Name","value":"edgeCount"}},{"kind":"Field","name":{"kind":"Name","value":"edgesPerPage"}},{"kind":"Field","name":{"kind":"Name","value":"currentPage"}},{"kind":"Field","name":{"kind":"Name","value":"totalPages"}}]}},{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"isActive"}}]}}]}}]}}]} as unknown as DocumentNode<GetCategoriesAdminQuery, GetCategoriesAdminQueryVariables>;
 export const UpdateCategoryActivationAdminDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"updateCategoryActivationAdmin"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"updateCategoryActivationAdminInputs"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"UpdateCategoryActivationAdminInputsGQL"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"updateCategoryActivationAdmin"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"updateCategoryActivationAdminInputs"},"value":{"kind":"Variable","name":{"kind":"Name","value":"updateCategoryActivationAdminInputs"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"isActive"}}]}}]}}]} as unknown as DocumentNode<UpdateCategoryActivationAdminMutation, UpdateCategoryActivationAdminMutationVariables>;
 export const CreateCategoryAdminDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"createCategoryAdmin"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"createCategoryAdminInputs"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"CreateCategoryAdminInputsGQL"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createCategoryAdmin"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"createCategoryAdminInputs"},"value":{"kind":"Variable","name":{"kind":"Name","value":"createCategoryAdminInputs"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"isActive"}}]}}]}}]} as unknown as DocumentNode<CreateCategoryAdminMutation, CreateCategoryAdminMutationVariables>;

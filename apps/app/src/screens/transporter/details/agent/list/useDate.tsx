@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useQuery } from "@apollo/client";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { classValidatorResolver } from "@hookform/resolvers/class-validator";
-import { GetTransporterAgentsAdminArgs } from "libs/dto/src/admin";
+import { GetTransporterAgentsAdminArgs } from "libs/dto/src/admin/transporterAgent/get-transporter-agents.args";
 import { Alert } from "react-native";
 
 import { useTransporterDetails } from "@app/hooks";

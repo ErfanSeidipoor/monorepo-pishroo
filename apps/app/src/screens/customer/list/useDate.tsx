@@ -1,6 +1,6 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import { classValidatorResolver } from "@hookform/resolvers/class-validator";
-import { GetCustomersAdminArgs } from "libs/dto/src/admin";
+import { GetCustomersAdminArgs } from "libs/dto/src/admin/customer/get-customers.args";
 import { Alert } from "react-native";
 import {
   GetCustomersAdminArgsGql,

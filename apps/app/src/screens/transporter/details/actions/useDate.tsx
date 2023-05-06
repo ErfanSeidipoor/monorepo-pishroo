@@ -4,7 +4,7 @@ import { classValidatorResolver } from "@hookform/resolvers/class-validator";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Alert } from "react-native";
-import { GetTransporterActionsAdminArgs } from "libs/dto/src/admin";
+import { GetTransporterActionsAdminArgs } from "libs/dto/src/admin/transporterAction/get-transporter-actions.args";
 
 import {
   GetTransporterActionsAdminArgsGql,
@@ -26,10 +26,12 @@ const useData = () => {
       GetTransporterActionsAdminQuery["getTransporterActionsAdmin"]["pageInfo"]
     >();
 
-  const [queryArgs, setQueryArgs] = useState<GetTransporterActionsAdminArgsGql>({
-    search: "",
-    transporterId,
-  });
+  const [queryArgs, setQueryArgs] = useState<GetTransporterActionsAdminArgsGql>(
+    {
+      search: "",
+      transporterId,
+    }
+  );
 
   const [paginationArgs, setPaginationArgs] = useState<PaginationArgsGql>({
     page: 1,

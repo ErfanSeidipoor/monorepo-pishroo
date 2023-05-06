@@ -5,3 +5,4 @@ export * from "./property";
 export * from "./tagUse";
 export * from "./fileUse";
 export * from "./sort";
+export * from "./call";

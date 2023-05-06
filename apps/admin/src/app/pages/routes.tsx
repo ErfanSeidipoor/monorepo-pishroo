@@ -64,6 +64,9 @@ import {
   DASHBOARD_PRODUCER_ACTION_ROUTE,
   DASHBOARD_PRODUCER_ACTION_NEW_PRODUCER_ACTION_ROUTE,
   DASHBOARD_PRODUCER_ACTION_DETAILS,
+  DASHBOARD_CALL_ROUTE,
+  DASHBOARD_CALL_NEW_CALL_ROUTE,
+  DASHBOARD_CALL_DETAILS,
 } from "@admin/constants";
 
 /* --------------------------------- Routes --------------------------------- */
@@ -167,6 +170,24 @@ export const Routes = () =>
             {
               path: DASHBOARD_CATEGORY_ROUTE,
               element: <CategoryListPage />,
+            },
+          ],
+        },
+        {
+          path: DASHBOARD_CALL_ROUTE,
+          element: <CallProvider />,
+          children: [
+            {
+              path: DASHBOARD_CALL_NEW_CALL_ROUTE,
+              element: <CallNewPage />,
+            },
+            {
+              path: DASHBOARD_CALL_DETAILS,
+              element: <CallUpdatePage />,
+            },
+            {
+              path: DASHBOARD_CALL_ROUTE,
+              element: <CallListPage />,
             },
           ],
         },
@@ -742,6 +763,13 @@ const CategoryNewPage = Loadable(
 const CategoryUpdatePage = Loadable(
   lazy(() => import("./dashboard/category/update"))
 );
+
+/* --------------------------- dashboard call  --------------------------- */
+
+const CallProvider = Loadable(lazy(() => import("./dashboard/call")));
+const CallListPage = Loadable(lazy(() => import("./dashboard/call/list")));
+const CallNewPage = Loadable(lazy(() => import("./dashboard/call/new")));
+const CallUpdatePage = Loadable(lazy(() => import("./dashboard/call/update")));
 
 /* --------------------------- dashboard message --------------------------- */
 

@@ -1,6 +1,6 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import { classValidatorResolver } from "@hookform/resolvers/class-validator";
-import { GetTransportersAdminArgs } from "libs/dto/src/admin";
+import { GetTransportersAdminArgs } from "libs/dto/src/admin/transporter/get-transporters.args";
 import { Alert } from "react-native";
 import {
   GetTransportersAdminArgsGql,

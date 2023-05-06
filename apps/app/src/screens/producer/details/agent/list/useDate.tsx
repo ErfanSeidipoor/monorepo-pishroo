@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useQuery } from "@apollo/client";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { classValidatorResolver } from "@hookform/resolvers/class-validator";
-import { GetProducerAgentsAdminArgs } from "libs/dto/src/admin";
+import { GetProducerAgentsAdminArgs } from "libs/dto/src/admin/producerAgent/get-producer-agents.args";
 import { Alert } from "react-native";
 
 import { useProducerDetails } from "@app/hooks";

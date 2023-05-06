@@ -18,3 +18,4 @@ export * from "./useCustomerActionDetails";
 export * from "./useTransporterActionDetails";
 export * from "./useProductPropertyDetails";
 export * from "./useProducerActionDetails";
+export * from "./useCallDetails";
